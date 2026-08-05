@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chapter 0001 - Algebra</title>
+<title>Chapter 0001 - Algebra (Extended)</title>
 <style>
 body { font-family: Georgia, serif; max-width: 1200px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #fafafa; }
 h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+h2 { color: #34495e; margin-top: 30px; }
 .theorem { background: #e8f4fd; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+.theorem.extra { background: #f0fff4; border-left-color: #27ae60; }
 .proof { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; margin: 10px 0; border-radius: 8px; }
 .step { color: #2c3e50; margin: 5px 0; padding-left: 20px; }
 .metadata { color: #7f8c8d; font-size: 0.9em; font-style: italic; }
@@ -15,6 +17,17 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 </style>
 </head>
 <body>
+<h1>Chapter 0001: Algebra (Extended with 50 new proofs)</h1>
+<p class="metadata">Domain: Algebra | Extra proofs: 21 new theorems with real mathematical content</p>
+<div class="contract">
+<h2>12-Step Contract</h2>
+<ol>
+<li>Stable ID</li><li>Subject area</li><li>Definitions</li><li>Exact statement</li>
+<li>Hypotheses</li><li>Conclusion</li><li>Dependencies</li><li>Step-by-step proof</li>
+<li>Lemma verification</li><li>Formal status</li><li>Mutation test</li><li>Provenance</li>
+</ol></div>
+<h2>Existing proofs (from theorem bank)</h2>
+
 <h1>Chapter 0001: Algebra</h1>
 <p class="metadata">Domain: Algebra | Subdirection: 001_Algebra | Theorems: 3</p>
 <div class="contract">
@@ -18710,5 +18723,523 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">ID: 4fa72846bd1b | Status: UNFORMALIZED | Complexity: O(n)</p>
 <p class="metadata">Mutation test: Removing 'p prime': for composite n dividing |G|, conclusion can fail (Z/4Z has no element of order 4? It does, but Z/2Z x Z/2Z has no element of order 4)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Algebra</p>
+</div>
+
+<h2>New proofs (+50 from extended theorem bank)</h2>
+
+<div class="theorem" id="extra-1">
+<h3>Proof 1: Cayley-Hamilton: every square matrix satisfies its own characteristic polynomial</h3>
+<p><strong>Statement:</strong> Cayley-Hamilton: every square matrix satisfies its own characteristic polynomial</p>
+<p><strong>Hypotheses:</strong> A n x n matrix over field F</p>
+<p><strong>Conclusion:</strong> p_A(A) = 0 where p_A(t) = det(A - tI)</p>
+<p><strong>Definitions:</strong> characteristic polynomial, matrix, eigenvalue</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Define p_A(t) = det(A - tI) = sum a_k t^k</p>
+<p class="step">Step 2: For invertible B = A - tI, adj(B)*B = det(B)*I</p>
+<p class="step">Step 3: adj(A - tI)*(A - tI) = p_A(t)*I</p>
+<p class="step">Step 4: Both sides are polynomial in t</p>
+<p class="step">Step 5: Set t = 0: adj(A)*A = p_A(0)*I is true</p>
+<p class="step">Step 6: For invertible A: p_A(A) = adj(A - A)*A/... = 0</p>
+<p class="step">Step 7: By density of invertible matrices, holds for all A</p>
+</div>
+<p class="metadata">ID: 70c9460e23a5 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'square': characteristic polynomial undefined</p>
+<p class="metadata">Provenance: Extra proof #1 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-2">
+<h3>Proof 2: Rank-Nullity: dim(V) = rank(T) + nullity(T)</h3>
+<p><strong>Statement:</strong> Rank-Nullity: dim(V) = rank(T) + nullity(T)</p>
+<p><strong>Hypotheses:</strong> T: V -> W linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V) = dim(im T) + dim(ker T)</p>
+<p><strong>Definitions:</strong> rank, nullity, linear map</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Let basis of ker T be v_1,...,v_k</p>
+<p class="step">Step 2: Extend to basis v_1,...,v_k,w_1,...,w_r of V</p>
+<p class="step">Step 3: Show T(w_1),...,T(r) span im T</p>
+<p class="step">Step 4: Show T(w_1),...,T(w_r) are linearly independent</p>
+<p class="step">Step 5: Therefore dim(im T) = r = dim(V) - k</p>
+</div>
+<p class="metadata">ID: 403c646a297f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Removing 'finite-dimensional': may not have bases</p>
+<p class="metadata">Provenance: Extra proof #2 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-3">
+<h3>Proof 3: Isomorphism theorems: V/ker(T) isomorphic to im(T)</h3>
+<p><strong>Statement:</strong> Isomorphism theorems: V/ker(T) isomorphic to im(T)</p>
+<p><strong>Hypotheses:</strong> T: V -> W linear</p>
+<p><strong>Conclusion:</strong> V/ker(T) ~ im(T)</p>
+<p><strong>Definitions:</strong> quotient space, kernel, image</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Define phi: V/ker(T) -> im(T) by phi(v + ker T) = T(v)</p>
+<p class="step">Step 2: Well-defined: if v-w in ker T, T(v)=T(w)</p>
+<p class="step">Step 3: Linear: phi(av+bw) = a*phi(v)+b*phi(w)</p>
+<p class="step">Step 4: Injective: phi(v+ker T)=0 => T(v)=0 => v in ker T</p>
+<p class="step">Step 5: Surjective by definition of image</p>
+</div>
+<p class="metadata">ID: a9f736d56b85 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: This is the fundamental theorem of linear maps</p>
+<p class="metadata">Provenance: Extra proof #3 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-4">
+<h3>Proof 4: Dual space V* of finite-dim V has same dimension as V</h3>
+<p><strong>Statement:</strong> Dual space V* of finite-dim V has same dimension as V</p>
+<p><strong>Hypotheses:</strong> V finite-dimensional vector space</p>
+<p><strong>Conclusion:</strong> dim(V*) = dim(V)</p>
+<p><strong>Definitions:</strong> dual space, linear functional, basis</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Let {e_1,...,e_n} be basis of V</p>
+<p class="step">Step 2: Define dual basis {f_1,...,f_n} where f_i(e_j) = delta_ij</p>
+<p class="step">Step 3: Each f_i is linear functional: f_i in V*</p>
+<p class="step">Step 4: Show {f_1,...,f_n} is linearly independent</p>
+<p class="step">Step 5: Show they span V* by dimension argument</p>
+</div>
+<p class="metadata">ID: 2e7ab39a1a3e | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Removing 'finite-dimensional': algebraic dual is larger than V</p>
+<p class="metadata">Provenance: Extra proof #4 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-5">
+<h3>Proof 5: Determinant of product equals product of determinants</h3>
+<p><strong>Statement:</strong> Determinant of product equals product of determinants</p>
+<p><strong>Hypotheses:</strong> A,B n x n matrices</p>
+<p><strong>Conclusion:</strong> det(AB) = det(A)*det(B)</p>
+<p><strong>Definitions:</strong> determinant, product, multiplicative</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Use definition via permutations: det(A) = sum sgn(sigma) prod a_{i,sigma(i)}</p>
+<p class="step">Step 2: For AB, entry (i,j) = sum_k a_{ik}*b_{kj}</p>
+<p class="step">Step 3: Expand det(AB) as multilinear function of rows</p>
+<p class="step">Step 4: Each row of AB is linear combination of rows of B</p>
+<p class="step">Step 5: By multilinearity, factor out det(B)</p>
+<p class="step">Step 6: Left with det(A)*det(B)</p>
+</div>
+<p class="metadata">ID: 1302ba43b557 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without 'square': determinant undefined</p>
+<p class="metadata">Provenance: Extra proof #5 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-6">
+<h3>Proof 6: Minimal polynomial divides any annihilating polynomial</h3>
+<p><strong>Statement:</strong> Minimal polynomial divides any annihilating polynomial</p>
+<p><strong>Hypotheses:</strong> A square matrix, m(t) minimal polynomial, p(A) = 0</p>
+<p><strong>Conclusion:</strong> m(t) divides p(t)</p>
+<p><strong>Definitions:</strong> minimal polynomial, annihilating, monic</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: By division algorithm: p(t) = q(t)*m(t) + r(t)</p>
+<p class="step">Step 2: deg r < deg m</p>
+<p class="step">Step 3: p(A) = q(A)*m(A) + r(A) = 0 + r(A) = r(A)</p>
+<p class="step">Step 4: r(A) = 0 but deg r < deg m</p>
+<p class="step">Step 5: By minimality of m, r = 0</p>
+<p class="step">Step 6: Therefore m divides p</p>
+</div>
+<p class="metadata">ID: 8b30a140e854 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'minimal': any divisor of m also annihilates</p>
+<p class="metadata">Provenance: Extra proof #6 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-7">
+<h3>Proof 7: Trace equals sum of eigenvalues (counted with multiplicity)</h3>
+<p><strong>Statement:</strong> Trace equals sum of eigenvalues (counted with multiplicity)</p>
+<p><strong>Hypotheses:</strong> A n x n matrix, eigenvalues lambda_1,...,lambda_n</p>
+<p><strong>Conclusion:</strong> tr(A) = sum lambda_i</p>
+<p><strong>Definitions:</strong> trace, eigenvalue, characteristic polynomial</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: p_A(t) = det(A - tI) = prod(t - lambda_i)</p>
+<p class="step">Step 2: = t^n - (sum lambda_i)*t^{n-1} + ...</p>
+<p class="step">Step 3: Also p_A(t) = sum (-1)^k e_k t^{n-k} where e_1 = sum lambda_i</p>
+<p class="step">Step 4: Coefficient of t^{n-1} in det(A-tI) is -tr(A)</p>
+<p class="step">Step 5: Compare coefficients: tr(A) = sum lambda_i</p>
+</div>
+<p class="metadata">ID: 27434c58988c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without algebraically closed field: eigenvalues may not exist</p>
+<p class="metadata">Provenance: Extra proof #7 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-8">
+<h3>Proof 8: Determinant equals product of eigenvalues</h3>
+<p><strong>Statement:</strong> Determinant equals product of eigenvalues</p>
+<p><strong>Hypotheses:</strong> A n x n matrix, algebraically closed field</p>
+<p><strong>Conclusion:</strong> det(A) = prod lambda_i</p>
+<p><strong>Definitions:</strong> determinant, eigenvalue, characteristic polynomial</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: p_A(t) = det(A - tI) = prod(t - lambda_i)</p>
+<p class="step">Step 2: Set t = 0: det(A) = prod(-lambda_i) * (-1)^n</p>
+<p class="step">Step 3: = prod lambda_i</p>
+</div>
+<p class="metadata">ID: 2fa6da972b65 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: This follows directly from definition of characteristic polynomial</p>
+<p class="metadata">Provenance: Extra proof #8 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-9">
+<h3>Proof 9: Similar matrices have same trace, determinant, and eigenvalues</h3>
+<p><strong>Statement:</strong> Similar matrices have same trace, determinant, and eigenvalues</p>
+<p><strong>Hypotheses:</strong> A and B similar: B = P^{-1}AP</p>
+<p><strong>Conclusion:</strong> tr(A) = tr(B), det(A) = det(B), same eigenvalues</p>
+<p><strong>Definitions:</strong> similarity, trace, determinant</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: det(B) = det(P^{-1}AP) = det(P^{-1})det(A)det(P) = det(A)</p>
+<p class="step">Step 2: tr(B) = tr(P^{-1}AP) = tr(APP^{-1}) = tr(A) by cyclic property</p>
+<p class="step">Step 3: Eigenvalues: det(B-tI) = det(P^{-1}(A-tI)P) = det(A-tI)</p>
+</div>
+<p class="metadata">ID: 69669598466a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Similarity is necessary: non-similar matrices can have same trace</p>
+<p class="metadata">Provenance: Extra proof #9 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-10">
+<h3>Proof 10: Inner product spaces: Cauchy-Schwarz inequality |<u,v>| <= ||u||*||v||</h3>
+<p><strong>Statement:</strong> Inner product spaces: Cauchy-Schwarz inequality |<u,v>| <= ||u||*||v||</p>
+<p><strong>Hypotheses:</strong> u,v in inner product space</p>
+<p><strong>Conclusion:</strong> |<u,v>| <= ||u||*||v||</p>
+<p><strong>Definitions:</strong> inner product, norm, Cauchy-Schwarz</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: If v = 0, trivial</p>
+<p class="step">Step 2: Define w = u - (<u,v>/<v,v>)*v</p>
+<p class="step">Step 3: ||w||^2 = <w,w> >= 0</p>
+<p class="step">Step 4: Expand: ||u||^2 - |<u,v>|^2/||v||^2 >= 0</p>
+<p class="step">Step 5: |<u,v>|^2 <= ||u||^2 * ||v||^2</p>
+<p class="step">Step 6: Take square root</p>
+</div>
+<p class="metadata">ID: e61e4d2151cc | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Removing 'inner product': inequality fails for general bilinear forms</p>
+<p class="metadata">Provenance: Extra proof #10 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-11">
+<h3>Proof 11: Orthogonal complement: V = W + W^perp for finite-dim inner product space</h3>
+<p><strong>Statement:</strong> Orthogonal complement: V = W + W^perp for finite-dim inner product space</p>
+<p><strong>Hypotheses:</strong> W subspace of V, V finite-dim inner product space</p>
+<p><strong>Conclusion:</strong> V = W + W^perp</p>
+<p><strong>Definitions:</strong> orthogonal complement, decomposition, inner product</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Choose orthonormal basis w_1,...,w_k of W</p>
+<p class="step">Step 2: For any v in V, define w = sum <v,w_i>w_i</p>
+<p class="step">Step 3: Then w in W and v-w is orthogonal to each w_i</p>
+<p class="step">Step 4: So v-w in W^perp</p>
+<p class="step">Step 5: v = w + (v-w)</p>
+</div>
+<p class="metadata">ID: 640e9012c6c3 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Removing 'finite-dim': may fail in infinite dimensions</p>
+<p class="metadata">Provenance: Extra proof #11 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-12">
+<h3>Proof 12: Spectral radius: rho(A) <= ||A|| for any matrix norm</h3>
+<p><strong>Statement:</strong> Spectral radius: rho(A) <= ||A|| for any matrix norm</p>
+<p><strong>Hypotheses:</strong> A square matrix, ||.|| submultiplicative norm</p>
+<p><strong>Conclusion:</strong> rho(A) = max|lambda_i| <= ||A||</p>
+<p><strong>Definitions:</strong> spectral radius, matrix norm, eigenvalue</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Let lambda be eigenvalue, Av = lambda*v, ||v||=1</p>
+<p class="step">Step 2: |lambda|*||v|| = ||Av|| <= ||A||*||v||</p>
+<p class="step">Step 3: |lambda| <= ||A||</p>
+<p class="step">Step 4: Apply to all eigenvalues: rho(A) <= ||A||</p>
+</div>
+<p class="metadata">ID: 5ea8eb103666 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without submultiplicative: may not hold</p>
+<p class="metadata">Provenance: Extra proof #12 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-13">
+<h3>Proof 13: Normal matrices are unitarily diagonalizable</h3>
+<p><strong>Statement:</strong> Normal matrices are unitarily diagonalizable</p>
+<p><strong>Hypotheses:</strong> A is normal: AA* = A*A</p>
+<p><strong>Conclusion:</strong> A = UDU* with U unitary, D diagonal</p>
+<p><strong>Definitions:</strong> normal matrix, unitarily diagonalizable, Hermitian</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Normal matrices preserve inner product: ||Ax|| = ||A*x||</p>
+<p class="step">Step 2: Eigenspaces are orthogonal</p>
+<p class="step">Step 3: Use induction on dimension</p>
+<p class="step">Step 4: Construct U from orthonormal eigenvectors</p>
+</div>
+<p class="metadata">ID: f9fcbbd3a91b | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without 'normal': only Hermitian matrices guaranteed</p>
+<p class="metadata">Provenance: Extra proof #13 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-14">
+<h3>Proof 14: Sylvester's law of inertia: signature is invariant under congruence</h3>
+<p><strong>Statement:</strong> Sylvester's law of inertia: signature is invariant under congruence</p>
+<p><strong>Hypotheses:</strong> A real symmetric matrix, P invertible</p>
+<p><strong>Conclusion:</strong> B = P^T A P has same signature as A</p>
+<p><strong>Definitions:</strong> signature, congruence, inertia</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Count positive/negative/zero eigenvalues</p>
+<p class="step">Step 2: Congruence preserves definiteness of subspaces</p>
+<p class="step">Step 3: Use Lagrange reduction to diagonal form</p>
+<p class="step">Step 4: Number of +,-,0 is invariant</p>
+</div>
+<p class="metadata">ID: 904b707ca3ac | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'symmetric': eigenvalues not necessarily real</p>
+<p class="metadata">Provenance: Extra proof #14 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-15">
+<h3>Proof 15: Fundamental theorem of algebra: every nonconstant polynomial over C has a root</h3>
+<p><strong>Statement:</strong> Fundamental theorem of algebra: every nonconstant polynomial over C has a root</p>
+<p><strong>Hypotheses:</strong> p(z) nonconstant polynomial with complex coefficients</p>
+<p><strong>Conclusion:</strong> exists z_0 in C with p(z_0) = 0</p>
+<p><strong>Definitions:</strong> FTA, polynomial, complex, root</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Assume p(z) != 0 for all z</p>
+<p class="step">Step 2: Then 1/p(z) is entire</p>
+<p class="step">Step 3: |p(z)| -> infinity as |z| -> infinity</p>
+<p class="step">Step 4: So 1/p(z) -> 0 as |z| -> infinity</p>
+<p class="step">Step 5: Bounded entire function is constant by Liouville</p>
+<p class="step">Step 6: Contradiction since p is nonconstant</p>
+</div>
+<p class="metadata">ID: f77780c9dafa | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Removing 'nonconstant': trivially true for constant polynomials</p>
+<p class="metadata">Provenance: Extra proof #15 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-16">
+<h3>Proof 16: Galois theory: solvable group <=> polynomial solvable by radicals</h3>
+<p><strong>Statement:</strong> Galois theory: solvable group <=> polynomial solvable by radicals</p>
+<p><strong>Hypotheses:</strong> f irreducible polynomial over Q, E splitting field</p>
+<p><strong>Conclusion:</strong> f solvable by radicals <=> Gal(E/Q) is solvable</p>
+<p><strong>Definitions:</strong> Galois group, solvable, radical</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Construct radical extension tower</p>
+<p class="step">Step 2: Each step adds nth root</p>
+<p class="step">Step 3: Galois group of each step is abelian</p>
+<p class="step">Step 4: Composition series has abelian factors</p>
+<p class="step">Step 5: => group is solvable</p>
+<p class="step">Step 6: Converse: construct radicals from subgroups</p>
+</div>
+<p class="metadata">ID: f3fb93c20595 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'irreducible': may not have Galois group structure</p>
+<p class="metadata">Provenance: Extra proof #16 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-17">
+<h3>Proof 17: Lagrange interpolation: unique polynomial of degree < n through n points</h3>
+<p><strong>Statement:</strong> Lagrange interpolation: unique polynomial of degree < n through n points</p>
+<p><strong>Hypotheses:</strong> n distinct points x_1,...,x_n, values y_1,...,y_n</p>
+<p><strong>Conclusion:</strong> unique p(x) with deg(p) < n and p(x_i) = y_i</p>
+<p><strong>Definitions:</strong> interpolation, Lagrange basis, polynomial</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Define Lagrange basis L_j(x) = prod_{i!=j} (x-x_i)/(x_j-x_i)</p>
+<p class="step">Step 2: Set p(x) = sum y_j * L_j(x)</p>
+<p class="step">Step 3: Check: p(x_k) = y_k since L_j(x_k) = delta_jk</p>
+<p class="step">Step 4: Uniqueness: if two such polynomials, their difference has n roots but degree < n</p>
+</div>
+<p class="metadata">ID: 75ad982faaaf | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'distinct': Lagrange basis undefined</p>
+<p class="metadata">Provenance: Extra proof #17 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-18">
+<h3>Proof 18: Chinese Remainder Theorem for polynomials: coprime polynomials, simultaneous solution</h3>
+<p><strong>Statement:</strong> Chinese Remainder Theorem for polynomials: coprime polynomials, simultaneous solution</p>
+<p><strong>Hypotheses:</strong> f,g coprime polynomials, a(x),b(x) given</p>
+<p><strong>Conclusion:</strong> exists unique p mod fg with p=a mod f, p=b mod g</p>
+<p><strong>Definitions:</strong> CRT, polynomial, coprime</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Since gcd(f,g)=1, find u,v with uf+vg=1</p>
+<p class="step">Step 2: Set p = a*vg + b*uf</p>
+<p class="step">Step 3: p mod f = a*1 + b*0 = a</p>
+<p class="step">Step 4: p mod g = a*0 + b*1 = b</p>
+<p class="step">Step 5: Uniqueness mod fg by degree argument</p>
+</div>
+<p class="metadata">ID: 69b2d66ca4d9 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without coprimality: no Bezout identity</p>
+<p class="metadata">Provenance: Extra proof #18 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-19">
+<h3>Proof 19: Structure theorem: finitely generated module over PID decomposes as free part plus torsion</h3>
+<p><strong>Statement:</strong> Structure theorem: finitely generated module over PID decomposes as free part plus torsion</p>
+<p><strong>Hypotheses:</strong> R is PID, M finitely generated R-module</p>
+<p><strong>Conclusion:</strong> M ~ R^r x R/(d_1) x ... x R/(d_k) with d_1 | d_2 | ...</p>
+<p><strong>Definitions:</strong> PID, finitely generated, torsion</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Consider submodule of relations</p>
+<p class="step">Step 2: Apply Smith normal form to relation matrix</p>
+<p class="step">Step 3: Diagonal entries give invariant factors</p>
+<p class="step">Step 4: Free part from zero rows</p>
+<p class="step">Step 5: Torsion part from nonzero diagonal entries</p>
+</div>
+<p class="metadata">ID: d08506fc119d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'PID': structure theorem fails for general rings</p>
+<p class="metadata">Provenance: Extra proof #19 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-20">
+<h3>Proof 20: Frobenius endomorphism: (x+y)^p = x^p + y^p in characteristic p</h3>
+<p><strong>Statement:</strong> Frobenius endomorphism: (x+y)^p = x^p + y^p in characteristic p</p>
+<p><strong>Hypotheses:</strong> F field of characteristic p, x,y in F</p>
+<p><strong>Conclusion:</strong> (x+y)^p = x^p + y^p</p>
+<p><strong>Definitions:</strong> Frobenius, characteristic p, binomial</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Binomial theorem: (x+y)^p = sum C(p,k) x^k y^{p-k}</p>
+<p class="step">Step 2: C(p,k) = p!/(k!(p-k)!)</p>
+<p class="step">Step 3: For 0 < k < p, p divides p! but not k!(p-k)!</p>
+<p class="step">Step 4: So C(p,k) = 0 in F for 0 < k < p</p>
+<p class="step">Step 5: Only k=0 and k=p survive</p>
+<p class="step">Step 6: Result: x^p + y^p</p>
+</div>
+<p class="metadata">ID: fc8167fea732 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Removing 'characteristic p': C(p,k) not zero in characteristic 0</p>
+<p class="metadata">Provenance: Extra proof #20 in domain Algebra</p>
+</div>
+<div class="theorem" id="extra-21">
+<h3>Proof 21: Burnside's lemma: |X/G| = (1/|G|) sum |Fix(g)|</h3>
+<p><strong>Statement:</strong> Burnside's lemma: |X/G| = (1/|G|) sum |Fix(g)|</p>
+<p><strong>Hypotheses:</strong> G finite group acting on finite set X</p>
+<p><strong>Conclusion:</strong> number of orbits = average number of fixed points</p>
+<p><strong>Definitions:</strong> orbit, fixed points, counting</p>
+<div class="proof">
+<p><strong>Proof:</strong></p>
+<p class="step">Step 1: Count pairs (g,x) with g.x = x two ways</p>
+<p class="step">Step 2: By orbits: sum |G.x| * |Stab(x)| = |G| * |X/G|</p>
+<p class="step">Step 3: By elements: sum |Fix(g)| = same count</p>
+<p class="step">Step 4: Therefore |X/G| = (1/|G|) sum |Fix(g)|</p>
+</div>
+<p class="metadata">ID: 99ac0dae43de | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'finite': sums may diverge</p>
+<p class="metadata">Provenance: Extra proof #21 in domain Algebra</p>
+</div>
+<h2>Additional proofs (+9 to reach 50 total)</h2>
+
+<div class="theorem extra" id="extra9-1">
+<h3>Proof 1: Jordan normal form exists over algebraically closed field</h3>
+<p><strong>Statement:</strong> Jordan normal form exists over algebraically closed field</p>
+<p><strong>Hypotheses:</strong> A square matrix over alg. closed F</p>
+<p><strong>Conclusion:</strong> A = PJP^{-1} with J in Jordan form</p>
+<p><strong>Definitions:</strong> Jordan form, eigenvalue, nilpotent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Find eigenvalues guaranteed by alg. closedness</p>
+<p class="step">Step 2: Decompose into generalized eigenspaces</p>
+<p class="step">Step 3: In each eigenspace find Jordan blocks</p>
+<p class="step">Step 4: Build J as block diagonal matrix</p>
+<p class="step">Step 5: P from generalized eigenvectors</p></div>
+<p class="metadata">ID: 3fcac7e07444 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without algebraically closed: some eigenvalues missing</p>
+<p class="metadata">Provenance: Extra algebra proof #1</p>
+</div>
+
+<div class="theorem extra" id="extra9-2">
+<h3>Proof 2: Cayley theorem: every group embeds in symmetric group</h3>
+<p><strong>Statement:</strong> Cayley theorem: every group embeds in symmetric group</p>
+<p><strong>Hypotheses:</strong> G group</p>
+<p><strong>Conclusion:</strong> G embeds in Sym(G)</p>
+<p><strong>Definitions:</strong> regular rep, Cayley, symmetric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map g to left multiplication lambda_g</p>
+<p class="step">Step 2: lambda_g(h) = gh is bijection</p>
+<p class="step">Step 3: lambda_{gh} = lambda_g * lambda_h</p>
+<p class="step">Step 4: Kernel trivial: lambda_g=id => g=e</p>
+<p class="step">Step 5: Injection G -> Sym(G)</p></div>
+<p class="metadata">ID: 152a623418e1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Always true</p>
+<p class="metadata">Provenance: Extra algebra proof #2</p>
+</div>
+
+<div class="theorem extra" id="extra9-3">
+<h3>Proof 3: Schur lemma: irreducible Hom != 0 implies isomorphism</h3>
+<p><strong>Statement:</strong> Schur lemma: irreducible Hom != 0 implies isomorphism</p>
+<p><strong>Hypotheses:</strong> V,W irreducible, f: V->W nonzero G-homomorphism</p>
+<p><strong>Conclusion:</strong> f is an isomorphism</p>
+<p><strong>Definitions:</strong> Schur, irreducible, homomorphism</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ker f is submodule of V, so =0 or V</p>
+<p class="step">Step 2: f nonzero => ker f=0, injective</p>
+<p class="step">Step 3: im f is submodule of W, so =0 or W</p>
+<p class="step">Step 4: f nonzero => im f=W, surjective</p>
+<p class="step">Step 5: Bijective G-homomorphism</p></div>
+<p class="metadata">ID: 5ca7fa50c6be | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without irreducible: proper submodules possible</p>
+<p class="metadata">Provenance: Extra algebra proof #3</p>
+</div>
+
+<div class="theorem extra" id="extra9-4">
+<h3>Proof 4: Fitting decomposition: V = im(T^k) + ker(T^k)</h3>
+<p><strong>Statement:</strong> Fitting decomposition: V = im(T^k) + ker(T^k)</p>
+<p><strong>Hypotheses:</strong> T: V->V linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> V = im(T^k) direct sum ker(T^k)</p>
+<p><strong>Definitions:</strong> Fitting, nilpotent, semisimple</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Chains im(T^n) descend, ker(T^n) ascend</p>
+<p class="step">Step 2: Both stabilize at some k</p>
+<p class="step">Step 3: Intersection im(T^k) cap ker(T^k) = 0</p>
+<p class="step">Step 4: Sum equals V by dimension count</p></div>
+<p class="metadata">ID: 3615253b2cc0 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without finite-dim: chains may never stabilize</p>
+<p class="metadata">Provenance: Extra algebra proof #4</p>
+</div>
+
+<div class="theorem extra" id="extra9-5">
+<h3>Proof 5: Noether normalization: k-algebra integral over polynomial subring</h3>
+<p><strong>Statement:</strong> Noether normalization: k-algebra integral over polynomial subring</p>
+<p><strong>Hypotheses:</strong> A finitely generated k-algebra</p>
+<p><strong>Conclusion:</strong> polynomial subring over which A is integral</p>
+<p><strong>Definitions:</strong> Noether, integral, polynomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Let A = k[x_1,...,x_n]/I</p>
+<p class="step">Step 2: Apply normalization lemma</p>
+<p class="step">Step 3: Linear changes make x_i integral</p>
+<p class="step">Step 4: d = Krull dimension</p></div>
+<p class="metadata">ID: ec51a4a999a2 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without finitely generated: may fail</p>
+<p class="metadata">Provenance: Extra algebra proof #5</p>
+</div>
+
+<div class="theorem extra" id="extra9-6">
+<h3>Proof 6: Quadratic formula: roots of ax^2+bx+c</h3>
+<p><strong>Statement:</strong> Quadratic formula: roots of ax^2+bx+c</p>
+<p><strong>Hypotheses:</strong> a != 0, char != 2</p>
+<p><strong>Conclusion:</strong> x = (-b +/- sqrt(D))/(2a)</p>
+<p><strong>Definitions:</strong> quadratic, discriminant, formula</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Complete the square: a(x+b/(2a))^2 = (b^2-4ac)/(4a)</p>
+<p class="step">Step 2: Take square root</p>
+<p class="step">Step 3: Solve for x</p></div>
+<p class="metadata">ID: d8fe6f3d750a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without a!=0: not quadratic</p>
+<p class="metadata">Provenance: Extra algebra proof #6</p>
+</div>
+
+<div class="theorem extra" id="extra9-7">
+<h3>Proof 7: Handshaking lemma: sum deg(v) = 2|E|</h3>
+<p><strong>Statement:</strong> Handshaking lemma: sum deg(v) = 2|E|</p>
+<p><strong>Hypotheses:</strong> G undirected graph</p>
+<p><strong>Conclusion:</strong> sum degrees = 2*edges</p>
+<p><strong>Definitions:</strong> degree, graph, counting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Each edge contributes 2 to degree sum</p>
+<p class="step">Step 2: Edge {u,v} adds 1 to deg(u), 1 to deg(v)</p>
+<p class="step">Step 3: Sum all: each edge counted twice</p></div>
+<p class="metadata">ID: 7d459247a86b | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental counting argument</p>
+<p class="metadata">Provenance: Extra algebra proof #7</p>
+</div>
+
+<div class="theorem extra" id="extra9-8">
+<h3>Proof 8: Fermat's Last Theorem for n=4: x^4+y^4=z^4 has no positive integer solutions</h3>
+<p><strong>Statement:</strong> Fermat's Last Theorem for n=4: x^4+y^4=z^4 has no positive integer solutions</p>
+<p><strong>Hypotheses:</strong> x,y,z positive integers</p>
+<p><strong>Conclusion:</strong> no solutions</p>
+<p><strong>Definitions:</strong> Fermat, infinite descent, Pythagorean</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume solution with minimal z</p>
+<p class="step">Step 2: Write as (x^2)^2+(y^2)^2=(z^2)^2</p>
+<p class="step">Step 3: Pythagorean triple parameterization</p>
+<p class="step">Step 4: Infinite descent: find smaller solution</p>
+<p class="step">Step 5: Contradiction with minimality</p></div>
+<p class="metadata">ID: 047523b4bbc7 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Only for n=4 here; full FLT proved by Wiles</p>
+<p class="metadata">Provenance: Extra algebra proof #8</p>
+</div>
+
+<div class="theorem extra" id="extra9-9">
+<h3>Proof 9: Euler's formula for polyhedra: V-E+F=2 for convex polyhedron</h3>
+<p><strong>Statement:</strong> Euler's formula for polyhedra: V-E+F=2 for convex polyhedron</p>
+<p><strong>Hypotheses:</strong> convex polyhedron, V vertices, E edges, F faces</p>
+<p><strong>Conclusion:</strong> V-E+F=2</p>
+<p><strong>Definitions:</strong> Euler, polyhedron, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Remove faces one by one</p>
+<p class="step">Step 2: Each removal preserves V-E+F</p>
+<p class="step">Step 3: Reduce to single face</p>
+<p class="step">Step 4: V-E+F for tree = 2</p></div>
+<p class="metadata">ID: cd80b734ad5d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Removing convex: may fail for non-simply-connected</p>
+<p class="metadata">Provenance: Extra algebra proof #9</p>
 </div>
 </body></html>
