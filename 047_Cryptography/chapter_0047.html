@@ -17107,4 +17107,32 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Uniqueness often follows from universality</p>
 <p class="metadata">Provenance: domain expansion proof #2</p>
 </div>
+
+<h2>Extra proofs (+2 from topic Cryptography)</h2>
+<div class="theorem extra" id="v5-1">
+<h3>Proof 1: RSA: encryption easy, decryption hard without factoring n=pq</h3>
+<p><strong>Statement:</strong> RSA: encryption easy, decryption hard without factoring n=pq</p>
+<p><strong>Hypotheses:</strong> n=pq, e coprime phi(n)</p>
+<p><strong>Conclusion:</strong> public key (n,e), private key d</p>
+<p><strong>Definitions:</strong> RSA, factoring, public key</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Encrypt: c=m^e mod n</p>
+<p class="step">Step 2: Decrypt: m=c^d mod n</p>
+<p class="step">Step 3: d=e^{-1} mod phi(n)</p>
+<p class="step">Step 4: Security: factoring is hard classically</p></div>
+<p class="metadata">ID: 4938d0c65747 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Provenance: topic Cryptography proof #1</p>
+</div>
+<div class="theorem extra" id="v5-2">
+<h3>Proof 2: Diffie-Hellman: shared secret over public channel</h3>
+<p><strong>Statement:</strong> Diffie-Hellman: shared secret over public channel</p>
+<p><strong>Hypotheses:</strong> g generator, p prime</p>
+<p><strong>Conclusion:</strong> shared secret g^{ab} mod p</p>
+<p><strong>Definitions:</strong> Diffie-Hellman, key exchange, discrete log</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Alice: g^a mod p</p>
+<p class="step">Step 2: Bob: g^b mod p</p>
+<p class="step">Step 3: Both: g^{ab} mod p</p>
+<p class="step">Step 4: Security: discrete log hard</p></div>
+<p class="metadata">ID: ad48bec24a82 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Provenance: topic Cryptography proof #2</p>
+</div>
 </body></html>

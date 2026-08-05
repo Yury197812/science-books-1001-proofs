@@ -19357,4 +19357,32 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Uniqueness often follows from universality</p>
 <p class="metadata">Provenance: domain expansion proof #2</p>
 </div>
+
+<h2>Extra proofs (+2 from topic Interpolation)</h2>
+<div class="theorem extra" id="v5-1">
+<h3>Proof 1: Lagrange interpolation: unique polynomial degree < n through n points</h3>
+<p><strong>Statement:</strong> Lagrange interpolation: unique polynomial degree < n through n points</p>
+<p><strong>Hypotheses:</strong> n distinct x_i, values y_i</p>
+<p><strong>Conclusion:</strong> unique polynomial of degree < n</p>
+<p><strong>Definitions:</strong> Lagrange, interpolation, polynomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lagrange basis L_j(x)</p>
+<p class="step">Step 2: p(x) = sum y_j L_j(x)</p>
+<p class="step">Step 3: p(x_k) = y_k</p>
+<p class="step">Step 4: Uniqueness: degree < n with n roots is zero</p></div>
+<p class="metadata">ID: e7229fdcabd4 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Provenance: topic Interpolation proof #1</p>
+</div>
+<div class="theorem extra" id="v5-2">
+<h3>Proof 2: Spline: piecewise polynomials with smoothness for better approximation</h3>
+<p><strong>Statement:</strong> Spline: piecewise polynomials with smoothness for better approximation</p>
+<p><strong>Hypotheses:</strong> data points, degree k</p>
+<p><strong>Conclusion:</strong> smooth piecewise polynomial interpolation</p>
+<p><strong>Definitions:</strong> spline, piecewise, smoothness</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cubic splines: C^2 continuity</p>
+<p class="step">Step 2: Minimize bending energy</p>
+<p class="step">Step 3: Better than high-degree polynomial</p>
+<p class="step">Step 4: Avoids Runge phenomenon</p></div>
+<p class="metadata">ID: 2f6b6cf120ca | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Provenance: topic Interpolation proof #2</p>
+</div>
 </body></html>

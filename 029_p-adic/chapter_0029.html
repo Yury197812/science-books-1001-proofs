@@ -18907,4 +18907,30 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Uniqueness often follows from universality</p>
 <p class="metadata">Provenance: domain expansion proof #2</p>
 </div>
+
+<h2>Extra proofs (+2 from topic p-adic)</h2>
+<div class="theorem extra" id="v5-1">
+<h3>Proof 1: p-adic valuation: v_p(n) = largest power of p dividing n</h3>
+<p><strong>Statement:</strong> p-adic valuation: v_p(n) = largest power of p dividing n</p>
+<p><strong>Hypotheses:</strong> n integer, p prime</p>
+<p><strong>Conclusion:</strong> v_p(n) = k where p^k || n</p>
+<p><strong>Definitions:</strong> p-adic valuation, prime power</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: v_p(n)=k if p^k divides n, p^{k+1} does not</p>
+<p class="step">Step 2: p-adic absolute value |n|_p = p^{-v_p(n)}</p>
+<p class="step">Step 3: Non-Archimedean: |x+y|_p <= max(|x|_p,|y|_p)</p></div>
+<p class="metadata">ID: 5d28a4610f80 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Provenance: topic p-adic proof #1</p>
+</div>
+<div class="theorem extra" id="v5-2">
+<h3>Proof 2: Hensel lifting: solution mod p^k lifts to p^{k+1}</h3>
+<p><strong>Statement:</strong> Hensel lifting: solution mod p^k lifts to p^{k+1}</p>
+<p><strong>Hypotheses:</strong> f(a)=0 mod p, f'(a) != 0 mod p</p>
+<p><strong>Conclusion:</strong> unique lift to solution mod p^{k+1}</p>
+<p><strong>Definitions:</strong> Hensel, lifting, p-adic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Set a' = a + t*p^k</p>
+<p class="step">Step 2: f(a') = f(a) + t*p^k*f'(a) mod p^{k+1}</p>
+<p class="step">Step 3: Solve for t using invertibility of f'(a) mod p</p></div>
+<p class="metadata">ID: b7a9d5253cbe | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Provenance: topic p-adic proof #2</p>
+</div>
 </body></html>

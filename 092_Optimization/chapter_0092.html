@@ -19357,4 +19357,31 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Uniqueness often follows from universality</p>
 <p class="metadata">Provenance: domain expansion proof #2</p>
 </div>
+
+<h2>Extra proofs (+2 from topic Optimization)</h2>
+<div class="theorem extra" id="v5-1">
+<h3>Proof 1: KKT conditions: necessary for constrained optimization</h3>
+<p><strong>Statement:</strong> KKT conditions: necessary for constrained optimization</p>
+<p><strong>Hypotheses:</strong> objective and constraints, differentiable</p>
+<p><strong>Conclusion:</strong> stationarity + complementary slackness</p>
+<p><strong>Definitions:</strong> KKT, Lagrange, optimization</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lagrangian L = f - sum lambda_i g_i</p>
+<p class="step">Step 2: Stationarity: grad L = 0</p>
+<p class="step">Step 3: Complementary: mu_j h_j = 0</p>
+<p class="step">Step 4: Primal/dual feasibility</p></div>
+<p class="metadata">ID: 956fcd1df20a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Provenance: topic Optimization proof #1</p>
+</div>
+<div class="theorem extra" id="v5-2">
+<h3>Proof 2: Convex optimization: local minimum is global minimum</h3>
+<p><strong>Statement:</strong> Convex optimization: local minimum is global minimum</p>
+<p><strong>Hypotheses:</strong> convex objective, convex feasible set</p>
+<p><strong>Conclusion:</strong> any local min is global</p>
+<p><strong>Definitions:</strong> convex, optimization, global</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Convexity: f(tx+(1-t)y) <= tf(x)+(1-t)f(y)</p>
+<p class="step">Step 2: Level sets convex</p>
+<p class="step">Step 3: Gradient descent converges to global</p></div>
+<p class="metadata">ID: 39b56f017a56 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Provenance: topic Optimization proof #2</p>
+</div>
 </body></html>

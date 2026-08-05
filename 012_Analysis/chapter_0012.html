@@ -19357,4 +19357,30 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without completeness: counterexample exists</p>
 <p class="metadata">Provenance: Domain Analysis, theorem #4</p>
 </div>
+
+<h2>Extra proofs (+2 from topic Analysis)</h2>
+<div class="theorem extra" id="v5-1">
+<h3>Proof 1: Hahn-Banach: norm-preserving extension of bounded functional</h3>
+<p><strong>Statement:</strong> Hahn-Banach: norm-preserving extension of bounded functional</p>
+<p><strong>Hypotheses:</strong> X normed, Y subspace, f bounded on Y</p>
+<p><strong>Conclusion:</strong> extends to F on X with ||F||=||f||</p>
+<p><strong>Definitions:</strong> Hahn-Banach, extension, normed space</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Extend one dimension at a time</p>
+<p class="step">Step 2: Bound by norm at each step</p>
+<p class="step">Step 3: Zorn's lemma for infinite extension</p></div>
+<p class="metadata">ID: 20bf2c9f5b52 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Provenance: topic Analysis proof #1</p>
+</div>
+<div class="theorem extra" id="v5-2">
+<h3>Proof 2: Open mapping: surjective bounded linear map between Banach spaces is open</h3>
+<p><strong>Statement:</strong> Open mapping: surjective bounded linear map between Banach spaces is open</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T surjective bounded</p>
+<p><strong>Conclusion:</strong> T maps open sets to open</p>
+<p><strong>Definitions:</strong> open mapping, Banach, surjective</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Baire category theorem on X</p>
+<p class="step">Step 2: Show T(ball) contains neighborhood of 0</p>
+<p class="step">Step 3: Scale to show T open</p></div>
+<p class="metadata">ID: 886aaadb68f1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Provenance: topic Analysis proof #2</p>
+</div>
 </body></html>
