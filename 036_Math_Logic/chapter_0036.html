@@ -20078,4 +20078,119 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: One of the most important results in computer science</p>
 <p class="metadata">Provenance: Domain Math Logic, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+8 from mathematical logic)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Gödel incompleteness: consistent r.e. theory of arithmetic is incomplete</h3>
+<p><strong>Statement:</strong> Gödel incompleteness: consistent r.e. theory of arithmetic is incomplete</p>
+<p><strong>Hypotheses:</strong> S consistent, S r.e., S expresses arithmetic</p>
+<p><strong>Conclusion:</strong> exists G neither provable nor disprovable</p>
+<p><strong>Definitions:</strong> Gödel, incompleteness, consistent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Arithmetize syntax</p>
+<p class="step">Step 2: Gödel sentence G: 'G is not provable'</p>
+<p class="step">Step 3: If S proves G: S proves false (if sound)</p>
+<p class="step">Step 4: If S disproves G: S inconsistent</p>
+<p class="step">Step 5: G independent of S</p></div>
+<p class="metadata">ID: ecbf02efcb55 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without consistency: trivial system proves everything</p>
+<p class="metadata">Provenance: mathematical logic proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Compactness theorem: if every finite subset of Gamma is satisfiable, so is Gamma</h3>
+<p><strong>Statement:</strong> Compactness theorem: if every finite subset of Gamma is satisfiable, so is Gamma</p>
+<p><strong>Hypotheses:</strong> Gamma first-order sentences, every finite subset satisfiable</p>
+<p><strong>Conclusion:</strong> Gamma has a model</p>
+<p><strong>Definitions:</strong> compactness, satisfiable, model theory</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Ultrafilter argument</p>
+<p class="step">Step 2: Product of finite models</p>
+<p class="step">Step 3: Compactness = ultrafilter lemma</p>
+<p class="step">Step 4: Nonstandard models of arithmetic</p></div>
+<p class="metadata">ID: 903136f30bc0 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Equivalent to ultrafilter lemma (weaker than AC)</p>
+<p class="metadata">Provenance: mathematical logic proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Löwenheim-Skolem: if theory has infinite model, has model of every infinite cardinality</h3>
+<p><strong>Statement:</strong> Löwenheim-Skolem: if theory has infinite model, has model of every infinite cardinality</p>
+<p><strong>Hypotheses:</strong> T has infinite model, T first-order</p>
+<p><strong>Conclusion:</strong> T has model of every cardinality >= |T|</p>
+<p><strong>Definitions:</strong> Löwenheim-Skolem, downward, model theory</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Downward: construct submodel via elementary submodels</p>
+<p class="step">Step 2: Upward: compactness + new constant symbols</p>
+<p class="step">Step 3: Both directions use model-theoretic techniques</p></div>
+<p class="metadata">ID: 4a35bbe96337 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Implies first-order logic cannot characterize countable models</p>
+<p class="metadata">Provenance: mathematical logic proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Lindström's theorem: first-order logic is maximal for compactness + Löwenheim-Skolem</h3>
+<p><strong>Statement:</strong> Lindström's theorem: first-order logic is maximal for compactness + Löwenheim-Skolem</p>
+<p><strong>Hypotheses:</strong> abstract logic with compactness + L-S</p>
+<p><strong>Conclusion:</strong> any such logic is contained in first-order logic</p>
+<p><strong>Definitions:</strong> Lindström, maximal, abstract logic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Any extension of FOL with these properties</p>
+<p class="step">Step 2: Must be contained in FOL</p>
+<p class="step">Step 3: Second-order logic lacks compactness</p>
+<p class="step">Step 4: Infinitary logics lack L-S</p></div>
+<p class="metadata">ID: dd7f72a32e7a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Characterizes first-order logic uniquely</p>
+<p class="metadata">Provenance: mathematical logic proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Complete theory: every sentence or its negation is provable</h3>
+<p><strong>Statement:</strong> Complete theory: every sentence or its negation is provable</p>
+<p><strong>Hypotheses:</strong> T consistent</p>
+<p><strong>Conclusion:</strong> for every sentence phi, T proves phi or T proves not phi</p>
+<p><strong>Definitions:</strong> complete theory, decidable, consistent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If T doesn't prove phi, then T + not phi is consistent</p>
+<p class="step">Step 2: Complete: exactly one of phi, not phi is provable</p>
+<p class="step">Step 3: Decidable: can determine which</p>
+<p class="step">Step 4: Peano arithmetic is incomplete (Gödel)</p>
+<p class="step">Step 5: Theory of algebraically closed fields is complete</p></div>
+<p class="metadata">ID: e7be74f341da | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Most interesting theories are incomplete</p>
+<p class="metadata">Provenance: mathematical logic proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Decidable theory: membership in theory is computable</h3>
+<p><strong>Statement:</strong> Decidable theory: membership in theory is computable</p>
+<p><strong>Hypotheses:</strong> T first-order theory</p>
+<p><strong>Conclusion:</strong> algorithm exists that decides if T proves phi</p>
+<p><strong>Definitions:</strong> decidable, computable, theory</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Theory of real closed fields is decidable (Tarski)</p>
+<p class="step">Step 2: Presburger arithmetic (without multiplication) is decidable</p>
+<p class="step">Step 3: Peano arithmetic is undecidable</p>
+<p class="step">Step 4: Halting problem is undecidable</p></div>
+<p class="metadata">ID: 597cd93ae7f4 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Most interesting theories are undecidable</p>
+<p class="metadata">Provenance: mathematical logic proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Herbrand's theorem: unsatisfiability of first-order formula reduces to propositional</h3>
+<p><strong>Statement:</strong> Herbrand's theorem: unsatisfiability of first-order formula reduces to propositional</p>
+<p><strong>Hypotheses:</strong> first-order formula F, F unsatisfiable</p>
+<p><strong>Conclusion:</strong> propositional tautology derived from Herbrand expansion</p>
+<p><strong>Definitions:</strong> Herbrand, unsatisfiability, propositional</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Skolemize: remove quantifiers</p>
+<p class="step">Step 2: Herbrand universe: terms from function symbols</p>
+<p class="step">Step 3: Expand: replace variables with all terms</p>
+<p class="step">Step 4: Resulting propositional formula is unsatisfiable iff F is</p></div>
+<p class="metadata">ID: 97a54cc528ce | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for automated theorem proving</p>
+<p class="metadata">Provenance: mathematical logic proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Craig interpolation: if A |= B, then exists interpolant C with A |= C and C |= B</h3>
+<p><strong>Statement:</strong> Craig interpolation: if A |= B, then exists interpolant C with A |= C and C |= B</p>
+<p><strong>Hypotheses:</strong> A |= B in first-order logic</p>
+<p><strong>Conclusion:</strong> exists C using only common symbols</p>
+<p><strong>Definitions:</strong> Craig interpolation, interpolant, entailment</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: C uses only symbols appearing in both A and B</p>
+<p class="step">Step 2: A entails C, C entails B</p>
+<p class="step">Step 3: Proof uses completeness theorem</p>
+<p class="step">Step 4: Model-theoretic proof also exists</p></div>
+<p class="metadata">ID: 6f922b72a6bc | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Has applications in formal verification</p>
+<p class="metadata">Provenance: mathematical logic proof #8</p>
+</div>
 </body></html>

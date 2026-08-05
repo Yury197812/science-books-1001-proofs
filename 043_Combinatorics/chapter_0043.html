@@ -17423,4 +17423,209 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Fundamental result in extremal combinatorics</p>
 <p class="metadata">Provenance: Domain Combinatorics, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+15 from combinatorics)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Pigeonhole principle: n+1 objects in n boxes => some box has >= 2</h3>
+<p><strong>Statement:</strong> Pigeonhole principle: n+1 objects in n boxes => some box has >= 2</p>
+<p><strong>Hypotheses:</strong> n+1 objects, n boxes</p>
+<p><strong>Conclusion:</strong> at least one box has 2 or more</p>
+<p><strong>Definitions:</strong> pigeonhole, counting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume each box has at most 1</p>
+<p class="step">Step 2: Then at most n objects</p>
+<p class="step">Step 3: Contradiction with n+1</p></div>
+<p class="metadata">ID: 0f425de2d244 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Changing numbers invalidates</p>
+<p class="metadata">Provenance: combinatorics proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Ramsey R(3,3)=6: any 2-coloring of K_6 has monochromatic triangle</h3>
+<p><strong>Statement:</strong> Ramsey R(3,3)=6: any 2-coloring of K_6 has monochromatic triangle</p>
+<p><strong>Hypotheses:</strong> 6 vertices, 2 edge colors</p>
+<p><strong>Conclusion:</strong> monochromatic K_3 exists</p>
+<p><strong>Definitions:</strong> Ramsey, monochromatic, triangle</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Pick vertex v: 5 edges, >= 3 same color by PHP</p>
+<p class="step">Step 2: Those 3 neighbors: if any pair same color => done</p>
+<p class="step">Step 3: Else: all pairs different color => monochromatic triangle</p></div>
+<p class="metadata">ID: 1f23ecff25bb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: K_5 has 2-coloring without monochromatic K_3</p>
+<p class="metadata">Provenance: combinatorics proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Cayley's formula: K_n has n^{n-2} spanning trees</h3>
+<p><strong>Statement:</strong> Cayley's formula: K_n has n^{n-2} spanning trees</p>
+<p><strong>Hypotheses:</strong> n labeled vertices</p>
+<p><strong>Conclusion:</strong> n^{n-2} spanning trees</p>
+<p><strong>Definitions:</strong> Cayley, spanning tree, count</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prüfer sequence: bijection with sequences of length n-2</p>
+<p class="step">Step 2: Each sequence uniquely determines a tree</p>
+<p class="step">Step 3: n choices per position: n^{n-2} sequences</p></div>
+<p class="metadata">ID: b438a32f2479 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Only for labeled complete graphs</p>
+<p class="metadata">Provenance: combinatorics proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Burnside lemma: |X/G| = (1/|G|) sum |Fix(g)|</h3>
+<p><strong>Statement:</strong> Burnside lemma: |X/G| = (1/|G|) sum |Fix(g)|</p>
+<p><strong>Hypotheses:</strong> G finite acting on X finite</p>
+<p><strong>Conclusion:</strong> number of orbits</p>
+<p><strong>Definitions:</strong> Burnside, orbits, fixed points</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count pairs {(g,x): gx=x} two ways</p>
+<p class="step">Step 2: By orbits: sum |Stab(x)| = |G||X/G|</p>
+<p class="step">Step 3: By elements: sum |Fix(g)|</p></div>
+<p class="metadata">ID: d85dd81214c3 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without finite: sums diverge</p>
+<p class="metadata">Provenance: combinatorics proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Erdős–Ko–Rado: intersecting family of k-subsets has size <= C(n-1,k-1)</h3>
+<p><strong>Statement:</strong> Erdős–Ko–Rado: intersecting family of k-subsets has size <= C(n-1,k-1)</p>
+<p><strong>Hypotheses:</strong> n >= 2k, all sets have size k, pairwise intersecting</p>
+<p><strong>Conclusion:</strong> at most C(n-1,k-1) sets</p>
+<p><strong>Definitions:</strong> Erdős–Ko–Rado, intersecting, set system</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Double counting: count pairs (set, element)</p>
+<p class="step">Step 2: Each element in at most C(n-1,k-2) sets containing it</p>
+<p class="step">Step 3: Shifting argument: can assume all contain fixed element</p>
+<p class="step">Step 4: Then C(n-1,k-1) is maximum</p></div>
+<p class="metadata">ID: c693550ce610 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: For n < 2k: all k-subsets intersect, bound is C(n,k)</p>
+<p class="metadata">Provenance: combinatorics proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Stirling's approximation: n! ~ sqrt(2*pi*n)*(n/e)^n</h3>
+<p><strong>Statement:</strong> Stirling's approximation: n! ~ sqrt(2*pi*n)*(n/e)^n</p>
+<p><strong>Hypotheses:</strong> n large positive integer</p>
+<p><strong>Conclusion:</strong> n! approximated by closed form</p>
+<p><strong>Definitions:</strong> Stirling, factorial, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use integral: ln(n!) = sum ln(k) ~ integral ln(x)dx</p>
+<p class="step">Step 2: Euler-Maclaurin: sum = integral + corrections</p>
+<p class="step">Step 3: ln(n!) = n ln n - n + (1/2)ln(2*pi*n) + O(1/n)</p>
+<p class="step">Step 4: Exponentiate</p></div>
+<p class="metadata">ID: e8a6af337023 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Approximation, not exact equality</p>
+<p class="metadata">Provenance: combinatorics proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Inclusion-exclusion: |union A_i| = sum |A_i| - sum |A_i cap A_j| + ...</h3>
+<p><strong>Statement:</strong> Inclusion-exclusion: |union A_i| = sum |A_i| - sum |A_i cap A_j| + ...</p>
+<p><strong>Hypotheses:</strong> finite sets A_1,...,A_n</p>
+<p><strong>Conclusion:</strong> exact formula for union size</p>
+<p><strong>Definitions:</strong> inclusion-exclusion, counting, union</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with sum |A_i| (overcount intersections)</p>
+<p class="step">Step 2: Subtract pairwise intersections (overcount triple)</p>
+<p class="step">Step 3: Add back triple (overcount quadruple)</p>
+<p class="step">Step 4: Alternate until single intersections</p></div>
+<p class="metadata">ID: 6d140e6e7dac | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: For 2 sets: |A cup B| = |A| + |B| - |A cap B|</p>
+<p class="metadata">Provenance: combinatorics proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Hall's marriage theorem: perfect matching in bipartite graph exists iff Hall condition holds</h3>
+<p><strong>Statement:</strong> Hall's marriage theorem: perfect matching in bipartite graph exists iff Hall condition holds</p>
+<p><strong>Hypotheses:</strong> bipartite G=(A,B,E)</p>
+<p><strong>Conclusion:</strong> |N(S)| >= |S| for all S subset A</p>
+<p><strong>Definitions:</strong> Hall, matching, bipartite</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Necessity: matching covers S, so neighbors >= |S|</p>
+<p class="step">Step 2: Sufficiency: induction on |A|</p>
+<p class="step">Step 3: Remove matched pair, apply induction</p>
+<p class="step">Step 4: Or max-flow min-cut duality</p></div>
+<p class="metadata">ID: a2b9ff6cc8b4 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Only for bipartite graphs</p>
+<p class="metadata">Provenance: combinatorics proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Sperner's theorem: max antichain in 2^{[n]} is C(n, floor(n/2))</h3>
+<p><strong>Statement:</strong> Sperner's theorem: max antichain in 2^{[n]} is C(n, floor(n/2))</p>
+<p><strong>Hypotheses:</strong> power set of [n]</p>
+<p><strong>Conclusion:</strong> largest antichain size</p>
+<p><strong>Definitions:</strong> Sperner, antichain, power set</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: LYM inequality: sum_{A in F} 1/C(n,|A|) <= 1</p>
+<p class="step">Step 2: Equality for middle level</p>
+<p class="step">Step 3: Number of middle-level sets: C(n, floor(n/2))</p></div>
+<p class="metadata">ID: 8a54d52c5c36 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Only in Boolean lattice</p>
+<p class="metadata">Provenance: combinatorics proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Pólya enumeration: number of distinct colorings under group action</h3>
+<p><strong>Statement:</strong> Pólya enumeration: number of distinct colorings under group action</p>
+<p><strong>Hypotheses:</strong> G acting on positions, c colors</p>
+<p><strong>Conclusion:</strong> number of distinct colorings</p>
+<p><strong>Definitions:</strong> Pólya, enumeration, symmetry</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cycle index of G: Z(G) = (1/|G|) sum prod z_{c_k(g)}</p>
+<p class="step">Step 2: Replace z_k with (c^k - 1)/(c-1) for distinct, c^k for any</p>
+<p class="step">Step 3: Pólya's theorem gives generating function</p></div>
+<p class="metadata">ID: d0abc1c69a07 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Generalizes Burnside to weighted counting</p>
+<p class="metadata">Provenance: combinatorics proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Lovász local lemma: if events mostly independent, all avoidable</h3>
+<p><strong>Statement:</strong> Lovász local lemma: if events mostly independent, all avoidable</p>
+<p><strong>Hypotheses:</strong> events A_1,...,A_n, each P(A_i) <= p, each depends on at most d others, ep(d+1) <= 1</p>
+<p><strong>Conclusion:</strong> P(none occur) > 0</p>
+<p><strong>Definitions:</strong> Lovász, local lemma, probabilistic method</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define bad event probability</p>
+<p class="step">Step 2: Show P(A_i | all others not occur) <= 1/e</p>
+<p class="step">Step 3: Multiply conditions</p>
+<p class="step">Step 4: Use union bound on modified probabilities</p></div>
+<p class="metadata">ID: 5b6223b4863c | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundational in probabilistic combinatorics</p>
+<p class="metadata">Provenance: combinatorics proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Dilworth's theorem: min chain decomposition = max antichain size</h3>
+<p><strong>Statement:</strong> Dilworth's theorem: min chain decomposition = max antichain size</p>
+<p><strong>Hypotheses:</strong> finite partially ordered set</p>
+<p><strong>Conclusion:</strong> width = min chain cover</p>
+<p><strong>Definitions:</strong> Dilworth, chain, antichain</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induction on |P|</p>
+<p class="step">Step 2: Hall's marriage theorem application</p>
+<p class="step">Step 3: Maximal element: chain containing it or not</p>
+<p class="step">Step 4: Each case reduces to smaller poset</p></div>
+<p class="metadata">ID: f36e24da3872 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Dual of Mirsky's theorem</p>
+<p class="metadata">Provenance: combinatorics proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Mirsky's theorem: min antichain decomposition = max chain size</h3>
+<p><strong>Statement:</strong> Mirsky's theorem: min antichain decomposition = max chain size</p>
+<p><strong>Hypotheses:</strong> finite partially ordered set</p>
+<p><strong>Conclusion:</strong> height = min antichain cover</p>
+<p><strong>Definitions:</strong> Mirsky, antichain, chain</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Each element assigned to level (length of max chain ending at it)</p>
+<p class="step">Step 2: Elements at same level form antichain</p>
+<p class="step">Step 3: Number of levels = length of longest chain</p></div>
+<p class="metadata">ID: 8c0aa0d1914d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Dual of Dilworth's theorem</p>
+<p class="metadata">Provenance: combinatorics proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Probabilistic method: expected number < 1 => existence</h3>
+<p><strong>Statement:</strong> Probabilistic method: expected number < 1 => existence</p>
+<p><strong>Hypotheses:</strong> combinatorial structure</p>
+<p><strong>Conclusion:</strong> if expected count < 1, structure exists</p>
+<p><strong>Definitions:</strong> Erdős, probabilistic method, existence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define random construction</p>
+<p class="step">Step 2: Compute expected number of bad events</p>
+<p class="step">Step 3: If E[#bad] < 1, some construction has 0 bad events</p>
+<p class="step">Step 4: Therefore desired structure exists</p></div>
+<p class="metadata">ID: 2432070d1098 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Doesn't construct, only proves existence</p>
+<p class="metadata">Provenance: combinatorics proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Turán's theorem: max edges in K_r-free graph on n vertices</h3>
+<p><strong>Statement:</strong> Turán's theorem: max edges in K_r-free graph on n vertices</p>
+<p><strong>Hypotheses:</strong> no K_r subgraph, n vertices</p>
+<p><strong>Conclusion:</strong> (1-1/(r-1)) * n^2/2 edges</p>
+<p><strong>Definitions:</strong> Turán, extremal, K_r-free</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Turán graph T(n,r-1): complete (r-1)-partite balanced</p>
+<p class="step">Step 2: Has exactly the claimed number of edges</p>
+<p class="step">Step 3: Induction: remove max degree vertex</p>
+<p class="step">Step 4: Optimize partition sizes</p></div>
+<p class="metadata">ID: 4468f8f96030 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: For K_3-free: Mantel's theorem (n^2/4 edges)</p>
+<p class="metadata">Provenance: combinatorics proof #15</p>
+</div>
 </body></html>

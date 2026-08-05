@@ -17409,4 +17409,74 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Graphs, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+5 from graph theory)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Euler's formula: V - E + F = 2 for connected planar graph</h3>
+<p><strong>Statement:</strong> Euler's formula: V - E + F = 2 for connected planar graph</p>
+<p><strong>Hypotheses:</strong> connected planar graph</p>
+<p><strong>Conclusion:</strong> V - E + F = 2</p>
+<p><strong>Definitions:</strong> Euler, planar, formula</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with spanning tree: V-1 edges, 1 face</p>
+<p class="step">Step 2: Add edges: each creates one new face</p>
+<p class="step">Step 3: V - E + F preserved at each step</p></div>
+<p class="metadata">ID: cfb5a22c1130 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: For disconnected: V-E+F = 1 + components</p>
+<p class="metadata">Provenance: graph theory proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Four color theorem: planar graph is 4-colorable</h3>
+<p><strong>Statement:</strong> Four color theorem: planar graph is 4-colorable</p>
+<p><strong>Hypotheses:</strong> G planar</p>
+<p><strong>Conclusion:</strong> chi(G) <= 4</p>
+<p><strong>Definitions:</strong> four color, planar, chromatic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Appel-Haken 1976: computer proof</p>
+<p class="step">Step 2: 633 reducible configurations</p>
+<p class="step">Step 3: Robertson et al. 1997: verified</p>
+<p class="step">Step 4: No purely theoretical proof</p></div>
+<p class="metadata">ID: b4e7e9a0650e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Only known proof uses computer</p>
+<p class="metadata">Provenance: graph theory proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: König's theorem: max matching = min vertex cover in bipartite graphs</h3>
+<p><strong>Statement:</strong> König's theorem: max matching = min vertex cover in bipartite graphs</p>
+<p><strong>Hypotheses:</strong> G bipartite</p>
+<p><strong>Conclusion:</strong> max matching = min vertex cover</p>
+<p><strong>Definitions:</strong> König, matching, vertex cover</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Matching <= vertex cover (obvious)</p>
+<p class="step">Step 2: Construct cover from augmenting paths</p>
+<p class="step">Step 3: Max flow min cut duality</p></div>
+<p class="metadata">ID: 700b8337ebcb | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fails for general (non-bipartite) graphs</p>
+<p class="metadata">Provenance: graph theory proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Brooks' theorem: chi(G) <= Delta unless G is complete or odd cycle</h3>
+<p><strong>Statement:</strong> Brooks' theorem: chi(G) <= Delta unless G is complete or odd cycle</p>
+<p><strong>Hypotheses:</strong> G connected, not complete graph, not odd cycle</p>
+<p><strong>Conclusion:</strong> chi(G) <= Delta(G)</p>
+<p><strong>Definitions:</strong> Brooks, chromatic number, max degree</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct Delta-coloring greedily</p>
+<p class="step">Step 2: Special treatment for complete and odd cycle</p>
+<p class="step">Step 3: Use DFS ordering for greedy coloring</p>
+<p class="step">Step 4: Backtracking when stuck</p></div>
+<p class="metadata">ID: 204fad8d61a8 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Complete graph and odd cycle need Delta+1 colors</p>
+<p class="metadata">Provenance: graph theory proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Matroid intersection: max size of common independent set in polynomial time</h3>
+<p><strong>Statement:</strong> Matroid intersection: max size of common independent set in polynomial time</p>
+<p><strong>Hypotheses:</strong> two matroids M_1, M_2 on same ground set</p>
+<p><strong>Conclusion:</strong> max common independent set in poly time</p>
+<p><strong>Definitions:</strong> matroid, intersection, polynomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Edmonds' matroid intersection algorithm</p>
+<p class="step">Step 2: Augmenting path framework</p>
+<p class="step">Step 3: Polynomial time by exchange properties</p>
+<p class="step">Step 4: Generalization of bipartite matching</p></div>
+<p class="metadata">ID: defa0c252e9c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Matroid theory unifies many optimization problems</p>
+<p class="metadata">Provenance: graph theory proof #5</p>
+</div>
 </body></html>

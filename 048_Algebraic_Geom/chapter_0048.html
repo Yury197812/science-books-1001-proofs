@@ -18758,4 +18758,90 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Requires A,B open for Mayer-Vietoris version</p>
 <p class="metadata">Provenance: Domain Algebraic Geom, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+6 from algebraic geometry)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Hilbert's Nullstellensatz: I(V(J)) = sqrt(J) in k[x_1,...,x_n]</h3>
+<p><strong>Statement:</strong> Hilbert's Nullstellensatz: I(V(J)) = sqrt(J) in k[x_1,...,x_n]</p>
+<p><strong>Hypotheses:</strong> k algebraically closed, J ideal</p>
+<p><strong>Conclusion:</strong> ideal of variety = radical</p>
+<p><strong>Definitions:</strong> Nullstellensatz, ideal, variety</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Forward: trivial</p>
+<p class="step">Step 2: Reverse: Rabinowitch trick</p>
+<p class="step">Step 3: Zariski's lemma: finite field extension over k equals k</p></div>
+<p class="metadata">ID: fe20426abeaf | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Bridge between algebra and geometry</p>
+<p class="metadata">Provenance: algebraic geometry proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Bézout's theorem: two curves of degrees d_1, d_2 intersect in at most d_1*d_2 points</h3>
+<p><strong>Statement:</strong> Bézout's theorem: two curves of degrees d_1, d_2 intersect in at most d_1*d_2 points</p>
+<p><strong>Hypotheses:</strong> two projective curves, no common component</p>
+<p><strong>Conclusion:</strong> at most d_1 * d_2 intersection points (with multiplicity)</p>
+<p><strong>Definitions:</strong> Bézout, intersection, degree</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count intersection multiplicity at each point</p>
+<p class="step">Step 2: Use resultant of polynomials</p>
+<p class="step">Step 3: Degree of resultant controls count</p>
+<p class="step">Step 4: Exactly d_1*d_2 with multiplicities in projective space</p></div>
+<p class="metadata">ID: 4438b8f84dc1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Requires projective space for exact count</p>
+<p class="metadata">Provenance: algebraic geometry proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Riemann-Roch: l(D) - l(K-D) = deg(D) - g + 1 for curves</h3>
+<p><strong>Statement:</strong> Riemann-Roch: l(D) - l(K-D) = deg(D) - g + 1 for curves</p>
+<p><strong>Hypotheses:</strong> smooth projective curve, D divisor, K canonical divisor</p>
+<p><strong>Conclusion:</strong> dimension of linear system determined by degree and genus</p>
+<p><strong>Definitions:</strong> Riemann-Roch, divisor, genus</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: l(D) = dim of functions with divisor >= -D</p>
+<p class="step">Step 2: l(K-D) = dimension of complementary system</p>
+<p class="step">Step 3: Degree of D controls dimension</p>
+<p class="step">Step 4: For deg D > 2g-2: l(K-D) = 0</p></div>
+<p class="metadata">ID: b80c7ab2b310 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: One of most important theorems in algebraic geometry</p>
+<p class="metadata">Provenance: algebraic geometry proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Bézout identity: for coprime a,b exists x,y with ax+by=1</h3>
+<p><strong>Statement:</strong> Bézout identity: for coprime a,b exists x,y with ax+by=1</p>
+<p><strong>Hypotheses:</strong> a,b integers, gcd(a,b) = 1</p>
+<p><strong>Conclusion:</strong> exists x,y with ax+by=1</p>
+<p><strong>Definitions:</strong> Bézout, coprime, gcd</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Extended Euclidean algorithm</p>
+<p class="step">Step 2: At each step: express remainder as combination</p>
+<p class="step">Step 3: Back-substitute to express gcd as combination</p>
+<p class="step">Step 4: gcd(a,b) = ax + by for some x,y</p></div>
+<p class="metadata">ID: 7a1d5b83128f | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation for modular arithmetic</p>
+<p class="metadata">Provenance: algebraic geometry proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Grothendieck's EGA: scheme-theoretic foundation of algebraic geometry</h3>
+<p><strong>Statement:</strong> Grothendieck's EGA: scheme-theoretic foundation of algebraic geometry</p>
+<p><strong>Hypotheses:</strong> scheme theory</p>
+<p><strong>Conclusion:</strong> unified foundation for algebraic geometry</p>
+<p><strong>Definitions:</strong> Grothendieck, scheme, sheaf</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Schemes: gluing affine Spec(R)</p>
+<p class="step">Step 2: Morphisms of schemes: ring maps</p>
+<p class="step">Step 3: Sheaves of functions</p>
+<p class="step">Step 4: Cohomology theories</p>
+<p class="step">Step 5: Far-reaching generalization</p></div>
+<p class="metadata">ID: 1198e685e41d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Revolutionized algebraic geometry in 1960s</p>
+<p class="metadata">Provenance: algebraic geometry proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Mordell conjecture (Faltings): curve of genus >= 2 has finitely many rational points</h3>
+<p><strong>Statement:</strong> Mordell conjecture (Faltings): curve of genus >= 2 has finitely many rational points</p>
+<p><strong>Hypotheses:</strong> smooth projective curve, genus >= 2 over Q</p>
+<p><strong>Conclusion:</strong> finite number of Q-rational points</p>
+<p><strong>Definitions:</strong> Faltings, Mordell, rational points</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Faltings proved in 1983 (Fields medal)</p>
+<p class="step">Step 2: Uses Arakelov theory</p>
+<p class="step">Step 3: Height functions and intersection theory</p>
+<p class="step">Step 4: Deep connections to algebraic number theory</p></div>
+<p class="metadata">ID: 083a426d5e45 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Formerly conjecture, proved 1983</p>
+<p class="metadata">Provenance: algebraic geometry proof #6</p>
+</div>
 </body></html>

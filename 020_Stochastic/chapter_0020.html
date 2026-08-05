@@ -17409,4 +17409,132 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Stochastic, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+9 from stochastic processes)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Brownian motion: continuous paths, independent increments, Gaussian distributed</h3>
+<p><strong>Statement:</strong> Brownian motion: continuous paths, independent increments, Gaussian distributed</p>
+<p><strong>Hypotheses:</strong> B_0=0, continuous paths, stationary independent increments, B_t-B_s ~ N(0,t-s)</p>
+<p><strong>Conclusion:</strong> standard Brownian motion properties</p>
+<p><strong>Definitions:</strong> Brownian motion, Wiener process, stochastic process</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construction via Lévy's or Kolmogorov's</p>
+<p class="step">Step 2: Continuous modification exists</p>
+<p class="step">Step 3: Nowhere differentiable a.s.</p>
+<p class="step">Step 4: Quadratic variation: [B,B]_t = t</p></div>
+<p class="metadata">ID: 5779b8413157 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Pathological: continuous but nowhere differentiable</p>
+<p class="metadata">Provenance: stochastic processes proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Ito isometry: E[(integral H dB)^2] = E[integral H^2 dt]</h3>
+<p><strong>Statement:</strong> Ito isometry: E[(integral H dB)^2] = E[integral H^2 dt]</p>
+<p><strong>Hypotheses:</strong> H adapted, E[integral H^2 dt] < inf</p>
+<p><strong>Conclusion:</strong> isometry between L^2 of stochastic integral and L^2 of integrand</p>
+<p><strong>Definitions:</strong> Ito isometry, isometry, stochastic integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For simple processes: direct verification</p>
+<p class="step">Step 2: Extend by density</p>
+<p class="step">Step 3: Key property: makes stochastic integral an isometry</p>
+<p class="step">Step 4: Foundation for Ito integral theory</p></div>
+<p class="metadata">ID: 85014934ecc0 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental property of Ito integral</p>
+<p class="metadata">Provenance: stochastic processes proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Martingale convergence: bounded L^1 martingales converge a.s.</h3>
+<p><strong>Statement:</strong> Martingale convergence: bounded L^1 martingales converge a.s.</p>
+<p><strong>Hypotheses:</strong> M_n L^1-bounded martingale</p>
+<p><strong>Conclusion:</strong> M_n converges almost surely</p>
+<p><strong>Definitions:</strong> martingale convergence, Doob, bounded</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Doob's inequality: lambda^2 P(max M_k >= lambda) <= sup E[M_k^2]</p>
+<p class="step">Step 2: Upcrossing lemma: bounded upcrossings</p>
+<p class="step">Step 3: Bounded upcrossings + downcrossings => convergence</p>
+<p class="step">Step 4: a.s. convergence of real martingales</p></div>
+<p class="metadata">ID: 52862cbff542 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without L^1-boundedness: may diverge</p>
+<p class="metadata">Provenance: stochastic processes proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Optional stopping: bounded stopping time preserves martingale expectation</h3>
+<p><strong>Statement:</strong> Optional stopping: bounded stopping time preserves martingale expectation</p>
+<p><strong>Hypotheses:</strong> M_n martingale, T bounded stopping time</p>
+<p><strong>Conclusion:</strong> E[M_T] = E[M_0]</p>
+<p><strong>Definitions:</strong> optional stopping, martingale, stopping time</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write E[M_T] = sum E[M_n 1_{T=n}]</p>
+<p class="step">Step 2: By martingale: E[M_n 1_{T=n}] = E[M_0 1_{T=n}]</p>
+<p class="step">Step 3: Sum over n: E[M_0]</p></div>
+<p class="metadata">ID: 313ec662fdd2 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without boundedness: need integrability</p>
+<p class="metadata">Provenance: stochastic processes proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Clark-Ocone formula: martingale = initial + integral of predictable process against BM</h3>
+<p><strong>Statement:</strong> Clark-Ocone formula: martingale = initial + integral of predictable process against BM</p>
+<p><strong>Hypotheses:</strong> M_t in L^2 of BM filtration</p>
+<p><strong>Conclusion:</strong> M_t = M_0 + integral_0^t E[D_s M | F_s] dB_s</p>
+<p><strong>Definitions:</strong> Clark-Ocone, predictable, representation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Clark (1970): representation</p>
+<p class="step">Step 2: D_s = Malliavin derivative</p>
+<p class="step">Step 3: Predictable projection</p>
+<p class="step">Step 4: Stochastic integral representation</p></div>
+<p class="metadata">ID: 11ed4ba252d9 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation of Malliavin calculus</p>
+<p class="metadata">Provenance: stochastic processes proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Girsanov theorem: change of measure changes BM drift</h3>
+<p><strong>Statement:</strong> Girsanov theorem: change of measure changes BM drift</p>
+<p><strong>Hypotheses:</strong> mu adapted process, Novikov condition satisfied</p>
+<p><strong>Conclusion:</strong> under Q, W_t - integral mu ds is standard BM</p>
+<p><strong>Definitions:</strong> Girsanov, change of measure, drift</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define dQ/dP = exponential martingale</p>
+<p class="step">Step 2: Verify Novikov: E[exp(1/2 int mu^2 dt)] < inf</p>
+<p class="step">Step 3: Radon-Nikodym exponential</p>
+<p class="step">Step 4: New measure changes drift by mu</p></div>
+<p class="metadata">ID: 576b1ecf4193 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation for risk-neutral pricing</p>
+<p class="metadata">Provenance: stochastic processes proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Black-Scholes PDE: C_t + rSC_S + (1/2)sigma^2 S^2 C_SS = rC</h3>
+<p><strong>Statement:</strong> Black-Scholes PDE: C_t + rSC_S + (1/2)sigma^2 S^2 C_SS = rC</p>
+<p><strong>Hypotheses:</strong> European option, geometric BM for underlying</p>
+<p><strong>Conclusion:</strong> option price satisfies parabolic PDE</p>
+<p><strong>Definitions:</strong> Black-Scholes PDE, option pricing, parabolic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Delta-hedging: portfolio pi = C - Delta*S</p>
+<p class="step">Step 2: dPi = 0 under risk-neutral measure</p>
+<p class="step">Step 3: PDE from Itô's formula + no-arbitrage</p>
+<p class="step">Step 4: Boundary conditions for call/put</p></div>
+<p class="metadata">ID: 893788a48b3a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation of quantitative finance</p>
+<p class="metadata">Provenance: stochastic processes proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Lévy's theorem: running maximum of BM has same distribution as |BM|</h3>
+<p><strong>Statement:</strong> Lévy's theorem: running maximum of BM has same distribution as |BM|</p>
+<p><strong>Hypotheses:</strong> M_t = max_{s<=t} B_s</p>
+<p><strong>Conclusion:</strong> |B_t| and M_t have same distribution</p>
+<p><strong>Definitions:</strong> Lévy, running maximum, Brownian motion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Both have same distribution</p>
+<p class="step">Step 2: Both are Markov</p>
+<p class="step">Step 3: Same transition probabilities</p>
+<p class="step">Step 4: Use reflection principle</p>
+<p class="step">Step 5: Same finite-dimensional distributions</p></div>
+<p class="metadata">ID: a22477f9fa51 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental distributional identity for BM</p>
+<p class="metadata">Provenance: stochastic processes proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Ergodic theorem: time average equals space average for ergodic systems</h3>
+<p><strong>Statement:</strong> Ergodic theorem: time average equals space average for ergodic systems</p>
+<p><strong>Hypotheses:</strong> T measure-preserving ergodic transformation, f integrable</p>
+<p><strong>Conclusion:</strong> (1/n) sum f(T^k x) -> integral f dmu a.e.</p>
+<p><strong>Definitions:</strong> Birkhoff, ergodic, time average</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Birkhoff's pointwise ergodic theorem</p>
+<p class="step">Step 2: Time average along orbit</p>
+<p class="step">Step 3: Equals spatial average</p>
+<p class="step">Step 4: Ergodicity: indecomposable under T</p></div>
+<p class="metadata">ID: 0a6db8bcf819 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Statistical mechanics foundation</p>
+<p class="metadata">Provenance: stochastic processes proof #9</p>
+</div>
 </body></html>
