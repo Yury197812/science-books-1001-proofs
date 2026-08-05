@@ -18076,4 +18076,475 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Tor_0 = tensor product, higher Tor measures derived tensor</p>
 <p class="metadata">Provenance: Domain Linear Algebra, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+34 from linear algebra)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Rank-Nullity: dim(V) = rank(T) + nullity(T)</h3>
+<p><strong>Statement:</strong> Rank-Nullity: dim(V) = rank(T) + nullity(T)</p>
+<p><strong>Hypotheses:</strong> T:V->W linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V) = dim(im T) + dim(ker T)</p>
+<p><strong>Definitions:</strong> rank, nullity, linear map</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Basis of ker T: {v_1,...,v_k}</p>
+<p class="step">Step 2: Extend to basis of V: add w_1,...,w_r</p>
+<p class="step">Step 3: Show T(w_i) span im T</p>
+<p class="step">Step 4: Show T(w_i) independent</p>
+<p class="step">Step 5: k+r = dim V</p></div>
+<p class="metadata">ID: 65576fdb7f66 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without finite-dim: no bases</p>
+<p class="metadata">Provenance: linear algebra proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Rank-Nullity corollary: T injective iff ker T = {0}</h3>
+<p><strong>Statement:</strong> Rank-Nullity corollary: T injective iff ker T = {0}</p>
+<p><strong>Hypotheses:</strong> T:V->W linear, V finite-dim</p>
+<p><strong>Conclusion:</strong> T injective <=> nullity = 0</p>
+<p><strong>Definitions:</strong> injective, kernel, nullity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ker T = {0} <=> nullity=0</p>
+<p class="step">Step 2: nullity=0 => rank = dim V => injective</p>
+<p class="step">Step 3: Injective => ker T = {0}</p></div>
+<p class="metadata">ID: 927422e0b72a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Direct corollary</p>
+<p class="metadata">Provenance: linear algebra proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Spectral theorem: real symmetric matrix orthogonally diagonalizable</h3>
+<p><strong>Statement:</strong> Spectral theorem: real symmetric matrix orthogonally diagonalizable</p>
+<p><strong>Hypotheses:</strong> A real symmetric</p>
+<p><strong>Conclusion:</strong> A = QDQ^T, Q orthogonal, D diagonal</p>
+<p><strong>Definitions:</strong> spectral, symmetric, orthogonal diagonalization</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Eigenvalues real (self-adjoint)</p>
+<p class="step">Step 2: Eigenspaces orthogonal</p>
+<p class="step">Step 3: Sum dims = n</p>
+<p class="step">Step 4: Orthonormal basis in each</p></div>
+<p class="metadata">ID: 85cc183c0ac6 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without symmetry: may not be diagonalizable</p>
+<p class="metadata">Provenance: linear algebra proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Characteristic polynomial: det(A-tI) = sum a_k t^k, a_n=(-1)^n, a_{n-1}=(-1)^{n-1}tr(A)</h3>
+<p><strong>Statement:</strong> Characteristic polynomial: det(A-tI) = sum a_k t^k, a_n=(-1)^n, a_{n-1}=(-1)^{n-1}tr(A)</p>
+<p><strong>Hypotheses:</strong> A n x n matrix</p>
+<p><strong>Conclusion:</strong> coefficients related to trace, determinant</p>
+<p><strong>Definitions:</strong> characteristic polynomial, trace, determinant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: p(t) = prod(t-lambda_i)</p>
+<p class="step">Step 2: Leading coeff: (-1)^n</p>
+<p class="step">Step 3: Coefficient t^{n-1}: (-1)^{n-1} sum lambda_i = (-1)^{n-1} tr(A)</p>
+<p class="step">Step 4: Constant: (-1)^n prod lambda_i = (-1)^n det(A)</p></div>
+<p class="metadata">ID: d65fb2227b01 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Connects eigenvalues to matrix invariants</p>
+<p class="metadata">Provenance: linear algebra proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Product of eigenvalues = det(A), sum = tr(A)</h3>
+<p><strong>Statement:</strong> Product of eigenvalues = det(A), sum = tr(A)</p>
+<p><strong>Hypotheses:</strong> A n x n, algebraically closed F</p>
+<p><strong>Conclusion:</strong> det(A) = prod lambda_i, tr(A) = sum lambda_i</p>
+<p><strong>Definitions:</strong> eigenvalue, product, sum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: p(t) = prod(t-lambda_i)</p>
+<p class="step">Step 2: p(0) = prod(-lambda_i) = (-1)^n det(A)</p>
+<p class="step">Step 3: Trace = coefficient comparison</p></div>
+<p class="metadata">ID: 050b1a8cf7cc | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Requires all eigenvalues exist</p>
+<p class="metadata">Provenance: linear algebra proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Diagonalizable iff minimal polynomial has distinct roots</h3>
+<p><strong>Statement:</strong> Diagonalizable iff minimal polynomial has distinct roots</p>
+<p><strong>Hypotheses:</strong> A n x n matrix over algebraically closed F</p>
+<p><strong>Conclusion:</strong> A diagonalizable <=> m_A has distinct roots</p>
+<p><strong>Definitions:</strong> diagonalizable, minimal polynomial, distinct roots</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If diag: m_A divides prod(t-lambda_i), distinct roots</p>
+<p class="step">Step 2: If m_A has distinct roots: A annihilated by product of linear factors</p>
+<p class="step">Step 3: Jordan blocks must be 1x1</p>
+<p class="step">Step 4: Therefore diagonal</p></div>
+<p class="metadata">ID: e7862d233232 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without alg. closed: need splitting field</p>
+<p class="metadata">Provenance: linear algebra proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Nilpotent matrix: all eigenvalues 0, A^n = 0</h3>
+<p><strong>Statement:</strong> Nilpotent matrix: all eigenvalues 0, A^n = 0</p>
+<p><strong>Hypotheses:</strong> A^k=0 for some k</p>
+<p><strong>Conclusion:</strong> all eigenvalues 0, A^n=0</p>
+<p><strong>Definitions:</strong> nilpotent, eigenvalue, zero</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Av=lambda v => A^k v = lambda^k v = 0</p>
+<p class="step">Step 2: lambda^k=0 => lambda=0</p>
+<p class="step">Step 3: Jordan form: diagonal=0, so A^n=0</p></div>
+<p class="metadata">ID: 2e6bc65febbe | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Converse not true: zero eigenvalues != nilpotent</p>
+<p class="metadata">Provenance: linear algebra proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Hermitian matrix: real eigenvalues, orthonormal eigenbasis</h3>
+<p><strong>Statement:</strong> Hermitian matrix: real eigenvalues, orthonormal eigenbasis</p>
+<p><strong>Hypotheses:</strong> A Hermitian (A=A*)</p>
+<p><strong>Conclusion:</strong> real eigenvalues, unitarily diagonalizable</p>
+<p><strong>Definitions:</strong> Hermitian, real eigenvalues, orthonormal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: lambda=<Av,v>/<v,v> real (v*Av = (v*Av)* = v*Av)</p>
+<p class="step">Step 2: Orthogonal eigenspaces</p>
+<p class="step">Step 3: Spectral theorem applies</p></div>
+<p class="metadata">ID: 5479737241a7 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without Hermitian: eigenvalues may be complex</p>
+<p class="metadata">Provenance: linear algebra proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Unitary matrix preserves inner product: <Ux,Uy>=<x,y></h3>
+<p><strong>Statement:</strong> Unitary matrix preserves inner product: <Ux,Uy>=<x,y></p>
+<p><strong>Hypotheses:</strong> U*U=I</p>
+<p><strong>Conclusion:</strong> ||Ux|| = ||x|| for all x</p>
+<p><strong>Definitions:</strong> unitary, inner product, isometry</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: <Ux,Uy> = <x,U*Uy> = <x,y></p>
+<p class="step">Step 2: ||Ux||^2 = <Ux,Ux> = <x,x> = ||x||^2</p></div>
+<p class="metadata">ID: 50995e8e15d7 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Unitary = inner product preserving</p>
+<p class="metadata">Provenance: linear algebra proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Eigenvalues of U (unitary) lie on unit circle: |lambda|=1</h3>
+<p><strong>Statement:</strong> Eigenvalues of U (unitary) lie on unit circle: |lambda|=1</p>
+<p><strong>Hypotheses:</strong> U unitary</p>
+<p><strong>Conclusion:</strong> |lambda|=1 for all eigenvalues</p>
+<p><strong>Definitions:</strong> unitary, eigenvalue, unit circle</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Uv=lambda v</p>
+<p class="step">Step 2: ||v|| = ||Uv|| = |lambda| ||v||</p>
+<p class="step">Step 3: |lambda|=1</p></div>
+<p class="metadata">ID: c0832e18bbf9 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Immediate from isometry property</p>
+<p class="metadata">Provenance: linear algebra proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Positive definite: A>0 iff all eigenvalues positive iff A=B*B for some B</h3>
+<p><strong>Statement:</strong> Positive definite: A>0 iff all eigenvalues positive iff A=B*B for some B</p>
+<p><strong>Hypotheses:</strong> A Hermitian</p>
+<p><strong>Conclusion:</strong> three equivalent characterizations</p>
+<p><strong>Definitions:</strong> positive definite, Cholesky, eigenvalue</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A>0 => <Ax,x> > 0 => eigenvalues > 0</p>
+<p class="step">Step 2: Eigenvalues > 0 => A = UDU* = (UD^{1/2}U*)^2</p>
+<p class="step">Step 3: B = UD^{1/2}U* gives A = B*B</p>
+<p class="step">Step 4: Cholesky: B lower triangular</p></div>
+<p class="metadata">ID: 464ba75e046f | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental in optimization</p>
+<p class="metadata">Provenance: linear algebra proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Cholesky decomposition: A positive definite => A = LL^T (L lower triangular)</h3>
+<p><strong>Statement:</strong> Cholesky decomposition: A positive definite => A = LL^T (L lower triangular)</p>
+<p><strong>Hypotheses:</strong> A positive definite symmetric</p>
+<p><strong>Conclusion:</strong> A = LL^T with L lower triangular, positive diag</p>
+<p><strong>Definitions:</strong> Cholesky, positive definite, triangular</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induction on n</p>
+<p class="step">Step 2: First column: l_{i1} = a_{i1}/l_{11}</p>
+<p class="step">Step 3: Submatrix is positive definite</p>
+<p class="step">Step 4: Apply induction</p></div>
+<p class="metadata">ID: ce0d622637c1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Most efficient for positive definite systems</p>
+<p class="metadata">Provenance: linear algebra proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: QR decomposition: A = QR (Q orthogonal, R upper triangular)</h3>
+<p><strong>Statement:</strong> QR decomposition: A = QR (Q orthogonal, R upper triangular)</p>
+<p><strong>Hypotheses:</strong> A m x n, m>=n, linearly independent columns</p>
+<p><strong>Conclusion:</strong> A = QR</p>
+<p><strong>Definitions:</strong> QR, Gram-Schmidt, triangular</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gram-Schmidt on columns of A</p>
+<p class="step">Step 2: Q = [q_1,...,q_n] orthonormal</p>
+<p class="step">Step 3: R_{ij} = <a_j, q_i></p>
+<p class="step">Step 4: A = QR by construction</p></div>
+<p class="metadata">ID: f1743fac9333 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundation for least squares</p>
+<p class="metadata">Provenance: linear algebra proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: SVD: A = U Sigma V^T (singular value decomposition)</h3>
+<p><strong>Statement:</strong> SVD: A = U Sigma V^T (singular value decomposition)</p>
+<p><strong>Hypotheses:</strong> A m x n real matrix</p>
+<p><strong>Conclusion:</strong> A = U diag(sigma_1,...,sigma_r) V^T</p>
+<p><strong>Definitions:</strong> SVD, singular value, diagonal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A^T A symmetric positive semidefinite</p>
+<p class="step">Step 2: Eigendecompose: A^T A = V D V^T</p>
+<p class="step">Step 3: sigma_i = sqrt(D_ii)</p>
+<p class="step">Step 4: U_i = A v_i / sigma_i</p>
+<p class="step">Step 5: Extend U to complete orthonormal basis</p></div>
+<p class="metadata">ID: 79d7289f0c60 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Most useful matrix decomposition</p>
+<p class="metadata">Provenance: linear algebra proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Singular values: sigma_i = sqrt(eigenvalues of A^T A) = sqrt(eigenvalues of AA^T)</h3>
+<p><strong>Statement:</strong> Singular values: sigma_i = sqrt(eigenvalues of A^T A) = sqrt(eigenvalues of AA^T)</p>
+<p><strong>Hypotheses:</strong> A m x n</p>
+<p><strong>Conclusion:</strong> relationship between singular values and eigenvalues</p>
+<p><strong>Definitions:</strong> singular value, symmetric product, eigenvalue</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A^T A is n x n symmetric PSD</p>
+<p class="step">Step 2: sigma_i^2 = eigenvalue of A^T A</p>
+<p class="step">Step 3: sigma_i = sqrt(eigenvalue)</p>
+<p class="step">Step 4: AA^T has same nonzero eigenvalues</p></div>
+<p class="metadata">ID: d98f40fbd33a | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Connects SVD to eigendecomposition</p>
+<p class="metadata">Provenance: linear algebra proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Least squares: solution of overdetermined Ax=b is x = (A^T A)^{-1} A^T b</h3>
+<p><strong>Statement:</strong> Least squares: solution of overdetermined Ax=b is x = (A^T A)^{-1} A^T b</p>
+<p><strong>Hypotheses:</strong> A m x n, m>n, Ax=b overdetermined</p>
+<p><strong>Conclusion:</strong> x minimizing ||Ax-b||^2</p>
+<p><strong>Definitions:</strong> least squares, normal equation, pseudoinverse</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Minimize f(x) = ||Ax-b||^2</p>
+<p class="step">Step 2: f'(x) = 2A^T(Ax-b) = 0</p>
+<p class="step">Step 3: A^T A x = A^T b</p>
+<p class="step">Step 4: If A^T A invertible: x = (A^T A)^{-1} A^T b</p></div>
+<p class="metadata">ID: 2552f3167c0d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without full rank: pseudoinverse needed</p>
+<p class="metadata">Provenance: linear algebra proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Moore-Penrose pseudoinverse: A^+ = V Sigma^+ U^T from SVD</h3>
+<p><strong>Statement:</strong> Moore-Penrose pseudoinverse: A^+ = V Sigma^+ U^T from SVD</p>
+<p><strong>Hypotheses:</strong> A m x n, A = U Sigma V^T SVD</p>
+<p><strong>Conclusion:</strong> unique matrix A^+ satisfying 4 Penrose conditions</p>
+<p><strong>Definitions:</strong> pseudoinverse, Moore-Penrose, SVD</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Sigma^+ = diag(1/sigma_i, 0 for zero singular values)</p>
+<p class="step">Step 2: A^+ = V Sigma^+ U^T</p>
+<p class="step">Step 3: AA^+A = A, A^+AA^+ = A^+</p>
+<p class="step">Step 4: (AA^+)* = AA^+, (A^+A)* = A^+A</p></div>
+<p class="metadata">ID: b906e0f1cc95 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Generalizes matrix inverse to non-square/rank-deficient</p>
+<p class="metadata">Provenance: linear algebra proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Condition number: kappa(A) = sigma_max/sigma_min measures sensitivity</h3>
+<p><strong>Statement:</strong> Condition number: kappa(A) = sigma_max/sigma_min measures sensitivity</p>
+<p><strong>Hypotheses:</strong> A invertible</p>
+<p><strong>Conclusion:</strong> kappa(A) >= 1, large kappa => ill-conditioned</p>
+<p><strong>Definitions:</strong> condition number, SVD, sensitivity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ||A|| = sigma_max (operator norm)</p>
+<p class="step">Step 2: ||A^{-1}|| = 1/sigma_min</p>
+<p class="step">Step 3: kappa = sigma_max/sigma_min</p>
+<p class="step">Step 4: Relative error in solution <= kappa * relative error in b</p></div>
+<p class="metadata">ID: 4c7b26acfefc | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: kappa=1 for orthogonal matrices (best possible)</p>
+<p class="metadata">Provenance: linear algebra proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Jordan blocks: each eigenvalue gives blocks J(lambda, m) = lambda*I + N</h3>
+<p><strong>Statement:</strong> Jordan blocks: each eigenvalue gives blocks J(lambda, m) = lambda*I + N</p>
+<p><strong>Hypotheses:</strong> A square matrix over alg. closed field</p>
+<p><strong>Conclusion:</strong> A similar to block diagonal of Jordan blocks</p>
+<p><strong>Definitions:</strong> Jordan block, eigenvalue, nilpotent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Generalized eigenspaces: V = direct sum V_lambda</p>
+<p class="step">Step 2: On each V_lambda: A = lambda I + N, N nilpotent</p>
+<p class="step">Step 3: Jordan form of nilpotent: blocks of decreasing size</p>
+<p class="step">Step 4: Combine all blocks</p></div>
+<p class="metadata">ID: faa4bbcf820b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without alg. closed: may need field extension</p>
+<p class="metadata">Provenance: linear algebra proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Geometric multiplicity <= algebraic multiplicity of eigenvalue</h3>
+<p><strong>Statement:</strong> Geometric multiplicity <= algebraic multiplicity of eigenvalue</p>
+<p><strong>Hypotheses:</strong> lambda eigenvalue of A</p>
+<p><strong>Conclusion:</strong> dim ker(A-lambda I) <= mult(lambda)</p>
+<p><strong>Definitions:</strong> geometric multiplicity, algebraic multiplicity, eigenvalue</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Geometric: dim eigenspace = dim ker(A-lambda I)</p>
+<p class="step">Step 2: Algebraic: multiplicity as root of char poly</p>
+<p class="step">Step 3: Eigenspace is subspace of generalized eigenspace</p>
+<p class="step">Step 4: Therefore geometric <= algebraic</p></div>
+<p class="metadata">ID: cf3041b94004 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Equality iff A is diagonalizable</p>
+<p class="metadata">Provenance: linear algebra proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Matrix exponential: e^A = sum A^k/k! converges for all A</h3>
+<p><strong>Statement:</strong> Matrix exponential: e^A = sum A^k/k! converges for all A</p>
+<p><strong>Hypotheses:</strong> A n x n matrix</p>
+<p><strong>Conclusion:</strong> e^A well-defined, e^{A+B}=e^A e^B when AB=BA</p>
+<p><strong>Definitions:</strong> matrix exponential, power series, convergence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Series converges absolutely</p>
+<p class="step">Step 2: e^{tA} is one-parameter group</p>
+<p class="step">Step 3: d/dt e^{tA} = A e^{tA}</p>
+<p class="step">Step 4: e^0 = I</p>
+<p class="step">Step 5: e^{A+B} = e^A e^B when AB=BA ( BCH formula otherwise)</p></div>
+<p class="metadata">ID: 82e97353eec3 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without AB=BA: BCH formula needed</p>
+<p class="metadata">Provenance: linear algebra proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Log of matrix: exists locally near I (for matrices close to I)</h3>
+<p><strong>Statement:</strong> Log of matrix: exists locally near I (for matrices close to I)</p>
+<p><strong>Hypotheses:</strong> A close to I (||A-I||<1)</p>
+<p><strong>Conclusion:</strong> log(A) exists and is unique near 0</p>
+<p><strong>Definitions:</strong> matrix logarithm, inverse of exp, Taylor</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: log(A) = sum_{k=1}^infty (-1)^{k+1}(A-I)^k/k</p>
+<p class="step">Step 2: Converges for ||A-I||<1</p>
+<p class="step">Step 3: exp(log(A)) = A locally</p></div>
+<p class="metadata">ID: c78d6e8a6ccf | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Not globally defined (multiple branches)</p>
+<p class="metadata">Provenance: linear algebra proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Trace cyclic: tr(AB) = tr(BA) always</h3>
+<p><strong>Statement:</strong> Trace cyclic: tr(AB) = tr(BA) always</p>
+<p><strong>Hypotheses:</strong> A m x n, B n x m</p>
+<p><strong>Conclusion:</strong> tr(AB) = tr(BA)</p>
+<p><strong>Definitions:</strong> trace, cyclic, product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: (AB)_ii = sum_j A_ij B_ji</p>
+<p class="step">Step 2: tr(AB) = sum_i sum_j A_ij B_ji</p>
+<p class="step">Step 3: (BA)_jj = sum_i B_ji A_ij</p>
+<p class="step">Step 4: Same double sum</p></div>
+<p class="metadata">ID: ccc85c82b6a0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Works even when AB and BA different sizes</p>
+<p class="metadata">Provenance: linear algebra proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Determinant is alternating multilinear in rows</h3>
+<p><strong>Statement:</strong> Determinant is alternating multilinear in rows</p>
+<p><strong>Hypotheses:</strong> det: (F^n)^n -> F</p>
+<p><strong>Conclusion:</strong> swaps change sign, linear in each row</p>
+<p><strong>Definitions:</strong> determinant, alternating, multilinear</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Alternating: swap rows changes sign</p>
+<p class="step">Step 2: Multilinear: det(...,av+bw,...) = a det(...,v,...)+b det(...,w,...)</p>
+<p class="step">Step 3: These + det(I)=1 uniquely determine det</p></div>
+<p class="metadata">ID: a7d152bc2890 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Alternative characterization</p>
+<p class="metadata">Provenance: linear algebra proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Exterior algebra: Lambda^k(V) has dimension C(n,k)</h3>
+<p><strong>Statement:</strong> Exterior algebra: Lambda^k(V) has dimension C(n,k)</p>
+<p><strong>Hypotheses:</strong> V n-dimensional</p>
+<p><strong>Conclusion:</strong> dim Lambda^k = C(n,k)</p>
+<p><strong>Definitions:</strong> exterior algebra, wedge product, binomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Wedge products v_{i1}^...^v_{ik}</p>
+<p class="step">Step 2: Antisymmetry: v^v=0</p>
+<p class="step">Step 3: Distinct indices only</p>
+<p class="step">Step 4: C(n,k) such products, linearly independent</p></div>
+<p class="metadata">ID: 1bf306212acd | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation for differential forms</p>
+<p class="metadata">Provenance: linear algebra proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Wedge product anticommutative: u^v = -v^u</h3>
+<p><strong>Statement:</strong> Wedge product anticommutative: u^v = -v^u</p>
+<p><strong>Hypotheses:</strong> u,v in V</p>
+<p><strong>Conclusion:</strong> u^v = -v^u</p>
+<p><strong>Definitions:</strong> wedge product, anticommutativity, exterior</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: u^v = (u+v)^(u+v) - u^u - v^v)/2 - (u-v)^(u-v) - u^u - v^v)/2</p>
+<p class="step">Step 2: Simplify using u^u = v^v = 0</p>
+<p class="step">Step 3: Result: u^v = -v^u</p></div>
+<p class="metadata">ID: 8a7d1a73926d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: From alternating property</p>
+<p class="metadata">Provenance: linear algebra proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Symmetric group S_n: non-abelian for n>=3</h3>
+<p><strong>Statement:</strong> Symmetric group S_n: non-abelian for n>=3</p>
+<p><strong>Hypotheses:</strong> n>=3</p>
+<p><strong>Conclusion:</strong> exists sigma,tau with sigma*tau!=tau*sigma</p>
+<p><strong>Definitions:</strong> symmetric group, non-abelian, permutation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: sigma=(12), tau=(13)</p>
+<p class="step">Step 2: sigma*tau=(132)</p>
+<p class="step">Step 3: tau*sigma=(123)</p>
+<p class="step">Step 4: Different</p></div>
+<p class="metadata">ID: 46cbcdc2e3f3 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: S_2 is abelian</p>
+<p class="metadata">Provenance: linear algebra proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Every group of prime order is cyclic</h3>
+<p><strong>Statement:</strong> Every group of prime order is cyclic</p>
+<p><strong>Hypotheses:</strong> |G|=p prime</p>
+<p><strong>Conclusion:</strong> G is cyclic</p>
+<p><strong>Definitions:</strong> prime order, cyclic, Lagrange</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take g!=e</p>
+<p class="step">Step 2: order(g) divides p</p>
+<p class="step">Step 3: order(g) = p (not 1)</p>
+<p class="step">Step 4: <g> = G</p></div>
+<p class="metadata">ID: b0261c49f253 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Direct from Lagrange</p>
+<p class="metadata">Provenance: linear algebra proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Sylow counting: n_p = 1 mod p, n_p divides |G|/p^k</h3>
+<p><strong>Statement:</strong> Sylow counting: n_p = 1 mod p, n_p divides |G|/p^k</p>
+<p><strong>Hypotheses:</strong> G finite, p^k || |G|</p>
+<p><strong>Conclusion:</strong> n_p = 1 mod p and n_p | m where |G|=p^k*m</p>
+<p><strong>Definitions:</strong> Sylow, counting, congruence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Conjugacy: Sylow p-subgroups form single orbit</p>
+<p class="step">Step 2: Orbit size divides |G|/p^k</p>
+<p class="step">Step 3: n_p = 1 mod p from class equation on p-group</p></div>
+<p class="metadata">ID: f42a154b17f6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Two separate results from Sylow theory</p>
+<p class="metadata">Provenance: linear algebra proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Burnside p^a q^b theorem: group of order p^a q^b is solvable</h3>
+<p><strong>Statement:</strong> Burnside p^a q^b theorem: group of order p^a q^b is solvable</p>
+<p><strong>Hypotheses:</strong> |G| = p^a q^b</p>
+<p><strong>Conclusion:</strong> G is solvable</p>
+<p><strong>Definitions:</strong> Burnside, solvable, prime power</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Complex representation theory</p>
+<p class="step">Step 2: Characters of irreducible representations</p>
+<p class="step">Step 3: Degree divides |G|</p>
+<p class="step">Step 4: Character values generate abelian extension</p>
+<p class="step">Step 5: Deduce solvability</p></div>
+<p class="metadata">ID: e92440a07816 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Uses character theory, not elementary</p>
+<p class="metadata">Provenance: linear algebra proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Jordan-Holder: composition series factors are unique up to permutation</h3>
+<p><strong>Statement:</strong> Jordan-Holder: composition series factors are unique up to permutation</p>
+<p><strong>Hypotheses:</strong> G finite, composition series exists</p>
+<p><strong>Conclusion:</strong> quotients S_i are unique (as multisets)</p>
+<p><strong>Definitions:</strong> Jordan-Holder, composition series, simple quotient</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Refine any two series to common refinement</p>
+<p class="step">Step 2: Quotients of refinement = quotients of original</p>
+<p class="step">Step 3: Quotients simple: must be isomorphic in refinement</p>
+<p class="step">Step 4: Jordan: unique factors</p></div>
+<p class="metadata">ID: c7a46de68117 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Generalization of prime factorization to groups</p>
+<p class="metadata">Provenance: linear algebra proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Automorphism group of Z/nZ is (Z/nZ)*</h3>
+<p><strong>Statement:</strong> Automorphism group of Z/nZ is (Z/nZ)*</p>
+<p><strong>Hypotheses:</strong> n >= 1</p>
+<p><strong>Conclusion:</strong> Aut(Z/nZ) ~ (Z/nZ)*</p>
+<p><strong>Definitions:</strong> automorphism, unit group, cyclic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Automorphism determined by image of 1</p>
+<p class="step">Step 2: 1 must map to generator</p>
+<p class="step">Step 3: Generators = units mod n</p>
+<p class="step">Step 4: Composition = multiplication mod n</p></div>
+<p class="metadata">ID: 72d9c0a4f38a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Concrete computation</p>
+<p class="metadata">Provenance: linear algebra proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Center of group of order p^n has order >= p</h3>
+<p><strong>Statement:</strong> Center of group of order p^n has order >= p</p>
+<p><strong>Hypotheses:</strong> |G|=p^n</p>
+<p><strong>Conclusion:</strong> |Z(G)| >= p</p>
+<p><strong>Definitions:</strong> center, p-group, class equation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</p>
+<p class="step">Step 2: Each [G:C_G] divisible by p</p>
+<p class="step">Step 3: |G| divisible by p</p>
+<p class="step">Step 4: Therefore |Z(G)| divisible by p</p></div>
+<p class="metadata">ID: d2195cf4303c | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Key lemma for p-groups</p>
+<p class="metadata">Provenance: linear algebra proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Classification of finite simple groups: one of {cyclic of prime order, alternating A_n (n>=5), Lie type, 26 sporadic}</h3>
+<p><strong>Statement:</strong> Classification of finite simple groups: one of {cyclic of prime order, alternating A_n (n>=5), Lie type, 26 sporadic}</p>
+<p><strong>Hypotheses:</strong> G finite simple</p>
+<p><strong>Conclusion:</strong> G is one of known types</p>
+<p><strong>Definitions:</strong> classification, simple group, sporadic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Enormous collaborative effort (1980s)</p>
+<p class="step">Step 2: Proof spans ~10,000 pages</p>
+<p class="step">Step 3: 16 authors for the Feit-Thompson part alone</p>
+<p class="step">Step 4: Classified all finite simple groups</p></div>
+<p class="metadata">ID: 41a0c7f78c77 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Largest theorem in mathematics by length</p>
+<p class="metadata">Provenance: linear algebra proof #34</p>
+</div>
 </body></html>

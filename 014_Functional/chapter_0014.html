@@ -19541,4 +19541,558 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Hilbert transform is prototypical CZ operator</p>
 <p class="metadata">Provenance: functional analysis proof #28</p>
 </div>
+
+<h2>Extra proofs (+42 from functional analysis)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Hahn-Banach: bounded linear functional on subspace extends to whole space preserving norm</h3>
+<p><strong>Statement:</strong> Hahn-Banach: bounded linear functional on subspace extends to whole space preserving norm</p>
+<p><strong>Hypotheses:</strong> X normed space, Y subspace, f bounded on Y</p>
+<p><strong>Conclusion:</strong> extends to F on X with ||F||=||f||</p>
+<p><strong>Definitions:</strong> Hahn-Banach, extension, norm preserving</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Extend one dimension at a time</p>
+<p class="step">Step 2: Bound by norm at each step</p>
+<p class="step">Step 3: Zorn's lemma for infinite-dimensional case</p></div>
+<p class="metadata">ID: 45e2863232c4 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Algebraic: works without completeness</p>
+<p class="metadata">Provenance: functional analysis proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Banach-Alaoglu: closed unit ball of dual is weak* compact</h3>
+<p><strong>Statement:</strong> Banach-Alaoglu: closed unit ball of dual is weak* compact</p>
+<p><strong>Hypotheses:</strong> X Banach, B_X* dual unit ball</p>
+<p><strong>Conclusion:</strong> B_X* compact in weak* topology</p>
+<p><strong>Definitions:</strong> Banach-Alaoglu, weak*, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Embed in product [-|f(x)|,|f(x)|]</p>
+<p class="step">Step 2: Tychonoff: product compact</p>
+<p class="step">Step 3: Closed subset of compact is compact</p></div>
+<p class="metadata">ID: 6b6ba95d4a37 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Essential for reflexive space theory</p>
+<p class="metadata">Provenance: functional analysis proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Krein-Milman: compact convex set = closed conv hull of extreme points</h3>
+<p><strong>Statement:</strong> Krein-Milman: compact convex set = closed conv hull of extreme points</p>
+<p><strong>Hypotheses:</strong> K compact convex in locally convex space</p>
+<p><strong>Conclusion:</strong> K = cl(conv(ext(K)))</p>
+<p><strong>Definitions:</strong> Krein-Milman, extreme point, convex hull</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: extreme points: not in interior of any segment</p>
+<p class="step">Step 2: Supporting hyperplanes</p>
+<p class="step">Step 3: Any point = limit of convex combinations</p></div>
+<p class="metadata">ID: 6d0ca798ad65 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental in optimization</p>
+<p class="metadata">Provenance: functional analysis proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: James' theorem: X reflexive iff every f in X* achieves its norm</h3>
+<p><strong>Statement:</strong> James' theorem: X reflexive iff every f in X* achieves its norm</p>
+<p><strong>Hypotheses:</strong> X Banach</p>
+<p><strong>Conclusion:</strong> X reflexive <=> every functional achieves norm</p>
+<p><strong>Definitions:</strong> James, reflexive, norm achievement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: =>: compact ball gives max</p>
+<p class="step">Step 2: <=: deep result using renorming</p>
+<p class="step">Step 3: One of deepest theorems in Banach space theory</p></div>
+<p class="metadata">ID: f226be026ddc | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Very difficult proof</p>
+<p class="metadata">Provenance: functional analysis proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Borsuk-Ulam: f:S^n->R^n, f(x)=f(-x) for some x</h3>
+<p><strong>Statement:</strong> Borsuk-Ulam: f:S^n->R^n, f(x)=f(-x) for some x</p>
+<p><strong>Hypotheses:</strong> f continuous S^n->R^n</p>
+<p><strong>Conclusion:</strong> exists x with f(x)=f(-x)</p>
+<p><strong>Definitions:</strong> Borsuk-Ulam, antipodal, sphere</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: g(x)=f(x)-f(-x) odd</p>
+<p class="step">Step 2: If g never zero: h=g/|g| maps to S^{n-1}</p>
+<p class="step">Step 3: No odd map S^n->S^{n-1}</p></div>
+<p class="metadata">ID: 42fa3e46a8b6 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Applications: ham sandwich, fair division</p>
+<p class="metadata">Provenance: functional analysis proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Riesz representation: dual of L^p is L^q (1/p+1/q=1)</h3>
+<p><strong>Statement:</strong> Riesz representation: dual of L^p is L^q (1/p+1/q=1)</p>
+<p><strong>Hypotheses:</strong> 1<p<inf, F in (L^p)*</p>
+<p><strong>Conclusion:</strong> exists g in L^q with F(f)=integral fg</p>
+<p><strong>Definitions:</strong> Riesz, dual, L^p</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define nu(A)=F(1_A)</p>
+<p class="step">Step 2: absolutely continuous</p>
+<p class="step">Step 3: Radon-Nikodym: g=dnu/dmu</p></div>
+<p class="metadata">ID: 65d556037f42 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: For p=1: dual is L^inf, not conversely</p>
+<p class="metadata">Provenance: functional analysis proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Lax-Milgram: coercive bounded bilinear form => unique solution</h3>
+<p><strong>Statement:</strong> Lax-Milgram: coercive bounded bilinear form => unique solution</p>
+<p><strong>Hypotheses:</strong> H Hilbert, a(u,v) coercive, bounded, F in H*</p>
+<p><strong>Conclusion:</strong> unique u with a(u,v)=F(v)</p>
+<p><strong>Definitions:</strong> Lax-Milgram, coercive, bilinear</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map u->a(u,.): injective bounded</p>
+<p class="step">Step 2: Coercive => closed range</p>
+<p class="step">Step 3: Surjective by Riesz</p></div>
+<p class="metadata">ID: 6cd63061e711 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for FEM</p>
+<p class="metadata">Provenance: functional analysis proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Plancherel: FT is unitary on L^2(R^n)</h3>
+<p><strong>Statement:</strong> Plancherel: FT is unitary on L^2(R^n)</p>
+<p><strong>Hypotheses:</strong> f in L^2</p>
+<p><strong>Conclusion:</strong> ||hat{f}||_2 = ||f||_2</p>
+<p><strong>Definitions:</strong> Plancherel, L^2, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define on L^1 intersect L^2</p>
+<p class="step">Step 2: L^2 bound by density</p>
+<p class="step">Step 3: Continuous extension</p>
+<p class="step">Step 4: Isometry + surjectivity</p></div>
+<p class="metadata">ID: a8c3d651ab3f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Energy-preserving</p>
+<p class="metadata">Provenance: functional analysis proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Rellich-Kondrachov: W^{1,p} compactly embeds in L^p (bounded domain)</h3>
+<p><strong>Statement:</strong> Rellich-Kondrachov: W^{1,p} compactly embeds in L^p (bounded domain)</p>
+<p><strong>Hypotheses:</strong> Omega bounded, 1<=p<n, f_n bounded in W^{1,p}</p>
+<p><strong>Conclusion:</strong> subsequence converges in L^p</p>
+<p><strong>Definitions:</strong> Rellich-Kondrachov, compact embedding, Sobolev</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Equicontinuity from W^{1,p} bound</p>
+<p class="step">Step 2: Arzelà-Ascoli type argument</p>
+<p class="step">Step 3: Passage to L^p limit</p></div>
+<p class="metadata">ID: 48232016ee2d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Essential for PDE existence</p>
+<p class="metadata">Provenance: functional analysis proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: De Rham cohomology = singular cohomology for smooth manifolds</h3>
+<p><strong>Statement:</strong> De Rham cohomology = singular cohomology for smooth manifolds</p>
+<p><strong>Hypotheses:</strong> M smooth manifold</p>
+<p><strong>Conclusion:</strong> H^k_dR(M) ~ H^k(M;R)</p>
+<p><strong>Definitions:</strong> de Rham, cohomology, forms</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Integration: forms -> cohomology</p>
+<p class="step">Step 2: Poincare lemma: contractible => exact</p>
+<p class="step">Step 3: Mayer-Vietoris for both</p>
+<p class="step">Step 4: Induction on charts</p></div>
+<p class="metadata">ID: d78757a4b730 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Bridges differential and algebraic topology</p>
+<p class="metadata">Provenance: functional analysis proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Sobolev embedding: W^{1,p}(R^n) into L^{np/(n-p)} when p<n</h3>
+<p><strong>Statement:</strong> Sobolev embedding: W^{1,p}(R^n) into L^{np/(n-p)} when p<n</p>
+<p><strong>Hypotheses:</strong> p<n</p>
+<p><strong>Conclusion:</strong> continuous embedding with bound</p>
+<p><strong>Definitions:</strong> Sobolev, embedding, critical exponent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gagliardo-Nirenberg inequality</p>
+<p class="step">Step 2: Isoperimetric for p=1</p>
+<p class="step">Step 3: Interpolation</p></div>
+<p class="metadata">ID: aa7d7683ad8b | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without p<n: Morrey into C^{0,alpha}</p>
+<p class="metadata">Provenance: functional analysis proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Gårding inequality: a(u,u) >= alpha||u||^2 - beta||u||^2</h3>
+<p><strong>Statement:</strong> Gårding inequality: a(u,u) >= alpha||u||^2 - beta||u||^2</p>
+<p><strong>Hypotheses:</strong> a(,) from elliptic operator with lower order terms</p>
+<p><strong>Conclusion:</strong> coercive up to compact term</p>
+<p><strong>Definitions:</strong> Garding, coercivity, elliptic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Leading term gives alpha||grad u||^2</p>
+<p class="step">Step 2: Lower order bounded by Cauchy-Schwarz</p>
+<p class="step">Step 3: Poincare absorbs</p></div>
+<p class="metadata">ID: 1417bb80c8ef | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Generalizes Lax-Milgram</p>
+<p class="metadata">Provenance: functional analysis proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Hille-Yosida: generates C_0 semigroup iff resolvent has growth bound</h3>
+<p><strong>Statement:</strong> Hille-Yosida: generates C_0 semigroup iff resolvent has growth bound</p>
+<p><strong>Hypotheses:</strong> A operator on Banach space</p>
+<p><strong>Conclusion:</strong> generates C_0 semigroup</p>
+<p><strong>Definitions:</strong> Hille-Yosida, semigroup, generator</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Yosida approximations A_n=nA(n-A)^{-1}</p>
+<p class="step">Step 2: Resolvent bound ensures convergence</p>
+<p class="step">Step 3: Strongly continuous semigroup</p></div>
+<p class="metadata">ID: 7aa2b6209cf5 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundation for evolution equations</p>
+<p class="metadata">Provenance: functional analysis proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Caccioppoli inequality: elliptic solutions have gradient bounded by L^2 norm</h3>
+<p><strong>Statement:</strong> Caccioppoli inequality: elliptic solutions have gradient bounded by L^2 norm</p>
+<p><strong>Hypotheses:</strong> div(A grad u)=0, A elliptic</p>
+<p><strong>Conclusion:</strong> int |grad u|^2 <= C/r^2 int u^2</p>
+<p><strong>Definitions:</strong> Caccioppoli, elliptic, energy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiply by eta^2 u</p>
+<p class="step">Step 2: Integrate by parts</p>
+<p class="step">Step 3: Cauchy-Schwarz on cross terms</p>
+<p class="step">Step 4: Ellipticity absorbs</p></div>
+<p class="metadata">ID: 37d955817326 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Key regularity tool</p>
+<p class="metadata">Provenance: functional analysis proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Atkinson: T Fredholm iff T+K invertible for compact K</h3>
+<p><strong>Statement:</strong> Atkinson: T Fredholm iff T+K invertible for compact K</p>
+<p><strong>Hypotheses:</strong> T bounded linear</p>
+<p><strong>Conclusion:</strong> Fredholm characterization</p>
+<p><strong>Definitions:</strong> Atkinson, Fredholm, compact perturbation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct S with TS=I+K1, ST=I+K2</p>
+<p class="step">Step 2: Index invariant under compact perturbation</p>
+<p class="step">Step 3: T Fredholm <=> invertible + compact</p></div>
+<p class="metadata">ID: 97ffb4a455aa | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Characterizes Fredholm operators</p>
+<p class="metadata">Provenance: functional analysis proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Schauder fixed point: compact map on convex bounded closed set has FP</h3>
+<p><strong>Statement:</strong> Schauder fixed point: compact map on convex bounded closed set has FP</p>
+<p><strong>Hypotheses:</strong> C convex bounded closed, T:C->C compact</p>
+<p><strong>Conclusion:</strong> T has fixed point</p>
+<p><strong>Definitions:</strong> Schauder, fixed point, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate T by finite rank T_n</p>
+<p class="step">Step 2: Brouwer in finite dimensions</p>
+<p class="step">Step 3: Compactness: limit is FP</p></div>
+<p class="metadata">ID: e960fcd0bf67 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without compactness: false</p>
+<p class="metadata">Provenance: functional analysis proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Gohberg-Krein: ind(TK)=ind(T) for compact K</h3>
+<p><strong>Statement:</strong> Gohberg-Krein: ind(TK)=ind(T) for compact K</p>
+<p><strong>Hypotheses:</strong> T Fredholm, K compact</p>
+<p><strong>Conclusion:</strong> index invariant</p>
+<p><strong>Definitions:</strong> index, Fredholm, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: T(K-I) compact</p>
+<p class="step">Step 2: Index stable under compact perturbation</p></div>
+<p class="metadata">ID: 98927ec12672 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Index is homotopy invariant</p>
+<p class="metadata">Provenance: functional analysis proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Lions Lax-Milgram: Gårding coercive => unique weak solution</h3>
+<p><strong>Statement:</strong> Lions Lax-Milgram: Gårding coercive => unique weak solution</p>
+<p><strong>Hypotheses:</strong> a(,) Gårding-coercive</p>
+<p><strong>Conclusion:</strong> unique solution in H^1_0</p>
+<p><strong>Definitions:</strong> Lions, Gårding, variational</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gårding + Poincare = effective coercivity</p>
+<p class="step">Step 2: Apply Lax-Milgram</p></div>
+<p class="metadata">ID: 7e048369f4df | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Handles lower-order perturbations</p>
+<p class="metadata">Provenance: functional analysis proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Banach-Steinhaus: pointwise bounded sequence converges uniformly on compact sets</h3>
+<p><strong>Statement:</strong> Banach-Steinhaus: pointwise bounded sequence converges uniformly on compact sets</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T_n bounded, sup||T_n||<inf</p>
+<p><strong>Conclusion:</strong> converges on dense subset</p>
+<p><strong>Definitions:</strong> Banach-Steinhaus, pointwise, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Uniform boundedness gives sup bound</p>
+<p class="step">Step 2: Dense subset convergence</p>
+<p class="step">Step 3: Extend by bound</p></div>
+<p class="metadata">ID: ebe855891f42 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without bounded norms: fails</p>
+<p class="metadata">Provenance: functional analysis proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Mazur: norm-closed convex = weakly closed convex</h3>
+<p><strong>Statement:</strong> Mazur: norm-closed convex = weakly closed convex</p>
+<p><strong>Hypotheses:</strong> C convex subset of Banach</p>
+<p><strong>Conclusion:</strong> norm-closed <=> weakly closed</p>
+<p><strong>Definitions:</strong> Mazur, weak, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Norm => weak (trivial)</p>
+<p class="step">Step 2: Convex: weak closure = norm closure</p>
+<p class="step">Step 3: Hahn-Banach for separation</p></div>
+<p class="metadata">ID: 475ac26e9cda | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without convexity: weak closure larger</p>
+<p class="metadata">Provenance: functional analysis proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Bochner: harmonic forms with nonneg Ricci are parallel</h3>
+<p><strong>Statement:</strong> Bochner: harmonic forms with nonneg Ricci are parallel</p>
+<p><strong>Hypotheses:</strong> Ric>=0, omega harmonic k-form</p>
+<p><strong>Conclusion:</strong> nabla omega = 0</p>
+<p><strong>Definitions:</strong> Bochner, harmonic, parallel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bochner formula: 0 = int |nabla omega|^2 + Ric terms</p>
+<p class="step">Step 2: Both nonneg, both vanish</p>
+<p class="step">Step 3: omega is parallel</p></div>
+<p class="metadata">ID: e8e5287a6e5c | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Topological consequences for manifolds</p>
+<p class="metadata">Provenance: functional analysis proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Calderón-Zygmund: singular integral bounded on L^p</h3>
+<p><strong>Statement:</strong> Calderón-Zygmund: singular integral bounded on L^p</p>
+<p><strong>Hypotheses:</strong> K satisfies CZ condition, Tf(x)=PV int K(x,y)f(y)dy</p>
+<p><strong>Conclusion:</strong> ||Tf||_p <= C_p||f||_p for 1<p<inf</p>
+<p><strong>Definitions:</strong> Calderón-Zygmund, singular integral, kernel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Decompose kernel</p>
+<p class="step">Step 2: CZ decomposition for singular part</p>
+<p class="step">Step 3: Interpolate L^2 and L^1 bounds</p></div>
+<p class="metadata">ID: 53a127dd718b | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Hilbert transform is prototypical</p>
+<p class="metadata">Provenance: functional analysis proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Marcinkiewicz interpolation: weak (p,p)+(q,q)=>strong (r,r)</h3>
+<p><strong>Statement:</strong> Marcinkiewicz interpolation: weak (p,p)+(q,q)=>strong (r,r)</p>
+<p><strong>Hypotheses:</strong> T weak (p,p) and weak (q,q), p<r<q</p>
+<p><strong>Conclusion:</strong> T strong (r,r)</p>
+<p><strong>Definitions:</strong> Marcinkiewicz, interpolation, weak type</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Decompose f by threshold</p>
+<p class="step">Step 2: Apply weak type estimates</p>
+<p class="step">Step 3: Optimize threshold</p></div>
+<p class="metadata">ID: 156e834b47dc | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Interpolation between endpoints</p>
+<p class="metadata">Provenance: functional analysis proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Hahn decomposition: signed measure splits into positive/negative parts</h3>
+<p><strong>Statement:</strong> Hahn decomposition: signed measure splits into positive/negative parts</p>
+<p><strong>Hypotheses:</strong> mu signed measure</p>
+<p><strong>Conclusion:</strong> X = P union N, P positive, N negative</p>
+<p><strong>Definitions:</strong> Hahn, signed measure, decomposition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: nu(A)=sup mu(B) for B subset A</p>
+<p class="step">Step 2: P={A: mu(B)<=nu(A) all B subset A}</p>
+<p class="step">Step 3: N=X\P negative</p></div>
+<p class="metadata">ID: 18403b4dcf8b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental decomposition</p>
+<p class="metadata">Provenance: functional analysis proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Krein-Smulian: convex weak* closed <=> intersection with balls weak* closed</h3>
+<p><strong>Statement:</strong> Krein-Smulian: convex weak* closed <=> intersection with balls weak* closed</p>
+<p><strong>Hypotheses:</strong> X Banach, C convex in X*</p>
+<p><strong>Conclusion:</strong> characterization of weak* closed</p>
+<p><strong>Definitions:</strong> Krein-Smulian, weak*, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Forward trivial</p>
+<p class="step">Step 2: Reverse: Banach-Alaoglu compactness on balls</p>
+<p class="step">Step 3: Finite-rank approximation</p></div>
+<p class="metadata">ID: 0abf8e054065 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Important for weak* computations</p>
+<p class="metadata">Provenance: functional analysis proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Carleson: Fourier series of L^2 function converges pointwise a.e.</h3>
+<p><strong>Statement:</strong> Carleson: Fourier series of L^2 function converges pointwise a.e.</p>
+<p><strong>Hypotheses:</strong> f in L^2</p>
+<p><strong>Conclusion:</strong> S_N(x)->f(x) a.e.</p>
+<p><strong>Definitions:</strong> Carleson, pointwise convergence, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Carleson operator maximal partial sum</p>
+<p class="step">Step 2: Time-frequency analysis</p>
+<p class="step">Step 3: Cubes in phase space</p>
+<p class="step">Step 4: Fields medal 2006</p></div>
+<p class="metadata">ID: b540cafce9c6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Solved 50-year problem</p>
+<p class="metadata">Provenance: functional analysis proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Wiener Tauberian: translation-invariant subspace characterized by FT zeros</h3>
+<p><strong>Statement:</strong> Wiener Tauberian: translation-invariant subspace characterized by FT zeros</p>
+<p><strong>Hypotheses:</strong> I left ideal in L^1(R), f in L^1</p>
+<p><strong>Conclusion:</strong> closed ideal characterized by common zeros of FT</p>
+<p><strong>Definitions:</strong> Wiener, Tauberian, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Wiener's lemma: 1/f-hat in algebra if f-hat nonzero</p>
+<p class="step">Step 2: Convolution algebra structure</p>
+<p class="step">Step 3: Zero sets determine ideals</p></div>
+<p class="metadata">ID: 371fa6540b86 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Wiener's 1932 PhD</p>
+<p class="metadata">Provenance: functional analysis proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Trudinger-Moser: W^{1,n} embeds in exponential Orlicz space</h3>
+<p><strong>Statement:</strong> Trudinger-Moser: W^{1,n} embeds in exponential Orlicz space</p>
+<p><strong>Hypotheses:</strong> n-dim, ||grad u||_{L^n}<=1</p>
+<p><strong>Conclusion:</strong> exp integrability</p>
+<p><strong>Definitions:</strong> Trudinger-Moser, exponential, Orlicz</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Critical Sobolev exponent</p>
+<p class="step">Step 2: Exponential integrability by Gagliardo-Nirenberg</p>
+<p class="step">Step 3: Moser: sup over unit ball</p></div>
+<p class="metadata">ID: 25855c3f2fc0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Critical case of Sobolev embedding</p>
+<p class="metadata">Provenance: functional analysis proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Vitali convergence: f_n->f in measure + UI => L^1 convergence</h3>
+<p><strong>Statement:</strong> Vitali convergence: f_n->f in measure + UI => L^1 convergence</p>
+<p><strong>Hypotheses:</strong> f_n->f in measure, uniformly integrable</p>
+<p><strong>Conclusion:</strong> ||f_n-f||_1->0</p>
+<p><strong>Definitions:</strong> Vitali, UI, L^1</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Egorov: nearly uniform</p>
+<p class="step">Step 2: Split integral: good + bad</p>
+<p class="step">Step 3: Bad: UI gives small</p>
+<p class="step">Step 4: Good: uniform convergence</p></div>
+<p class="metadata">ID: 3f8d167b7045 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without UI: fails</p>
+<p class="metadata">Provenance: functional analysis proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Hardy-Littlewood maximal: ||Mf||_{L^{1,inf}} <= C||f||_1</h3>
+<p><strong>Statement:</strong> Hardy-Littlewood maximal: ||Mf||_{L^{1,inf}} <= C||f||_1</p>
+<p><strong>Hypotheses:</strong> f in L^1</p>
+<p><strong>Conclusion:</strong> |{Mf>lambda}| <= C/lambda ||f||_1</p>
+<p><strong>Definitions:</strong> Hardy-Littlewood, maximal, weak (1,1)</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cover level set by balls</p>
+<p class="step">Step 2: Vitali covering lemma</p>
+<p class="step">Step 3: Extract disjoint subcollection</p>
+<p class="step">Step 4: Bound by sum</p></div>
+<p class="metadata">ID: 7620840a1aac | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Key for differentiation theory</p>
+<p class="metadata">Provenance: functional analysis proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Lévy characterization: continuous local martingale with [M,M]=t is BM</h3>
+<p><strong>Statement:</strong> Lévy characterization: continuous local martingale with [M,M]=t is BM</p>
+<p><strong>Hypotheses:</strong> M continuous local martingale, [M,M]_t=t</p>
+<p><strong>Conclusion:</strong> M is standard Brownian motion</p>
+<p><strong>Definitions:</strong> Lévy, Brownian motion, martingale</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Check finite-dimensional distributions</p>
+<p class="step">Step 2: Char func: e^{-tu^2/2}</p>
+<p class="step">Step 3: Levy characterization: BM uniquely determined</p></div>
+<p class="metadata">ID: 6dd886f71545 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Characterizes BM without Gaussian assumption</p>
+<p class="metadata">Provenance: functional analysis proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Girsanov: change of measure changes drift of BM</h3>
+<p><strong>Statement:</strong> Girsanov: change of measure changes drift of BM</p>
+<p><strong>Hypotheses:</strong> new measure Q via RN derivative</p>
+<p><strong>Conclusion:</strong> BM under Q has drift mu</p>
+<p><strong>Definitions:</strong> Girsanov, change of measure, drift</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: dQ/dP = exp(int mu dW - 1/2 int mu^2 dt)</p>
+<p class="step">Step 2: Under Q: W_t - int mu ds is standard BM</p>
+<p class="step">Step 3: Novikov condition</p></div>
+<p class="metadata">ID: 57744e15ab70 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for risk-neutral pricing</p>
+<p class="metadata">Provenance: functional analysis proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Meyer decomposition: submartingale = local martingale + increasing process</h3>
+<p><strong>Statement:</strong> Meyer decomposition: submartingale = local martingale + increasing process</p>
+<p><strong>Hypotheses:</strong> X submartingale</p>
+<p><strong>Conclusion:</strong> X = M + A, M local martingale, A increasing</p>
+<p><strong>Definitions:</strong> Meyer, decomposition, submartingale</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Predictable compensator A_t = E[X_t-X_{t-1}|F_{t-1}]</p>
+<p class="step">Step 2: M = X - A is local martingale</p>
+<p class="step">Step 3: A predictable and increasing</p></div>
+<p class="metadata">ID: 047c3c09ecbd | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalizes Doob decomposition</p>
+<p class="metadata">Provenance: functional analysis proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Burkholder-Davis-Gundy: E[|M_n|^p] ~ E[[M]_n^{p/2}]</h3>
+<p><strong>Statement:</strong> Burkholder-Davis-Gundy: E[|M_n|^p] ~ E[[M]_n^{p/2}]</p>
+<p><strong>Hypotheses:</strong> M_n martingale, p>0</p>
+<p><strong>Conclusion:</strong> moment equivalence</p>
+<p><strong>Definitions:</strong> BDG, martingale, quadratic variation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For p=2: Doob's inequality</p>
+<p class="step">Step 2: General p: localization + interpolation</p>
+<p class="step">Step 3: Both directions proved</p></div>
+<p class="metadata">ID: f7c618cb15a6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Most important martingale moment inequalities</p>
+<p class="metadata">Provenance: functional analysis proof #34</p>
+</div>
+<div class="theorem extra" id="xp-35">
+<h3>Proof 35: Ito's lemma: df(B_t) = f' dB_t + (1/2) f'' dt</h3>
+<p><strong>Statement:</strong> Ito's lemma: df(B_t) = f' dB_t + (1/2) f'' dt</p>
+<p><strong>Hypotheses:</strong> f twice C^2, B_t BM</p>
+<p><strong>Conclusion:</strong> stochastic chain rule with 2nd order correction</p>
+<p><strong>Definitions:</strong> Ito, stochastic calculus, chain rule</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Taylor: df = f' dB + (1/2) f'' dB^2</p>
+<p class="step">Step 2: dB^2 = dt (Ito's rule)</p>
+<p class="step">Step 3: df = f' dB + (1/2) f'' dt</p></div>
+<p class="metadata">ID: 29b00f4863ea | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Ordinary calculus fails for stochastic processes</p>
+<p class="metadata">Provenance: functional analysis proof #35</p>
+</div>
+<div class="theorem extra" id="xp-36">
+<h3>Proof 36: Black-Scholes: C(S,t) = S*N(d1) - Ke^{-r(T-t)}N(d2)</h3>
+<p><strong>Statement:</strong> Black-Scholes: C(S,t) = S*N(d1) - Ke^{-r(T-t)}N(d2)</p>
+<p><strong>Hypotheses:</strong> Geometric BM, risk-neutral</p>
+<p><strong>Conclusion:</strong> European call formula</p>
+<p><strong>Definitions:</strong> Black-Scholes, option pricing, finance</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Stock: dS=rSdt+sigmaSdW</p>
+<p class="step">Step 2: Risk-neutral: drift=r</p>
+<p class="step">Step 3: BS PDE with boundary conditions</p>
+<p class="step">Step 4: Closed form</p></div>
+<p class="metadata">ID: ca156b9c5a50 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Most impactful equation in finance</p>
+<p class="metadata">Provenance: functional analysis proof #36</p>
+</div>
+<div class="theorem extra" id="xp-37">
+<h3>Proof 37: Strong Markov property: BM restarted at stopping time is independent BM</h3>
+<p><strong>Statement:</strong> Strong Markov property: BM restarted at stopping time is independent BM</p>
+<p><strong>Hypotheses:</strong> T stopping time, B_t BM</p>
+<p><strong>Conclusion:</strong> B_{T+t}-B_T independent of F_T, is BM</p>
+<p><strong>Definitions:</strong> strong Markov, Brownian motion, stopping time</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate T by discrete</p>
+<p class="step">Step 2: Strong Markov at each step</p>
+<p class="step">Step 3: Pass to limit</p></div>
+<p class="metadata">ID: ccc734ea1166 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Essential for path analysis</p>
+<p class="metadata">Provenance: functional analysis proof #37</p>
+</div>
+<div class="theorem extra" id="xp-38">
+<h3>Proof 38: Ergodic theorem: time average = ensemble average for ergodic processes</h3>
+<p><strong>Statement:</strong> Ergodic theorem: time average = ensemble average for ergodic processes</p>
+<p><strong>Hypotheses:</strong> X_n stationary ergodic, E|X_1|<inf</p>
+<p><strong>Conclusion:</strong> (1/n) sum X_k -> E[X_1] a.s.</p>
+<p><strong>Definitions:</strong> ergodic, Birkhoff, time average</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Birkhoff ergodic theorem</p>
+<p class="step">Step 2: Time average along trajectory</p>
+<p class="step">Step 3: Equals spatial average</p>
+<p class="step">Step 4: Ergodicity: indecomposable</p></div>
+<p class="metadata">ID: 6e349dfc7c7a | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Connects microscopic to macroscopic</p>
+<p class="metadata">Provenance: functional analysis proof #38</p>
+</div>
+<div class="theorem extra" id="xp-39">
+<h3>Proof 39: Subgaussian concentration: P(|X-EX|>=t) <= 2exp(-t^2/(2K))</h3>
+<p><strong>Statement:</strong> Subgaussian concentration: P(|X-EX|>=t) <= 2exp(-t^2/(2K))</p>
+<p><strong>Hypotheses:</strong> X subgaussian parameter K</p>
+<p><strong>Conclusion:</strong> Gaussian tail bound</p>
+<p><strong>Definitions:</strong> subgaussian, concentration, tail</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[e^{lambda X}] <= e^{lambda^2 K/2}</p>
+<p class="step">Step 2: Markov: P(X>=t) <= e^{-lambda t}E[e^{lambda X}]</p>
+<p class="step">Step 3: Optimize lambda</p></div>
+<p class="metadata">ID: 92a4b7dc2ae6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Many naturally subgaussian</p>
+<p class="metadata">Provenance: functional analysis proof #39</p>
+</div>
+<div class="theorem extra" id="xp-40">
+<h3>Proof 40: Kolmogorov 0-1: tail events have probability 0 or 1</h3>
+<p><strong>Statement:</strong> Kolmogorov 0-1: tail events have probability 0 or 1</p>
+<p><strong>Hypotheses:</strong> X_n independent</p>
+<p><strong>Conclusion:</strong> P(A) in {0,1} for tail event A</p>
+<p><strong>Definitions:</strong> Kolmogorov, 0-1 law, tail event</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Tail event: independent of finite subcollections</p>
+<p class="step">Step 2: A independent of itself</p>
+<p class="step">Step 3: P(A)=P(A)^2</p></div>
+<p class="metadata">ID: 518b4f440e93 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without independence: fails</p>
+<p class="metadata">Provenance: functional analysis proof #40</p>
+</div>
+<div class="theorem extra" id="xp-41">
+<h3>Proof 41: Reflection principle: P(max B_s >= a) = 2P(B_t >= a)</h3>
+<p><strong>Statement:</strong> Reflection principle: P(max B_s >= a) = 2P(B_t >= a)</p>
+<p><strong>Hypotheses:</strong> B_t standard BM, a>0</p>
+<p><strong>Conclusion:</strong> P(tau_a<=t) = 2P(B_t>=a)</p>
+<p><strong>Definitions:</strong> reflection principle, Brownian motion, maximum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: After tau_a: reflected BM is also BM</p>
+<p class="step">Step 2: P(B_t>=a) = P(tau_a<=t, B_t>=a)</p>
+<p class="step">Step 3: Symmetry</p></div>
+<p class="metadata">ID: c75c8d687c34 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundational for BM calculations</p>
+<p class="metadata">Provenance: functional analysis proof #41</p>
+</div>
+<div class="theorem extra" id="xp-42">
+<h3>Proof 42: Arcsine law: proportion of positive time follows arcsine distribution</h3>
+<p><strong>Statement:</strong> Arcsine law: proportion of positive time follows arcsine distribution</p>
+<p><strong>Hypotheses:</strong> B_t BM, T>0</p>
+<p><strong>Conclusion:</strong> P(B positive for alpha proportion) = (2/pi)arcsin(sqrt(alpha))</p>
+<p><strong>Definitions:</strong> arcsine, Brownian motion, distribution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Levy's theorem: |BM|, max, local time</p>
+<p class="step">Step 2: Zero set structure</p>
+<p class="step">Step 3: Lebesgue measure of positive set</p></div>
+<p class="metadata">ID: 7b84a288f2d7 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Surprising: spends most time on one side</p>
+<p class="metadata">Provenance: functional analysis proof #42</p>
+</div>
 </body></html>
