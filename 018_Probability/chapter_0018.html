@@ -17792,4 +17792,465 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Limit may not be a proper CDF (defect < 1)</p>
 <p class="metadata">Provenance: probability theory proof #28</p>
 </div>
+
+<h2>Extra proofs (+34 from probability theory)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Kolmogorov axioms: P(A)>=0, P(Omega)=1, countable additivity</h3>
+<p><strong>Statement:</strong> Kolmogorov axioms: P(A)>=0, P(Omega)=1, countable additivity</p>
+<p><strong>Hypotheses:</strong> (Omega, F, P) probability space</p>
+<p><strong>Conclusion:</strong> P: F -> [0,1] satisfying 3 axioms</p>
+<p><strong>Definitions:</strong> Kolmogorov, axioms, probability</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Axiom 1: P(A) >= 0</p>
+<p class="step">Step 2: Axiom 2: P(Omega) = 1</p>
+<p class="step">Step 3: Axiom 3: P(union A_n) = sum P(A_n) for disjoint A_n</p>
+<p class="step">Step 4: All probability results derive from these</p></div>
+<p class="metadata">ID: e435cbee1126 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: These are axioms, not theorems</p>
+<p class="metadata">Provenance: probability theory proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Bayes: P(A|B) = P(B|A)P(A)/P(B)</h3>
+<p><strong>Statement:</strong> Bayes: P(A|B) = P(B|A)P(A)/P(B)</p>
+<p><strong>Hypotheses:</strong> A,B events, P(B)>0</p>
+<p><strong>Conclusion:</strong> P(A|B) = P(B|A)P(A)/P(B)</p>
+<p><strong>Definitions:</strong> Bayes, conditional, posterior</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: P(A|B) = P(A cap B)/P(B)</p>
+<p class="step">Step 2: P(B|A) = P(A cap B)/P(A)</p>
+<p class="step">Step 3: => P(A cap B) = P(B|A)P(A)</p>
+<p class="step">Step 4: Substitute</p></div>
+<p class="metadata">ID: dec2aa832261 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without P(B)>0: undefined</p>
+<p class="metadata">Provenance: probability theory proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Markov: P(X>=a) <= E[X]/a for X>=0</h3>
+<p><strong>Statement:</strong> Markov: P(X>=a) <= E[X]/a for X>=0</p>
+<p><strong>Hypotheses:</strong> X >= 0 a.s., a > 0, E[X] < inf</p>
+<p><strong>Conclusion:</strong> P(X >= a) <= E[X]/a</p>
+<p><strong>Definitions:</strong> Markov, inequality, nonneg</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[X] >= E[X 1_{X>=a}] >= a P(X>=a)</p>
+<p class="step">Step 2: Divide by a</p></div>
+<p class="metadata">ID: f234f89b8d9d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without X>=0: fails</p>
+<p class="metadata">Provenance: probability theory proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Chebyshev: P(|X-mu| >= k*sigma) <= 1/k^2</h3>
+<p><strong>Statement:</strong> Chebyshev: P(|X-mu| >= k*sigma) <= 1/k^2</p>
+<p><strong>Hypotheses:</strong> E[X]=mu, Var(X)=sigma^2</p>
+<p><strong>Conclusion:</strong> P(|X-mu| >= k*sigma) <= 1/k^2</p>
+<p><strong>Definitions:</strong> Chebyshev, variance, tail</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Markov on (X-mu)^2</p>
+<p class="step">Step 2: P(|X-mu|^2 >= k^2 sigma^2) <= Var(X)/(k^2 sigma^2) = 1/k^2</p></div>
+<p class="metadata">ID: 5c868d3e368b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without finite variance: undefined</p>
+<p class="metadata">Provenance: probability theory proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Jensen: phi(E[X]) <= E[phi(X)] for convex phi</h3>
+<p><strong>Statement:</strong> Jensen: phi(E[X]) <= E[phi(X)] for convex phi</p>
+<p><strong>Hypotheses:</strong> phi convex, E[X], E[phi(X)] exist</p>
+<p><strong>Conclusion:</strong> phi(E[X]) <= E[phi(X])</p>
+<p><strong>Definitions:</strong> Jensen, convex, expectation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Convexity: phi(x) >= phi(y) + phi'(y)(x-y)</p>
+<p class="step">Step 2: Set y=E[X]: phi(X) >= phi(E[X]) + phi'(E[X])(X-E[X])</p>
+<p class="step">Step 3: Take E: E[phi(X)] >= phi(E[X]) + 0</p></div>
+<p class="metadata">ID: 62061b6eb8f9 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without convexity: may reverse</p>
+<p class="metadata">Provenance: probability theory proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: WLLN: X_bar -> mu in probability for i.i.d. with E[X_1]=mu</h3>
+<p><strong>Statement:</strong> WLLN: X_bar -> mu in probability for i.i.d. with E[X_1]=mu</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E[X_1]=mu</p>
+<p><strong>Conclusion:</strong> X_bar converges in probability to mu</p>
+<p><strong>Definitions:</strong> WLLN, weak law, convergence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Var(X_bar) = sigma^2/n</p>
+<p class="step">Step 2: Chebyshev: P(|X_bar-mu|>eps) <= sigma^2/(n eps^2) -> 0</p></div>
+<p class="metadata">ID: 95c87fa1f679 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without i.i.d.: may fail</p>
+<p class="metadata">Provenance: probability theory proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: CLT: S_n/sqrt(n) converges to N(0,1) in distribution</h3>
+<p><strong>Statement:</strong> CLT: S_n/sqrt(n) converges to N(0,1) in distribution</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E=0, Var=1</p>
+<p><strong>Conclusion:</strong> converges in distribution to standard normal</p>
+<p><strong>Definitions:</strong> CLT, normal, characteristic function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Char func: phi(t) = 1-t^2/2+o(t^2)</p>
+<p class="step">Step 2: Char func of S_n/sqrt(n): [phi(t/sqrt(n))]^n -> exp(-t^2/2)</p>
+<p class="step">Step 3: Levy continuity theorem</p></div>
+<p class="metadata">ID: d456de10de0f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without finite variance: fails</p>
+<p class="metadata">Provenance: probability theory proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Characteristic function uniquely determines distribution</h3>
+<p><strong>Statement:</strong> Characteristic function uniquely determines distribution</p>
+<p><strong>Hypotheses:</strong> phi_X(t) = E[e^{itX}]</p>
+<p><strong>Conclusion:</strong> same char func => same distribution</p>
+<p><strong>Definitions:</strong> characteristic function, uniqueness, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: phi is Fourier transform of mu</p>
+<p class="step">Step 2: Inverse Fourier recovers distribution</p>
+<p class="step">Step 3: Uniqueness of Fourier transform</p></div>
+<p class="metadata">ID: 932b6d4b2b44 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundation for convergence in distribution</p>
+<p class="metadata">Provenance: probability theory proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Chernoff: P(X>=a) <= min_t E[e^{tX}]/e^{ta} for t>0</h3>
+<p><strong>Statement:</strong> Chernoff: P(X>=a) <= min_t E[e^{tX}]/e^{ta} for t>0</p>
+<p><strong>Hypotheses:</strong> X real, t>0</p>
+<p><strong>Conclusion:</strong> exponential tail bound</p>
+<p><strong>Definitions:</strong> Chernoff, exponential, moment generating</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Markov on e^{tX}: P(e^{tX}>=e^{ta}) <= E[e^{tX}]/e^{ta}</p>
+<p class="step">Step 2: Optimize over t</p></div>
+<p class="metadata">ID: 487d58434983 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without MGF: undefined</p>
+<p class="metadata">Provenance: probability theory proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Hoeffding: P(|X_bar-mu|>=t) <= 2exp(-2nt^2/(b-a)^2)</h3>
+<p><strong>Statement:</strong> Hoeffding: P(|X_bar-mu|>=t) <= 2exp(-2nt^2/(b-a)^2)</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d. in [a,b]</p>
+<p><strong>Conclusion:</strong> exponential tail for sample mean</p>
+<p><strong>Definitions:</strong> Hoeffding, concentration, bounded</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hoeffding lemma: log E[e^{t(X-mu)}] <= t^2(b-a)^2/8</p>
+<p class="step">Step 2: Chernoff + optimize t</p></div>
+<p class="metadata">ID: b2bcd10dd5ac | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without bounded: different inequality needed</p>
+<p class="metadata">Provenance: probability theory proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Law of total variance: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</h3>
+<p><strong>Statement:</strong> Law of total variance: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</p>
+<p><strong>Hypotheses:</strong> X,Y random variables, variances exist</p>
+<p><strong>Conclusion:</strong> total variance = within + between</p>
+<p><strong>Definitions:</strong> total variance, conditional, decomposition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write X-mu = (X-E[X|Y]) + (E[X|Y]-mu)</p>
+<p class="step">Step 2: Cross term vanishes: E[cross]=0</p>
+<p class="step">Step 3: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</p></div>
+<p class="metadata">ID: 42488afae3c2 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without finite variances: undefined</p>
+<p class="metadata">Provenance: probability theory proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Rao-Blackwell: conditioning on sufficient statistic improves estimator</h3>
+<p><strong>Statement:</strong> Rao-Blackwell: conditioning on sufficient statistic improves estimator</p>
+<p><strong>Hypotheses:</strong> T sufficient, delta unbiased</p>
+<p><strong>Conclusion:</strong> E[delta|T] has lower variance</p>
+<p><strong>Definitions:</strong> Rao-Blackwell, sufficient, improvement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[E[delta|T]] = E[delta] = theta</p>
+<p class="step">Step 2: Var(E[delta|T]) <= Var(delta) by total variance</p></div>
+<p class="metadata">ID: 172cdaf5ffa2 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without sufficient statistic: no systematic improvement</p>
+<p class="metadata">Provenance: probability theory proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Cramér-Rao: Var(T) >= 1/(nI(theta)) for unbiased T</h3>
+<p><strong>Statement:</strong> Cramér-Rao: Var(T) >= 1/(nI(theta)) for unbiased T</p>
+<p><strong>Hypotheses:</strong> T unbiased, f regular</p>
+<p><strong>Conclusion:</strong> Var(T) >= 1/(nI(theta))</p>
+<p><strong>Definitions:</strong> Cramér-Rao, Fisher info, lower bound</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Score S = d/dtheta log f</p>
+<p class="step">Step 2: E[S]=0, Var(S)=I(theta)</p>
+<p class="step">Step 3: Cauchy-Schwarz: Cov(T,S)^2 <= Var(T)*Var(S)</p>
+<p class="step">Step 4: Cov(T,S)=1 => 1 <= Var(T)*I</p></div>
+<p class="metadata">ID: 1433babbde0d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without regularity: bound may not apply</p>
+<p class="metadata">Provenance: probability theory proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Kolmogorov 0-1 law: tail sigma-algebra events have probability 0 or 1</h3>
+<p><strong>Statement:</strong> Kolmogorov 0-1 law: tail sigma-algebra events have probability 0 or 1</p>
+<p><strong>Hypotheses:</strong> X_1, X_2, ... independent</p>
+<p><strong>Conclusion:</strong> P(A) in {0,1} for tail event A</p>
+<p><strong>Definitions:</strong> Kolmogorov, 0-1, tail event</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Tail event: independent of any finite subcollection</p>
+<p class="step">Step 2: Independence => sigma-algebras independent</p>
+<p class="step">Step 3: A independent of itself => P(A) = P(A)^2</p>
+<p class="step">Step 4: Therefore P(A) in {0,1}</p></div>
+<p class="metadata">ID: 4673bbf9e9c8 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without independence: fails</p>
+<p class="metadata">Provenance: probability theory proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: SLLN: X_bar -> mu almost surely for i.i.d. with E|X_1|<inf</h3>
+<p><strong>Statement:</strong> SLLN: X_bar -> mu almost surely for i.i.d. with E|X_1|<inf</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E|X_1| < inf</p>
+<p><strong>Conclusion:</strong> P(lim X_bar = mu) = 1</p>
+<p><strong>Definitions:</strong> SLLN, strong law, almost sure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Kolmogorov criterion: sum Var(X_i)/i^2 < inf</p>
+<p class="step">Step 2: Or truncation + Borel-Cantelli</p>
+<p class="step">Step 3: Stronger than WLLN</p></div>
+<p class="metadata">ID: f038ece4dc20 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without E|X|<inf: fails</p>
+<p class="metadata">Provenance: probability theory proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Levy continuity: phi_n -> phi pointwise, phi continuous at 0 => X_n converges in distribution</h3>
+<p><strong>Statement:</strong> Levy continuity: phi_n -> phi pointwise, phi continuous at 0 => X_n converges in distribution</p>
+<p><strong>Hypotheses:</strong> phi_n(t) -> phi(t), phi continuous at 0</p>
+<p><strong>Conclusion:</strong> X_n converges in distribution</p>
+<p><strong>Definitions:</strong> Levy, continuity, characteristic function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Char function convergence implies weak convergence</p>
+<p class="step">Step 2: Continuity at 0 ensures no mass escape</p>
+<p class="step">Step 3: Fourier inversion + dominated convergence</p></div>
+<p class="metadata">ID: 29ddf5b0b52c | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Main tool for proving convergence in distribution</p>
+<p class="metadata">Provenance: probability theory proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Poisson limit: Bin(n,p) -> Poisson(np) as n->inf, np->lambda</h3>
+<p><strong>Statement:</strong> Poisson limit: Bin(n,p) -> Poisson(np) as n->inf, np->lambda</p>
+<p><strong>Hypotheses:</strong> np_n -> lambda > 0</p>
+<p><strong>Conclusion:</strong> Bin(n,p_n) converges to Poisson(lambda)</p>
+<p><strong>Definitions:</strong> Poisson, binomial, limit</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Char func: (1-p+pe^{it})^n</p>
+<p class="step">Step 2: = (1-np(1-e^{it})/n)^n -> exp(lambda(e^{it}-1))</p>
+<p class="step">Step 3: Char func of Poisson(lambda)</p>
+<p class="step">Step 4: Levy continuity</p></div>
+<p class="metadata">ID: 9489faa442af | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without np->lambda: degenerate or normal</p>
+<p class="metadata">Provenance: probability theory proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Strong Markov: Markov property holds at stopping times, not just fixed times</h3>
+<p><strong>Statement:</strong> Strong Markov: Markov property holds at stopping times, not just fixed times</p>
+<p><strong>Hypotheses:</strong> Markov process, stopping time T</p>
+<p><strong>Conclusion:</strong> process after T is Markov given state at T</p>
+<p><strong>Definitions:</strong> strong Markov, stopping time, Markov</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Conditional on F_T: distribution after T depends only on X_T</p>
+<p class="step">Step 2: Follows from Markov property at fixed times</p>
+<p class="step">Step 3: Approximate T by discrete stopping times</p>
+<p class="step">Step 4: Pass to limit</p></div>
+<p class="metadata">ID: b21b9aecfc51 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Essential for Brownian motion theory</p>
+<p class="metadata">Provenance: probability theory proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Doob's maximal inequality: P(max_{k<=n} M_k >= lambda) <= E[|M_n|^p]/lambda^p</h3>
+<p><strong>Statement:</strong> Doob's maximal inequality: P(max_{k<=n} M_k >= lambda) <= E[|M_n|^p]/lambda^p</p>
+<p><strong>Hypotheses:</strong> M_n submartingale, p>=1, lambda>0</p>
+<p><strong>Conclusion:</strong> tail bound for running maximum</p>
+<p><strong>Definitions:</strong> Doob, maximal, martingale</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define tau = first time |M_k|>=lambda</p>
+<p class="step">Step 2: Optional stopping</p>
+<p class="step">Step 3: Monotonicity of submartingale</p>
+<p class="step">Step 4: Integrate tail probabilities</p></div>
+<p class="metadata">ID: ca24f41429c4 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without submartingale: fails</p>
+<p class="metadata">Provenance: probability theory proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Optional stopping: E[M_T] = E[M_0] for bounded stopping time T</h3>
+<p><strong>Statement:</strong> Optional stopping: E[M_T] = E[M_0] for bounded stopping time T</p>
+<p><strong>Hypotheses:</strong> M_n martingale, T bounded</p>
+<p><strong>Conclusion:</strong> E[M_T] = E[M_0]</p>
+<p><strong>Definitions:</strong> optional stopping, martingale, stopping time</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[M_T] = sum E[M_n 1_{T=n}]</p>
+<p class="step">Step 2: Martingale property: E[M_n 1_{T=n}] = E[M_0 1_{T=n}]</p>
+<p class="step">Step 3: Sum: E[M_0] sum P(T=n) = E[M_0]</p></div>
+<p class="metadata">ID: f6028e5387d9 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without boundedness: need integrability conditions</p>
+<p class="metadata">Provenance: probability theory proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Kolmogorov extension: consistent finite-dimensional distributions extend to process</h3>
+<p><strong>Statement:</strong> Kolmogorov extension: consistent finite-dimensional distributions extend to process</p>
+<p><strong>Hypotheses:</strong> consistent family</p>
+<p><strong>Conclusion:</strong> exists probability measure on path space</p>
+<p><strong>Definitions:</strong> Kolmogorov extension, consistency, process</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define measure on cylinders</p>
+<p class="step">Step 2: Consistency ensures well-defined</p>
+<p class="step">Step 3: Carathéodory extension</p>
+<p class="step">Step 4: Extend to sigma-algebra</p></div>
+<p class="metadata">ID: 472f7ea4fe8e | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without consistency: impossible</p>
+<p class="metadata">Provenance: probability theory proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Doob's decomposition: submartingale = martingale + predictable increasing process</h3>
+<p><strong>Statement:</strong> Doob's decomposition: submartingale = martingale + predictable increasing process</p>
+<p><strong>Hypotheses:</strong> M_n submartingale, integrable</p>
+<p><strong>Conclusion:</strong> M_n = N_n + A_n, N martingale, A predictable increasing</p>
+<p><strong>Definitions:</strong> Doob decomposition, martingale, predictable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define A_n = sum E[M_k-M_{k-1}|F_{k-1}]</p>
+<p class="step">Step 2: A_n increasing (submartingale property)</p>
+<p class="step">Step 3: N_n = M_n - A_n is martingale</p>
+<p class="step">Step 4: Predictability: A_n in F_{n-1}</p></div>
+<p class="metadata">ID: d4fb5bdf84fb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundational decomposition in martingale theory</p>
+<p class="metadata">Provenance: probability theory proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Burkholder-Davis-Gundy: E[|M_n|^p] comparable to E[[M]_n^{p/2}]</h3>
+<p><strong>Statement:</strong> Burkholder-Davis-Gundy: E[|M_n|^p] comparable to E[[M]_n^{p/2}]</p>
+<p><strong>Hypotheses:</strong> M_n martingale, p>0</p>
+<p><strong>Conclusion:</strong> E[|M_n|^p] ~ E[[M]_n^{p/2}]</p>
+<p><strong>Definitions:</strong> Burkholder-Davis-Gundy, martingale, quadratic variation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For p=2: Doob's inequality</p>
+<p class="step">Step 2: For general p: localization + interpolation</p>
+<p class="step">Step 3: Doob's martingale inequality gives one direction</p>
+<p class="step">Step 4: Other direction by similar arguments</p></div>
+<p class="metadata">ID: 803784419624 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Most important moment inequalities for martingales</p>
+<p class="metadata">Provenance: probability theory proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Arcsine law: for BM, time positive has arcsine distribution</h3>
+<p><strong>Statement:</strong> Arcsine law: for BM, time positive has arcsine distribution</p>
+<p><strong>Hypotheses:</strong> B_t standard Brownian motion, T = inf{t: B_t > 0}</p>
+<p><strong>Conclusion:</strong> P(B_t > 0 for proportion alpha of time) = (2/pi) arcsin(sqrt(alpha))</p>
+<p><strong>Definitions:</strong> arcsine, Brownian motion, distribution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Lévy's theorem: |B_t|, running max, local time</p>
+<p class="step">Step 2: Analyze zero set of Brownian motion</p>
+<p class="step">Step 3: Lebesgue measure of {s<=t: B_s>0}</p>
+<p class="step">Step 4: Distribution computed via reflection principle</p></div>
+<p class="metadata">ID: 26e2f08eacec | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Surprising: spends most time on one side</p>
+<p class="metadata">Provenance: probability theory proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Reflection principle: P(max_{s<=t} B_s >= a) = 2P(B_t >= a)</h3>
+<p><strong>Statement:</strong> Reflection principle: P(max_{s<=t} B_s >= a) = 2P(B_t >= a)</p>
+<p><strong>Hypotheses:</strong> B_t standard BM, a > 0</p>
+<p><strong>Conclusion:</strong> P(tau_a <= t) = 2P(B_t >= a)</p>
+<p><strong>Definitions:</strong> reflection principle, Brownian motion, maximum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: tau_a = first hitting time of a</p>
+<p class="step">Step 2: After tau_a: reflected BM is also BM</p>
+<p class="step">Step 3: P(B_t >= a) = P(tau_a <= t, B_t >= a)</p>
+<p class="step">Step 4: By symmetry: = (1/2)P(tau_a <= t)</p></div>
+<p class="metadata">ID: d877ffc90c36 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundational tool for Brownian motion calculations</p>
+<p class="metadata">Provenance: probability theory proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Ito's lemma: df(B_t) = f'(B_t)dB_t + (1/2)f''(B_t)dt</h3>
+<p><strong>Statement:</strong> Ito's lemma: df(B_t) = f'(B_t)dB_t + (1/2)f''(B_t)dt</p>
+<p><strong>Hypotheses:</strong> f twice C^2, B_t BM</p>
+<p><strong>Conclusion:</strong> stochastic chain rule with second-order correction</p>
+<p><strong>Definitions:</strong> Ito's lemma, stochastic calculus, Brownian motion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Taylor expansion: df = f'dB + (1/2)f''dB^2</p>
+<p class="step">Step 2: dB^2 = dt (Ito's rule)</p>
+<p class="step">Step 3: Cross terms vanish in expectation</p>
+<p class="step">Step 4: df = f'dB_t + (1/2)f''dt</p></div>
+<p class="metadata">ID: 66a4627e8fc7 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 2nd order term: ordinary calculus fails for stochastic processes</p>
+<p class="metadata">Provenance: probability theory proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Martingale representation: any L^2 martingale is stochastic integral against BM</h3>
+<p><strong>Statement:</strong> Martingale representation: any L^2 martingale is stochastic integral against BM</p>
+<p><strong>Hypotheses:</strong> M_t L^2 martingale adapted to BM filtration</p>
+<p><strong>Conclusion:</strong> M_t = M_0 + integral H_s dB_s</p>
+<p><strong>Definitions:</strong> martingale representation, stochastic integral, Brownian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with simple processes</p>
+<p class="step">Step 2: Approximate M by simple processes</p>
+<p class="step">Step 3: Show L^2 convergence</p>
+<p class="step">Step 4: Limit defines stochastic integral</p>
+<p class="step">Step 5: Uniqueness by Ito isometry</p></div>
+<p class="metadata">ID: e9978f0c30ca | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Brownian motion generates all martingales in its filtration</p>
+<p class="metadata">Provenance: probability theory proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Black-Scholes: C(S,t) = S*N(d1) - Ke^{-r(T-t)}*N(d2)</h3>
+<p><strong>Statement:</strong> Black-Scholes: C(S,t) = S*N(d1) - Ke^{-r(T-t)}*N(d2)</p>
+<p><strong>Hypotheses:</strong> Geometric BM for stock, risk-neutral pricing</p>
+<p><strong>Conclusion:</strong> European call option formula</p>
+<p><strong>Definitions:</strong> Black-Scholes, option pricing, hedging</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Stock follows dS = rS dt + sigma S dW</p>
+<p class="step">Step 2: Risk-neutral measure: drift = r</p>
+<p class="step">Step 3: Black-Scholes PDE: C_t + rSC_S + (1/2)sigma^2 S^2 C_SS = rC</p>
+<p class="step">Step 4: Solve with boundary conditions C(S,T) = max(S-K,0)</p>
+<p class="step">Step 5: Closed form: S*N(d1) - Ke^{-r(T-t)}*N(d2)</p></div>
+<p class="metadata">ID: c9bc0bd6afa6 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: One of most impactful equations in finance</p>
+<p class="metadata">Provenance: probability theory proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Girsanov: change of measure makes BM drift change</h3>
+<p><strong>Statement:</strong> Girsanov: change of measure makes BM drift change</p>
+<p><strong>Hypotheses:</strong> new measure Q via Radon-Nikodym</p>
+<p><strong>Conclusion:</strong> BM under Q has drift mu instead of 0</p>
+<p><strong>Definitions:</strong> Girsanov, change of measure, drift</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define dQ/dP = exp(int mu dW - (1/2) integral mu^2 dt)</p>
+<p class="step">Step 2: Under Q: W_t - integral mu ds is standard BM</p>
+<p class="step">Step 3: Radon-Nikodym exponential martingale</p>
+<p class="step">Step 4: Novikov condition ensures Q is probability measure</p></div>
+<p class="metadata">ID: 91364f7a1cab | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation for risk-neutral pricing</p>
+<p class="metadata">Provenance: probability theory proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Lévy characterization: continuous local martingale with [M,M]_t = t is Brownian motion</h3>
+<p><strong>Statement:</strong> Lévy characterization: continuous local martingale with [M,M]_t = t is Brownian motion</p>
+<p><strong>Hypotheses:</strong> M_t continuous local martingale, [M,M]_t = t</p>
+<p><strong>Conclusion:</strong> M is standard Brownian motion</p>
+<p><strong>Definitions:</strong> Lévy characterization, Brownian motion, local martingale</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Check finite-dimensional distributions</p>
+<p class="step">Step 2: Characteristic function: E[e^{iuM_t}] = e^{-t u^2/2}</p>
+<p class="step">Step 3: By Lévy characterization: BM is determined by these</p>
+<p class="step">Step 4: Continuous local martingale + quadratic variation = BM</p></div>
+<p class="metadata">ID: e4d1471e606f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Characterizes BM without reference to Gaussian property</p>
+<p class="metadata">Provenance: probability theory proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Strong Markov property of BM: BM restarted at hitting time is independent of past</h3>
+<p><strong>Statement:</strong> Strong Markov property of BM: BM restarted at hitting time is independent of past</p>
+<p><strong>Hypotheses:</strong> T stopping time, B_t BM</p>
+<p><strong>Conclusion:</strong> B_{T+t} - B_T is independent of F_T and is BM</p>
+<p><strong>Definitions:</strong> strong Markov, Brownian motion, hitting time</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate T by discrete stopping times</p>
+<p class="step">Step 2: Strong Markov at each discrete time</p>
+<p class="step">Step 3: Pass to limit</p>
+<p class="step">Step 4: Independence and BM property preserved</p></div>
+<p class="metadata">ID: 2e0f8bd040f7 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Essential for path analysis of Brownian motion</p>
+<p class="metadata">Provenance: probability theory proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Ergodic theorem: time average equals ensemble average for ergodic processes</h3>
+<p><strong>Statement:</strong> Ergodic theorem: time average equals ensemble average for ergodic processes</p>
+<p><strong>Hypotheses:</strong> X_n stationary ergodic, E|X_1|<inf</p>
+<p><strong>Conclusion:</strong> (1/n) sum X_k -> E[X_1] a.s.</p>
+<p><strong>Definitions:</strong> ergodic, time average, Birkhoff</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Birkhoff ergodic theorem</p>
+<p class="step">Step 2: Time average along trajectory</p>
+<p class="step">Step 3: Equals spatial average for ergodic systems</p>
+<p class="step">Step 4: Ergodicity: indecomposable under time shift</p></div>
+<p class="metadata">ID: b745fcc26baf | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Connects microscopic dynamics to macroscopic observables</p>
+<p class="metadata">Provenance: probability theory proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Central limit theorem for martingale differences: sum of martingale differences converges to normal</h3>
+<p><strong>Statement:</strong> Central limit theorem for martingale differences: sum of martingale differences converges to normal</p>
+<p><strong>Hypotheses:</strong> sum of martingale differences, Lyapunov condition satisfied</p>
+<p><strong>Conclusion:</strong> converges to normal distribution</p>
+<p><strong>Definitions:</strong> martingale CLT, Lyapunov, convergence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Linberg condition ensures no single term dominates</p>
+<p class="step">Step 2: Characteristic function approach</p>
+<p class="step">Step 3: Lyapunov condition implies Linberg</p>
+<p class="step">Step 4: CLT machinery applies</p></div>
+<p class="metadata">ID: 3272e745300b | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalizes classical CLT to dependent sequences</p>
+<p class="metadata">Provenance: probability theory proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Subgaussian concentration: P(|X-E[X]|>=t) <= 2exp(-t^2/(2K))</h3>
+<p><strong>Statement:</strong> Subgaussian concentration: P(|X-E[X]|>=t) <= 2exp(-t^2/(2K))</p>
+<p><strong>Hypotheses:</strong> X subgaussian with parameter K</p>
+<p><strong>Conclusion:</strong> Gaussian tail bound</p>
+<p><strong>Definitions:</strong> subgaussian, concentration, moment generating</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Definition: E[e^{lambda X}] <= e^{lambda^2 K/2}</p>
+<p class="step">Step 2: Apply Markov: P(X>=t) <= e^{-lambda t} E[e^{lambda X}]</p>
+<p class="step">Step 3: Optimize lambda: = e^{-t^2/(2K)}</p>
+<p class="step">Step 4: Two-sided by X and -X</p></div>
+<p class="metadata">ID: 06661f50f7a0 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Many naturally subgaussian (sum of bounded RVs)</p>
+<p class="metadata">Provenance: probability theory proof #34</p>
+</div>
 </body></html>

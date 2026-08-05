@@ -19948,4 +19948,534 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Discrete analog of integration by parts</p>
 <p class="metadata">Provenance: Math analysis proof #43</p>
 </div>
+
+<h2>Extra proofs (+37 from mathematical analysis)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Ascoli-Arzela: equicontinuous + pointwise bounded on compact => uniformly convergent subsequence</h3>
+<p><strong>Statement:</strong> Ascoli-Arzela: equicontinuous + pointwise bounded on compact => uniformly convergent subsequence</p>
+<p><strong>Hypotheses:</strong> K compact metric, F subset C(K) equicontinuous and pointwise bounded</p>
+<p><strong>Conclusion:</strong> F has uniformly convergent subsequence</p>
+<p><strong>Definitions:</strong> Ascoli-Arzela, equicontinuous, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose dense countable {q_i} in K</p>
+<p class="step">Step 2: Diagonal argument on values at q_i</p>
+<p class="step">Step 3: Equicontinuity: convergence on dense set extends to all of K</p>
+<p class="step">Step 4: Total boundedness + equicontinuity => uniform convergence</p></div>
+<p class="metadata">ID: 29fe10dd285b | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without equicontinuity: e.g. f_n(x)=x^n fails on [0,1]</p>
+<p class="metadata">Provenance: mathematical analysis proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Stone-Weierstrass on C(K): subalgebra separating points is dense</h3>
+<p><strong>Statement:</strong> Stone-Weierstrass on C(K): subalgebra separating points is dense</p>
+<p><strong>Hypotheses:</strong> K compact Hausdorff, A subalgebra separates points, A contains constants</p>
+<p><strong>Conclusion:</strong> A dense in C(K) with sup norm</p>
+<p><strong>Definitions:</strong> Stone-Weierstrass, subalgebra, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A closed under max and min: f,g => max(f,g) = (f+g+|f-g|)/2</p>
+<p class="step">Step 2: |f-g| approximated by polynomials in (f-g)^2</p>
+<p class="step">Step 3: Lattice property: can approximate step functions</p>
+<p class="step">Step 4: Approximate step functions then continuous functions</p></div>
+<p class="metadata">ID: 0fda67063e9f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without separating points: only constants, not dense</p>
+<p class="metadata">Provenance: mathematical analysis proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Dominated convergence: f_n->f a.e., |f_n|<=g integrable => integral f_n -> integral f</h3>
+<p><strong>Statement:</strong> Dominated convergence: f_n->f a.e., |f_n|<=g integrable => integral f_n -> integral f</p>
+<p><strong>Hypotheses:</strong> f_n measurable, f_n -> f a.e., |f_n| <= g, g integrable</p>
+<p><strong>Conclusion:</strong> integral f_n -> integral f</p>
+<p><strong>Definitions:</strong> dominated convergence, limit, Lebesgue</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fatou on g+f_n: liminf integral(g+f_n) >= integral(g+f)</p>
+<p class="step">Step 2: Fatou on g-f_n: liminf integral(g-f_n) >= integral(g-f)</p>
+<p class="step">Step 3: Combine: limsup integral f_n <= integral f <= liminf integral f_n</p>
+<p class="step">Step 4: Squeeze: limit exists and equals integral f</p></div>
+<p class="metadata">ID: 6d3bba2b91ed | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without 'dominated': f_n = n*1_{[0,1/n]}, int f_n = 1 but int f = 0</p>
+<p class="metadata">Provenance: mathematical analysis proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Fatou's lemma: integral liminf f_n <= liminf integral f_n for f_n >= 0</h3>
+<p><strong>Statement:</strong> Fatou's lemma: integral liminf f_n <= liminf integral f_n for f_n >= 0</p>
+<p><strong>Hypotheses:</strong> f_n measurable, f_n >= 0</p>
+<p><strong>Conclusion:</strong> integral liminf f_n <= liminf integral f_n</p>
+<p><strong>Definitions:</strong> Fatou, liminf, integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g_n = inf_{k>=n} f_k</p>
+<p class="step">Step 2: g_n measurable, g_n <= f_n, g_n increases</p>
+<p class="step">Step 3: By MCT: integral g_n -> integral liminf f_n</p>
+<p class="step">Step 4: Each integral g_n <= integral f_k for k>=n</p>
+<p class="step">Step 5: inf over k: integral g_n <= inf_{k>=n} integral f_k</p>
+<p class="step">Step 6: Take lim: integral liminf f_n <= liminf integral f_n</p></div>
+<p class="metadata">ID: 79c0b4485d5b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without f_n >= 0: inequality may fail</p>
+<p class="metadata">Provenance: mathematical analysis proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Tonelli: nonneg measurable on product => iterated integrals equal double integral</h3>
+<p><strong>Statement:</strong> Tonelli: nonneg measurable on product => iterated integrals equal double integral</p>
+<p><strong>Hypotheses:</strong> f >= 0, measurable on product</p>
+<p><strong>Conclusion:</strong> integral integral f dx dy = integral integral f dy dx</p>
+<p><strong>Definitions:</strong> Tonelli, iterated integral, product measure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prove for characteristic functions</p>
+<p class="step">Step 2: Extend by linearity to simple functions</p>
+<p class="step">Step 3: Monotone convergence extends to nonneg measurable</p>
+<p class="step">Step 4: Iterated integrals equal for any ordering</p></div>
+<p class="metadata">ID: 7aacddc22d7c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without nonneg: need Fubini (absolute integrability)</p>
+<p class="metadata">Provenance: mathematical analysis proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Hahn decomposition: any signed measure has positive and negative sets</h3>
+<p><strong>Statement:</strong> Hahn decomposition: any signed measure has positive and negative sets</p>
+<p><strong>Hypotheses:</strong> mu signed measure on (X,Sigma)</p>
+<p><strong>Conclusion:</strong> exists partition X = P union N with P positive, N negative</p>
+<p><strong>Definitions:</strong> Hahn, signed measure, decomposition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define nu(A) = sup{mu(B): B subset A}</p>
+<p class="step">Step 2: nu is a nonneg measure</p>
+<p class="step">Step 3: Define P = {A: mu(B) <= nu(A) for all B subset A}</p>
+<p class="step">Step 4: N = X\P is negative set</p></div>
+<p class="metadata">ID: 247e95ddfcc6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental decomposition in measure theory</p>
+<p class="metadata">Provenance: mathematical analysis proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Lebesgue differentiation theorem: (1/|B_r|) integral_{B_r} f -> f(x) a.e.</h3>
+<p><strong>Statement:</strong> Lebesgue differentiation theorem: (1/|B_r|) integral_{B_r} f -> f(x) a.e.</p>
+<p><strong>Hypotheses:</strong> f locally integrable on R^n</p>
+<p><strong>Conclusion:</strong> average converges to f(x) for a.e. x</p>
+<p><strong>Definitions:</strong> Lebesgue differentiation, Hardy-Littlewood, maximal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hardy-Littlewood maximal function Mf</p>
+<p class="step">Step 2: Mf weak-type (1,1)</p>
+<p class="step">Step 3: Covering lemma controls maximal function</p>
+<p class="step">Step 4: Density of continuous functions</p></div>
+<p class="metadata">ID: c03b2813873a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without locally integrable: integral undefined</p>
+<p class="metadata">Provenance: mathematical analysis proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Riesz-Fischer: L^p is complete (Banach space) for 1 <= p <= infinity</h3>
+<p><strong>Statement:</strong> Riesz-Fischer: L^p is complete (Banach space) for 1 <= p <= infinity</p>
+<p><strong>Hypotheses:</strong> 1 <= p <= infinity</p>
+<p><strong>Conclusion:</strong> L^p is complete metric space</p>
+<p><strong>Definitions:</strong> Riesz-Fischer, complete, Banach</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cauchy sequence (f_n) in L^p</p>
+<p class="step">Step 2: Extract subsequence: ||f_{n_k+1}-f_{n_k}|| < 2^{-k}</p>
+<p class="step">Step 3: Define g = sum |f_{n_{k+1}}-f_{n_k}|, g in L^p</p>
+<p class="step">Step 4: f_n -> f = sum differences a.e. and in L^p</p></div>
+<p class="metadata">ID: 25ec00dc06c6 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: L^p spaces are prototypical Banach spaces</p>
+<p class="metadata">Provenance: mathematical analysis proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Egorov: pointwise convergence on finite measure => almost uniform convergence</h3>
+<p><strong>Statement:</strong> Egorov: pointwise convergence on finite measure => almost uniform convergence</p>
+<p><strong>Hypotheses:</strong> mu(X) < infinity, f_n -> f pointwise</p>
+<p><strong>Conclusion:</strong> for delta>0, convergence uniform off set of measure < delta</p>
+<p><strong>Definitions:</strong> Egorov, pointwise, almost uniform</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E_{n,k} = union_{m>=n} |f_m-f| >= 1/k</p>
+<p class="step">Step 2: mu(E_{n,k}) -> 0 as n -> infinity</p>
+<p class="step">Step 3: Choose n_k with mu(E_{n_k,k}) < delta/2^k</p>
+<p class="step">Step 4: Uniform on complement of union E_{n_k,k}</p></div>
+<p class="metadata">ID: 3442a9784dbe | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without finite measure: fails on R</p>
+<p class="metadata">Provenance: mathematical analysis proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Lusin: measurable f on compact K is continuous off a small-measure set</h3>
+<p><strong>Statement:</strong> Lusin: measurable f on compact K is continuous off a small-measure set</p>
+<p><strong>Hypotheses:</strong> f measurable, mu(K) < infinity, epsilon > 0</p>
+<p><strong>Conclusion:</strong> exists closed F subset K, mu(K\F) < epsilon, f|_F continuous</p>
+<p><strong>Definitions:</strong> Lusin, measurable, continuous</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate by simple functions</p>
+<p class="step">Step 2: Simple functions continuous on measurable sets</p>
+<p class="step">Step 3: Use regularity: find closed subsets</p>
+<p class="step">Step 4: Union closed sets where approx is good</p></div>
+<p class="metadata">ID: 3a0a4c8cdf26 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without measurable: theorem fails</p>
+<p class="metadata">Provenance: mathematical analysis proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Holder: integral |fg| <= ||f||_p ||g||_q for 1/p+1/q=1</h3>
+<p><strong>Statement:</strong> Holder: integral |fg| <= ||f||_p ||g||_q for 1/p+1/q=1</p>
+<p><strong>Hypotheses:</strong> f in L^p, g in L^q, 1/p+1/q=1</p>
+<p><strong>Conclusion:</strong> ||fg||_1 <= ||f||_p ||g||_q</p>
+<p><strong>Definitions:</strong> Holder, conjugate exponents, L^p</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Normalize: ||f||_p = ||g||_q = 1</p>
+<p class="step">Step 2: Young's inequality: ab <= a^p/p + b^q/q</p>
+<p class="step">Step 3: Apply pointwise: |fg| <= |f|^p/p + |g|^q/q</p>
+<p class="step">Step 4: Integrate: <= 1/p + 1/q = 1</p></div>
+<p class="metadata">ID: e99630a2ee02 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 1/p+1/q=1: form changes</p>
+<p class="metadata">Provenance: mathematical analysis proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Minkowski: ||f+g||_p <= ||f||_p + ||g||_p</h3>
+<p><strong>Statement:</strong> Minkowski: ||f+g||_p <= ||f||_p + ||g||_p</p>
+<p><strong>Hypotheses:</strong> f,g in L^p, 1 <= p <= infinity</p>
+<p><strong>Conclusion:</strong> ||f+g||_p <= ||f||_p + ||g||_p</p>
+<p><strong>Definitions:</strong> Minkowski, triangle inequality, L^p norm</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For p=1: trivial by triangle inequality</p>
+<p class="step">Step 2: For p>1: Holder on integral |f+g|^{p-1} * |f|</p>
+<p class="step">Step 3: |f+g|^p <= |f+g|^{p-1}(|f|+|g|)</p>
+<p class="step">Step 4: Integrate + Holder each term</p>
+<p class="step">Step 5: Factor out ||f+g||_p^{p-1}</p></div>
+<p class="metadata">ID: 508bdc9f9cbe | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without p>=1: not a norm</p>
+<p class="metadata">Provenance: mathematical analysis proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Fubini: |f| integrable on product => iterated integrals equal and both equal double integral</h3>
+<p><strong>Statement:</strong> Fubini: |f| integrable on product => iterated integrals equal and both equal double integral</p>
+<p><strong>Hypotheses:</strong> f measurable, integral |f| < infinity</p>
+<p><strong>Conclusion:</strong> all three integrals equal</p>
+<p><strong>Definitions:</strong> Fubini, iterated, absolute</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Tonelli to |f| first</p>
+<p class="step">Step 2: Establish integrability of sections</p>
+<p class="step">Step 3: Apply Tonelli to f+ and f- separately</p>
+<p class="step">Step 4: Combine: signed case from nonneg case</p></div>
+<p class="metadata">ID: 3be4ac4108e3 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without absolute integrability: iterated integrals may differ</p>
+<p class="metadata">Provenance: mathematical analysis proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Carathéodory extension: premeasure on algebra extends to sigma-algebra</h3>
+<p><strong>Statement:</strong> Carathéodory extension: premeasure on algebra extends to sigma-algebra</p>
+<p><strong>Hypotheses:</strong> mu premeasure on algebra A</p>
+<p><strong>Conclusion:</strong> exists unique extension to sigma(A)</p>
+<p><strong>Definitions:</strong> Carathéodory, premeasure, extension</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define outer measure: mu*(E) = inf sum mu(A_i)</p>
+<p class="step">Step 2: Restrict to Carathéodory measurable sets</p>
+<p class="step">Step 3: Check: sigma-algebra contains A</p>
+<p class="step">Step 4: Check: extension agrees on A</p></div>
+<p class="metadata">ID: 2de609f7d319 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without premeasure: no guaranteed extension</p>
+<p class="metadata">Provenance: mathematical analysis proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Vitali convergence: f_n -> f in measure + uniformly integrable => ||f_n-f||_1 -> 0</h3>
+<p><strong>Statement:</strong> Vitali convergence: f_n -> f in measure + uniformly integrable => ||f_n-f||_1 -> 0</p>
+<p><strong>Hypotheses:</strong> f_n -> f in measure, {f_n} uniformly integrable</p>
+<p><strong>Conclusion:</strong> ||f_n - f||_1 -> 0</p>
+<p><strong>Definitions:</strong> Vitali, uniform integrability, L^1 convergence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Egorov: nearly uniform convergence</p>
+<p class="step">Step 2: Split integral: good set (uniform conv) + bad set (small measure)</p>
+<p class="step">Step 3: Bad set: uniform integrability gives small integral</p>
+<p class="step">Step 4: Good set: uniform convergence => integral -> 0</p></div>
+<p class="metadata">ID: 26b45a674d39 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without UI: f_n = n*1_{[0,1/n]} fails</p>
+<p class="metadata">Provenance: mathematical analysis proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Cantor set has measure zero but cardinality continuum</h3>
+<p><strong>Statement:</strong> Cantor set has measure zero but cardinality continuum</p>
+<p><strong>Hypotheses:</strong> standard middle-thirds</p>
+<p><strong>Conclusion:</strong> measure = 0, |C| = 2^{aleph_0}</p>
+<p><strong>Definitions:</strong> Cantor set, measure zero, uncountable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Remove: sum lengths = 1 (telescoping series)</p>
+<p class="step">Step 2: |C| >= 2^{aleph_0} via ternary 0,2 sequences</p>
+<p class="step">Step 3: |C| <= |[0,1]| = 2^{aleph_0}</p>
+<p class="step">Step 4: By Cantor-Bernstein: |C| = continuum</p></div>
+<p class="metadata">ID: eb6c603cb376 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental example in measure theory</p>
+<p class="metadata">Provenance: mathematical analysis proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Vitali set is non-measurable (uses axiom of choice)</h3>
+<p><strong>Statement:</strong> Vitali set is non-measurable (uses axiom of choice)</p>
+<p><strong>Hypotheses:</strong> Axiom of choice</p>
+<p><strong>Conclusion:</strong> exists subset of [0,1] not Lebesgue measurable</p>
+<p><strong>Definitions:</strong> Vitali, non-measurable, translation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define x ~ y iff x-y rational</p>
+<p class="step">Step 2: Choose one representative per class</p>
+<p class="step">Step 3: Translate by rationals in [0,1]</p>
+<p class="step">Step 4: Countable additivity would give 0 < 1 <= 0</p>
+<p class="step">Step 5: Contradiction</p></div>
+<p class="metadata">ID: 091d5a9dca4e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Requires axiom of choice</p>
+<p class="metadata">Provenance: mathematical analysis proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Lebesgue integral is unique: if two integrals agree on intervals, they agree on all measurable sets</h3>
+<p><strong>Statement:</strong> Lebesgue integral is unique: if two integrals agree on intervals, they agree on all measurable sets</p>
+<p><strong>Hypotheses:</strong> mu_1, mu_2 measures on (R, Borel), mu_1 = mu_2 on intervals</p>
+<p><strong>Conclusion:</strong> mu_1 = mu_2 on all Borel sets</p>
+<p><strong>Definitions:</strong> uniqueness, Lebesgue, outer measure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Regular outer measures agree on open sets</p>
+<p class="step">Step 2: Open sets generate Borel sigma-algebra</p>
+<p class="step">Step 3: Extension is unique by Carathéodory</p></div>
+<p class="metadata">ID: 703b8f31f45f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Lebesgue measure is the unique translation-invariant Borel measure on R</p>
+<p class="metadata">Provenance: mathematical analysis proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Hardy-Littlewood maximal function: Mf(x) = sup (1/|B|) integral_B |f|, weak (1,1)</h3>
+<p><strong>Statement:</strong> Hardy-Littlewood maximal function: Mf(x) = sup (1/|B|) integral_B |f|, weak (1,1)</p>
+<p><strong>Hypotheses:</strong> f locally integrable on R^n</p>
+<p><strong>Conclusion:</strong> |{Mf > lambda}| <= C/lambda * ||f||_1</p>
+<p><strong>Definitions:</strong> Hardy-Littlewood, maximal, weak type</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cover level set {Mf > lambda} by balls</p>
+<p class="step">Step 2: Vitali covering lemma: extract disjoint subcollection</p>
+<p class="step">Step 3: Measure bounded by sum of ball measures</p>
+<p class="step">Step 4: Optimize ball selection</p></div>
+<p class="metadata">ID: a06453ee96bc | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Key tool in differentiation theory</p>
+<p class="metadata">Provenance: mathematical analysis proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Absolute continuity of integral: epsilon-delta for integral under measure</h3>
+<p><strong>Statement:</strong> Absolute continuity of integral: epsilon-delta for integral under measure</p>
+<p><strong>Hypotheses:</strong> f integrable, mu(E) < delta</p>
+<p><strong>Conclusion:</strong> integral_E |f| < epsilon</p>
+<p><strong>Definitions:</strong> absolute continuity, integral, epsilon-delta</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate f by simple functions</p>
+<p class="step">Step 2: For simple functions: finite sum, direct estimate</p>
+<p class="step">Step 3: Use uniform approximation</p>
+<p class="step">Step 4: Control each term by measure bound</p></div>
+<p class="metadata">ID: 476ab9c97202 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Integral is absolutely continuous w.r.t. the measure</p>
+<p class="metadata">Provenance: mathematical analysis proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Cesàro mean: if a_n -> L, then (1/n) sum a_k -> L</h3>
+<p><strong>Statement:</strong> Cesàro mean: if a_n -> L, then (1/n) sum a_k -> L</p>
+<p><strong>Hypotheses:</strong> sequence a_n converges to L</p>
+<p><strong>Conclusion:</strong> arithmetic mean converges to L</p>
+<p><strong>Definitions:</strong> Cesàro, mean, average</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fix epsilon > 0</p>
+<p class="step">Step 2: For large k: |a_k - L| < epsilon</p>
+<p class="step">Step 3: Split sum: first N terms (fixed) + remaining</p>
+<p class="step">Step 4: Weight of first N terms -> 0</p>
+<p class="step">Step 5: Average approaches L</p></div>
+<p class="metadata">ID: 5347b1f37674 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Summability method: Cesàro mean of divergent series may converge</p>
+<p class="metadata">Provenance: mathematical analysis proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Abel summation: if sum a_n converges, then lim sum a_n x^n = sum a_n as x->1^-</h3>
+<p><strong>Statement:</strong> Abel summation: if sum a_n converges, then lim sum a_n x^n = sum a_n as x->1^-</p>
+<p><strong>Hypotheses:</strong> sum a_n converges</p>
+<p><strong>Conclusion:</strong> Abel sum = ordinary sum</p>
+<p><strong>Definitions:</strong> Abel, summation, boundary</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Partial sums S_n bounded</p>
+<p class="step">Step 2: Abel: sum a_n x^n = (1-x) sum S_n x^n</p>
+<p class="step">Step 3: S_n -> S, so (1-x) sum S_n x^n -> S</p></div>
+<p class="metadata">ID: c30ce5ff47d0 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Abel summable is weaker than convergent</p>
+<p class="metadata">Provenance: mathematical analysis proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Tauberian theorem (Littlewood): if a_n = O(1/n) and Abel sum = S, then sum converges to S</h3>
+<p><strong>Statement:</strong> Tauberian theorem (Littlewood): if a_n = O(1/n) and Abel sum = S, then sum converges to S</p>
+<p><strong>Hypotheses:</strong> a_n = O(1/n), sum a_n x^n -> S as x->1^-</p>
+<p><strong>Conclusion:</strong> sum_{k=0}^n a_k -> S</p>
+<p><strong>Definitions:</strong> Tauberian, Littlewood, converse</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Tauberian: Abel + growth condition => convergence</p>
+<p class="step">Step 2: a_n = O(1/n) is Tauberian condition</p>
+<p class="step">Step 3: Hardy-Littlewood Tauberian theorem</p>
+<p class="step">Step 4: Many variants with different conditions</p></div>
+<p class="metadata">ID: c421fc08cfbd | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Converse of Abel's theorem</p>
+<p class="metadata">Provenance: mathematical analysis proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Wiener's Tauberian theorem: translation-invariant subspace of L^1(R) characterized by zeros of Fourier transform</h3>
+<p><strong>Statement:</strong> Wiener's Tauberian theorem: translation-invariant subspace of L^1(R) characterized by zeros of Fourier transform</p>
+<p><strong>Hypotheses:</strong> I left ideal in L^1(R), f in L^1</p>
+<p><strong>Conclusion:</strong> translation-invariant closure of I*f characterized by common zeros of Fourier transforms</p>
+<p><strong>Definitions:</strong> Wiener, Tauberian, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Wiener's lemma: if f-hat never zero, 1/f is in algebra</p>
+<p class="step">Step 2: Apply to convolution algebra L^1</p>
+<p class="step">Step 3: Characterize closed ideals by zero sets</p>
+<p class="step">Step 4: Deep result in harmonic analysis</p></div>
+<p class="metadata">ID: 5b3d8b4dff1b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Wiener's 1932 PhD thesis, profound in harmonic analysis</p>
+<p class="metadata">Provenance: mathematical analysis proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Plancherel: Fourier transform extends to unitary isomorphism on L^2(R^n)</h3>
+<p><strong>Statement:</strong> Plancherel: Fourier transform extends to unitary isomorphism on L^2(R^n)</p>
+<p><strong>Hypotheses:</strong> f in L^2(R^n)</p>
+<p><strong>Conclusion:</strong> ||hat{f}||_2 = ||f||_2</p>
+<p><strong>Definitions:</strong> Plancherel, L^2, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define on L^1 intersect L^2</p>
+<p class="step">Step 2: Parseval/L^2 bound by density</p>
+<p class="step">Step 3: Continuous extension to all L^2</p>
+<p class="step">Step 4: Isometry: ||hat{f}||_2 = ||f||_2</p>
+<p class="step">Step 5: Surjective: inverse FT</p></div>
+<p class="metadata">ID: f8924792725f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Energy-preserving property of Fourier transform</p>
+<p class="metadata">Provenance: mathematical analysis proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Schwartz space: Fourier transform is automorphism of S(R^n)</h3>
+<p><strong>Statement:</strong> Schwartz space: Fourier transform is automorphism of S(R^n)</p>
+<p><strong>Hypotheses:</strong> f in Schwartz space</p>
+<p><strong>Conclusion:</strong> hat{f} also in Schwartz space</p>
+<p><strong>Definitions:</strong> Schwartz, rapidly decreasing, tempered</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: x^alpha D^beta hat{f} = FT of (-D)^alpha (x^beta f)</p>
+<p class="step">Step 2: Derivatives and polynomial multipliers preserved</p>
+<p class="step">Step 3: Semi-norms controlled by FT semi-norms</p>
+<p class="step">Step 4: Fourier transform is bijection on S</p></div>
+<p class="metadata">ID: 18c8ae6b9169 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation for distribution theory</p>
+<p class="metadata">Provenance: mathematical analysis proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Distributions: generalization of functions via integration against test functions</h3>
+<p><strong>Statement:</strong> Distributions: generalization of functions via integration against test functions</p>
+<p><strong>Hypotheses:</strong> u linear functional on C_c^infty</p>
+<p><strong>Conclusion:</strong> generalized functions that may not be ordinary functions</p>
+<p><strong>Definitions:</strong> distribution, test function, Schwartz</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Definition: u(phi) for phi test function</p>
+<p class="step">Step 2: Delta function: delta(phi) = phi(0)</p>
+<p class="step">Step 3: Not a function but limit of functions</p>
+<p class="step">Step 4: Convolution, derivatives, Fourier transform extend</p>
+<p class="step">Step 5: Partial differential equations in distributional sense</p></div>
+<p class="metadata">ID: 171258cf95f3 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Distributions solve PDEs that classical functions cannot</p>
+<p class="metadata">Provenance: mathematical analysis proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Fourier transform of derivative: FT(f') = i*xi * hat{f}</h3>
+<p><strong>Statement:</strong> Fourier transform of derivative: FT(f') = i*xi * hat{f}</p>
+<p><strong>Hypotheses:</strong> f, f' in L^1</p>
+<p><strong>Conclusion:</strong> hat{f'}(xi) = i*xi * hat{f}(xi)</p>
+<p><strong>Definitions:</strong> Fourier transform, derivative, multiplication</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Integration by parts</p>
+<p class="step">Step 2: Boundary terms vanish (rapid decay)</p>
+<p class="step">Step 3: FT integral: hat{f'}(xi) = integral f'(x) e^{-ixi x} dx</p>
+<p class="step">Step 4: = -integral f(x)(-ixi) e^{-ixi x} dx</p>
+<p class="step">Step 5: = i*xi * hat{f}(xi)</p></div>
+<p class="metadata">ID: 171e457e7d43 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Derivation becomes multiplication in frequency domain</p>
+<p class="metadata">Provenance: mathematical analysis proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Convolution theorem: FT(f*g) = hat{f} * hat{g} (product in frequency)</h3>
+<p><strong>Statement:</strong> Convolution theorem: FT(f*g) = hat{f} * hat{g} (product in frequency)</p>
+<p><strong>Hypotheses:</strong> f,g in L^1</p>
+<p><strong>Conclusion:</strong> FT of convolution = product of FTs</p>
+<p><strong>Definitions:</strong> convolution, Fourier transform, product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: (f*g)(x) = integral f(x-y)g(y) dy</p>
+<p class="step">Step 2: hat{f*g}(xi) = integral e^{-ixi x}(f*g)(x) dx</p>
+<p class="step">Step 3: = integral integral e^{-ixi x}f(x-y)g(y) dy dx</p>
+<p class="step">Step 4: Substitute u=x-y: = integral g(y)e^{-ixi y} dy * integral f(u)e^{-ixi u} du</p>
+<p class="step">Step 5: = hat{g}(xi) * hat{f}(xi)</p></div>
+<p class="metadata">ID: ae6e5befb90f | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Convolution becomes pointwise multiplication in Fourier domain</p>
+<p class="metadata">Provenance: mathematical analysis proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Weyl's equidistribution: fractional parts of n*alpha are equidistributed mod 1 for irrational alpha</h3>
+<p><strong>Statement:</strong> Weyl's equidistribution: fractional parts of n*alpha are equidistributed mod 1 for irrational alpha</p>
+<p><strong>Hypotheses:</strong> alpha irrational</p>
+<p><strong>Conclusion:</strong> ({n*alpha}) equidistributed mod 1</p>
+<p><strong>Definitions:</strong> Weyl, equidistribution, fractional part</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Weyl criterion: sum e^{2pi i k n alpha}/N -> 0 for k != 0</p>
+<p class="step">Step 2: Geometric series: |sum| <= 2/|1-e^{2pi i k alpha}|</p>
+<p class="step">Step 3: Denominator bounded below (alpha irrational)</p>
+<p class="step">Step 4: Sum bounded, N -> infinity, limit 0</p></div>
+<p class="metadata">ID: 03aa30eaaf8f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Fundamental in metric diophantine approximation</p>
+<p class="metadata">Provenance: mathematical analysis proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Khinchin's theorem: for psi decreasing, sum psi(q)/q diverges <=> infinitely many p/q with |alpha-p/q| < psi(q)/q</h3>
+<p><strong>Statement:</strong> Khinchin's theorem: for psi decreasing, sum psi(q)/q diverges <=> infinitely many p/q with |alpha-p/q| < psi(q)/q</p>
+<p><strong>Hypotheses:</strong> psi positive decreasing, alpha real</p>
+<p><strong>Conclusion:</strong> for a.e. alpha, infinitely many good approximations iff sum diverges</p>
+<p><strong>Definitions:</strong> Khinchin, Diophantine approximation, metric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Borel-Cantelli: sum of measures</p>
+<p class="step">Step 2: Independence of events (approximately)</p>
+<p class="step">Step 3: Divergence => infinitely many</p>
+<p class="step">Step 4: Convergence => finitely many (Borel-Cantelli)</p></div>
+<p class="metadata">ID: 35636d4c1656 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Metric Diophantine approximation: almost sure results</p>
+<p class="metadata">Provenance: mathematical analysis proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Lebesgue-Stieltjes: integral f d(alpha) generalizes Riemann-Stieltjes integral</h3>
+<p><strong>Statement:</strong> Lebesgue-Stieltjes: integral f d(alpha) generalizes Riemann-Stieltjes integral</p>
+<p><strong>Hypotheses:</strong> alpha monotone increasing, f bounded</p>
+<p><strong>Conclusion:</strong> integral well-defined via Lebesgue-Stieltjes measure</p>
+<p><strong>Definitions:</strong> Lebesgue-Stieltjes, generalized integral, monotone</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: alpha induces Borel measure mu_alpha</p>
+<p class="step">Step 2: mu_alpha((a,b]) = alpha(b)-alpha(a)</p>
+<p class="step">Step 3: Lebesgue integral w.r.t. mu_alpha</p>
+<p class="step">Step 4: Generalizes both Lebesgue and Riemann-Stieltjes</p></div>
+<p class="metadata">ID: 3fdd67862db1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Unifies various integral notions</p>
+<p class="metadata">Provenance: mathematical analysis proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Sobolev inequality: ||u||_{L^{p*}} <= C ||grad u||_{L^p} for p < n</h3>
+<p><strong>Statement:</strong> Sobolev inequality: ||u||_{L^{p*}} <= C ||grad u||_{L^p} for p < n</p>
+<p><strong>Hypotheses:</strong> u in W^{1,p}(R^n), p < n, p* = np/(n-p)</p>
+<p><strong>Conclusion:</strong> continuous embedding W^{1,p} -> L^{p*}</p>
+<p><strong>Definitions:</strong> Sobolev, embedding, critical exponent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gagliardo-Nirenberg inequality</p>
+<p class="step">Step 2: Write |u|^{gamma} as integral of gradient</p>
+<p class="step">Step 3: Apply Holder</p>
+<p class="step">Step 4: Optimize gamma for best constant</p></div>
+<p class="metadata">ID: b9f58836d942 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without p<n: need Morrey embedding into C^{0,alpha}</p>
+<p class="metadata">Provenance: mathematical analysis proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Trudinger-Moser: W^{1,n}(R^n) embeds in exponential Orlicz space</h3>
+<p><strong>Statement:</strong> Trudinger-Moser: W^{1,n}(R^n) embeds in exponential Orlicz space</p>
+<p><strong>Hypotheses:</strong> n-dimensional, ||grad u||_{L^n} <= 1</p>
+<p><strong>Conclusion:</strong> integral exp(C|u|^{n/(n-1)}) <= C'</p>
+<p><strong>Definitions:</strong> Trudinger-Moser, exponential, Orlicz</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gagliardo-Nirenberg: |u| <= C ||grad u||_{L^p}^{n/p-1}</p>
+<p class="step">Step 2: p -> n: critical exponent</p>
+<p class="step">Step 3: Exponential integrability follows</p>
+<p class="step">Step 4: Moser: sup over unit ball in W^{1,n}</p></div>
+<p class="metadata">ID: 3eb5907c8aa9 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Critical case of Sobolev embedding</p>
+<p class="metadata">Provenance: mathematical analysis proof #34</p>
+</div>
+<div class="theorem extra" id="xp-35">
+<h3>Proof 35: Calderón-Zygmund decomposition: L^1 function decomposed into regular and singular parts</h3>
+<p><strong>Statement:</strong> Calderón-Zygmund decomposition: L^1 function decomposed into regular and singular parts</p>
+<p><strong>Hypotheses:</strong> f in L^1</p>
+<p><strong>Conclusion:</strong> f = g + b where g in L^inf, b is sum of functions supported on cubes</p>
+<p><strong>Definitions:</strong> Calderón-Zygmund, decomposition, singular integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose threshold alpha</p>
+<p class="step">Step 2: Decompose: g = f on good set, 0 on bad</p>
+<p class="step">Step 3: b = f - g = pieces on bad cubes</p>
+<p class="step">Step 4: |g| <= alpha a.e.</p>
+<p class="step">Step 5: ||g||_1 <= ||f||_1</p>
+<p class="step">Step 6: b has mean zero on each cube</p></div>
+<p class="metadata">ID: 08566ceeca18 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Key tool for singular integral operators</p>
+<p class="metadata">Provenance: mathematical analysis proof #35</p>
+</div>
+<div class="theorem extra" id="xp-36">
+<h3>Proof 36: Marcinkiewicz interpolation: weak (p,p) + weak (q,q) => strong (r,r) for p<r<q</h3>
+<p><strong>Statement:</strong> Marcinkiewicz interpolation: weak (p,p) + weak (q,q) => strong (r,r) for p<r<q</p>
+<p><strong>Hypotheses:</strong> T weak (p,p) and weak (q,q)</p>
+<p><strong>Conclusion:</strong> T strong (r,r) for p<r<q</p>
+<p><strong>Definitions:</strong> Marcinkiewicz, interpolation, weak type</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Decompose: |f| = |f|1_{|f|>t} + |f|1_{|f|<=t}</p>
+<p class="step">Step 2: Apply weak type estimates</p>
+<p class="step">Step 3: Optimize threshold t</p>
+<p class="step">Step 4: Interpolate between endpoint bounds</p></div>
+<p class="metadata">ID: 5682654c3b27 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Interpolation between weak-type endpoint estimates</p>
+<p class="metadata">Provenance: mathematical analysis proof #36</p>
+</div>
+<div class="theorem extra" id="xp-37">
+<h3>Proof 37: Carleson's theorem: Fourier series of L^2 function converges pointwise a.e.</h3>
+<p><strong>Statement:</strong> Carleson's theorem: Fourier series of L^2 function converges pointwise a.e.</p>
+<p><strong>Hypotheses:</strong> f in L^2[0,2pi]</p>
+<p><strong>Conclusion:</strong> S_N(x) -> f(x) for a.e. x</p>
+<p><strong>Definitions:</strong> Carleson, pointwise convergence, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Carleson operator: maximal partial sum</p>
+<p class="step">Step 2: L^2 boundedness via time-frequency analysis</p>
+<p class="step">Step 3: Cubes in phase space, Whitney decomposition</p>
+<p class="step">Step 4: Carleson-Hunt: extends to L^p, p>1</p>
+<p class="step">Step 5: Deep: 1966, Fields medal (2006)</p></div>
+<p class="metadata">ID: ec0ab4102ad9 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Solved 50-year problem; Hunt extended to L^p</p>
+<p class="metadata">Provenance: mathematical analysis proof #37</p>
+</div>
 </body></html>
