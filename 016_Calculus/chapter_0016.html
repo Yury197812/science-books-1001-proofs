@@ -19327,4 +19327,20 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Calculus, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Fundamental theorem of calculus: integral_a^b f' = f(b)-f(a)</h3>
+<p><strong>Statement:</strong> Fundamental theorem of calculus: integral_a^b f' = f(b)-f(a)</p>
+<p><strong>Hypotheses:</strong> f continuous on [a,b], f differentiable on (a,b)</p>
+<p><strong>Conclusion:</strong> integral f' = f(b)-f(a)</p>
+<p><strong>Definitions:</strong> fundamental theorem, calculus, integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define F(x)=integral_a^x f'(t)dt</p>
+<p class="step">Step 2: F'=f by FTC part 1</p>
+<p class="step">Step 3: F(b)-F(a) = integral_a^b f'</p>
+<p class="step">Step 4: But F(b)-F(a) = f(b)-f(a)</p></div>
+<p class="metadata">ID: 0c212c746e3d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without continuity: counterexample exists</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

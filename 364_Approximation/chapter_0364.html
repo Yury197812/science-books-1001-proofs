@@ -18076,4 +18076,21 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Approximation, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Model selection: AIC, BIC, cross-validation</h3>
+<p><strong>Statement:</strong> Model selection: AIC, BIC, cross-validation</p>
+<p><strong>Hypotheses:</strong> statistics</p>
+<p><strong>Conclusion:</strong> choose between competing models</p>
+<p><strong>Definitions:</strong> model selection, AIC, BIC</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: AIC: -2logL + 2k (penalizes complexity)</p>
+<p class="step">Step 2: BIC: -2logL + k*log(n) (stronger penalty)</p>
+<p class="step">Step 3: Cross-validation: hold-out validation</p>
+<p class="step">Step 4: k-fold CV: rotate test set</p>
+<p class="step">Step 5: Information criterion: trade-off fit vs complexity</p></div>
+<p class="metadata">ID: 6b50fda54c0f | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Overfitting: model too complex for data</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

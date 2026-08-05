@@ -17409,4 +17409,20 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Discrete Math, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Discrete Fourier transform: O(n log n) via FFT</h3>
+<p><strong>Statement:</strong> Discrete Fourier transform: O(n log n) via FFT</p>
+<p><strong>Hypotheses:</strong> sequence of n values</p>
+<p><strong>Conclusion:</strong> DFT computed in O(n log n)</p>
+<p><strong>Definitions:</strong> FFT, DFT, fast algorithm</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Divide and conquer: split into even/odd</p>
+<p class="step">Step 2: Recursive FFT on halves</p>
+<p class="step">Step 3: Combine using roots of unity</p>
+<p class="step">Step 4: Butterfly operations</p></div>
+<p class="metadata">ID: 2629acc947f6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without FFT: O(n^2) naive computation</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

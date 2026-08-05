@@ -18076,4 +18076,21 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Graphs, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Graph representations: adjacency matrix vs adjacency list</h3>
+<p><strong>Statement:</strong> Graph representations: adjacency matrix vs adjacency list</p>
+<p><strong>Hypotheses:</strong> data structures</p>
+<p><strong>Conclusion:</strong> how to store graphs in memory</p>
+<p><strong>Definitions:</strong> graph representation, adjacency matrix, adjacency list</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Matrix: V x V, O(V^2) space</p>
+<p class="step">Step 2: List: O(V+E) space</p>
+<p class="step">Step 3: Matrix: O(1) edge query</p>
+<p class="step">Step 4: List: better for sparse graphs</p>
+<p class="step">Step 5: Trade-off: space vs query time</p></div>
+<p class="metadata">ID: 3345a5ffa299 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Dense: matrix; Sparse: list</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

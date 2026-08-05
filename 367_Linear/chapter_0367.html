@@ -18076,4 +18076,21 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Linear, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Linear regression: Y = X*beta + epsilon, OLS estimator</h3>
+<p><strong>Statement:</strong> Linear regression: Y = X*beta + epsilon, OLS estimator</p>
+<p><strong>Hypotheses:</strong> regression</p>
+<p><strong>Conclusion:</strong> fit linear model to data</p>
+<p><strong>Definitions:</strong> linear regression, OLS, beta</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: OLS: beta = (X'X)^{-1} X'Y</p>
+<p class="step">Step 2: Unbiased: E[beta_hat] = beta</p>
+<p class="step">Step 3: BLUE: best linear unbiased (Gauss-Markov)</p>
+<p class="step">Step 4: R^2 = 1 - SS_res/SS_tot</p>
+<p class="step">Step 5: F-test: overall significance</p></div>
+<p class="metadata">ID: fbff6b2d6817 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation of regression analysis</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

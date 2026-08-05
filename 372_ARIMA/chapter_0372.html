@@ -18076,4 +18076,21 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain ARIMA, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: ARIMA(p,d,q): AutoRegressive Integrated Moving Average</h3>
+<p><strong>Statement:</strong> ARIMA(p,d,q): AutoRegressive Integrated Moving Average</p>
+<p><strong>Hypotheses:</strong> time series</p>
+<p><strong>Conclusion:</strong> standard time series model</p>
+<p><strong>Definitions:</strong> ARIMA, AR, MA, integrated</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: AR(p): current = sum of p past values</p>
+<p class="step">Step 2: I(d): d differences to achieve stationarity</p>
+<p class="step">Step 3: MA(q): current = sum of q past errors</p>
+<p class="step">Step 4: Box-Jenkins: identify, estimate, diagnose</p>
+<p class="step">Step 5: Forecasting: extrapolate model forward</p></div>
+<p class="metadata">ID: 2456b651dc77 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: ARIMA(0,1,1) = exponential smoothing</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

@@ -19327,4 +19327,20 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Parabolic, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Parabolic PDE: heat equation smooths initial data instantly</h3>
+<p><strong>Statement:</strong> Parabolic PDE: heat equation smooths initial data instantly</p>
+<p><strong>Hypotheses:</strong> u_t = k u_xx</p>
+<p><strong>Conclusion:</strong> solution C^infty for t>0 regardless of initial data</p>
+<p><strong>Definitions:</strong> heat equation, smoothing, parabolic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fundamental solution: Gaussian</p>
+<p class="step">Step 2: Solve by convolution: u(t) = G_t * u_0</p>
+<p class="step">Step 3: Gaussian is C^infty</p>
+<p class="step">Step 4: Convolution preserves smoothness for t>0</p></div>
+<p class="metadata">ID: 0a68016167ac | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Initial discontinuity smoothed instantly</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

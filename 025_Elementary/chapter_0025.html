@@ -18877,4 +18877,19 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Elementary, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Chinese Remainder Theorem: x=a_i mod n_i solvable for coprime n_i</h3>
+<p><strong>Statement:</strong> Chinese Remainder Theorem: x=a_i mod n_i solvable for coprime n_i</p>
+<p><strong>Hypotheses:</strong> n_i pairwise coprime</p>
+<p><strong>Conclusion:</strong> unique solution mod prod n_i</p>
+<p><strong>Definitions:</strong> CRT, modular, coprime</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Find N_i = N/n_i</p>
+<p class="step">Step 2: Solve N_i s_i = 1 mod n_i</p>
+<p class="step">Step 3: x = sum a_i N_i s_i</p></div>
+<p class="metadata">ID: a4d2ab5ebc82 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without coprimality: may not exist</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>

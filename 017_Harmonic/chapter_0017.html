@@ -19326,4 +19326,20 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without boundedness: boundary values may not determine function</p>
 <p class="metadata">Provenance: Domain Harmonic, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+1 from domain theorem bank)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Fourier series: f(x) = a_0/2 + sum(a_n cos(nx) + b_n sin(nx))</h3>
+<p><strong>Statement:</strong> Fourier series: f(x) = a_0/2 + sum(a_n cos(nx) + b_n sin(nx))</p>
+<p><strong>Hypotheses:</strong> f piecewise continuous, period 2pi</p>
+<p><strong>Conclusion:</strong> converges to f at continuity points</p>
+<p><strong>Definitions:</strong> Fourier series, harmonics, trigonometric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Euler formulas for coefficients</p>
+<p class="step">Step 2: Parseval: sum |c_n|^2 = ||f||^2</p>
+<p class="step">Step 3: Convergence by Dini test</p>
+<p class="step">Step 4: Pointwise: Carleson theorem for L^2</p></div>
+<p class="metadata">ID: 7189d8def4b6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without periodicity: use Fourier transform</p>
+<p class="metadata">Provenance: domain theorem bank proof #1</p>
+</div>
 </body></html>
