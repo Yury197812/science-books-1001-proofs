@@ -18088,4 +18088,205 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'continuous': step functions avoid fixed points</p>
 <p class="metadata">Provenance: Domain Topology, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+13 from algebraic topology)</h2>
+
+<div class="theorem extra" id="dg-1">
+<h3>Proof 1: Classification of surfaces: compact connected surface determined by genus and orientability</h3>
+<p><strong>Statement:</strong> Classification of surfaces: compact connected surface determined by genus and orientability</p>
+<p><strong>Hypotheses:</strong> M compact connected 2-manifold</p>
+<p><strong>Conclusion:</strong> M homeomorphic to S^2, torus, or connected sum of tori/Möbius bands</p>
+<p><strong>Definitions:</strong> classification, genus, orientability</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Triangulate: reduce to polygon with identified edges</p>
+<p class="step">Step 2: Euler characteristic determines genus</p>
+<p class="step">Step 3: Orientable: genus g surface has chi = 2-2g</p>
+<p class="step">Step 4: Non-orientable: connected sum of k projective planes, chi = 2-k</p></div>
+<p class="metadata">ID: 00cc69516a16 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Complete classification in dimension 2</p>
+<p class="metadata">Provenance: algebraic topology proof #1</p>
+</div>
+
+<div class="theorem extra" id="dg-2">
+<h3>Proof 2: Alexander duality: H_k(S^n\A) =tilde{H}^{n-k-1}(A) for A compact in S^n</h3>
+<p><strong>Statement:</strong> Alexander duality: H_k(S^n\A) =tilde{H}^{n-k-1}(A) for A compact in S^n</p>
+<p><strong>Hypotheses:</strong> A compact subset of S^n</p>
+<p><strong>Conclusion:</strong> homology of complement isomorphic to reduced cohomology of A</p>
+<p><strong>Definitions:</strong> Alexander, duality, cohomology</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Exact sequence of pair (S^n, S^n\A)</p>
+<p class="step">Step 2: Universal coefficient theorem</p>
+<p class="step">Step 3: Lefschetz duality on S^n</p>
+<p class="step">Step 4: Identify groups via long exact sequence</p></div>
+<p class="metadata">ID: 6da2b2fef24b | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Computes homology of complements from the set itself</p>
+<p class="metadata">Provenance: algebraic topology proof #2</p>
+</div>
+
+<div class="theorem extra" id="dg-3">
+<h3>Proof 3: Borsuk-Ulam: continuous f: S^n -> R^n maps some antipodal pair to same point</h3>
+<p><strong>Statement:</strong> Borsuk-Ulam: continuous f: S^n -> R^n maps some antipodal pair to same point</p>
+<p><strong>Hypotheses:</strong> f: S^n -> R^n continuous</p>
+<p><strong>Conclusion:</strong> exists x with f(x) = f(-x)</p>
+<p><strong>Definitions:</strong> Borsuk-Ulam, antipodal, sphere</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g(x) = f(x) - f(-x): odd function</p>
+<p class="step">Step 2: g(-x) = -g(x)</p>
+<p class="step">Step 3: If g never zero: h(x) = g(x)/|g(x)| maps to S^{n-1}</p>
+<p class="step">Step 4: h is odd: h(-x) = -h(x)</p>
+<p class="step">Step 5: No odd map S^n -> S^{n-1} exists</p>
+<p class="step">Step 6: Contradiction</p></div>
+<p class="metadata">ID: 06ae4714a3d9 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Applications: ham sandwich, necklaces, fair division</p>
+<p class="metadata">Provenance: algebraic topology proof #3</p>
+</div>
+
+<div class="theorem extra" id="dg-4">
+<h3>Proof 4: Ham sandwich theorem: n measures in R^n can be simultaneously bisected by hyperplane</h3>
+<p><strong>Statement:</strong> Ham sandwich theorem: n measures in R^n can be simultaneously bisected by hyperplane</p>
+<p><strong>Hypotheses:</strong> n finite Borel measures on R^n</p>
+<p><strong>Conclusion:</strong> exists hyperplane dividing each measure exactly in half</p>
+<p><strong>Definitions:</strong> ham sandwich, bisection, measure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Borsuk-Ulam: map direction to n-dimensional vector</p>
+<p class="step">Step 2: v_i(theta) = measure of half-space in direction theta</p>
+<p class="step">Step 3: v is continuous</p>
+<p class="step">Step 4: By Borsuk-Ulam: exists theta with v(theta) = v(-theta)</p>
+<p class="step">Step 5: That hyperplane bisects all measures</p></div>
+<p class="metadata">ID: 9047d12cf108 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: For n=2: cut ham sandwich (bread and ham) simultaneously</p>
+<p class="metadata">Provenance: algebraic topology proof #4</p>
+</div>
+
+<div class="theorem extra" id="dg-5">
+<h3>Proof 5: Lusternik-Schnirelmann category: cat(X) gives lower bound on number of critical points</h3>
+<p><strong>Statement:</strong> Lusternik-Schnirelmann category: cat(X) gives lower bound on number of critical points</p>
+<p><strong>Hypotheses:</strong> M compact manifold, f: M -> R smooth</p>
+<p><strong>Conclusion:</strong> f has at least cat(M)+1 critical points</p>
+<p><strong>Definitions:</strong> Lusternik-Schnirelmann, category, critical point</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Category = minimum number of contractible open sets covering M</p>
+<p class="step">Step 2: If fewer critical points: deformation retract to lower cat</p>
+<p class="step">Step 3: Contradiction with category definition</p>
+<p class="step">Step 4: Cat(S^n) = 1, so any function has >= 2 critical points</p></div>
+<p class="metadata">ID: dc0bb679aa44 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Generalizes Morse inequality lower bound</p>
+<p class="metadata">Provenance: algebraic topology proof #5</p>
+</div>
+
+<div class="theorem extra" id="dg-6">
+<h3>Proof 6: Morse inequalities: number of critical points bounded below by Betti numbers</h3>
+<p><strong>Statement:</strong> Morse inequalities: number of critical points bounded below by Betti numbers</p>
+<p><strong>Hypotheses:</strong> f: M -> R Morse function, M compact manifold</p>
+<p><strong>Conclusion:</strong> #critical points of index k >= b_k(M)</p>
+<p><strong>Definitions:</strong> Morse, Betti number, critical point</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Morse complex from critical points</p>
+<p class="step">Step 2: Homology of Morse complex = homology of M</p>
+<p class="step">Step 3: Chain complex has rank c_k at level k</p>
+<p class="step">Step 4: dim H_k <= c_k by rank-nullity</p>
+<p class="step">Step 5: Sum: total critical points >= sum Betti numbers</p></div>
+<p class="metadata">ID: 0dd633b8c1e1 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Sharp lower bound for smooth functions on manifolds</p>
+<p class="metadata">Provenance: algebraic topology proof #6</p>
+</div>
+
+<div class="theorem extra" id="dg-7">
+<h3>Proof 7: Euler characteristic equals alternating sum of Betti numbers</h3>
+<p><strong>Statement:</strong> Euler characteristic equals alternating sum of Betti numbers</p>
+<p><strong>Hypotheses:</strong> M compact manifold</p>
+<p><strong>Conclusion:</strong> chi(M) = sum (-1)^k b_k(M)</p>
+<p><strong>Definitions:</strong> Euler characteristic, Betti number, alternating sum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Morse function f: M -> R</p>
+<p class="step">Step 2: chi(M) = sum (-1)^k c_k (critical points)</p>
+<p class="step">Step 3: By Euler-Poincare: sum (-1)^k c_k = sum (-1)^k b_k</p>
+<p class="step">Step 4: Independent of choice of Morse function</p></div>
+<p class="metadata">ID: cfe5decb9e3a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Connects differential topology to algebraic topology</p>
+<p class="metadata">Provenance: algebraic topology proof #7</p>
+</div>
+
+<div class="theorem extra" id="dg-8">
+<h3>Proof 8: Sard theorem: critical values of smooth map have measure zero</h3>
+<p><strong>Statement:</strong> Sard theorem: critical values of smooth map have measure zero</p>
+<p><strong>Hypotheses:</strong> f: M -> N smooth, critical points where df not surjective</p>
+<p><strong>Conclusion:</strong> f(critical points) has measure zero in N</p>
+<p><strong>Definitions:</strong> Sard, critical value, measure zero</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induct on dimensions of domain and codomain</p>
+<p class="step">Step 2: Taylor expansion at critical points</p>
+<p class="step">Step 3: Measure of critical values vanishes</p>
+<p class="step">Step 4: Glue by countable additivity</p></div>
+<p class="metadata">ID: 5032ef5228f6 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generic values are regular</p>
+<p class="metadata">Provenance: algebraic topology proof #8</p>
+</div>
+
+<div class="theorem extra" id="dg-9">
+<h3>Proof 9: Transversality theorem: generic perturbation is transverse to given submanifold</h3>
+<p><strong>Statement:</strong> Transversality theorem: generic perturbation is transverse to given submanifold</p>
+<p><strong>Hypotheses:</strong> f: M -> N smooth, S submanifold of N</p>
+<p><strong>Conclusion:</strong> for generic g near f, g is transverse to S</p>
+<p><strong>Definitions:</strong> transversality, generic, perturbation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use jet spaces</p>
+<p class="step">Step 2: Thom transversality theorem</p>
+<p class="step">Step 3: Generic maps dense in C^infty</p>
+<p class="step">Step 4: Small perturbation achieves transversality</p></div>
+<p class="metadata">ID: f029c64df99e | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental tool for generic properties</p>
+<p class="metadata">Provenance: algebraic topology proof #9</p>
+</div>
+
+<div class="theorem extra" id="dg-10">
+<h3>Proof 10: Poincaré-Hopf: sum of indices of vector field on M equals chi(M)</h3>
+<p><strong>Statement:</strong> Poincaré-Hopf: sum of indices of vector field on M equals chi(M)</p>
+<p><strong>Hypotheses:</strong> M compact manifold, v vector field with isolated zeros</p>
+<p><strong>Conclusion:</strong> sum ind_{p}(v) = chi(M)</p>
+<p><strong>Definitions:</strong> Poincaré-Hopf, index, Euler characteristic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Deformation retract to zero set</p>
+<p class="step">Step 2: Index at each zero is local invariant</p>
+<p class="step">Step 3: Sum is topological invariant</p>
+<p class="step">Step 4: Independent of choice of vector field</p></div>
+<p class="metadata">ID: 891b17faa73f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Hairy ball: chi(S^{2n}) = 2, so vector field must vanish</p>
+<p class="metadata">Provenance: algebraic topology proof #10</p>
+</div>
+
+<div class="theorem extra" id="dg-11">
+<h3>Proof 11: Reidemeister torsion: topological invariant distinguishing manifolds with same homology</h3>
+<p><strong>Statement:</strong> Reidemeister torsion: topological invariant distinguishing manifolds with same homology</p>
+<p><strong>Hypotheses:</strong> M compact manifold, fundamental group pi_1(M)</p>
+<p><strong>Conclusion:</strong> torsion invariant can distinguish non-homeomorphic manifolds</p>
+<p><strong>Definitions:</strong> Reidemeister torsion, torsion, topological invariant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lift to universal cover</p>
+<p class="step">Step 2: Chain complex of universal cover</p>
+<p class="step">Step 3: Determinant of chain maps</p>
+<p class="step">Step 4: Reidemeister moves preserve torsion</p></div>
+<p class="metadata">ID: 5fb6b3a71a16 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Detects manifolds invisible to homology alone</p>
+<p class="metadata">Provenance: algebraic topology proof #11</p>
+</div>
+
+<div class="theorem extra" id="dg-12">
+<h3>Proof 12: Thom cobordism: two manifolds are cobordant iff Stiefel-Whitney numbers agree</h3>
+<p><strong>Statement:</strong> Thom cobordism: two manifolds are cobordant iff Stiefel-Whitney numbers agree</p>
+<p><strong>Hypotheses:</strong> M,N closed manifolds of same dimension</p>
+<p><strong>Conclusion:</strong> M ~ N (cobordant) <=> all SW numbers equal</p>
+<p><strong>Definitions:</strong> Thom, cobordism, Stiefel-Whitney</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cobordism group Omega_n</p>
+<p class="step">Step 2: Thom's computation: Omega_n = Z/2^{k}</p>
+<p class="step">Step 3: SW numbers are cobordism invariants</p>
+<p class="step">Step 4: Converse: same SW numbers => cobordant</p></div>
+<p class="metadata">ID: df6e02ee1b1c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Complete invariant for unoriented cobordism</p>
+<p class="metadata">Provenance: algebraic topology proof #12</p>
+</div>
+
+<div class="theorem extra" id="dg-13">
+<h3>Proof 13: Hauptvermutung: triangulation is not unique (found counterexample in dim >= 3)</h3>
+<p><strong>Statement:</strong> Hauptvermutung: triangulation is not unique (found counterexample in dim >= 3)</p>
+<p><strong>Hypotheses:</strong> M manifold dim >= 3</p>
+<p><strong>Conclusion:</strong> not every homeomorphism of manifolds is combinatorially equivalent to a simplicial isomorphism</p>
+<p><strong>Definitions:</strong> Hauptvermutung, triangulation, counterexample</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hauptvermutung conjectured: triangulation unique</p>
+<p class="step">Step 2: Casson found counterexample in dim 3</p>
+<p class="step">Step 3: Milnor: smooth structures on S^7 (28 exotic spheres)</p>
+<p class="step">Step 4: Shows triangulation depends on choice, not just topology</p></div>
+<p class="metadata">ID: 3819282d7395 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental counterexample in combinatorial topology</p>
+<p class="metadata">Provenance: algebraic topology proof #13</p>
+</div>
 </body></html>

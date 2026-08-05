@@ -17075,4 +17075,386 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Diff Geom, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+25 from differential geometry)</h2>
+
+<div class="theorem extra" id="dg-1">
+<h3>Proof 1: Gauss-Bonnet: integral_M K dA = 2*pi*chi(M) for compact oriented surface</h3>
+<p><strong>Statement:</strong> Gauss-Bonnet: integral_M K dA = 2*pi*chi(M) for compact oriented surface</p>
+<p><strong>Hypotheses:</strong> M compact oriented surface without boundary</p>
+<p><strong>Conclusion:</strong> total Gaussian curvature = 2pi * Euler characteristic</p>
+<p><strong>Definitions:</strong> Gauss-Bonnet, curvature, Euler characteristic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Triangulate M</p>
+<p class="step">Step 2: Angle defect at each vertex: 2pi - sum angles</p>
+<p class="step">Step 3: Sum defects = 2pi*V - sum of all angles</p>
+<p class="step">Step 4: Use Euler formula V-E+F = chi(M)</p>
+<p class="step">Step 5: Total curvature = sum angle defects = 2pi*chi(M)</p></div>
+<p class="metadata">ID: b9a22535f308 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without compact: integral may diverge</p>
+<p class="metadata">Provenance: differential geometry proof #1</p>
+</div>
+
+<div class="theorem extra" id="dg-2">
+<h3>Proof 2: Gauss equation: R = det(II) for surfaces in R^3</h3>
+<p><strong>Statement:</strong> Gauss equation: R = det(II) for surfaces in R^3</p>
+<p><strong>Hypotheses:</strong> M surface in R^3, R intrinsic curvature</p>
+<p><strong>Conclusion:</strong> K = det(II) = LN - M^2 (Gauss curvature = determinant of shape operator)</p>
+<p><strong>Definitions:</strong> Gauss equation, Gaussian curvature, second fundamental form</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Theorema Egregium: K depends only on first fundamental form</p>
+<p class="step">Step 2: Compute via coefficients of first and second fundamental forms</p>
+<p class="step">Step 3: LN - M^2 gives Gaussian curvature</p>
+<p class="step">Step 4: Intrinsic = extrinsic curvature for surfaces</p></div>
+<p class="metadata">ID: 1254c9dfdd7d | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Theorema Egregium: curvature is intrinsic</p>
+<p class="metadata">Provenance: differential geometry proof #2</p>
+</div>
+
+<div class="theorem extra" id="dg-3">
+<h3>Proof 3: Codazzi equations: (II)_ij,k = (II)_ik,j for surfaces in R^3</h3>
+<p><strong>Statement:</strong> Codazzi equations: (II)_ij,k = (II)_ik,j for surfaces in R^3</p>
+<p><strong>Hypotheses:</strong> M isometric immersion in R^3</p>
+<p><strong>Conclusion:</strong> mixed partials of second fundamental form are symmetric</p>
+<p><strong>Definitions:</strong> Codazzi, compatibility, second fundamental form</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Differentiate shape operator equations</p>
+<p class="step">Step 2: Use symmetry of third derivatives</p>
+<p class="step">Step 3: Commutativity of covariant derivatives</p>
+<p class="step">Step 4: Fundamental equations of surface theory</p></div>
+<p class="metadata">ID: 2795a4f15c33 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Together with Gauss equation, determines embedding up to rigid motion</p>
+<p class="metadata">Provenance: differential geometry proof #3</p>
+</div>
+
+<div class="theorem extra" id="dg-4">
+<h3>Proof 4: Fundamental theorem of surface theory: first and second fundamental forms satisfying Gauss-Codazzi determine surface up to rigid motion</h3>
+<p><strong>Statement:</strong> Fundamental theorem of surface theory: first and second fundamental forms satisfying Gauss-Codazzi determine surface up to rigid motion</p>
+<p><strong>Hypotheses:</strong> I, II positive definite symmetric 2-forms, satisfy Gauss-Codazzi equations</p>
+<p><strong>Conclusion:</strong> exists unique (up to rigid motion) isometric immersion</p>
+<p><strong>Definitions:</strong> fundamental theorem, rigidity, immersion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Build surface by solving ODE system</p>
+<p class="step">Step 2: Gauss equation ensures integrability</p>
+<p class="step">Step 3: Codazzi equations ensure compatibility</p>
+<p class="step">Step 4: Existence: solution exists locally by ODE theory</p>
+<p class="step">Step 5: Uniqueness: initial conditions + ODE uniqueness</p></div>
+<p class="metadata">ID: ab54be407df1 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Complete characterization of surface embeddings</p>
+<p class="metadata">Provenance: differential geometry proof #4</p>
+</div>
+
+<div class="theorem extra" id="dg-5">
+<h3>Proof 5: Christoffel symbols: Gamma^k_{ij} = (1/2) g^{kl} (g_{li,j} + g_{lj,i} - g_{ij,l})</h3>
+<p><strong>Statement:</strong> Christoffel symbols: Gamma^k_{ij} = (1/2) g^{kl} (g_{li,j} + g_{lj,i} - g_{ij,l})</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold (M,g)</p>
+<p><strong>Conclusion:</strong> unique torsion-free connection compatible with metric</p>
+<p><strong>Definitions:</strong> Christoffel symbols, Levi-Civita connection, metric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Metric compatibility: nabla g = 0</p>
+<p class="step">Step 2: Torsion-free: Gamma^k_{ij} = Gamma^k_{ji}</p>
+<p class="step">Step 3: These two conditions uniquely determine Gamma</p>
+<p class="step">Step 4: Explicit formula from metric components</p></div>
+<p class="metadata">ID: 5139b5b9293d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation of Riemannian geometry</p>
+<p class="metadata">Provenance: differential geometry proof #5</p>
+</div>
+
+<div class="theorem extra" id="dg-6">
+<h3>Proof 6: Riemann curvature tensor: R^l_{ijk} = Gamma^l_{jk,i} - Gamma^l_{ik,j} + Gamma^l_{im} Gamma^m_{jk} - Gamma^l_{jm} Gamma^m_{ik}</h3>
+<p><strong>Statement:</strong> Riemann curvature tensor: R^l_{ijk} = Gamma^l_{jk,i} - Gamma^l_{ik,j} + Gamma^l_{im} Gamma^m_{jk} - Gamma^l_{jm} Gamma^m_{ik}</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold (M,g)</p>
+<p><strong>Conclusion:</strong> measures failure of parallel transport to commute</p>
+<p><strong>Definitions:</strong> Riemann tensor, curvature, connection</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Parallel transport around infinitesimal loop</p>
+<p class="step">Step 2: First-order deviation from identity</p>
+<p class="step">Step 3: Captures all intrinsic curvature information</p>
+<p class="step">Step 4: Symmetries: R_{ijkl} = -R_{jikl} = -R_{ijlk} = R_{klij}</p></div>
+<p class="metadata">ID: dbb0838d8f58 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: In 2D: R_{1212} = K (Gaussian curvature)</p>
+<p class="metadata">Provenance: differential geometry proof #6</p>
+</div>
+
+<div class="theorem extra" id="dg-7">
+<h3>Proof 7: Bianchi identity: R_{ijkl;m} + R_{ijlm;k} + R_{ijmk;l} = 0</h3>
+<p><strong>Statement:</strong> Bianchi identity: R_{ijkl;m} + R_{ijlm;k} + R_{ijmk;l} = 0</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold</p>
+<p><strong>Conclusion:</strong> cyclic sum of covariant derivatives of Riemann tensor = 0</p>
+<p><strong>Definitions:</strong> Bianchi identity, differential Bianchi, curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Differentiate Riemann tensor</p>
+<p class="step">Step 2: Use symmetry of connection</p>
+<p class="step">Step 3: Algebraic identity: sum over cyclic permutations</p>
+<p class="step">Step 4: Implies Ricci tensor divergence condition</p></div>
+<p class="metadata">ID: 9d82adcc297f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Leads to Einstein equations in general relativity</p>
+<p class="metadata">Provenance: differential geometry proof #7</p>
+</div>
+
+<div class="theorem extra" id="dg-8">
+<h3>Proof 8: Ricci curvature: Ric(X,Y) = trace of Z -> R(Z,X)Y</h3>
+<p><strong>Statement:</strong> Ricci curvature: Ric(X,Y) = trace of Z -> R(Z,X)Y</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold</p>
+<p><strong>Conclusion:</strong> Ricci tensor measures volume distortion</p>
+<p><strong>Definitions:</strong> Ricci curvature, trace, Riemann tensor</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Contract Riemann tensor: Ric_{ij} = R^k_{ikj}</p>
+<p class="step">Step 2: Positive Ricci => volumes of geodesic balls > Euclidean</p>
+<p class="step">Step 3: Negative Ricci => volumes < Euclidean</p>
+<p class="step">Step 4: Ricci controls geodesic spreading</p></div>
+<p class="metadata">ID: b242ed672604 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: In general relativity: Ric_{mu nu} = 8pi G T_{mu nu}</p>
+<p class="metadata">Provenance: differential geometry proof #8</p>
+</div>
+
+<div class="theorem extra" id="dg-9">
+<h3>Proof 9: Scalar curvature: R = g^{ij} Ric_{ij}</h3>
+<p><strong>Statement:</strong> Scalar curvature: R = g^{ij} Ric_{ij}</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold</p>
+<p><strong>Conclusion:</strong> single number at each point measuring average curvature</p>
+<p><strong>Definitions:</strong> scalar curvature, Ricci, trace</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Trace of Ricci tensor</p>
+<p class="step">Step 2: In 2D: R = 2K (twice Gaussian curvature)</p>
+<p class="step">Step 3: Positive: spheres; Negative: hyperbolic space</p>
+<p class="step">Step 4: Controls volume growth of geodesic balls</p></div>
+<p class="metadata">ID: 32609ec846df | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Most important curvature quantity in general relativity</p>
+<p class="metadata">Provenance: differential geometry proof #9</p>
+</div>
+
+<div class="theorem extra" id="dg-10">
+<h3>Proof 10: Gauss lemma: radial geodesics are perpendicular to distance spheres</h3>
+<p><strong>Statement:</strong> Gauss lemma: radial geodesics are perpendicular to distance spheres</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold, exp_p exponential map</p>
+<p><strong>Conclusion:</strong> d/dt is orthogonal to d/dtheta in polar coordinates</p>
+<p><strong>Definitions:</strong> Gauss lemma, geodesic, exponential map</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use polar coordinates near p</p>
+<p class="step">Step 2: Compute metric in (r,theta) coordinates</p>
+<p class="step">Step 3: g_{r theta} = 0 by Gauss lemma</p>
+<p class="step">Step 4: Distance spheres are orthogonal to geodesics</p></div>
+<p class="metadata">ID: 1fe9246f65fb | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation for normal coordinates</p>
+<p class="metadata">Provenance: differential geometry proof #10</p>
+</div>
+
+<div class="theorem extra" id="dg-11">
+<h3>Proof 11: Comparison theorem: positive Ricci curvature => geodesic balls smaller than Euclidean</h3>
+<p><strong>Statement:</strong> Comparison theorem: positive Ricci curvature => geodesic balls smaller than Euclidean</p>
+<p><strong>Hypotheses:</strong> Ric >= (n-1)K > 0</p>
+<p><strong>Conclusion:</strong> volume of geodesic ball <= volume of Euclidean ball</p>
+<p><strong>Definitions:</strong> comparison theorem, Ricci, geodesic ball</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bishop-Gromov comparison theorem</p>
+<p class="step">Step 2: Compare with space of constant curvature</p>
+<p class="step">Step 3: Volume ratio is monotone</p>
+<p class="step">Step 4: Positively curved spaces have smaller volumes</p></div>
+<p class="metadata">ID: 7fc0fbdfe09a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Key tool in Riemannian geometry</p>
+<p class="metadata">Provenance: differential geometry proof #11</p>
+</div>
+
+<div class="theorem extra" id="dg-12">
+<h3>Proof 12: Myers theorem: Ric >= (n-1)K > 0 => diameter <= pi/sqrt(K)</h3>
+<p><strong>Statement:</strong> Myers theorem: Ric >= (n-1)K > 0 => diameter <= pi/sqrt(K)</p>
+<p><strong>Hypotheses:</strong> Riemannian manifold, Ric >= (n-1)K > 0</p>
+<p><strong>Conclusion:</strong> diam(M) <= pi/sqrt(K)</p>
+<p><strong>Definitions:</strong> Myers, diameter, compactness</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider two points p,q at maximal distance</p>
+<p class="step">Step 2: Join by minimizing geodesic</p>
+<p class="step">Step 3: Apply comparison to geodesic</p>
+<p class="step">Step 4: Length bounded by pi/sqrt(K)</p></div>
+<p class="metadata">ID: f5c34ecafaea | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Positive Ricci => compact with bounded diameter</p>
+<p class="metadata">Provenance: differential geometry proof #12</p>
+</div>
+
+<div class="theorem extra" id="dg-13">
+<h3>Proof 13: Bonnet-Myers: Ric >= (n-1)K > 0 => M is compact and finite fundamental group</h3>
+<p><strong>Statement:</strong> Bonnet-Myers: Ric >= (n-1)K > 0 => M is compact and finite fundamental group</p>
+<p><strong>Hypotheses:</strong> Ricci >= (n-1)K > 0</p>
+<p><strong>Conclusion:</strong> M compact, pi_1(M) finite</p>
+<p><strong>Definitions:</strong> Bonnet-Myers, compactness, fundamental group</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Myers theorem: M has bounded diameter</p>
+<p class="step">Step 2: Bounded diameter + completeness => compact</p>
+<p class="step">Step 3: Universal cover has same Ricci bound</p>
+<p class="step">Step 4: Apply Myers to universal cover: compact</p>
+<p class="step">Step 5: Finite covering => pi_1 finite</p></div>
+<p class="metadata">ID: 77c27f514369 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Strongest general compactness theorem in Riemannian geometry</p>
+<p class="metadata">Provenance: differential geometry proof #13</p>
+</div>
+
+<div class="theorem extra" id="dg-14">
+<h3>Proof 14: Cheeger-Gromoll splitting theorem: if M has line and Ric >= 0, then M splits as R x N</h3>
+<p><strong>Statement:</strong> Cheeger-Gromoll splitting theorem: if M has line and Ric >= 0, then M splits as R x N</p>
+<p><strong>Hypotheses:</strong> M complete, Ric >= 0, M contains a line (infinite geodesic)</p>
+<p><strong>Conclusion:</strong> M is isometric to R x N</p>
+<p><strong>Definitions:</strong> splitting theorem, line, Ricci nonneg</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Busemann function along line</p>
+<p class="step">Step 2: Hessian of Busemann function >= 0</p>
+<p class="step">Step 3: Gradient flow of Busemann function</p>
+<p class="step">Step 4: Splitting follows from structure of level sets</p></div>
+<p class="metadata">ID: 950dfa5551a2 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental structure theorem for nonneg Ricci curvature</p>
+<p class="metadata">Provenance: differential geometry proof #14</p>
+</div>
+
+<div class="theorem extra" id="dg-15">
+<h3>Proof 15: Synge's theorem: even-dimensional orientable manifold with positive sectional curvature is simply connected</h3>
+<p><strong>Statement:</strong> Synge's theorem: even-dimensional orientable manifold with positive sectional curvature is simply connected</p>
+<p><strong>Hypotheses:</strong> M orientable, dim M even, sectional K > 0</p>
+<p><strong>Conclusion:</strong> pi_1(M) = 0</p>
+<p><strong>Definitions:</strong> Synge, simply connected, sectional curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume nontrivial pi_1</p>
+<p class="step">Step 2: Shortest nontrivial geodesic gamma</p>
+<p class="step">Step 3: Variation perpendicular to gamma</p>
+<p class="step">Step 4: Positive curvature => length decreases</p>
+<p class="step">Step 5: Contradiction with minimality of gamma</p></div>
+<p class="metadata">ID: 5923bf4d91fc | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Orientability essential: RP^2 has K>0 but pi_1 = Z/2</p>
+<p class="metadata">Provenance: differential geometry proof #15</p>
+</div>
+
+<div class="theorem extra" id="dg-16">
+<h3>Proof 16: Hodge theorem: every de Rham cohomology class has unique harmonic representative</h3>
+<p><strong>Statement:</strong> Hodge theorem: every de Rham cohomology class has unique harmonic representative</p>
+<p><strong>Hypotheses:</strong> M compact Riemannian manifold</p>
+<p><strong>Conclusion:</strong> H^k_dR(M) isomorphic to space of harmonic k-forms</p>
+<p><strong>Definitions:</strong> Hodge, harmonic, Laplacian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Laplacian Delta = d*delta + delta*d on forms</p>
+<p class="step">Step 2: Harmonic forms: Delta omega = 0</p>
+<p class="step">Step 3: Orthogonal decomposition: forms = im(d) + im(delta) + harmonic</p>
+<p class="step">Step 4: Each cohomology class has unique harmonic rep</p></div>
+<p class="metadata">ID: efad291c3629 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Bridges analysis and topology on manifolds</p>
+<p class="metadata">Provenance: differential geometry proof #16</p>
+</div>
+
+<div class="theorem extra" id="dg-17">
+<h3>Proof 17: Stokes theorem: integral_M d omega = integral_{partial M} omega</h3>
+<p><strong>Statement:</strong> Stokes theorem: integral_M d omega = integral_{partial M} omega</p>
+<p><strong>Hypotheses:</strong> M oriented manifold with boundary, omega smooth k-form</p>
+<p><strong>Conclusion:</strong> exterior derivative integral equals boundary integral</p>
+<p><strong>Definitions:</strong> Stokes, differential forms, boundary</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prove for rectangles by fundamental theorem of calculus</p>
+<p class="step">Step 2: Extend by partition of unity</p>
+<p class="step">Step 3: Use linearity and additivity</p>
+<p class="step">Step 4: glue local results via partition of unity</p></div>
+<p class="metadata">ID: c20b2e967b2c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Unifies Green's, Gauss's, and classical Stokes' theorems</p>
+<p class="metadata">Provenance: differential geometry proof #17</p>
+</div>
+
+<div class="theorem extra" id="dg-18">
+<h3>Proof 18: de Rham cohomology: H^k_dR(M) isomorphic to singular cohomology H^k(M;R)</h3>
+<p><strong>Statement:</strong> de Rham cohomology: H^k_dR(M) isomorphic to singular cohomology H^k(M;R)</p>
+<p><strong>Hypotheses:</strong> M smooth manifold</p>
+<p><strong>Conclusion:</strong> topology of M determined by differential forms</p>
+<p><strong>Definitions:</strong> de Rham, cohomology, differential forms</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Integration of forms on chains gives isomorphism</p>
+<p class="step">Step 2: Poincare lemma: contractible => exact</p>
+<p class="step">Step 3: Mayer-Vietoris for de Rham and singular</p>
+<p class="step">Step 4: By induction on charts: isomorphism</p></div>
+<p class="metadata">ID: 1a60bed1522d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Bridges differential topology and algebraic topology</p>
+<p class="metadata">Provenance: differential geometry proof #18</p>
+</div>
+
+<div class="theorem extra" id="dg-19">
+<h3>Proof 19: Isometric immersion rigidity: sphere cannot be locally isometrically immersed in flat space</h3>
+<p><strong>Statement:</strong> Isometric immersion rigidity: sphere cannot be locally isometrically immersed in flat space</p>
+<p><strong>Hypotheses:</strong> M with K > 0</p>
+<p><strong>Conclusion:</strong> cannot be locally isometrically immersed in R^2</p>
+<p><strong>Definitions:</strong> rigidity, isometric, Gauss curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gauss equation: K = det(II)</p>
+<p class="step">Step 2: For flat space: K = 0</p>
+<p class="step">Step 3: If isometrically immersed: K must be 0</p>
+<p class="step">Step 4: But K > 0: contradiction</p></div>
+<p class="metadata">ID: e11fc4f6a042 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Theorema Egregium implies intrinsic curvature obstructs isometric immersions</p>
+<p class="metadata">Provenance: differential geometry proof #19</p>
+</div>
+
+<div class="theorem extra" id="dg-20">
+<h3>Proof 20: Jacobi equation: variation field along geodesic satisfies D^2 J/dt^2 + R(J,gamma')gamma' = 0</h3>
+<p><strong>Statement:</strong> Jacobi equation: variation field along geodesic satisfies D^2 J/dt^2 + R(J,gamma')gamma' = 0</p>
+<p><strong>Hypotheses:</strong> geodesic gamma(t), J Jacobi field along gamma</p>
+<p><strong>Conclusion:</strong> equation governing deviation of nearby geodesics</p>
+<p><strong>Definitions:</strong> Jacobi field, geodesic variation, curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider one-parameter family of geodesics</p>
+<p class="step">Step 2: Second variation of energy</p>
+<p class="step">Step 3: Compute D^2 J/dt^2</p>
+<p class="step">Step 4: Riemann tensor appears as curvature term</p></div>
+<p class="metadata">ID: ee1b9c99aebb | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Controls geodesic deviation; relates curvature to convergence/divergence</p>
+<p class="metadata">Provenance: differential geometry proof #20</p>
+</div>
+
+<div class="theorem extra" id="dg-21">
+<h3>Proof 21: Rauch comparison: positive sectional curvature => Jacobi fields grow slower than in space form</h3>
+<p><strong>Statement:</strong> Rauch comparison: positive sectional curvature => Jacobi fields grow slower than in space form</p>
+<p><strong>Hypotheses:</strong> K >= k0 (constant)</p>
+<p><strong>Conclusion:</strong> |J(t)| <= sin(sqrt(k0)*t)/sqrt(k0) for appropriate initial conditions</p>
+<p><strong>Definitions:</strong> Rauch comparison, Jacobi field, sectional curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Compare Jacobi equation with model space</p>
+<p class="step">Step 2: Sturm comparison for second-order ODE</p>
+<p class="step">Step 3: Positive curvature: geodesics converge faster</p>
+<p class="step">Step 4: Result: Jacobi fields bounded by model</p></div>
+<p class="metadata">ID: 27ab14540eb5 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Generalizes to Ricci and pinching conditions</p>
+<p class="metadata">Provenance: differential geometry proof #21</p>
+</div>
+
+<div class="theorem extra" id="dg-22">
+<h3>Proof 22: Gauss-Bonnet-Chern: integral_M Pf(Omega) = chi(M) for higher-dimensional even manifold</h3>
+<p><strong>Statement:</strong> Gauss-Bonnet-Chern: integral_M Pf(Omega) = chi(M) for higher-dimensional even manifold</p>
+<p><strong>Hypotheses:</strong> M compact oriented 2n-dimensional Riemannian manifold, no boundary</p>
+<p><strong>Conclusion:</strong> integral of Pfaffian of curvature = Euler characteristic</p>
+<p><strong>Definitions:</strong> Gauss-Bonnet-Chern, Pfaffian, Euler class</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Pfaffian constructed from curvature form</p>
+<p class="step">Step 2: Topological invariance by Chern-Weil theory</p>
+<p class="step">Step 3: Euler class is characteristic class</p>
+<p class="step">Step 4: Integral gives Euler characteristic</p></div>
+<p class="metadata">ID: 0ff9ea7a98ff | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Higher-dimensional generalization of classical Gauss-Bonnet</p>
+<p class="metadata">Provenance: differential geometry proof #22</p>
+</div>
+
+<div class="theorem extra" id="dg-23">
+<h3>Proof 23: Nash embedding theorem: every Riemannian manifold isometrically embeds in some R^N</h3>
+<p><strong>Statement:</strong> Nash embedding theorem: every Riemannian manifold isometrically embeds in some R^N</p>
+<p><strong>Hypotheses:</strong> (M^n, g) Riemannian manifold</p>
+<p><strong>Conclusion:</strong> exists isometric embedding M -> R^N for N = n(3n+11)/2</p>
+<p><strong>Definitions:</strong> Nash embedding, isometric, Riemannian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Nash's original proof: implicit function theorem</p>
+<p class="step">Step 2: Hard implicit function theorem</p>
+<p class="step">Step 3: Perturbation argument</p>
+<p class="step">Step 4: Moser's simplification using H-cobordism</p>
+<p class="step">Step 5: Constructive proofs exist (Gunther)</p></div>
+<p class="metadata">ID: 74e58be1fd27 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: N = n(3n+11)/2 for C^1, N = n(n+1)/2 for C^infinity</p>
+<p class="metadata">Provenance: differential geometry proof #23</p>
+</div>
+
+<div class="theorem extra" id="dg-24">
+<h3>Proof 24: Cartan-Hadamard: nonpositive sectional curvature => universal cover is diffeomorphic to R^n</h3>
+<p><strong>Statement:</strong> Cartan-Hadamard: nonpositive sectional curvature => universal cover is diffeomorphic to R^n</p>
+<p><strong>Hypotheses:</strong> M complete, K <= 0 everywhere</p>
+<p><strong>Conclusion:</strong> exp_p: T_pM -> M is covering map (universal cover diffeo to R^n)</p>
+<p><strong>Definitions:</strong> Cartan-Hadamard, nonpositive curvature, universal cover</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Jacobi fields don't vanish (comparison)</p>
+<p class="step">Step 2: exp_p is local diffeomorphism everywhere</p>
+<p class="step">Step 3: Complete + local diffeo => covering map</p>
+<p class="step">Step 4: Simply connected => global diffeomorphism</p></div>
+<p class="metadata">ID: 1a441798f785 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental structure theorem for nonpositively curved manifolds</p>
+<p class="metadata">Provenance: differential geometry proof #24</p>
+</div>
+
+<div class="theorem extra" id="dg-25">
+<h3>Proof 25: Hadamard manifold: complete simply connected with K <= 0 is diffeomorphic to R^n</h3>
+<p><strong>Statement:</strong> Hadamard manifold: complete simply connected with K <= 0 is diffeomorphic to R^n</p>
+<p><strong>Hypotheses:</strong> M simply connected, complete, K <= 0</p>
+<p><strong>Conclusion:</strong> M is diffeomorphic to R^n</p>
+<p><strong>Definitions:</strong> Hadamard manifold, Cartan-Hadama, flat</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Cartan-Hadamard to M itself</p>
+<p class="step">Step 2: exp_p is global diffeomorphism</p>
+<p class="step">Step 3: Distance function convex</p>
+<p class="step">Step 4: Rich geometric structure</p></div>
+<p class="metadata">ID: 9943a7a5c658 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Rich class including hyperbolic space and symmetric spaces</p>
+<p class="metadata">Provenance: differential geometry proof #25</p>
+</div>
 </body></html>

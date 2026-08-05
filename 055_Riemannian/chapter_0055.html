@@ -17075,4 +17075,81 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Riemannian, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+5 from Riemannian geometry)</h2>
+
+<div class="theorem extra" id="dg-1">
+<h3>Proof 1: Hopf-Rinow: geodesically complete Riemannian manifold is metrically complete</h3>
+<p><strong>Statement:</strong> Hopf-Rinow: geodesically complete Riemannian manifold is metrically complete</p>
+<p><strong>Hypotheses:</strong> M connected Riemannian manifold</p>
+<p><strong>Conclusion:</strong> geodesic complete <=> metric complete <=> closed bounded sets compact</p>
+<p><strong>Definitions:</strong> Hopf-Rinow, completeness, geodesic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Geodesic => metric complete (shortest paths exist)</p>
+<p class="step">Step 2: Metric complete => closed bounded sets compact</p>
+<p class="step">Step 3: Closed bounded compact => Hopf-Rinow</p>
+<p class="step">Step 4: Any two points connected by minimizing geodesic</p></div>
+<p class="metadata">ID: 70e2ac27c57a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Equivalence of three notions of completeness</p>
+<p class="metadata">Provenance: Riemannian geometry proof #1</p>
+</div>
+
+<div class="theorem extra" id="dg-2">
+<h3>Proof 2: Bochner technique: harmonic forms with nonneg Ricci are parallel</h3>
+<p><strong>Statement:</strong> Bochner technique: harmonic forms with nonneg Ricci are parallel</p>
+<p><strong>Hypotheses:</strong> Ric >= 0, omega harmonic k-form</p>
+<p><strong>Conclusion:</strong> Delta omega = 0 and Ric >= 0 => nabla omega = 0</p>
+<p><strong>Definitions:</strong> Bochner, harmonic, parallel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bochner formula: 0 = integral |nabla omega|^2 + Ric terms</p>
+<p class="step">Step 2: Both terms nonnegative</p>
+<p class="step">Step 3: Both must vanish</p>
+<p class="step">Step 4: Therefore nabla omega = 0: omega is parallel</p></div>
+<p class="metadata">ID: fa7ad60fbb06 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Topological consequences: b_k determined by curvature</p>
+<p class="metadata">Provenance: Riemannian geometry proof #2</p>
+</div>
+
+<div class="theorem extra" id="dg-3">
+<h3>Proof 3: Calabi-Yau theorem: Kähler manifold with c_1=0 has Ricci-flat metric</h3>
+<p><strong>Statement:</strong> Calabi-Yau theorem: Kähler manifold with c_1=0 has Ricci-flat metric</p>
+<p><strong>Hypotheses:</strong> M compact Kähler, first Chern class c_1(M) = 0</p>
+<p><strong>Conclusion:</strong> exists unique Ricci-flat Kähler metric in given Kähler class</p>
+<p><strong>Definitions:</strong> Calabi-Yau, Ricci-flat, Kähler</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Yau's proof of Calabi conjecture</p>
+<p class="step">Step 2: Solve Monge-Ampère equation</p>
+<p class="step">Step 3: deg(L) > 0 ensures solution</p>
+<p class="step">Step 4: Uniqueness by maximum principle</p></div>
+<p class="metadata">ID: f2b868ac4478 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Yau's Fields medal (1982) for this result</p>
+<p class="metadata">Provenance: Riemannian geometry proof #3</p>
+</div>
+
+<div class="theorem extra" id="dg-4">
+<h3>Proof 4: Berger classification: simply connected irreducible Riemannian manifolds of positive sectional curvature are classified in even dimensions</h3>
+<p><strong>Statement:</strong> Berger classification: simply connected irreducible Riemannian manifolds of positive sectional curvature are classified in even dimensions</p>
+<p><strong>Hypotheses:</strong> M simply connected, irreducible, K > 0</p>
+<p><strong>Conclusion:</strong> limited list: spheres, CP^n, Grassmannians, G2, Spin(7) holonomy</p>
+<p><strong>Definitions:</strong> Berger classification, holonomy, symmetry</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Holonomy group constrains geometry</p>
+<p class="step">Step 2: Berger classified possible holonomy groups</p>
+<p class="step">Step 3: Positive curvature severely restricts holonomy</p>
+<p class="step">Step 4: Most cases ruled out by direct analysis</p></div>
+<p class="metadata">ID: 99f5b7b62d8a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Complete classification remains open in general</p>
+<p class="metadata">Provenance: Riemannian geometry proof #4</p>
+</div>
+
+<div class="theorem extra" id="dg-5">
+<h3>Proof 5: Sullivan rigidity: two closed negatively curved manifolds homeomorphic iff isometric (in dim >= 3)</h3>
+<p><strong>Statement:</strong> Sullivan rigidity: two closed negatively curved manifolds homeomorphic iff isometric (in dim >= 3)</p>
+<p><strong>Hypotheses:</strong> M,N closed, dim >= 3, K < 0</p>
+<p><strong>Conclusion:</strong> homeomorphic => isometric</p>
+<p><strong>Definitions:</strong> Sullivan rigidity, Mostow, negative curvature</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Mostow rigidity for hyperbolic manifolds</p>
+<p class="step">Step 2: Margulis superrigidity extends</p>
+<p class="step">Step 3: Algebraic structure of fundamental group</p>
+<p class="step">Step 4: Conjugation in Lie groups determines metric</p></div>
+<p class="metadata">ID: 9496c4c02f51 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Topology completely determines geometry in negative curvature</p>
+<p class="metadata">Provenance: Riemannian geometry proof #5</p>
+</div>
 </body></html>

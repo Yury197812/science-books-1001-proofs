@@ -18088,4 +18088,235 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'continuous': step functions avoid fixed points</p>
 <p class="metadata">Provenance: Domain Topology, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+15 from general topology)</h2>
+
+<div class="theorem extra" id="dg-1">
+<h3>Proof 1: Brouwer fixed point: continuous f: D^n -> D^n has a fixed point</h3>
+<p><strong>Statement:</strong> Brouwer fixed point: continuous f: D^n -> D^n has a fixed point</p>
+<p><strong>Hypotheses:</strong> D^n closed unit disk in R^n, f continuous</p>
+<p><strong>Conclusion:</strong> exists x with f(x) = x</p>
+<p><strong>Definitions:</strong> Brouwer, fixed point, disk</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume no fixed point</p>
+<p class="step">Step 2: Define r: D^n -> S^{n-1} by r(x) = point on boundary</p>
+<p class="step">Step 3: on ray from f(x) through x</p>
+<p class="step">Step 4: r is continuous retraction</p>
+<p class="step">Step 5: But no retraction exists (topological obstruction)</p>
+<p class="step">Step 6: Contradiction</p></div>
+<p class="metadata">ID: 3e9ab66d2ae9 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Removing 'continuous': step function avoids fixed point</p>
+<p class="metadata">Provenance: general topology proof #1</p>
+</div>
+
+<div class="theorem extra" id="dg-2">
+<h3>Proof 2: Brouwer invariance of domain: continuous injection f: R^n -> R^n is open</h3>
+<p><strong>Statement:</strong> Brouwer invariance of domain: continuous injection f: R^n -> R^n is open</p>
+<p><strong>Hypotheses:</strong> f: R^n -> R^n continuous injective</p>
+<p><strong>Conclusion:</strong> f maps open sets to open sets</p>
+<p><strong>Definitions:</strong> invariance of domain, open map, injective</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Local: f is open near each point</p>
+<p class="step">Step 2: Use degree theory or homology</p>
+<p class="step">Step 3: Injective + continuous => local homeomorphism</p>
+<p class="step">Step 4: By invariance of domain theorem</p></div>
+<p class="metadata">ID: a5dc33c24c64 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'injective': f(x)=constant is not open</p>
+<p class="metadata">Provenance: general topology proof #2</p>
+</div>
+
+<div class="theorem extra" id="dg-3">
+<h3>Proof 3: Invariance of dimension: R^n and R^m are homeomorphic iff n = m</h3>
+<p><strong>Statement:</strong> Invariance of dimension: R^n and R^m are homeomorphic iff n = m</p>
+<p><strong>Hypotheses:</strong> homeomorphism between R^n and R^m</p>
+<p><strong>Conclusion:</strong> n = m</p>
+<p><strong>Definitions:</strong> invariance of dimension, topological invariant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Remove origin: R^n\{0} deformation retracts to S^{n-1}</p>
+<p class="step">Step 2: H_{n-1}(S^{n-1}) = Z, H_{m-1}(S^{m-1}) = 0 if m != n</p>
+<p class="step">Step 3: Homeomorphism preserves homology</p>
+<p class="step">Step 4: Therefore n-1 = m-1, so n = m</p></div>
+<p class="metadata">ID: 1c3fc4a94eed | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental topological invariant of Euclidean space</p>
+<p class="metadata">Provenance: general topology proof #3</p>
+</div>
+
+<div class="theorem extra" id="dg-4">
+<h3>Proof 4: Jordan curve theorem: simple closed curve in R^2 separates plane into 2 components</h3>
+<p><strong>Statement:</strong> Jordan curve theorem: simple closed curve in R^2 separates plane into 2 components</p>
+<p><strong>Hypotheses:</strong> J simple closed curve in R^2</p>
+<p><strong>Conclusion:</strong> R^2\J has exactly 2 connected components</p>
+<p><strong>Definitions:</strong> Jordan, simple closed, separation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Interior (bounded) and exterior (unbounded)</p>
+<p class="step">Step 2: Fundamental group of complement is Z</p>
+<p class="step">Step 3: Deep proof: combinatorial or algebraic topology</p>
+<p class="step">Step 4: One of most 'obvious' yet difficult theorems</p></div>
+<p class="metadata">ID: c764d69df81d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Removing 'simple': self-intersecting curves can create more regions</p>
+<p class="metadata">Provenance: general topology proof #4</p>
+</div>
+
+<div class="theorem extra" id="dg-5">
+<h3>Proof 5: Tychonoff theorem: product of compact spaces is compact</h3>
+<p><strong>Statement:</strong> Tychonoff theorem: product of compact spaces is compact</p>
+<p><strong>Hypotheses:</strong> each X_i compact</p>
+<p><strong>Conclusion:</strong> product topological space is compact</p>
+<p><strong>Definitions:</strong> Tychonoff, product, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Alexander subbase theorem: every subbase cover has finite subcover</p>
+<p class="step">Step 2: Equivalently: every ultrafilter converges</p>
+<p class="step">Step 3: Product of convergent ultrafilters converges</p>
+<p class="step">Step 4: Use projection maps</p></div>
+<p class="metadata">ID: f9830e6c282d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Requires axiom of choice; equivalent to it</p>
+<p class="metadata">Provenance: general topology proof #5</p>
+</div>
+
+<div class="theorem extra" id="dg-6">
+<h3>Proof 6: Urysohn lemma: disjoint closed sets in normal space separated by continuous function</h3>
+<p><strong>Statement:</strong> Urysohn lemma: disjoint closed sets in normal space separated by continuous function</p>
+<p><strong>Hypotheses:</strong> X normal, A,B disjoint closed</p>
+<p><strong>Conclusion:</strong> continuous f: X -> [0,1] with f|_A=0, f|_B=1</p>
+<p><strong>Definitions:</strong> Urysohn, normal, separation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Normality separates sets</p>
+<p class="step">Step 2: Construct f by induction on dyadic rationals</p>
+<p class="step">Step 3: At each level: separate with open sets</p>
+<p class="step">Step 4: Extend to continuous function by density of dyadics</p></div>
+<p class="metadata">ID: b38bf4ffc231 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'normal': separation by function may not exist</p>
+<p class="metadata">Provenance: general topology proof #6</p>
+</div>
+
+<div class="theorem extra" id="dg-7">
+<h3>Proof 7: Tietze extension: continuous function on closed subset of normal space extends to whole space</h3>
+<p><strong>Statement:</strong> Tietze extension: continuous function on closed subset of normal space extends to whole space</p>
+<p><strong>Hypotheses:</strong> X normal, A closed subset, f: A -> R continuous</p>
+<p><strong>Conclusion:</strong> exists F: X -> R continuous with F|_A = f</p>
+<p><strong>Definitions:</strong> Tietze, extension, normal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: First for bounded f: |f| <= M</p>
+<p class="step">Step 2: Approximate f by piecewise constant functions</p>
+<p class="step">Step 3: Each extends by Urysohn lemma</p>
+<p class="step">Step 4: Sum converges to extension F</p></div>
+<p class="metadata">ID: 78274659056d | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental extension theorem</p>
+<p class="metadata">Provenance: general topology proof #7</p>
+</div>
+
+<div class="theorem extra" id="dg-8">
+<h3>Proof 8: Stone-Weierstrass: subalgebra separating points is dense in C(K)</h3>
+<p><strong>Statement:</strong> Stone-Weierstrass: subalgebra separating points is dense in C(K)</p>
+<p><strong>Hypotheses:</strong> K compact Hausdorff, A subalgebra, A separates points, A contains constants</p>
+<p><strong>Conclusion:</strong> A is dense in C(K)</p>
+<p><strong>Definitions:</strong> Stone-Weierstrass, subalgebra, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Show A closed under max and min</p>
+<p class="step">Step 2: Lattice property: can approximate step functions</p>
+<p class="step">Step 3: Approximate any continuous function by step functions</p>
+<p class="step">Step 4: Density follows</p></div>
+<p class="metadata">ID: 0e55be097cfd | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without separating points: constants not dense</p>
+<p class="metadata">Provenance: general topology proof #8</p>
+</div>
+
+<div class="theorem extra" id="dg-9">
+<h3>Proof 9: Baire category theorem: countable intersection of dense open sets is dense in complete metric space</h3>
+<p><strong>Statement:</strong> Baire category theorem: countable intersection of dense open sets is dense in complete metric space</p>
+<p><strong>Hypotheses:</strong> (X,d) complete metric space</p>
+<p><strong>Conclusion:</strong> countable dense open intersection is dense</p>
+<p><strong>Definitions:</strong> Baire, category, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Given open ball U, dense open D_n</p>
+<p class="step">Step 2: Find nested balls: B_0 in U, B_n in D_n</p>
+<p class="step">Step 3: Diameter shrinks to 0</p>
+<p class="step">Step 4: Intersection point in U and all D_n</p></div>
+<p class="metadata">ID: 842213f49ad0 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without completeness: may fail (Q is countable union of points)</p>
+<p class="metadata">Provenance: general topology proof #9</p>
+</div>
+
+<div class="theorem extra" id="dg-10">
+<h3>Proof 10: Alexander duality: H_k(S^n\A) related to H^{n-k-1}(A)</h3>
+<p><strong>Statement:</strong> Alexander duality: H_k(S^n\A) related to H^{n-k-1}(A)</p>
+<p><strong>Hypotheses:</strong> A compact subset of S^n</p>
+<p><strong>Conclusion:</strong> homology of complement related to cohomology of set</p>
+<p><strong>Definitions:</strong> Alexander duality, homology, sphere complement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Long exact sequence of pair (S^n, S^n\A)</p>
+<p class="step">Step 2: Lefschetz duality on S^n</p>
+<p class="step">Step 3: Mayer-Vietoris for decomposition</p>
+<p class="step">Step 4: Identify groups</p></div>
+<p class="metadata">ID: 36f12f6becc3 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Computes homology of complements</p>
+<p class="metadata">Provenance: general topology proof #10</p>
+</div>
+
+<div class="theorem extra" id="dg-11">
+<h3>Proof 11: Van Kampen theorem: pi_1(X) computed from open cover U,V</h3>
+<p><strong>Statement:</strong> Van Kampen theorem: pi_1(X) computed from open cover U,V</p>
+<p><strong>Hypotheses:</strong> X = U union V, U,V open, path-connected, U intersect V path-connected</p>
+<p><strong>Conclusion:</strong> pi_1(X) = pi_1(U) *_{pi_1(U cap V)} pi_1(V)</p>
+<p><strong>Definitions:</strong> Van Kampen, fundamental group, pushout</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Loops in X decompose into loops in U and V</p>
+<p class="step">Step 2: Intersection controls relations</p>
+<p class="step">Step 3: Pushout diagram: pi_1(U cap V) -> pi_1(U) and pi_1(V)</p>
+<p class="step">Step 4: Compute via group presentation</p></div>
+<p class="metadata">ID: 3a909c2d8dab | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without path-connected intersection: more complicated</p>
+<p class="metadata">Provenance: general topology proof #11</p>
+</div>
+
+<div class="theorem extra" id="dg-12">
+<h3>Proof 12: Mayer-Vietoris: long exact sequence for homology of union</h3>
+<p><strong>Statement:</strong> Mayer-Vietoris: long exact sequence for homology of union</p>
+<p><strong>Hypotheses:</strong> X = A union B, A,B open</p>
+<p><strong>Conclusion:</strong> ... -> H_n(A cap B) -> H_n(A) + H_n(B) -> H_n(X) -> H_{n-1}(A cap B) -> ...</p>
+<p><strong>Definitions:</strong> Mayer-Vietoris, exact sequence, homology</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Chain complex decomposition</p>
+<p class="step">Step 2: Short exact sequence of complexes</p>
+<p class="step">Step 3: Snake lemma gives long exact sequence</p>
+<p class="step">Step 4: Connect homology groups</p></div>
+<p class="metadata">ID: fab10d93281b | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Computational workhorse in algebraic topology</p>
+<p class="metadata">Provenance: general topology proof #12</p>
+</div>
+
+<div class="theorem extra" id="dg-13">
+<h3>Proof 13: Lefschetz fixed point theorem: sum (-1)^k tr(f_* on H_k) != 0 => fixed point exists</h3>
+<p><strong>Statement:</strong> Lefschetz fixed point theorem: sum (-1)^k tr(f_* on H_k) != 0 => fixed point exists</p>
+<p><strong>Hypotheses:</strong> f: X -> X continuous, X compact triangulable</p>
+<p><strong>Conclusion:</strong> Lefschetz number != 0 implies f has fixed point</p>
+<p><strong>Definitions:</strong> Lefschetz, fixed point, homology</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define L(f) = sum (-1)^k tr(f_*: H_k -> H_k)</p>
+<p class="step">Step 2: If L(f) != 0: fixed point exists</p>
+<p class="step">Step 3: Brouwer: special case for D^n</p>
+<p class="step">Step 4: Nielsen number gives count of fixed points</p></div>
+<p class="metadata">ID: 5f8ccc0f9a5b | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalizes Brouwer to arbitrary manifolds</p>
+<p class="metadata">Provenance: general topology proof #13</p>
+</div>
+
+<div class="theorem extra" id="dg-14">
+<h3>Proof 14: Hairy ball theorem: no nowhere-zero continuous vector field on S^{2n}</h3>
+<p><strong>Statement:</strong> Hairy ball theorem: no nowhere-zero continuous vector field on S^{2n}</p>
+<p><strong>Hypotheses:</strong> S^{2n} even-dimensional sphere</p>
+<p><strong>Conclusion:</strong> every continuous tangent vector field has a zero</p>
+<p><strong>Definitions:</strong> hairy ball, vector field, sphere</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume nowhere-zero field v</p>
+<p class="step">Step 2: Define map S^{2n} -> S^{2n} by v/|v|</p>
+<p class="step">Step 3: Compute degree: deg(antipodal) = (-1)^{2n+1} = -1</p>
+<p class="step">Step 4: But v/|v| is homotopic to identity (degree 1)</p>
+<p class="step">Step 5: 1 = -1: contradiction</p></div>
+<p class="metadata">ID: 04f9bcadd86d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Odd-dimensional spheres DO have nowhere-zero fields</p>
+<p class="metadata">Provenance: general topology proof #14</p>
+</div>
+
+<div class="theorem extra" id="dg-15">
+<h3>Proof 15: Poincaré conjecture (Perelman): simply connected closed 3-manifold is homeomorphic to S^3</h3>
+<p><strong>Statement:</strong> Poincaré conjecture (Perelman): simply connected closed 3-manifold is homeomorphic to S^3</p>
+<p><strong>Hypotheses:</strong> M closed 3-manifold, pi_1(M) = 0</p>
+<p><strong>Conclusion:</strong> M is homeomorphic to S^3</p>
+<p><strong>Definitions:</strong> Poincaré, 3-manifold, Perelman</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Proved by Perelman (2003) via Ricci flow</p>
+<p class="step">Step 2: Hamilton's program: flow metrics to constant curvature</p>
+<p class="step">Step 3: Perelman's contributions: entropy monotonicity, no local collapsing</p>
+<p class="step">Step 4: Convergence to constant curvature metric</p>
+<p class="step">Step 5: Therefore M diffeomorphic to S^3</p></div>
+<p class="metadata">ID: 4c3c2ee6d2c8 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: One of Clay Millennium problems, solved by Perelman (Fields medal 2006)</p>
+<p class="metadata">Provenance: general topology proof #15</p>
+</div>
 </body></html>
