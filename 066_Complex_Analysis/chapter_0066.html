@@ -17376,4 +17376,67 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'nonconstant': constant functions are not open</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Complex_Analysis</p>
 </div>
+
+<h2>Extra proofs (4 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Hahn-Banach: continuous linear functional extends from subspace</h3>
+<p><strong>Statement:</strong> Hahn-Banach: continuous linear functional extends from subspace</p>
+<p><strong>Hypotheses:</strong> f bounded linear on subspace Y of X</p>
+<p><strong>Conclusion:</strong> extends to F on X with ||F|| = ||f||</p>
+<p><strong>Definitions:</strong> Hahn-Banach, extension, linear functional</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Extend one dimension at a time</p>
+<p class="step">Step 2: At each step, bound functional by norm</p>
+<p class="step">Step 3: Use Zorn's lemma for infinite-dimensional case</p>
+<p class="step">Step 4: Norm preservation by construction</p></div>
+<p class="metadata">ID: 23c6dd3e5041 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without completeness: may not have enough functionals</p>
+<p class="metadata">Provenance: Domain Complex Analysis, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Open mapping theorem: surjective bounded linear map between Banach spaces is open</h3>
+<p><strong>Statement:</strong> Open mapping theorem: surjective bounded linear map between Banach spaces is open</p>
+<p><strong>Hypotheses:</strong> X,Y Banach spaces, T: X -> Y bounded linear, surjective</p>
+<p><strong>Conclusion:</strong> T maps open sets to open sets</p>
+<p><strong>Definitions:</strong> open mapping, Banach, surjective</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Show T(B_X) contains neighborhood of 0 in Y</p>
+<p class="step">Step 2: Use Baire category theorem on X</p>
+<p class="step">Step 3: T(B_X) has non-empty interior</p>
+<p class="step">Step 4: Scale: T(B_X) contains ball of radius r</p></div>
+<p class="metadata">ID: 72567ca64beb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without Banach: may fail (e.g. identity R->R with different norms)</p>
+<p class="metadata">Provenance: Domain Complex Analysis, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Closed graph theorem: T: X->Y has closed graph iff T is bounded (X,Y Banach)</h3>
+<p><strong>Statement:</strong> Closed graph theorem: T: X->Y has closed graph iff T is bounded (X,Y Banach)</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T: X->Y linear</p>
+<p><strong>Conclusion:</strong> T bounded <=> graph closed</p>
+<p><strong>Definitions:</strong> closed graph, bounded, Banach</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define Gamma: X -> X x Y by x -> (x, Tx)</p>
+<p class="step">Step 2: If graph closed, Gamma is closed operator</p>
+<p class="step">Step 3: X x Y Banach, Gamma bijective onto closed subspace</p>
+<p class="step">Step 4: By open mapping theorem, Gamma^{-1} bounded</p>
+<p class="step">Step 5: Therefore T = proj_2 o Gamma^{-1} bounded</p></div>
+<p class="metadata">ID: 4809460a41a8 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without Banach spaces: theorem fails</p>
+<p class="metadata">Provenance: Domain Complex Analysis, theorem #3</p>
+</div>
+
+<div class="theorem extra" id="extra-4">
+<h3>Proof 4: Uniform boundedness principle: pointwise bounded family on Banach space is uniformly bounded</h3>
+<p><strong>Statement:</strong> Uniform boundedness principle: pointwise bounded family on Banach space is uniformly bounded</p>
+<p><strong>Hypotheses:</strong> X Banach, {T_alpha} bounded linear, sup_alpha ||T_alpha x|| < inf for each x</p>
+<p><strong>Conclusion:</strong> sup_alpha ||T_alpha|| < infinity</p>
+<p><strong>Definitions:</strong> uniform boundedness, Banach, pointwise</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define F_n = {x : sup_alpha ||T_alpha x|| <= n}</p>
+<p class="step">Step 2: F_n closed, union is X</p>
+<p class="step">Step 3: By Baire category: some F_N has interior</p>
+<p class="step">Step 4: Ball in F_N gives uniform bound</p></div>
+<p class="metadata">ID: 1535aaec66e1 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without completeness: counterexample exists</p>
+<p class="metadata">Provenance: Domain Complex Analysis, theorem #4</p>
+</div>
 </body></html>

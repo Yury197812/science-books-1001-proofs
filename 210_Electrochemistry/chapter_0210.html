@@ -18043,4 +18043,36 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Fails for real gases at high pressure (van der Waals)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Chemistry</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Hess's law: enthalpy change is path-independent</h3>
+<p><strong>Statement:</strong> Hess's law: enthalpy change is path-independent</p>
+<p><strong>Hypotheses:</strong> chemical reaction at constant pressure</p>
+<p><strong>Conclusion:</strong> Delta H depends only on initial and final states</p>
+<p><strong>Definitions:</strong> Hess, enthalpy, path independent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Enthalpy is state function</p>
+<p class="step">Step 2: Energy conservation (First law)</p>
+<p class="step">Step 3: For any cycle: sum Delta H = 0</p>
+<p class="step">Step 4: Therefore for two paths from A to B: Delta H_1 = Delta H_2</p></div>
+<p class="metadata">ID: dd0894c6f302 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental application of First law to chemistry</p>
+<p class="metadata">Provenance: Domain Electrochemistry, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Rate law: rate = k[A]^m[B]^n for elementary reaction</h3>
+<p><strong>Statement:</strong> Rate law: rate = k[A]^m[B]^n for elementary reaction</p>
+<p><strong>Hypotheses:</strong> elementary reaction, constant temperature</p>
+<p><strong>Conclusion:</strong> deterministic relationship between concentrations and rate</p>
+<p><strong>Definitions:</strong> rate law, order, activation energy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Collision theory: molecules must collide with proper orientation</p>
+<p class="step">Step 2: Arrhenius equation: k = A exp(-Ea/RT)</p>
+<p class="step">Step 3: Rate proportional to collision frequency</p>
+<p class="step">Step 4: Order determined by molecularity for elementary steps</p></div>
+<p class="metadata">ID: 63ba00ddd809 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: For non-elementary: order must be determined experimentally</p>
+<p class="metadata">Provenance: Domain Electrochemistry, theorem #2</p>
+</div>
 </body></html>

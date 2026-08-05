@@ -18844,4 +18844,51 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: No removable hypothesis - self-contained</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Number_Theory</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Lebesgue measure is unique translation-invariant measure on R^n (up to normalization)</h3>
+<p><strong>Statement:</strong> Lebesgue measure is unique translation-invariant measure on R^n (up to normalization)</p>
+<p><strong>Hypotheses:</strong> mu translation invariant, sigma-finite, mu([0,1]^n) = 1</p>
+<p><strong>Conclusion:</strong> mu = Lebesgue measure</p>
+<p><strong>Definitions:</strong> Lebesgue measure, translation invariant, uniqueness</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Inner regularity from translation invariance</p>
+<p class="step">Step 2: Approximate open sets by cubes</p>
+<p class="step">Step 3: Cube measure determined by side length</p>
+<p class="step">Step 4: Glue by countable additivity</p></div>
+<p class="metadata">ID: a395c59013fb | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without sigma-finiteness: multiple measures possible</p>
+<p class="metadata">Provenance: Domain Number Theory, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Vitali covering theorem: any Vitali cover of E covers almost all of E</h3>
+<p><strong>Statement:</strong> Vitali covering theorem: any Vitali cover of E covers almost all of E</p>
+<p><strong>Hypotheses:</strong> E subset R^n, V Vitali cover of E</p>
+<p><strong>Conclusion:</strong> exists countable disjoint subcollection covering a.e. E</p>
+<p><strong>Definitions:</strong> Vitali cover, covering theorem, measure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Select balls greedily: largest possible, disjoint</p>
+<p class="step">Step 2: Remainder has small measure</p>
+<p class="step">Step 3: Each uncovered point is close to selected ball</p>
+<p class="step">Step 4: Countable selection covers almost all</p></div>
+<p class="metadata">ID: 40910dbec391 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for differentiation theory</p>
+<p class="metadata">Provenance: Domain Number Theory, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Egorov theorem: pointwise convergence on finite measure => almost uniform convergence</h3>
+<p><strong>Statement:</strong> Egorov theorem: pointwise convergence on finite measure => almost uniform convergence</p>
+<p><strong>Hypotheses:</strong> mu(X) < infinity, f_n -> f pointwise</p>
+<p><strong>Conclusion:</strong> for any epsilon, convergence uniform off set of measure < epsilon</p>
+<p><strong>Definitions:</strong> Egorov, pointwise, almost uniform</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define sets E_{n,k} = union_{m>=n} |f_m-f|>=1/k</p>
+<p class="step">Step 2: mu(E_{n,k}) -> 0 as n->infinity</p>
+<p class="step">Step 3: Choose n_k with mu(E_{n_k,k}) < epsilon/2^k</p>
+<p class="step">Step 4: Uniform on complement of union</p></div>
+<p class="metadata">ID: 6ffb1c8fa3d8 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without finite measure: fails on R with Lebesgue measure</p>
+<p class="metadata">Provenance: Domain Number Theory, theorem #3</p>
+</div>
 </body></html>

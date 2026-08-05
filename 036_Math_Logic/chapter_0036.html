@@ -20045,4 +20045,37 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'consistent': trivial inconsistent system proves everything</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Logic</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Godel incompleteness: consistent r.e. theory of arithmetic is incomplete</h3>
+<p><strong>Statement:</strong> Godel incompleteness: consistent r.e. theory of arithmetic is incomplete</p>
+<p><strong>Hypotheses:</strong> S consistent, S r.e., S expresses arithmetic</p>
+<p><strong>Conclusion:</strong> exists G neither provable nor disprovable</p>
+<p><strong>Definitions:</strong> Godel, incomplete, consistent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Arithmetize syntax as natural numbers</p>
+<p class="step">Step 2: Construct self-referential sentence G: 'not provable'</p>
+<p class="step">Step 3: If S proves G: S proves false statement (if S sound)</p>
+<p class="step">Step 4: If S disproves G: S inconsistent</p>
+<p class="step">Step 5: G independent of S</p></div>
+<p class="metadata">ID: d59fc2535ac1 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without consistency: trivial system proves everything</p>
+<p class="metadata">Provenance: Domain Math Logic, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Halting problem is undecidable</h3>
+<p><strong>Statement:</strong> Halting problem is undecidable</p>
+<p><strong>Hypotheses:</strong> Turing machine M, input w</p>
+<p><strong>Conclusion:</strong> no algorithm decides if M halts on w</p>
+<p><strong>Definitions:</strong> halting problem, Turing, undecidable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume decider H exists</p>
+<p class="step">Step 2: Construct machine D that runs H on (M,M) then does opposite</p>
+<p class="step">Step 3: D(D) halts iff H(D,D) says doesn't halt</p>
+<p class="step">Step 4: Contradiction: D(D) halts <=> D(D) doesn't halt</p></div>
+<p class="metadata">ID: 587b5419bbb1 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: One of the most important results in computer science</p>
+<p class="metadata">Provenance: Domain Math Logic, theorem #2</p>
+</div>
 </body></html>

@@ -17042,4 +17042,36 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: General theorem - no specific hypothesis removable</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain General</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Noether's theorem: every continuous symmetry gives a conserved quantity</h3>
+<p><strong>Statement:</strong> Noether's theorem: every continuous symmetry gives a conserved quantity</p>
+<p><strong>Hypotheses:</strong> Lagrangian L(q,q_dot,t), continuous symmetry</p>
+<p><strong>Conclusion:</strong> conserved charge Q</p>
+<p><strong>Definitions:</strong> Noether, symmetry, conservation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Invariance under translation => momentum conservation</p>
+<p class="step">Step 2: Invariance under rotation => angular momentum conservation</p>
+<p class="step">Step 3: Invariance under time translation => energy conservation</p>
+<p class="step">Step 4: General: Noether charge from symmetry generator</p></div>
+<p class="metadata">ID: d6a86b394b68 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: One of the most profound results in physics</p>
+<p class="metadata">Provenance: Domain Mechanics, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Hamilton's equations: q_dot = dH/dp, p_dot = -dH/dq</h3>
+<p><strong>Statement:</strong> Hamilton's equations: q_dot = dH/dp, p_dot = -dH/dq</p>
+<p><strong>Hypotheses:</strong> H(q,p,t) Hamiltonian</p>
+<p><strong>Conclusion:</strong> equations of motion in phase space</p>
+<p><strong>Definitions:</strong> Hamilton, canonical, phase space</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Legendre transform: H = p*q_dot - L</p>
+<p class="step">Step 2: dL = (dL/dq)dq + (dL/dq_dot)dq_dot</p>
+<p class="step">Step 3: Substitute Euler-Lagrange</p>
+<p class="step">Step 4: Rearrange into Hamilton form</p></div>
+<p class="metadata">ID: 3382549af063 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Equivalent to Lagrangian mechanics, more symmetric</p>
+<p class="metadata">Provenance: Domain Mechanics, theorem #2</p>
+</div>
 </body></html>

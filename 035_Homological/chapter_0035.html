@@ -18711,4 +18711,37 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'p prime': for composite n dividing |G|, conclusion can fail (Z/4Z has no element of order 4? It does, but Z/2Z x Z/2Z has no element of order 4)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Algebraic_Topology</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Ext^n_R(M,N) classifies extensions of M by N</h3>
+<p><strong>Statement:</strong> Ext^n_R(M,N) classifies extensions of M by N</p>
+<p><strong>Hypotheses:</strong> M left R-module, N right R-module</p>
+<p><strong>Conclusion:</strong> Ext^1 classifies short exact sequences 0->N->E->M->0</p>
+<p><strong>Definitions:</strong> Ext, extension, derived functor</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take projective resolution of M</p>
+<p class="step">Step 2: Apply Hom(-,N)</p>
+<p class="step">Step 3: Compute cohomology of resulting complex</p>
+<p class="step">Step 4: Ext^1 = middle cohomology</p></div>
+<p class="metadata">ID: 4c09d312dfcb | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without projective resolution: Ext undefined</p>
+<p class="metadata">Provenance: Domain Homological, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Tor_n^R(M,N) classifies torsion in tensor products</h3>
+<p><strong>Statement:</strong> Tor_n^R(M,N) classifies torsion in tensor products</p>
+<p><strong>Hypotheses:</strong> M,N R-modules</p>
+<p><strong>Conclusion:</strong> Tor_n measures failure of exactness of tensor</p>
+<p><strong>Definitions:</strong> Tor, torsion, tensor product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take projective resolution of M</p>
+<p class="step">Step 2: Tensor with N</p>
+<p class="step">Step 3: Compute homology</p>
+<p class="step">Step 4: Tor_0 = M tensor N</p>
+<p class="step">Step 5: Tor_n for n>0 captures torsion phenomena</p></div>
+<p class="metadata">ID: 4a34fa89701e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Tor_0 = tensor product, higher Tor measures derived tensor</p>
+<p class="metadata">Provenance: Domain Homological, theorem #2</p>
+</div>
 </body></html>

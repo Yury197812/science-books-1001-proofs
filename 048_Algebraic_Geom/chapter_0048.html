@@ -18711,4 +18711,51 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'p prime': for composite n dividing |G|, conclusion can fail (Z/4Z has no element of order 4? It does, but Z/2Z x Z/2Z has no element of order 4)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Algebraic_Topology</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Fundamental group of circle is Z</h3>
+<p><strong>Statement:</strong> Fundamental group of circle is Z</p>
+<p><strong>Hypotheses:</strong> S^1 unit circle</p>
+<p><strong>Conclusion:</strong> pi_1(S^1) = Z</p>
+<p><strong>Definitions:</strong> fundamental group, circle, winding number</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cover S^1 by two open arcs U,V</p>
+<p class="step">Step 2: U intersect V has two components</p>
+<p class="step">Step 3: Van Kampen theorem: free product mod relations</p>
+<p class="step">Step 4: Generator is the loop going around once</p></div>
+<p class="metadata">ID: bc8ad19c5e72 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundational result in algebraic topology</p>
+<p class="metadata">Provenance: Domain Algebraic Geom, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Euler characteristic: V - E + F = 2 for polyhedron homeomorphic to sphere</h3>
+<p><strong>Statement:</strong> Euler characteristic: V - E + F = 2 for polyhedron homeomorphic to sphere</p>
+<p><strong>Hypotheses:</strong> polyhedron homeomorphic to S^2</p>
+<p><strong>Conclusion:</strong> V - E + F = 2</p>
+<p><strong>Definitions:</strong> Euler characteristic, polyhedron, sphere</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Triangulate the surface</p>
+<p class="step">Step 2: Use induction: remove edge then face</p>
+<p class="step">Step 3: Each removal preserves V-E+F</p>
+<p class="step">Step 4: Reduce to single triangle: 3-3+1=1, but with exterior: 2</p></div>
+<p class="metadata">ID: 74132a2de449 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: For genus g surface: V-E+F = 2-2g</p>
+<p class="metadata">Provenance: Domain Algebraic Geom, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Mayer-Vietoris: long exact sequence in homology for pair (A,B) covering X</h3>
+<p><strong>Statement:</strong> Mayer-Vietoris: long exact sequence in homology for pair (A,B) covering X</p>
+<p><strong>Hypotheses:</strong> X = A union B, A,B open</p>
+<p><strong>Conclusion:</strong> ... -> H_n(A intersect B) -> H_n(A)+H_n(B) -> H_n(X) -> H_{n-1}(A intersect B) -> ...</p>
+<p><strong>Definitions:</strong> Mayer-Vietoris, exact sequence, homology</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define chain complexes</p>
+<p class="step">Step 2: Short exact sequence of complexes</p>
+<p class="step">Step 3: Long exact sequence from snake lemma</p>
+<p class="step">Step 4: Compute homology of X from A,B and intersection</p></div>
+<p class="metadata">ID: f2d8e93d7b77 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Requires A,B open for Mayer-Vietoris version</p>
+<p class="metadata">Provenance: Domain Algebraic Geom, theorem #3</p>
+</div>
 </body></html>

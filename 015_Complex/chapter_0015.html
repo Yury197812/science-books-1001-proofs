@@ -17376,4 +17376,52 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'nonconstant': constant functions are not open</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Complex_Analysis</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Riemann mapping theorem: simply connected domain not equal to C maps conformally to unit disk</h3>
+<p><strong>Statement:</strong> Riemann mapping theorem: simply connected domain not equal to C maps conformally to unit disk</p>
+<p><strong>Hypotheses:</strong> U simply connected, U != C</p>
+<p><strong>Conclusion:</strong> exists biholomorphism f: U -> D</p>
+<p><strong>Definitions:</strong> Riemann mapping, conformal, simply connected</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider family of injective holomorphic f: U -> D</p>
+<p class="step">Step 2: Show family nonempty by explicit construction</p>
+<p class="step">Step 3: Montel theorem: normal family</p>
+<p class="step">Step 4: Maximize |f'(z_0)|, show maximizer is surjective</p>
+<p class="step">Step 5: Surjective + injective => biholomorphism</p></div>
+<p class="metadata">ID: 610860714a65 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'simply connected': may have nontrivial topology</p>
+<p class="metadata">Provenance: Domain Complex, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Argument principle: (1/2pi i) integral f'/f = Z - P inside contour</h3>
+<p><strong>Statement:</strong> Argument principle: (1/2pi i) integral f'/f = Z - P inside contour</p>
+<p><strong>Hypotheses:</strong> f meromorphic inside gamma, gamma simple closed</p>
+<p><strong>Conclusion:</strong> integral gamma f'/f dz = 2pi i (Z-P)</p>
+<p><strong>Definitions:</strong> argument principle, zeros, poles</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Near zero of order m: f'/f ~ m/(z-z_0)</p>
+<p class="step">Step 2: Near pole of order n: f'/f ~ -n/(z-z_0)</p>
+<p class="step">Step 3: Residue of f'/f at zero is m</p>
+<p class="step">Step 4: Residue of f'/f at pole is -n</p>
+<p class="step">Step 5: Sum residues: Z - P</p></div>
+<p class="metadata">ID: 275510f279e9 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Counting zeros and poles via contour integral</p>
+<p class="metadata">Provenance: Domain Complex, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Liouville theorem: bounded entire function is constant</h3>
+<p><strong>Statement:</strong> Liouville theorem: bounded entire function is constant</p>
+<p><strong>Hypotheses:</strong> f: C -> C entire, |f(z)| <= M</p>
+<p><strong>Conclusion:</strong> f is constant</p>
+<p><strong>Definitions:</strong> Liouville, bounded, entire</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cauchy estimate: |f'(z)| <= M/R for all R</p>
+<p class="step">Step 2: Let R -> infinity: f'(z) = 0</p>
+<p class="step">Step 3: f constant by connectedness of C</p></div>
+<p class="metadata">ID: 34fa664b7ce0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without 'bounded': e^z is entire and unbounded</p>
+<p class="metadata">Provenance: Domain Complex, theorem #3</p>
+</div>
 </body></html>

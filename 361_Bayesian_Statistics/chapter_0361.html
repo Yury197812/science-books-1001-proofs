@@ -18043,4 +18043,37 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without parametric model, MLE is undefined</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Statistics</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Rao-Blackwell theorem: conditioning on sufficient statistic improves unbiased estimator</h3>
+<p><strong>Statement:</strong> Rao-Blackwell theorem: conditioning on sufficient statistic improves unbiased estimator</p>
+<p><strong>Hypotheses:</strong> T sufficient for theta, delta unbiased</p>
+<p><strong>Conclusion:</strong> E[delta|T] has lower variance, still unbiased</p>
+<p><strong>Definitions:</strong> Rao-Blackwell, sufficient, improvement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[E[delta|T]] = E[delta] = theta</p>
+<p class="step">Step 2: Var(E[delta|T]) <= E[Var(delta|T)] + Var(E[delta|T])</p>
+<p class="step">Step 3: <= E[Var(delta)] = Var(delta)</p>
+<p class="step">Step 4: By total variance inequality</p></div>
+<p class="metadata">ID: 78a1b9536913 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without sufficient statistic: conditioning doesn't help systematically</p>
+<p class="metadata">Provenance: Domain Bayesian Statistics, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Cramér-Rao lower bound: Var(T) >= 1/(nI(theta)) for unbiased T</h3>
+<p><strong>Statement:</strong> Cramér-Rao lower bound: Var(T) >= 1/(nI(theta)) for unbiased T</p>
+<p><strong>Hypotheses:</strong> T unbiased, f regular</p>
+<p><strong>Conclusion:</strong> Var(T) >= 1/(nI(theta))</p>
+<p><strong>Definitions:</strong> Cramér-Rao, Fisher information, lower bound</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Score function S = d/dtheta log f</p>
+<p class="step">Step 2: E[S] = 0, Var(S) = I(theta)</p>
+<p class="step">Step 3: Cauchy-Schwarz: Cov(T,S)^2 <= Var(T)*Var(S)</p>
+<p class="step">Step 4: Cov(T,S) = 1 (regularity)</p>
+<p class="step">Step 5: 1 <= Var(T)*I => Var(T) >= 1/I</p></div>
+<p class="metadata">ID: 5b7663fa1b29 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without regularity conditions: bound doesn't apply</p>
+<p class="metadata">Provenance: Domain Bayesian Statistics, theorem #2</p>
+</div>
 </body></html>

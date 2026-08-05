@@ -18043,4 +18043,51 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Changing a or b changes complexity class</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Computer_Science</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Four color theorem: planar graph is 4-colorable</h3>
+<p><strong>Statement:</strong> Four color theorem: planar graph is 4-colorable</p>
+<p><strong>Hypotheses:</strong> G planar graph</p>
+<p><strong>Conclusion:</strong> chromatic number <= 4</p>
+<p><strong>Definitions:</strong> four color, planar, chromatic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Proved by Appel and Haken (1976) with computer assistance</p>
+<p class="step">Step 2: Verified by Robertson, Sanders, Seymour, Thomas (1997)</p>
+<p class="step">Step 3: Reduction to 633 reducible configurations</p>
+<p class="step">Step 4: No purely theoretical proof yet known</p></div>
+<p class="metadata">ID: 122f1b64c993 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Only known proof uses computer</p>
+<p class="metadata">Provenance: Domain Graph, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Euler's formula: V - E + F = 2 for connected planar graph</h3>
+<p><strong>Statement:</strong> Euler's formula: V - E + F = 2 for connected planar graph</p>
+<p><strong>Hypotheses:</strong> G connected planar graph</p>
+<p><strong>Conclusion:</strong> V - E + F = 2</p>
+<p><strong>Definitions:</strong> Euler formula, planar, connected</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with spanning tree: V-1 edges, 1 face</p>
+<p class="step">Step 2: Add edges one by one</p>
+<p class="step">Step 3: Each added edge creates exactly one new face</p>
+<p class="step">Step 4: V-E+F preserved at each step</p></div>
+<p class="metadata">ID: bc6f526fed45 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without connected: V-E+F = 1 + components</p>
+<p class="metadata">Provenance: Domain Graph, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Kőnig's theorem: in bipartite graph, max matching = min vertex cover</h3>
+<p><strong>Statement:</strong> Kőnig's theorem: in bipartite graph, max matching = min vertex cover</p>
+<p><strong>Hypotheses:</strong> G bipartite</p>
+<p><strong>Conclusion:</strong> max matching = min vertex cover</p>
+<p><strong>Definitions:</strong> Koenig, matching, vertex cover</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Matching <= vertex cover (obvious)</p>
+<p class="step">Step 2: Construct cover from matching</p>
+<p class="step">Step 3: Use augmenting path algorithm</p>
+<p class="step">Step 4: Max flow min cut duality</p></div>
+<p class="metadata">ID: 54b2bf714ebe | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Only for bipartite graphs; fails for general graphs</p>
+<p class="metadata">Provenance: Domain Graph, theorem #3</p>
+</div>
 </body></html>

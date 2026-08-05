@@ -18043,4 +18043,23 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Changing a or b changes complexity class</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Computer_Science</p>
 </div>
+
+<h2>Extra proofs (1 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: RSA security based on difficulty of factoring large integers</h3>
+<p><strong>Statement:</strong> RSA security based on difficulty of factoring large integers</p>
+<p><strong>Hypotheses:</strong> n = pq large primes, e coprime to phi(n)</p>
+<p><strong>Conclusion:</strong> easy to encrypt (mod n), hard to decrypt without factorization</p>
+<p><strong>Definitions:</strong> RSA, factoring, trapdoor</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Public key: (n,e)</p>
+<p class="step">Step 2: Encrypt: c = m^e mod n</p>
+<p class="step">Step 3: Private key: d = e^{-1} mod phi(n)</p>
+<p class="step">Step 4: Decrypt: m = c^d mod n</p>
+<p class="step">Step 5: Breaking RSA requires knowing phi(n) = (p-1)(q-1)</p>
+<p class="step">Step 6: Finding phi(n) requires factoring n</p></div>
+<p class="metadata">ID: 9bb6a15c1a99 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Quantum computers could break RSA via Shor's algorithm</p>
+<p class="metadata">Provenance: Domain Cryptography, theorem #1</p>
+</div>
 </body></html>

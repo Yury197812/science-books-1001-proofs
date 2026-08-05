@@ -17376,4 +17376,51 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing '6' (K_5): can 2-color without monochromatic K_3 (yes, Ramsey number)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Combinatorics</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Dilworth theorem: in finite poset, min chains covering = max antichain size</h3>
+<p><strong>Statement:</strong> Dilworth theorem: in finite poset, min chains covering = max antichain size</p>
+<p><strong>Hypotheses:</strong> finite partially ordered set</p>
+<p><strong>Conclusion:</strong> min chain decomposition size = max antichain size</p>
+<p><strong>Definitions:</strong> Dilworth, antichain, chain</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induction on size of poset</p>
+<p class="step">Step 2: Remove maximal element</p>
+<p class="step">Step 3: Analyze cases: chain containing it or not</p>
+<p class="step">Step 4: Apply Hall's marriage theorem</p></div>
+<p class="metadata">ID: 019e5e704110 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Dual of Mirsky's theorem</p>
+<p class="metadata">Provenance: Domain Combinatorics, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Hall's marriage theorem: perfect matching exists iff Hall condition holds</h3>
+<p><strong>Statement:</strong> Hall's marriage theorem: perfect matching exists iff Hall condition holds</p>
+<p><strong>Hypotheses:</strong> bipartite graph G=(A,B,E)</p>
+<p><strong>Conclusion:</strong> perfect matching <=> |N(S)| >= |S| for all S subset A</p>
+<p><strong>Definitions:</strong> Hall, matching, bipartite</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Necessity: matching covers S, so neighbors >= |S|</p>
+<p class="step">Step 2: Sufficiency by induction</p>
+<p class="step">Step 3: Remove matched pair, apply induction</p>
+<p class="step">Step 4: Or use max-flow min-cut</p></div>
+<p class="metadata">ID: 6db527c346dc | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without Hall condition: matching may not exist</p>
+<p class="metadata">Provenance: Domain Combinatorics, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Sperner theorem: max antichain in 2^{[n]} is C(n, floor(n/2))</h3>
+<p><strong>Statement:</strong> Sperner theorem: max antichain in 2^{[n]} is C(n, floor(n/2))</p>
+<p><strong>Hypotheses:</strong> power set of [n]</p>
+<p><strong>Conclusion:</strong> largest antichain has size C(n, floor(n/2))</p>
+<p><strong>Definitions:</strong> Sperner, antichain, binomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Sperner family: no set contains another</p>
+<p class="step">Step 2: Double counting with LYM inequality</p>
+<p class="step">Step 3: Assign weight 1/C(n,|A|) to each set in antichain</p>
+<p class="step">Step 4: Sum <= 1, equality for middle level</p></div>
+<p class="metadata">ID: bace176be34d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental result in extremal combinatorics</p>
+<p class="metadata">Provenance: Domain Combinatorics, theorem #3</p>
+</div>
 </body></html>

@@ -18043,4 +18043,49 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Fails for real gases at high pressure (van der Waals)</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Chemistry</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Urysohn lemma: disjoint closed sets in normal space can be separated by continuous function</h3>
+<p><strong>Statement:</strong> Urysohn lemma: disjoint closed sets in normal space can be separated by continuous function</p>
+<p><strong>Hypotheses:</strong> X normal, A,B disjoint closed</p>
+<p><strong>Conclusion:</strong> continuous f with f(A)=0, f(B)=1</p>
+<p><strong>Definitions:</strong> Urysohn, normal, separation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use normality to separate sets at each rational level</p>
+<p class="step">Step 2: Construct f by induction on dyadic rationals</p>
+<p class="step">Step 3: Continuity follows from construction</p></div>
+<p class="metadata">ID: 5126066e6618 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'normal': separation may not exist</p>
+<p class="metadata">Provenance: Domain General Chemistry, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Baire category theorem: countable intersection of dense open sets is dense</h3>
+<p><strong>Statement:</strong> Baire category theorem: countable intersection of dense open sets is dense</p>
+<p><strong>Hypotheses:</strong> complete metric space or locally compact Hausdorff</p>
+<p><strong>Conclusion:</strong> countable intersection of dense open sets is dense</p>
+<p><strong>Definitions:</strong> Baire, category, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Given open ball U and dense open sets D_n</p>
+<p class="step">Step 2: Find nested sequence of balls: B_0 in U, B_n in D_n</p>
+<p class="step">Step 3: Diameter shrinks to 0</p>
+<p class="step">Step 4: Intersection point is in U and all D_n</p></div>
+<p class="metadata">ID: 61be3edda24c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without completeness or local compactness: may fail</p>
+<p class="metadata">Provenance: Domain General Chemistry, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Stone-Weierstrass: subalgebra separating points is dense in C(K)</h3>
+<p><strong>Statement:</strong> Stone-Weierstrass: subalgebra separating points is dense in C(K)</p>
+<p><strong>Hypotheses:</strong> K compact Hausdorff, A subalgebra separating points, A contains constants</p>
+<p><strong>Conclusion:</strong> A is dense in C(K) with sup norm</p>
+<p><strong>Definitions:</strong> Stone-Weierstrass, subalgebra, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Show A closed under max and min</p>
+<p class="step">Step 2: Use lattice property</p>
+<p class="step">Step 3: Approximate step functions then continuous</p></div>
+<p class="metadata">ID: c33e16aca6e5 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without separating points: constants subalgebra is not dense</p>
+<p class="metadata">Provenance: Domain General Chemistry, theorem #3</p>
+</div>
 </body></html>

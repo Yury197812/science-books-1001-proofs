@@ -17042,4 +17042,36 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: General theorem - no specific hypothesis removable</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Geometry</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Sard's theorem: critical values of smooth map have measure zero</h3>
+<p><strong>Statement:</strong> Sard's theorem: critical values of smooth map have measure zero</p>
+<p><strong>Hypotheses:</strong> f: M -> N smooth, critical points where df is not surjective</p>
+<p><strong>Conclusion:</strong> f(critical points) has measure 0 in N</p>
+<p><strong>Definitions:</strong> Sard, critical value, measure zero</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induct on dimensions of domain and target</p>
+<p class="step">Step 2: Use Taylor expansion at critical points</p>
+<p class="step">Step 3: Measure of critical values in each coordinate chart vanishes</p>
+<p class="step">Step 4: Glue by countable additivity</p></div>
+<p class="metadata">ID: 94407b640eb1 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without smoothness: theorem fails</p>
+<p class="metadata">Provenance: Domain Differential, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Transversality theorem: generic perturbation is transverse</h3>
+<p><strong>Statement:</strong> Transversality theorem: generic perturbation is transverse</p>
+<p><strong>Hypotheses:</strong> f: M -> N smooth, S submanifold of N</p>
+<p><strong>Conclusion:</strong> for generic perturbation g, g is transverse to S</p>
+<p><strong>Definitions:</strong> transversality, generic, perturbation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Thom transversality theorem</p>
+<p class="step">Step 2: Jet space construction</p>
+<p class="step">Step 3: Generic maps are dense in C-infinity</p>
+<p class="step">Step 4: Small perturbation achieves transversality</p></div>
+<p class="metadata">ID: defb9c2c04b6 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental tool in differential topology</p>
+<p class="metadata">Provenance: Domain Differential, theorem #2</p>
+</div>
 </body></html>

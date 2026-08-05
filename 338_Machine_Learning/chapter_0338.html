@@ -18043,4 +18043,23 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Changing a or b changes complexity class</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Computer_Science</p>
 </div>
+
+<h2>Extra proofs (1 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Bias-variance tradeoff: expected error = bias^2 + variance + noise</h3>
+<p><strong>Statement:</strong> Bias-variance tradeoff: expected error = bias^2 + variance + noise</p>
+<p><strong>Hypotheses:</strong> estimator f_hat, true function f, noise sigma^2</p>
+<p><strong>Conclusion:</strong> E[(y-f_hat)^2] = Bias^2 + Variance + sigma^2</p>
+<p><strong>Definitions:</strong> bias, variance, tradeoff</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Expand E[(y-f_hat)^2] = E[(f+eps-f_hat)^2]</p>
+<p class="step">Step 2: = E[(f-f_hat)^2] + 2E[(f-f_hat)eps] + E[eps^2]</p>
+<p class="step">Step 3: Cross term vanishes</p>
+<p class="step">Step 4: E[(f-f_hat)^2] = (E[f_hat]-f)^2 + Var(f_hat)</p>
+<p class="step">Step 5: = Bias^2 + Variance</p>
+<p class="step">Step 6: E[eps^2] = sigma^2 (irreducible noise)</p></div>
+<p class="metadata">ID: c12450884593 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental decomposition in statistical learning</p>
+<p class="metadata">Provenance: Domain Machine Learning, theorem #1</p>
+</div>
 </body></html>

@@ -17042,4 +17042,37 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: This is a postulate, not a theorem</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Physics</p>
 </div>
+
+<h2>Extra proofs (2 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Noether theorem: continuous symmetry => conserved quantity</h3>
+<p><strong>Statement:</strong> Noether theorem: continuous symmetry => conserved quantity</p>
+<p><strong>Hypotheses:</strong> Lagrangian L(q,q_dot), continuous symmetry transformation</p>
+<p><strong>Conclusion:</strong> conserved charge Q = dL/dq_dot * dq</p>
+<p><strong>Definitions:</strong> Noether, symmetry, conservation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Invariance of action integral under transformation</p>
+<p class="step">Step 2: Euler-Lagrange equations give equation of motion</p>
+<p class="step">Step 3: Combine invariance with E-L to get dQ/dt = 0</p>
+<p class="step">Step 4: Q is constant along solutions</p></div>
+<p class="metadata">ID: 9c8b3605a27d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Translation => momentum, rotation => angular momentum, time => energy</p>
+<p class="metadata">Provenance: Domain Particle Physics, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Virial theorem: 2<T> = sum q_i * dV/dq_i for power-law potentials</h3>
+<p><strong>Statement:</strong> Virial theorem: 2<T> = sum q_i * dV/dq_i for power-law potentials</p>
+<p><strong>Hypotheses:</strong> V = alpha * r^n, bound orbits</p>
+<p><strong>Conclusion:</strong> 2<T> = n<V></p>
+<p><strong>Definitions:</strong> virial, kinetic, potential</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define virial G = sum p_i * q_i</p>
+<p class="step">Step 2: dG/dt = 2T - sum q_i * dV/dq_i</p>
+<p class="step">Step 3: Time average of dG/dt = 0 (bounded)</p>
+<p class="step">Step 4: 2<T> = <sum q_i * dV/dq_i></p>
+<p class="step">Step 5: For V = alpha*r^n: sum q_i * dV/dq_i = n*V</p></div>
+<p class="metadata">ID: 1a5b7679d2db | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: For n=-1 (gravity): 2<T> = -<V></p>
+<p class="metadata">Provenance: Domain Particle Physics, theorem #2</p>
+</div>
 </body></html>

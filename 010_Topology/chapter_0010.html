@@ -18044,4 +18044,48 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'compact': the Niemytzki plane is Hausdorff but not normal</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Topology</p>
 </div>
+
+<h2>Extra proofs (3 theorems from expanded bank)</h2>
+
+<div class="theorem extra" id="extra-1">
+<h3>Proof 1: Tychonoff theorem: product of compact spaces is compact</h3>
+<p><strong>Statement:</strong> Tychonoff theorem: product of compact spaces is compact</p>
+<p><strong>Hypotheses:</strong> each X_i compact</p>
+<p><strong>Conclusion:</strong> product is compact</p>
+<p><strong>Definitions:</strong> Tychonoff, product, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Alexander subbase theorem</p>
+<p class="step">Step 2: Ultrafilter characterization of compactness</p>
+<p class="step">Step 3: Product of ultrafilters converges if each factor converges</p></div>
+<p class="metadata">ID: ebe56bdeb996 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without compactness of factors: product may fail to be compact</p>
+<p class="metadata">Provenance: Domain Topology, theorem #1</p>
+</div>
+
+<div class="theorem extra" id="extra-2">
+<h3>Proof 2: Jordan curve theorem: simple closed curve separates plane into 2 components</h3>
+<p><strong>Statement:</strong> Jordan curve theorem: simple closed curve separates plane into 2 components</p>
+<p><strong>Hypotheses:</strong> J simple closed curve in R^2</p>
+<p><strong>Conclusion:</strong> R^2\J has exactly 2 connected components</p>
+<p><strong>Definitions:</strong> Jordan, simple closed, separation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Uses algebraic topology or combinatorial methods</p>
+<p class="step">Step 2: Fundamental group of complement is Z</p>
+<p class="step">Step 3: Interior (bounded) and exterior (unbounded)</p></div>
+<p class="metadata">ID: dd50e287258c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Removing 'simple': self-intersecting curves create more regions</p>
+<p class="metadata">Provenance: Domain Topology, theorem #2</p>
+</div>
+
+<div class="theorem extra" id="extra-3">
+<h3>Proof 3: Brouwer fixed point: every continuous f: D^n -> D^n has a fixed point</h3>
+<p><strong>Statement:</strong> Brouwer fixed point: every continuous f: D^n -> D^n has a fixed point</p>
+<p><strong>Hypotheses:</strong> D^n closed unit disk, f continuous</p>
+<p><strong>Conclusion:</strong> exists x with f(x) = x</p>
+<p><strong>Definitions:</strong> Brouwer, fixed point, disk</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume no fixed point</p>
+<p class="step">Step 2: Construct retraction r: D^n -> S^{n-1}</p>
+<p class="step">Step 3: Contradict non-retraction theorem</p></div>
+<p class="metadata">ID: 4356cb6de3c1 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Removing 'continuous': step functions avoid fixed points</p>
+<p class="metadata">Provenance: Domain Topology, theorem #3</p>
+</div>
 </body></html>
