@@ -17439,4 +17439,644 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without completeness: counterexample exists</p>
 <p class="metadata">Provenance: Domain Complex Analysis, theorem #4</p>
 </div>
+
+<h2>Extra proofs (+42 from complex analysis theorem bank)</h2>
+
+<div class="theorem extra" id="complex-1">
+<h3>Proof 1: Cauchy integral theorem: integral over closed curve of holomorphic function is zero</h3>
+<p><strong>Statement:</strong> Cauchy integral theorem: integral over closed curve of holomorphic function is zero</p>
+<p><strong>Hypotheses:</strong> f holomorphic on simply connected domain, gamma simple closed curve</p>
+<p><strong>Conclusion:</strong> integral_gamma f(z) dz = 0</p>
+<p><strong>Definitions:</strong> Cauchy, holomorphic, closed integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Green's theorem: integral = double integral of (dQ/dx - dP/dy)</p>
+<p class="step">Step 2: f = u+iv satisfies Cauchy-Riemann: u_x=v_y, u_y=-v_x</p>
+<p class="step">Step 3: Therefore dQ/dx - dP/dy = v_x - u_y = 0</p>
+<p class="step">Step 4: Double integral = 0, so contour integral = 0</p></div>
+<p class="metadata">ID: 14ef8e51c988 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'simply connected': need to account for holes</p>
+<p class="metadata">Provenance: Complex analysis proof #1</p>
+</div>
+
+<div class="theorem extra" id="complex-2">
+<h3>Proof 2: Cauchy integral formula: f(a) = (1/2pi i) integral f(z)/(z-a) dz</h3>
+<p><strong>Statement:</strong> Cauchy integral formula: f(a) = (1/2pi i) integral f(z)/(z-a) dz</p>
+<p><strong>Hypotheses:</strong> f holomorphic inside and on gamma, a inside gamma</p>
+<p><strong>Conclusion:</strong> f(a) = (1/2pi i) contour integral</p>
+<p><strong>Definitions:</strong> Cauchy integral, analytic, mean value</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider g(z) = (f(z)-f(a))/(z-a), g extends continuously to a</p>
+<p class="step">Step 2: By Cauchy theorem: integral g = 0</p>
+<p class="step">Step 3: integral f(z)/(z-a) dz = f(a) * integral dz/(z-a)</p>
+<p class="step">Step 4: = f(a) * 2pi i</p></div>
+<p class="metadata">ID: 841fab568270 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Generalizes to higher derivatives: f^(n)(a) = n!/(2pi i) integral f(z)/(z-a)^{n+1} dz</p>
+<p class="metadata">Provenance: Complex analysis proof #2</p>
+</div>
+
+<div class="theorem extra" id="complex-3">
+<h3>Proof 3: Morera's theorem: if integral over all triangles is zero, then f is holomorphic</h3>
+<p><strong>Statement:</strong> Morera's theorem: if integral over all triangles is zero, then f is holomorphic</p>
+<p><strong>Hypotheses:</strong> f continuous, integral_T f dz = 0 for all triangles T</p>
+<p><strong>Conclusion:</strong> f is holomorphic</p>
+<p><strong>Definitions:</strong> Morera, holomorphic, integral condition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cauchy theorem implies f has antiderivative F</p>
+<p class="step">Step 2: F' = f everywhere</p>
+<p class="step">Step 3: f = F' is holomorphic (F is smooth, f continuous)</p></div>
+<p class="metadata">ID: 31a9e91404e0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Converse of Cauchy theorem</p>
+<p class="metadata">Provenance: Complex analysis proof #3</p>
+</div>
+
+<div class="theorem extra" id="complex-4">
+<h3>Proof 4: Liouville's theorem: bounded entire function is constant</h3>
+<p><strong>Statement:</strong> Liouville's theorem: bounded entire function is constant</p>
+<p><strong>Hypotheses:</strong> f: C -> C entire, |f(z)| <= M for all z</p>
+<p><strong>Conclusion:</strong> f is constant</p>
+<p><strong>Definitions:</strong> Liouville, bounded, entire</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cauchy estimate: |f^(n)(z)| <= n! M / R^n for all R</p>
+<p class="step">Step 2: Let R -> infinity: f^(n)(z) = 0 for all n >= 1</p>
+<p class="step">Step 3: Taylor expansion: f(z) = f(0) constant</p></div>
+<p class="metadata">ID: 3d806b81e750 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without boundedness: e^z is entire, unbounded, non-constant</p>
+<p class="metadata">Provenance: Complex analysis proof #4</p>
+</div>
+
+<div class="theorem extra" id="complex-5">
+<h3>Proof 5: Fundamental theorem of algebra: every nonconstant polynomial has a root in C</h3>
+<p><strong>Statement:</strong> Fundamental theorem of algebra: every nonconstant polynomial has a root in C</p>
+<p><strong>Hypotheses:</strong> p(z) nonconstant polynomial with complex coefficients</p>
+<p><strong>Conclusion:</strong> exists z_0 with p(z_0) = 0</p>
+<p><strong>Definitions:</strong> FTA, polynomial, root</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume p(z) != 0 everywhere</p>
+<p class="step">Step 2: Then 1/p is entire</p>
+<p class="step">Step 3: |p(z)| -> infinity as |z| -> infinity</p>
+<p class="step">Step 4: So 1/p -> 0: bounded entire</p>
+<p class="step">Step 5: By Liouville: 1/p constant => p constant, contradiction</p></div>
+<p class="metadata">ID: e56280a243fe | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Removing 'nonconstant': trivially true for constants</p>
+<p class="metadata">Provenance: Complex analysis proof #5</p>
+</div>
+
+<div class="theorem extra" id="complex-6">
+<h3>Proof 6: Open mapping theorem: nonconstant holomorphic function maps open sets to open sets</h3>
+<p><strong>Statement:</strong> Open mapping theorem: nonconstant holomorphic function maps open sets to open sets</p>
+<p><strong>Hypotheses:</strong> f holomorphic on domain, f not constant</p>
+<p><strong>Conclusion:</strong> f(U) is open for every open U</p>
+<p><strong>Definitions:</strong> open mapping, holomorphic, nonconstant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By identity theorem, f is locally nonconstant near any point</p>
+<p class="step">Step 2: Use Rouche's theorem: f-a has zeros near any f(z0)=a</p>
+<p class="step">Step 3: Zeros of f-a in small disk imply a in image of disk</p>
+<p class="step">Step 4: Image of disk contains neighborhood of a</p></div>
+<p class="metadata">ID: 08ba4e07e8a5 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'nonconstant': constant functions are not open</p>
+<p class="metadata">Provenance: Complex analysis proof #6</p>
+</div>
+
+<div class="theorem extra" id="complex-7">
+<h3>Proof 7: Maximum modulus principle: |f| achieves maximum on boundary unless f is constant</h3>
+<p><strong>Statement:</strong> Maximum modulus principle: |f| achieves maximum on boundary unless f is constant</p>
+<p><strong>Hypotheses:</strong> f holomorphic on domain, f not constant</p>
+<p><strong>Conclusion:</strong> no interior maximum for |f|</p>
+<p><strong>Definitions:</strong> maximum modulus, holomorphic, boundary</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If max|f| at interior point z0, write f as power series</p>
+<p class="step">Step 2: Use mean value property: f(z0) = average of f on circle</p>
+<p class="step">Step 3: |f(z0)| = |average| <= average|f| <= max|f|</p>
+<p class="step">Step 4: Equality requires |f| constant on circle</p>
+<p class="step">Step 5: By connectedness, |f| constant everywhere</p></div>
+<p class="metadata">ID: f2eac0027caf | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'holomorphic': real functions can have interior maxima</p>
+<p class="metadata">Provenance: Complex analysis proof #7</p>
+</div>
+
+<div class="theorem extra" id="complex-8">
+<h3>Proof 8: Minimum modulus principle: if f holomorphic nonzero, |f| cannot achieve minimum interior</h3>
+<p><strong>Statement:</strong> Minimum modulus principle: if f holomorphic nonzero, |f| cannot achieve minimum interior</p>
+<p><strong>Hypotheses:</strong> f holomorphic, f != 0</p>
+<p><strong>Conclusion:</strong> |f| achieves minimum on boundary</p>
+<p><strong>Definitions:</strong> minimum modulus, holomorphic, nonzero</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply maximum modulus to 1/f</p>
+<p class="step">Step 2: 1/f is holomorphic (f nonzero)</p>
+<p class="step">Step 3: Max of |1/f| = 1/min|f| on boundary</p>
+<p class="step">Step 4: Therefore min|f| on boundary</p></div>
+<p class="metadata">ID: dab840315a7e | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Requires f nonzero (otherwise 1/f undefined)</p>
+<p class="metadata">Provenance: Complex analysis proof #8</p>
+</div>
+
+<div class="theorem extra" id="complex-9">
+<h3>Proof 9: Schwarz lemma: |f(z)| <= |z| and |f'(0)| <= 1 for f: D->D with f(0)=0</h3>
+<p><strong>Statement:</strong> Schwarz lemma: |f(z)| <= |z| and |f'(0)| <= 1 for f: D->D with f(0)=0</p>
+<p><strong>Hypotheses:</strong> f holomorphic D->D, f(0)=0</p>
+<p><strong>Conclusion:</strong> |f(z)| <= |z| for all z in D, |f'(0)| <= 1</p>
+<p><strong>Definitions:</strong> Schwarz, unit disk, contraction</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: g(z) = f(z)/z is holomorphic on D\{0}</p>
+<p class="step">Step 2: Removable singularity at 0</p>
+<p class="step">Step 3: On |z|=r: |g(z)| <= 1/r</p>
+<p class="step">Step 4: Let r->1: |g(z)| <= 1</p>
+<p class="step">Step 5: Therefore |f(z)| <= |z|</p>
+<p class="step">Step 6: |f'(0)| = |g(0)| <= 1</p></div>
+<p class="metadata">ID: fdfce696bb85 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Equality holds iff f(z) = e^{i*theta}*z</p>
+<p class="metadata">Provenance: Complex analysis proof #9</p>
+</div>
+
+<div class="theorem extra" id="complex-10">
+<h3>Proof 10: Schwarz-Pick theorem: f: D->D holomorphic is distance-decreasing</h3>
+<p><strong>Statement:</strong> Schwarz-Pick theorem: f: D->D holomorphic is distance-decreasing</p>
+<p><strong>Hypotheses:</strong> f: D -> D holomorphic</p>
+<p><strong>Conclusion:</strong> rho(f(z),f(w)) <= rho(z,w) for hyperbolic metric</p>
+<p><strong>Definitions:</strong> Schwarz-Pick, hyperbolic, invariant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Schwarz lemma to composition of automorphisms</p>
+<p class="step">Step 2: Automorphisms of D are Möbius transformations</p>
+<p class="step">Step 3: Hyperbolic metric invariant under automorphisms</p>
+<p class="step">Step 4: Schwarz lemma implies distance non-increasing</p></div>
+<p class="metadata">ID: 910363f82e3b | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Generalizes Schwarz lemma to arbitrary holomorphic self-maps of D</p>
+<p class="metadata">Provenance: Complex analysis proof #10</p>
+</div>
+
+<div class="theorem extra" id="complex-11">
+<h3>Proof 11: Riemann mapping theorem: simply connected domain != C is conformally equivalent to D</h3>
+<p><strong>Statement:</strong> Riemann mapping theorem: simply connected domain != C is conformally equivalent to D</p>
+<p><strong>Hypotheses:</strong> U simply connected, U != C</p>
+<p><strong>Conclusion:</strong> exists biholomorphism f: U -> D</p>
+<p><strong>Definitions:</strong> Riemann mapping, conformal, simply connected</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Family of injective holomorphic f: U->D with f(z0)=0 is nonempty</p>
+<p class="step">Step 2: Montel: normal family (uniformly bounded)</p>
+<p class="step">Step 3: Maximize |f'(z0)| over this family</p>
+<p class="step">Step 4: Show maximizer is surjective (Rouche's argument)</p>
+<p class="step">Step 5: Surjective + injective = biholomorphism</p></div>
+<p class="metadata">ID: 35d3f0155283 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'simply connected': may have nontrivial topology</p>
+<p class="metadata">Provenance: Complex analysis proof #11</p>
+</div>
+
+<div class="theorem extra" id="complex-12">
+<h3>Proof 12: Argument principle: (1/2pi i) integral f'/f = Z - P inside contour</h3>
+<p><strong>Statement:</strong> Argument principle: (1/2pi i) integral f'/f = Z - P inside contour</p>
+<p><strong>Hypotheses:</strong> f meromorphic, gamma simple closed</p>
+<p><strong>Conclusion:</strong> count of zeros minus poles inside gamma</p>
+<p><strong>Definitions:</strong> argument principle, zeros, poles</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Near zero of order m: f'/f ~ m/(z-z0)</p>
+<p class="step">Step 2: Near pole of order n: f'/f ~ -n/(z-z0)</p>
+<p class="step">Step 3: Residue of f'/f at zero is m</p>
+<p class="step">Step 4: Residue at pole is -n</p>
+<p class="step">Step 5: Sum: Z-P</p></div>
+<p class="metadata">ID: 33469e8727a3 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Powerful tool for counting zeros and poles</p>
+<p class="metadata">Provenance: Complex analysis proof #12</p>
+</div>
+
+<div class="theorem extra" id="complex-13">
+<h3>Proof 13: Rouche's theorem: if |f| > |g| on boundary, then f and f+g have same number of zeros</h3>
+<p><strong>Statement:</strong> Rouche's theorem: if |f| > |g| on boundary, then f and f+g have same number of zeros</p>
+<p><strong>Hypotheses:</strong> f,g holomorphic inside and on gamma, |g(z)| < |f(z)| on gamma</p>
+<p><strong>Conclusion:</strong> f and f+g have same number of zeros inside gamma (counting multiplicity)</p>
+<p><strong>Definitions:</strong> Rouche, zeros, deformation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider f_t = f + tg for t in [0,1]</p>
+<p class="step">Step 2: |f_t| >= |f| - |g| > 0 on gamma</p>
+<p class="step">Step 3: No zeros of f_t on gamma</p>
+<p class="step">Step 4: Number of zeros is continuous integer-valued function of t</p>
+<p class="step">Step 5: Must be constant: same for t=0 and t=1</p></div>
+<p class="metadata">ID: 3f4779820152 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental tool for locating zeros</p>
+<p class="metadata">Provenance: Complex analysis proof #13</p>
+</div>
+
+<div class="theorem extra" id="complex-14">
+<h3>Proof 14: Hurwitz theorem: limit of nonvanishing holomorphic functions is nonvanishing or identically zero</h3>
+<p><strong>Statement:</strong> Hurwitz theorem: limit of nonvanishing holomorphic functions is nonvanishing or identically zero</p>
+<p><strong>Hypotheses:</strong> f_n holomorphic, f_n -> f uniformly, each f_n nonzero</p>
+<p><strong>Conclusion:</strong> f is identically zero or f has no zeros</p>
+<p><strong>Definitions:</strong> Hurwitz, uniform convergence, zeros</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If f(z0)=0, apply Rouche on small circle around z0</p>
+<p class="step">Step 2: For large n: |f-f_n| < |f| on the circle</p>
+<p class="step">Step 3: By Rouche: f_n has zero inside circle</p>
+<p class="step">Step 4: But f_n has no zeros, contradiction</p>
+<p class="step">Step 5: Unless f identically zero</p></div>
+<p class="metadata">ID: 95fc498d7ad4 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Used to prove many theorems about holomorphic functions</p>
+<p class="metadata">Provenance: Complex analysis proof #14</p>
+</div>
+
+<div class="theorem extra" id="complex-15">
+<h3>Proof 15: Weierstrass factorization: entire function = product over zeros times exponential factor</h3>
+<p><strong>Statement:</strong> Weierstrass factorization: entire function = product over zeros times exponential factor</p>
+<p><strong>Hypotheses:</strong> f entire, zeros a_n (with multiplicity), sum 1/|a_n|^2 < infinity</p>
+<p><strong>Conclusion:</strong> f(z) = z^m e^{g(z)} prod E(z/a_n, p_n)</p>
+<p><strong>Definitions:</strong> Weierstrass, product, zeros</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Canonical factors E(u,p) = (1-u)exp(u+u^2/2+...+u^p/p)</p>
+<p class="step">Step 2: Choose p_n so sum |z/a_n|^{p_n+1} converges</p>
+<p class="step">Step 3: Logarithmic derivative: f'/f = g' + sum 1/(z-a_n) terms</p>
+<p class="step">Step 4: Construct g from expansion</p></div>
+<p class="metadata">ID: 9e4a46952d46 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Characterizes entire functions by their zeros</p>
+<p class="metadata">Provenance: Complex analysis proof #15</p>
+</div>
+
+<div class="theorem extra" id="complex-16">
+<h3>Proof 16: Mittag-Leffler theorem: meromorphic function with prescribed poles and principal parts exists</h3>
+<p><strong>Statement:</strong> Mittag-Leffler theorem: meromorphic function with prescribed poles and principal parts exists</p>
+<p><strong>Hypotheses:</strong> prescribed poles a_n with principal parts P_n(z)</p>
+<p><strong>Conclusion:</strong> meromorphic f with these poles and principal parts</p>
+<p><strong>Definitions:</strong> Mittag-Leffler, meromorphic, principal part</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with sum of P_n(z)</p>
+<p class="step">Step 2: May diverge: subtract polynomial corrections</p>
+<p class="step">Step 3: Choose corrections to ensure convergence</p>
+<p class="step">Step 4: Add holomorphic entire function if desired</p>
+<p class="step">Step 5: Result is meromorphic with prescribed singularities</p></div>
+<p class="metadata">ID: 66aa3e18bf56 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Dual of Weierstrass factorization</p>
+<p class="metadata">Provenance: Complex analysis proof #16</p>
+</div>
+
+<div class="theorem extra" id="complex-17">
+<h3>Proof 17: Parseval's theorem: integral |f|^2 = sum |c_n|^2 for Fourier/holomorphic expansions</h3>
+<p><strong>Statement:</strong> Parseval's theorem: integral |f|^2 = sum |c_n|^2 for Fourier/holomorphic expansions</p>
+<p><strong>Hypotheses:</strong> f in L^2, c_n Fourier coefficients</p>
+<p><strong>Conclusion:</strong> ||f||^2 = sum |c_n|^2</p>
+<p><strong>Definitions:</strong> Parseval, isometry, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: f = sum c_n e_n (orthonormal basis)</p>
+<p class="step">Step 2: <f,f> = <sum c_n e_n, sum c_m e_m></p>
+<p class="step">Step 3: = sum |c_n|^2 by orthogonality</p>
+<p class="step">Step 4: Converges by completeness of L^2</p></div>
+<p class="metadata">ID: b10b449f7400 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Energy conservation in frequency domain</p>
+<p class="metadata">Provenance: Complex analysis proof #17</p>
+</div>
+
+<div class="theorem extra" id="complex-18">
+<h3>Proof 18: Hadamard three-circles theorem: log M(r) is convex in log r</h3>
+<p><strong>Statement:</strong> Hadamard three-circles theorem: log M(r) is convex in log r</p>
+<p><strong>Hypotheses:</strong> f holomorphic on annulus r1 <= |z| <= r3, M(r) = max|f(z)| on |z|=r</p>
+<p><strong>Conclusion:</strong> log M(r2) <= linear interpolation of log M(r1), log M(r3)</p>
+<p><strong>Definitions:</strong> Hadamard, convex, maximum modulus</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Phragmen-Lindelof principle</p>
+<p class="step">Step 2: Consider g(z) = f(z) * z^alpha for suitable alpha</p>
+<p class="step">Step 3: Use maximum modulus on annulus</p>
+<p class="step">Step 4: Optimize alpha to get convexity</p></div>
+<p class="metadata">ID: b4b7e009e936 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Interpolation of maximum modulus between circles</p>
+<p class="metadata">Provenance: Complex analysis proof #18</p>
+</div>
+
+<div class="theorem extra" id="complex-19">
+<h3>Proof 19: Phragmen-Lindelof principle: growth condition + boundary bound => global bound</h3>
+<p><strong>Statement:</strong> Phragmen-Lindelof principle: growth condition + boundary bound => global bound</p>
+<p><strong>Hypotheses:</strong> f holomorphic in sector/strip, |f| <= M on boundary, |f| <= Ce^{e^{|z|}} (or similar growth bound)</p>
+<p><strong>Conclusion:</strong> |f| <= M everywhere inside</p>
+<p><strong>Definitions:</strong> Phragmen-Lindelof, growth, boundary</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Compare with suitable auxiliary function</p>
+<p class="step">Step 2: Auxiliary function decays in interior</p>
+<p class="step">Step 3: Apply maximum modulus to f/A</p>
+<p class="step">Step 4: Boundary bound + decay => interior bound</p></div>
+<p class="metadata">ID: d517bacc2696 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Extension of maximum principle to unbounded domains</p>
+<p class="metadata">Provenance: Complex analysis proof #19</p>
+</div>
+
+<div class="theorem extra" id="complex-20">
+<h3>Proof 20: Jensen's formula: log|f(0)| = (1/2pi) integral log|f(re^{it})| dt - sum log(r/|a_k|)</h3>
+<p><strong>Statement:</strong> Jensen's formula: log|f(0)| = (1/2pi) integral log|f(re^{it})| dt - sum log(r/|a_k|)</p>
+<p><strong>Hypotheses:</strong> f holomorphic, f(0) != 0, zeros a_k inside |z|=r</p>
+<p><strong>Conclusion:</strong> log|f(0)| related to integral of log|f| and zeros</p>
+<p><strong>Definitions:</strong> Jensen, logarithmic, zeros</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write f as Blaschke-like product times entire function</p>
+<p class="step">Step 2: Apply mean value property to log|f|</p>
+<p class="step">Step 3: Separate contributions from zeros</p>
+<p class="step">Step 4: Integral formula follows</p></div>
+<p class="metadata">ID: 31deabbc6a57 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Connects value at origin to boundary values and zero distribution</p>
+<p class="metadata">Provenance: Complex analysis proof #20</p>
+</div>
+
+<div class="theorem extra" id="complex-21">
+<h3>Proof 21: Picard's little theorem: omitting two values from entire function image => constant</h3>
+<p><strong>Statement:</strong> Picard's little theorem: omitting two values from entire function image => constant</p>
+<p><strong>Hypotheses:</strong> f entire, f omits at most one complex value</p>
+<p><strong>Conclusion:</strong> f is constant</p>
+<p><strong>Definitions:</strong> Picard, entire, omitting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume f omits a and b, a != b</p>
+<p class="step">Step 2: g(z) = (f(z)-a)/(b-a) omits 0 and 1</p>
+<p class="step">Step 3: Show g is bounded by contradiction</p>
+<p class="step">Step 4: Apply Liouville: bounded entire => constant</p></div>
+<p class="metadata">ID: 503a80302ab7 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Extraordinary: entire function can omit at most one value</p>
+<p class="metadata">Provenance: Complex analysis proof #21</p>
+</div>
+
+<div class="theorem extra" id="complex-22">
+<h3>Proof 22: Picard's great theorem: near essential singularity, function takes every value infinitely often</h3>
+<p><strong>Statement:</strong> Picard's great theorem: near essential singularity, function takes every value infinitely often</p>
+<p><strong>Hypotheses:</strong> f has essential singularity at z0</p>
+<p><strong>Conclusion:</strong> in any neighborhood of z0, f takes every complex value except at most one infinitely often</p>
+<p><strong>Definitions:</strong> Picard, essential singularity, omitting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume f omits two values near z0</p>
+<p class="step">Step 2: Compose with universal covering of C\{a,b}</p>
+<p class="step">Step 3: Apply Schwarz lemma near singularity</p>
+<p class="step">Step 4: Deduce contradiction by normal family arguments</p></div>
+<p class="metadata">ID: 780d7d0e4c70 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Much stronger than Casorati-Weierstrass</p>
+<p class="metadata">Provenance: Complex analysis proof #22</p>
+</div>
+
+<div class="theorem extra" id="complex-23">
+<h3>Proof 23: Casorati-Weierstrass: near essential singularity, image is dense in C</h3>
+<p><strong>Statement:</strong> Casorati-Weierstrass: near essential singularity, image is dense in C</p>
+<p><strong>Hypotheses:</strong> f has essential singularity at z0</p>
+<p><strong>Conclusion:</strong> f takes values arbitrarily close to any complex number</p>
+<p><strong>Definitions:</strong> Casorati-Weierstrass, essential singularity, dense</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume f(z) avoids neighborhood of w near z0</p>
+<p class="step">Step 2: Then 1/(f(z)-w) is bounded near z0</p>
+<p class="step">Step 3: Z0 would be removable or pole, not essential</p>
+<p class="step">Step 4: Contradiction</p></div>
+<p class="metadata">ID: 4b2be6297c9d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Weaker than Picard but easier to prove</p>
+<p class="metadata">Provenance: Complex analysis proof #23</p>
+</div>
+
+<div class="theorem extra" id="complex-24">
+<h3>Proof 24: Laurent series: f(z) = sum a_n (z-z0)^n with a_n = (1/2pi i) integral f(z)/(z-z0)^{n+1} dz</h3>
+<p><strong>Statement:</strong> Laurent series: f(z) = sum a_n (z-z0)^n with a_n = (1/2pi i) integral f(z)/(z-z0)^{n+1} dz</p>
+<p><strong>Hypotheses:</strong> f holomorphic on annulus r1 < |z-z0| < r2</p>
+<p><strong>Conclusion:</strong> f has unique Laurent expansion in the annulus</p>
+<p><strong>Definitions:</strong> Laurent, series, annulus</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Decompose: f = f_positive + f_negative</p>
+<p class="step">Step 2: f_positive: Taylor series for positive powers</p>
+<p class="step">Step 3: f_negative: integral formula for negative powers</p>
+<p class="step">Step 4: Uniqueness by coefficient formula</p></div>
+<p class="metadata">ID: ccbfb1b61bc4 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Taylor series is special case (r1 = 0)</p>
+<p class="metadata">Provenance: Complex analysis proof #24</p>
+</div>
+
+<div class="theorem extra" id="complex-25">
+<h3>Proof 25: Residue theorem: integral = 2pi i times sum of residues inside contour</h3>
+<p><strong>Statement:</strong> Residue theorem: integral = 2pi i times sum of residues inside contour</p>
+<p><strong>Hypotheses:</strong> f meromorphic inside gamma, gamma simple closed</p>
+<p><strong>Conclusion:</strong> integral f dz = 2pi i sum Res(f, z_k)</p>
+<p><strong>Definitions:</strong> residue, contour integral, meromorphic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Deform gamma to small circles around each pole</p>
+<p class="step">Step 2: Cauchy integral theorem between poles</p>
+<p class="step">Step 3: Residue at z_k = (1/2pi i) integral around z_k</p>
+<p class="step">Step 4: Sum of all contributions</p></div>
+<p class="metadata">ID: aa8750e5ec59 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Most practical theorem for computing integrals</p>
+<p class="metadata">Provenance: Complex analysis proof #25</p>
+</div>
+
+<div class="theorem extra" id="complex-26">
+<h3>Proof 26: Residue at simple pole: Res(f, z0) = lim_{z->z0} (z-z0)f(z)</h3>
+<p><strong>Statement:</strong> Residue at simple pole: Res(f, z0) = lim_{z->z0} (z-z0)f(z)</p>
+<p><strong>Hypotheses:</strong> f has simple pole at z0</p>
+<p><strong>Conclusion:</strong> Res(f, z0) = lim (z-z0)f(z)</p>
+<p><strong>Definitions:</strong> simple pole, residue, limit</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Near simple pole: f(z) = a_{-1}/(z-z0) + holomorphic</p>
+<p class="step">Step 2: (z-z0)f(z) = a_{-1} + (z-z0)*holomorphic</p>
+<p class="step">Step 3: Limit as z->z0: = a_{-1} = Res(f,z0)</p></div>
+<p class="metadata">ID: 356b28cd1658 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: For pole of order m: Res = (1/(m-1)!) lim d^{m-1}/dz^{m-1} [(z-z0)^m f(z)]</p>
+<p class="metadata">Provenance: Complex analysis proof #26</p>
+</div>
+
+<div class="theorem extra" id="complex-27">
+<h3>Proof 27: Winding number: (1/2pi i) integral gamma dz/(z-a) = winding number of gamma around a</h3>
+<p><strong>Statement:</strong> Winding number: (1/2pi i) integral gamma dz/(z-a) = winding number of gamma around a</p>
+<p><strong>Hypotheses:</strong> gamma closed curve, a not on gamma</p>
+<p><strong>Conclusion:</strong> integral equals winding number (integer)</p>
+<p><strong>Definitions:</strong> winding number, index, topological</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Parameterize: z(t), t in [0,1]</p>
+<p class="step">Step 2: Integral = (1/2pi) integral d[arg(z(t)-a)]</p>
+<p class="step">Step 3: Total change of argument / 2pi = winding number</p>
+<p class="step">Step 4: Integer because z(0)=z(1)</p></div>
+<p class="metadata">ID: 194a873aae0e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Topological invariant of curve-point pair</p>
+<p class="metadata">Provenance: Complex analysis proof #27</p>
+</div>
+
+<div class="theorem extra" id="complex-28">
+<h3>Proof 28: Poisson integral formula: harmonic function on disk determined by boundary values</h3>
+<p><strong>Statement:</strong> Poisson integral formula: harmonic function on disk determined by boundary values</p>
+<p><strong>Hypotheses:</strong> u harmonic on unit disk, u continuous on closure</p>
+<p><strong>Conclusion:</strong> u(re^{it}) = (1/2pi) integral P_r(t-s) u(e^{is}) ds</p>
+<p><strong>Definitions:</strong> Poisson, harmonic, boundary values</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Poisson kernel: P_r(t) = (1-r^2)/(1-2r*cos(t)+r^2)</p>
+<p class="step">Step 2: Show P_r is approximate identity</p>
+<p class="step">Step 3: Convolution with boundary data recovers harmonic function</p>
+<p class="step">Step 4: Verified by direct computation: P_r is harmonic</p></div>
+<p class="metadata">ID: 70185a049df1 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Extends to upper half-plane and other domains</p>
+<p class="metadata">Provenance: Complex analysis proof #28</p>
+</div>
+
+<div class="theorem extra" id="complex-29">
+<h3>Proof 29: Herglotz representation: positive harmonic function on disk = Poisson integral of positive measure</h3>
+<p><strong>Statement:</strong> Herglotz representation: positive harmonic function on disk = Poisson integral of positive measure</p>
+<p><strong>Hypotheses:</strong> u harmonic on D, u > 0</p>
+<p><strong>Conclusion:</strong> u(re^{it}) = integral P_r(t-s) dmu(s) for positive measure mu</p>
+<p><strong>Definitions:</strong> Herglotz, positive, harmonic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: u_r = u(re^{i.}) positive function</p>
+<p class="step">Step 2: Apply Poisson inversion: boundary measure exists</p>
+<p class="step">Step 3: Positivity of u ensures measure is positive</p>
+<p class="step">Step 4: Representation unique by Fourier uniqueness</p></div>
+<p class="metadata">ID: e5b55abf54d4 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Generalization of Poisson formula to positive functions</p>
+<p class="metadata">Provenance: Complex analysis proof #29</p>
+</div>
+
+<div class="theorem extra" id="complex-30">
+<h3>Proof 30: Nevanlinna theory: T(r,f) = m(r,f) + N(r,f) measures growth of meromorphic f</h3>
+<p><strong>Statement:</strong> Nevanlinna theory: T(r,f) = m(r,f) + N(r,f) measures growth of meromorphic f</p>
+<p><strong>Hypotheses:</strong> f meromorphic</p>
+<p><strong>Conclusion:</strong> characteristic function T(r,f) controls value distribution</p>
+<p><strong>Definitions:</strong> Nevanlinna, characteristic, deficiency</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: m(r,f) = proximity function (boundary behavior)</p>
+<p class="step">Step 2: N(r,f) = counting function (pole distribution)</p>
+<p class="step">Step 3: T(r,f) ~ (1/pi) integral log^+ |f| dtheta</p>
+<p class="step">Step 4: Second fundamental theorem: deficiencies sum <= 2</p>
+<p class="step">Step 5: Generalizes Picard's theorem</p></div>
+<p class="metadata">ID: f29047dbebd0 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Most powerful theory of value distribution</p>
+<p class="metadata">Provenance: Complex analysis proof #30</p>
+</div>
+
+<div class="theorem extra" id="complex-31">
+<h3>Proof 31: Bloch's theorem: holomorphic f with f'(0)=1 maps some disk onto disk of radius B(f) >= constant</h3>
+<p><strong>Statement:</strong> Bloch's theorem: holomorphic f with f'(0)=1 maps some disk onto disk of radius B(f) >= constant</p>
+<p><strong>Hypotheses:</strong> f entire, |f'(0)| = 1</p>
+<p><strong>Conclusion:</strong> exists disk in image with radius >= B > 0 absolute constant</p>
+<p><strong>Definitions:</strong> Bloch, radius, landau</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider maximal disk in image</p>
+<p class="step">Step 2: On boundary of maximal disk: f'(z)=0 or boundary hits infinity</p>
+<p class="step">Step 3: Use area argument to bound radius from below</p>
+<p class="step">Step 4: Constant B(f) depends only on f</p>
+<p class="step">Step 5: Bloch constant B > 0 absolute</p></div>
+<p class="metadata">ID: 5827c3f08340 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Every holomorphic function with f'(0)=1 'blobs out'</p>
+<p class="metadata">Provenance: Complex analysis proof #31</p>
+</div>
+
+<div class="theorem extra" id="complex-32">
+<h3>Proof 32: Landau's theorem: if f omits disk of radius L around 0, then f'(0) <= C/L</h3>
+<p><strong>Statement:</strong> Landau's theorem: if f omits disk of radius L around 0, then f'(0) <= C/L</p>
+<p><strong>Hypotheses:</strong> f holomorphic on D, |f(z)| > L for all z in D</p>
+<p><strong>Conclusion:</strong> f'(0) <= 2/L</p>
+<p><strong>Definitions:</strong> Landau, omitting, radius</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider g = 1/f, |g| < 1/L</p>
+<p class="step">Step 2: Apply Schwarz lemma to Lg</p>
+<p class="step">Step 3: |Lg'(0)| <= L/L = 1</p>
+<p class="step">Step 4: |g'(0)| = |f'(0)|/f(0)^2 <= 1/L</p></div>
+<p class="metadata">ID: e7a2a4eec074 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Dual to Bloch's theorem</p>
+<p class="metadata">Provenance: Complex analysis proof #32</p>
+</div>
+
+<div class="theorem extra" id="complex-33">
+<h3>Proof 33: Nevanlinna-Shah lemma: sum of deficiency values <= 2</h3>
+<p><strong>Statement:</strong> Nevanlinna-Shah lemma: sum of deficiency values <= 2</p>
+<p><strong>Hypotheses:</strong> f meromorphic, not constant</p>
+<p><strong>Conclusion:</strong> delta(a) = lim (T(r)-N(r,a))/T(r), sum delta(a) <= 2</p>
+<p><strong>Definitions:</strong> Nevanlinna, deficiency, Second fundamental theorem</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Deficiency measures how rarely f takes value a</p>
+<p class="step">Step 2: delta(a) in [0,1]: 0=always taken, 1=never taken</p>
+<p class="step">Step 3: SFT gives: sum_{a in C union {inf}} delta(a) <= 2</p>
+<p class="step">Step 4: For Picard: at most 2 values can have delta > 0</p></div>
+<p class="metadata">ID: 2483c7cc0f7e | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalizes Picard: at most 2 exceptional values</p>
+<p class="metadata">Provenance: Complex analysis proof #33</p>
+</div>
+
+<div class="theorem extra" id="complex-34">
+<h3>Proof 34: Ostrowski's theorem: near isolated singularity, function is rational or essential</h3>
+<p><strong>Statement:</strong> Ostrowski's theorem: near isolated singularity, function is rational or essential</p>
+<p><strong>Hypotheses:</strong> f holomorphic in punctured disk</p>
+<p><strong>Conclusion:</strong> isolated singularity is removable, pole, or essential</p>
+<p><strong>Definitions:</strong> Ostrowski, singularity, classification</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Laurent series: f = sum a_n (z-z0)^n</p>
+<p class="step">Step 2: If a_n = 0 for n < 0: removable</p>
+<p class="step">Step 3: If finitely many a_n != 0 for n < 0: pole</p>
+<p class="step">Step 4: If infinitely many: essential singularity</p></div>
+<p class="metadata">ID: 6183dc914a79 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Classification of singularities</p>
+<p class="metadata">Provenance: Complex analysis proof #34</p>
+</div>
+
+<div class="theorem extra" id="complex-35">
+<h3>Proof 35: Schottky's theorem: if f(0)=0, f(0)=1, and f omits 0, then |f(z)| <= C(|z|) for |z| <= 1/2</h3>
+<p><strong>Statement:</strong> Schottky's theorem: if f(0)=0, f(0)=1, and f omits 0, then |f(z)| <= C(|z|) for |z| <= 1/2</p>
+<p><strong>Hypotheses:</strong> f entire, f(0)=0, f(0)=1, f omits 0 and 1</p>
+<p><strong>Conclusion:</strong> uniform bound depending on |z| only</p>
+<p><strong>Definitions:</strong> Schottky, bound, omitting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Borel-Caratheodory inequality</p>
+<p class="step">Step 2: Control Re(f) by max on larger circle</p>
+<p class="step">Step 3: Combine with omitted values to get two-sided bound</p>
+<p class="step">Step 4: Optimize circle radii</p></div>
+<p class="metadata">ID: 43f994357078 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Effective version of Picard's theorem</p>
+<p class="metadata">Provenance: Complex analysis proof #35</p>
+</div>
+
+<div class="theorem extra" id="complex-36">
+<h3>Proof 36: Borel-Caratheodory: max_{|z|<=R} Re(f) controlled by max on larger circle</h3>
+<p><strong>Statement:</strong> Borel-Caratheodory: max_{|z|<=R} Re(f) controlled by max on larger circle</p>
+<p><strong>Hypotheses:</strong> f analytic on |z| <= R, Re(f(0)) = 0</p>
+<p><strong>Conclusion:</strong> max_{|z|<=r} |f(z)| <= 2r/(R-r) * max_{|z|<=R} Re(f)</p>
+<p><strong>Definitions:</strong> Borel-Caratheodory, real part, maximum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Schwarz lemma to appropriate transformation</p>
+<p class="step">Step 2: Relate |f| to Re(f) via maximum principle</p>
+<p class="step">Step 3: Optimize radius ratio for tightest bound</p></div>
+<p class="metadata">ID: 73101fbf61fc | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Connects real part maximum to modulus maximum</p>
+<p class="metadata">Provenance: Complex analysis proof #36</p>
+</div>
+
+<div class="theorem extra" id="complex-37">
+<h3>Proof 37: Koebe one-quarter theorem: injective f: D->C with f(0)=0, f'(0)=1 contains disk |w| < 1/4</h3>
+<p><strong>Statement:</strong> Koebe one-quarter theorem: injective f: D->C with f(0)=0, f'(0)=1 contains disk |w| < 1/4</p>
+<p><strong>Hypotheses:</strong> f: D -> C injective holomorphic, f(0)=0, f'(0)=1</p>
+<p><strong>Conclusion:</strong> image contains disk |w| < 1/4</p>
+<p><strong>Definitions:</strong> Koebe, univalent, quarter</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider f(z)/z, nonzero in D</p>
+<p class="step">Step 2: Log of f(z)/z is analytic, apply Schwarz</p>
+<p class="step">Step 3: Deduce lower bound on |f(z)/z|</p>
+<p class="step">Step 4: Implies |f(z)| >= |z|/4 for |z| near 0</p>
+<p class="step">Step 5: Boundary analysis gives global result</p></div>
+<p class="metadata">ID: c0d7b5d13997 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: 1/4 is sharp (Koebe function achieves it)</p>
+<p class="metadata">Provenance: Complex analysis proof #37</p>
+</div>
+
+<div class="theorem extra" id="complex-38">
+<h3>Proof 38: De Branges theorem (Bieberbach conjecture): |a_n| <= n for univalent f: D->C</h3>
+<p><strong>Statement:</strong> De Branges theorem (Bieberbach conjecture): |a_n| <= n for univalent f: D->C</p>
+<p><strong>Hypotheses:</strong> f injective on D, f(z) = z + a_2 z^2 + ...</p>
+<p><strong>Conclusion:</strong> |a_n| <= n for all n</p>
+<p><strong>Definitions:</strong> de Branges, Bieberbach, univalent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bieberbach proved |a_2| <= 2 (1916)</p>
+<p class="step">Step 2: de Branges proved full result (1985) using Losurdo theory</p>
+<p class="step">Step 3: Equality for Koebe function f(z) = z/(1-z)^2</p>
+<p class="step">Step 4: Extremely difficult proof</p></div>
+<p class="metadata">ID: 6fe71029b406 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Open for 68 years, settled by de Branges</p>
+<p class="metadata">Provenance: Complex analysis proof #38</p>
+</div>
+
+<div class="theorem extra" id="complex-39">
+<h3>Proof 39: Garabedian-Schiffer: for univalent functions, coefficient problem related to area functional</h3>
+<p><strong>Statement:</strong> Garabedian-Schiffer: for univalent functions, coefficient problem related to area functional</p>
+<p><strong>Hypotheses:</strong> f univalent on D</p>
+<p><strong>Conclusion:</strong> variational formula for coefficients</p>
+<p><strong>Definitions:</strong> Garabedian-Schiffer, variational, univalent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider f_epsilon = f + epsilon * h</p>
+<p class="step">Step 2: Compute d/epsilon a_n(f_epsilon) at epsilon=0</p>
+<p class="step">Step 3: Use area functional to get bounds</p>
+<p class="step">Step 4: Optimize over variations h</p></div>
+<p class="metadata">ID: 4c0046b76988 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Tool for proving coefficient inequalities</p>
+<p class="metadata">Provenance: Complex analysis proof #39</p>
+</div>
+
+<div class="theorem extra" id="complex-40">
+<h3>Proof 40: Teichmüller space: moduli space of Riemann surfaces has complex structure</h3>
+<p><strong>Statement:</strong> Teichmüller space: moduli space of Riemann surfaces has complex structure</p>
+<p><strong>Hypotheses:</strong> S closed Riemann surface of genus g >= 2</p>
+<p><strong>Conclusion:</strong> Teichmüller space is a 6g-6 dimensional complex manifold</p>
+<p><strong>Definitions:</strong> Teichmüller, moduli, Riemann surface</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Quadratic differentials parametrize deformations</p>
+<p class="step">Step 2: Beltrami differentials give tangent space</p>
+<p class="step">Step 3: Teichmüller theorem: unique extremal quasiconformal map</p>
+<p class="step">Step 4: Coordinates via Fenchel-Nielsen twist/length</p></div>
+<p class="metadata">ID: dd0972af1af7 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Central object in geometric topology</p>
+<p class="metadata">Provenance: Complex analysis proof #40</p>
+</div>
+
+<div class="theorem extra" id="complex-41">
+<h3>Proof 41: Uniformization theorem: simply connected Riemann surface is conformally equivalent to D, C, or CP^1</h3>
+<p><strong>Statement:</strong> Uniformization theorem: simply connected Riemann surface is conformally equivalent to D, C, or CP^1</p>
+<p><strong>Hypotheses:</strong> S simply connected Riemann surface</p>
+<p><strong>Conclusion:</strong> S biholomorphic to D, C, or CP^1</p>
+<p><strong>Definitions:</strong> uniformization, classification, simply connected</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Universal cover of any Riemann surface is simply connected</p>
+<p class="step">Step 2: Simply connected surfaces classified by universal cover</p>
+<p class="step">Step 3: Hyperbolic (D), parabolic (C), or spherical (CP^1)</p>
+<p class="step">Step 4: Teichmüller theory classifies covers</p></div>
+<p class="metadata">ID: 2dcec7f7f86f | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Complete classification of simply connected Riemann surfaces</p>
+<p class="metadata">Provenance: Complex analysis proof #41</p>
+</div>
+
+<div class="theorem extra" id="complex-42">
+<h3>Proof 42: Ahlfors-Schwarz lemma: hyperbolic metric decreases under holomorphic map</h3>
+<p><strong>Statement:</strong> Ahlfors-Schwarz lemma: hyperbolic metric decreases under holomorphic map</p>
+<p><strong>Hypotheses:</strong> f: D -> D holomorphic</p>
+<p><strong>Conclusion:</strong> ds_f <= ds_D (pullback metric dominated by hyperbolic)</p>
+<p><strong>Definitions:</strong> Ahlfors-Schwarz, hyperbolic, invariant metric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hyperbolic metric: ds = 2|dz|/(1-|z|^2)</p>
+<p class="step">Step 2: Apply Schwarz-Pick pointwise</p>
+<p class="step">Step 3: |f'(z)| <= (1-|f(z)|^2)/(1-|z|^2)</p>
+<p class="step">Step 4: This is exactly metric contraction</p></div>
+<p class="metadata">ID: 65f916d43fc2 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Geometric reformulation of Schwarz-Pick</p>
+<p class="metadata">Provenance: Complex analysis proof #42</p>
+</div>
 </body></html>
