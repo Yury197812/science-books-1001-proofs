@@ -17074,4 +17074,218 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Equivalent to Lagrangian mechanics, more symmetric</p>
 <p class="metadata">Provenance: Domain Classical Mechanics, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+15 from classical mechanics)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Newton's second law: F = ma (force equals mass times acceleration)</h3>
+<p><strong>Statement:</strong> Newton's second law: F = ma (force equals mass times acceleration)</p>
+<p><strong>Hypotheses:</strong> classical mechanics, inertial frame</p>
+<p><strong>Conclusion:</strong> F = ma</p>
+<p><strong>Definitions:</strong> Newton, second law, inertia</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define force as rate of change of momentum: F = dp/dt</p>
+<p class="step">Step 2: Momentum: p = mv</p>
+<p class="step">Step 3: If mass constant: F = m dv/dt = ma</p>
+<p class="step">Step 4: Valid in inertial reference frames</p></div>
+<p class="metadata">ID: 507d24bff348 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Postulate of classical mechanics, not a theorem</p>
+<p class="metadata">Provenance: classical mechanics proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Lagrangian mechanics: d/dt(dL/dq_dot) - dL/dq = 0 (Euler-Lagrange)</h3>
+<p><strong>Statement:</strong> Lagrangian mechanics: d/dt(dL/dq_dot) - dL/dq = 0 (Euler-Lagrange)</p>
+<p><strong>Hypotheses:</strong> L = T - V, q generalized coordinates</p>
+<p><strong>Conclusion:</strong> equations of motion from variational principle</p>
+<p><strong>Definitions:</strong> Lagrangian, Euler-Lagrange, generalized coordinates</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define action S = integral L dt</p>
+<p class="step">Step 2: Principle of least action: delta S = 0</p>
+<p class="step">Step 3: Euler-Lagrange from calculus of variations</p>
+<p class="step">Step 4: More general than Newton's laws</p></div>
+<p class="metadata">ID: 420feb5031a5 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Equivalent to Newton's laws, more general framework</p>
+<p class="metadata">Provenance: classical mechanics proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Hamilton's equations: q_dot = dH/dp, p_dot = -dH/dq</h3>
+<p><strong>Statement:</strong> Hamilton's equations: q_dot = dH/dp, p_dot = -dH/dq</p>
+<p><strong>Hypotheses:</strong> H(q,p,t) Hamiltonian</p>
+<p><strong>Conclusion:</strong> equations of motion in phase space</p>
+<p><strong>Definitions:</strong> Hamilton, phase space, canonical</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Legendre transform: H = p q_dot - L</p>
+<p class="step">Step 2: dH = dq_dot dp + p dq_dot - dL</p>
+<p class="step">Step 3: Substitute E-L equations</p>
+<p class="step">Step 4: Rearrange into canonical form</p></div>
+<p class="metadata">ID: 208826079694 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Equivalent to Lagrangian mechanics</p>
+<p class="metadata">Provenance: classical mechanics proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Noether's theorem: every continuous symmetry gives a conserved quantity</h3>
+<p><strong>Statement:</strong> Noether's theorem: every continuous symmetry gives a conserved quantity</p>
+<p><strong>Hypotheses:</strong> Lagrangian L, continuous symmetry transformation</p>
+<p><strong>Conclusion:</strong> conserved charge Q</p>
+<p><strong>Definitions:</strong> Noether, symmetry, conservation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Invariance: L unchanged under transformation</p>
+<p class="step">Step 2: Euler-Lagrange + invariance => dQ/dt = 0</p>
+<p class="step">Step 3: Translation => momentum conservation</p>
+<p class="step">Step 4: Rotation => angular momentum conservation</p>
+<p class="step">Step 5: Time translation => energy conservation</p></div>
+<p class="metadata">ID: 357015c8659b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: One of most profound results in physics</p>
+<p class="metadata">Provenance: classical mechanics proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Maxwell's equations: div E = rho/eps_0, curl E = -dB/dt, div B = 0, curl B = mu_0 J + mu_0 eps_0 dE/dt</h3>
+<p><strong>Statement:</strong> Maxwell's equations: div E = rho/eps_0, curl E = -dB/dt, div B = 0, curl B = mu_0 J + mu_0 eps_0 dE/dt</p>
+<p><strong>Hypotheses:</strong> classical electrodynamics</p>
+<p><strong>Conclusion:</strong> complete description of EM fields</p>
+<p><strong>Definitions:</strong> Maxwell, electromagnetic, classical</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gauss: electric charge creates E field</p>
+<p class="step">Step 2: Faraday: changing B creates E field</p>
+<p class="step">Step 3: No magnetic monopoles: div B = 0</p>
+<p class="step">Step 4: Ampere-Maxwell: current + changing E creates B</p></div>
+<p class="metadata">ID: 506f0a9a344c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: These are laws, not theorems</p>
+<p class="metadata">Provenance: classical mechanics proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Einstein's E = mc^2: mass-energy equivalence</h3>
+<p><strong>Statement:</strong> Einstein's E = mc^2: mass-energy equivalence</p>
+<p><strong>Hypotheses:</strong> special relativity</p>
+<p><strong>Conclusion:</strong> rest mass and energy equivalent</p>
+<p><strong>Definitions:</strong> Einstein, mass-energy, special relativity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Four-momentum: p = (E/c, p)</p>
+<p class="step">Step 2: Invariant: E^2 = (pc)^2 + (mc^2)^2</p>
+<p class="step">Step 3: At rest: E = mc^2</p>
+<p class="step">Step 4: Nuclear reactions confirm mass defect</p></div>
+<p class="metadata">ID: 8131d95bd099 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Most famous equation in physics</p>
+<p class="metadata">Provenance: classical mechanics proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Heisenberg uncertainty: Delta x * Delta p >= h_bar/2</h3>
+<p><strong>Statement:</strong> Heisenberg uncertainty: Delta x * Delta p >= h_bar/2</p>
+<p><strong>Hypotheses:</strong> position and momentum observables, non-commuting</p>
+<p><strong>Conclusion:</strong> fundamental measurement limit</p>
+<p><strong>Definitions:</strong> Heisenberg, uncertainty, quantum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: [x,p] = i h_bar</p>
+<p class="step">Step 2: Robertson inequality: Delta A * Delta B >= |<[A,B]>|/2</p>
+<p class="step">Step 3: Apply to x and p</p>
+<p class="step">Step 4: Delta x * Delta p >= h_bar/2</p></div>
+<p class="metadata">ID: 5c49e97963d5 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental limit, not just measurement imprecision</p>
+<p class="metadata">Provenance: classical mechanics proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Schrödinger equation: i h_bar d Psi/dt = H Psi</h3>
+<p><strong>Statement:</strong> Schrödinger equation: i h_bar d Psi/dt = H Psi</p>
+<p><strong>Hypotheses:</strong> quantum system with Hamiltonian H</p>
+<p><strong>Conclusion:</strong> time evolution of quantum state</p>
+<p><strong>Definitions:</strong> Schrödinger, quantum mechanics, wave function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Postulate: states are vectors in Hilbert space</p>
+<p class="step">Step 2: Observables are self-adjoint operators</p>
+<p class="step">Step 3: Time evolution by unitary operator U = exp(-iHt/h_bar)</p>
+<p class="step">Step 4: Schrödinger picture: state evolves, operators fixed</p></div>
+<p class="metadata">ID: c85ee40252cd | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Postulate of quantum mechanics</p>
+<p class="metadata">Provenance: classical mechanics proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Dirac notation: <psi|phi> inner product, |psi> ket, <psi| bra</h3>
+<p><strong>Statement:</strong> Dirac notation: <psi|phi> inner product, |psi> ket, <psi| bra</p>
+<p><strong>Hypotheses:</strong> quantum mechanics, Hilbert space</p>
+<p><strong>Conclusion:</strong> compact notation for quantum states</p>
+<p><strong>Definitions:</strong> Dirac notation, bra-ket, Hilbert space</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Ket |psi> = vector in Hilbert space</p>
+<p class="step">Step 2: Bra <psi| = linear functional (dual vector)</p>
+<p class="step">Step 3: <psi|phi> = inner product</p>
+<p class="step">Step 4: |psi><phi| = outer product (operator)</p></div>
+<p class="metadata">ID: ff78a314a122 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Notation, not a theorem</p>
+<p class="metadata">Provenance: classical mechanics proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Stern-Gerlach: spin-1/2 particle measured in magnetic field gives two outcomes</h3>
+<p><strong>Statement:</strong> Stern-Gerlach: spin-1/2 particle measured in magnetic field gives two outcomes</p>
+<p><strong>Hypotheses:</strong> spin-1/2 particle, inhomogeneous B field</p>
+<p><strong>Conclusion:</strong> beam splits into two (not continuous)</p>
+<p><strong>Definitions:</strong> Stern-Gerlach, spin, measurement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Classical expectation: continuous spread</p>
+<p class="step">Step 2: Quantum prediction: two discrete spots</p>
+<p class="step">Step 3: Confirmed experimentally (1922)</p>
+<p class="step">Step 4: Demonstrates quantization of angular momentum</p></div>
+<p class="metadata">ID: b4fe2ee4193c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Key experimental evidence for quantum mechanics</p>
+<p class="metadata">Provenance: classical mechanics proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Second law of thermodynamics: entropy of isolated system never decreases</h3>
+<p><strong>Statement:</strong> Second law of thermodynamics: entropy of isolated system never decreases</p>
+<p><strong>Hypotheses:</strong> isolated system</p>
+<p><strong>Conclusion:</strong> dS >= 0</p>
+<p><strong>Definitions:</strong> second law, entropy, thermodynamics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Statistical: system evolves to states with more microstates</p>
+<p class="step">Step 2: Clausius: heat cannot flow from cold to hot spontaneously</p>
+<p class="step">Step 3: Kelvin: no perfect heat engine</p>
+<p class="step">Step 4: Arrow of time follows from second law</p></div>
+<p class="metadata">ID: 08edc96a9687 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Empirical law, not derivable from mechanics</p>
+<p class="metadata">Provenance: classical mechanics proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Stefan-Boltzmann law: P = sigma T^4 for black body radiation</h3>
+<p><strong>Statement:</strong> Stefan-Boltzmann law: P = sigma T^4 for black body radiation</p>
+<p><strong>Hypotheses:</strong> ideal black body at temperature T</p>
+<p><strong>Conclusion:</strong> total power radiated proportional to T^4</p>
+<p><strong>Definitions:</strong> Stefan-Boltzmann, black body, radiation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Planck's law for spectral radiance</p>
+<p class="step">Step 2: Integrate over all frequencies</p>
+<p class="step">Step 3: sigma = 2 pi^5 k^4 / (15 c^2 h^3)</p>
+<p class="step">Step 4: Confirmed experimentally</p></div>
+<p class="metadata">ID: 02ad73010df8 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Derived from Planck's radiation law</p>
+<p class="metadata">Provenance: classical mechanics proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Planck's law: B(nu,T) = (2h nu^3/c^2) / (exp(h nu/kT) - 1)</h3>
+<p><strong>Statement:</strong> Planck's law: B(nu,T) = (2h nu^3/c^2) / (exp(h nu/kT) - 1)</p>
+<p><strong>Hypotheses:</strong> cavity at temperature T</p>
+<p><strong>Conclusion:</strong> spectral radiance of black body</p>
+<p><strong>Definitions:</strong> Planck, black body, quantum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Classical Rayleigh-Jeans: ultraviolet catastrophe</p>
+<p class="step">Step 2: Planck: energy quantized E = h nu</p>
+<p class="step">Step 3: Bose-Einstein statistics for photons</p>
+<p class="step">Step 4: Result matches experiment</p></div>
+<p class="metadata">ID: df5b5cb1d5c8 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Birth of quantum mechanics</p>
+<p class="metadata">Provenance: classical mechanics proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Boltzmann entropy: S = k_B ln W (statistical mechanics)</h3>
+<p><strong>Statement:</strong> Boltzmann entropy: S = k_B ln W (statistical mechanics)</p>
+<p><strong>Hypotheses:</strong> W = number of microstates</p>
+<p><strong>Conclusion:</strong> entropy as logarithm of microstates</p>
+<p><strong>Definitions:</strong> Boltzmann, entropy, statistical mechanics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Microstate: complete specification of system</p>
+<p class="step">Step 2: W = number of microstates consistent with macrostate</p>
+<p class="step">Step 3: S = k_B ln W</p>
+<p class="step">Step 4: Consistent with thermodynamic entropy</p>
+<p class="step">Step 5: Maxwell-Boltzmann distribution follows</p></div>
+<p class="metadata">ID: 4ef80b5acb0e | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Inscription on Boltzmann's tombstone</p>
+<p class="metadata">Provenance: classical mechanics proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Bose-Einstein statistics: n_i = 1/(exp((E_i-mu)/kT) - 1) for bosons</h3>
+<p><strong>Statement:</strong> Bose-Einstein statistics: n_i = 1/(exp((E_i-mu)/kT) - 1) for bosons</p>
+<p><strong>Hypotheses:</strong> indistinguishable particles, integer spin</p>
+<p><strong>Conclusion:</strong> occupation numbers for bosonic systems</p>
+<p><strong>Definitions:</strong> Bose-Einstein, bosons, quantum statistics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bose-Einstein distribution from counting states</p>
+<p class="step">Step 2: Bose-Einstein condensation at low T</p>
+<p class="step">Step 3: Photons are bosons (Planck distribution)</p>
+<p class="step">Step 4: Superfluidity in He-4</p></div>
+<p class="metadata">ID: fab3ecca8629 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without indistinguishability: classical Boltzmann statistics</p>
+<p class="metadata">Provenance: classical mechanics proof #15</p>
+</div>
 </body></html>

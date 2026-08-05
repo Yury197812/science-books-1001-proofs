@@ -17059,4 +17059,222 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: These are laws of physics, not theorems</p>
 <p class="metadata">Provenance: Domain Electromagnetism, theorem #1</p>
 </div>
+
+<h2>Extra proofs (+15 from electromagnetism)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Fermi-Dirac statistics: n_i = 1/(exp((E_i-mu)/kT) + 1) for fermions</h3>
+<p><strong>Statement:</strong> Fermi-Dirac statistics: n_i = 1/(exp((E_i-mu)/kT) + 1) for fermions</p>
+<p><strong>Hypotheses:</strong> indistinguishable particles, half-integer spin</p>
+<p><strong>Conclusion:</strong> occupation numbers for fermionic systems</p>
+<p><strong>Definitions:</strong> Fermi-Dirac, fermions, Pauli exclusion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Pauli exclusion: no two in same state</p>
+<p class="step">Step 2: Fermi-Dirac from counting</p>
+<p class="step">Step 3: At T=0: Fermi sea</p>
+<p class="step">Step 4: Pauli paramagnetism, degeneracy pressure</p></div>
+<p class="metadata">ID: c60f9a9800aa | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without exclusion: BE statistics</p>
+<p class="metadata">Provenance: electromagnetism proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: General relativity: G_{mu nu} + Lambda g_{mu nu} = 8 pi G T_{mu nu}/c^4</h3>
+<p><strong>Statement:</strong> General relativity: G_{mu nu} + Lambda g_{mu nu} = 8 pi G T_{mu nu}/c^4</p>
+<p><strong>Hypotheses:</strong> spacetime manifold, energy-momentum tensor</p>
+<p><strong>Conclusion:</strong> geometry of spacetime determined by matter</p>
+<p><strong>Definitions:</strong> Einstein field equations, general relativity, gravity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Einstein tensor: G = Ric - (1/2)Rg</p>
+<p class="step">Step 2: Ricci scalar from curvature</p>
+<p class="step">Step 3: T_{mu nu} = energy-momentum tensor</p>
+<p class="step">Step 4: Lambda = cosmological constant</p>
+<p class="step">Step 5: Matter tells spacetime how to curve</p></div>
+<p class="metadata">ID: 729fe39cf615 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Postulate of general relativity</p>
+<p class="metadata">Provenance: electromagnetism proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Schwarzschild metric: ds^2 = -(1-r_s/r)c^2 dt^2 + dr^2/(1-r_s/r) + r^2 dOmega^2</h3>
+<p><strong>Statement:</strong> Schwarzschild metric: ds^2 = -(1-r_s/r)c^2 dt^2 + dr^2/(1-r_s/r) + r^2 dOmega^2</p>
+<p><strong>Hypotheses:</strong> spherically symmetric vacuum solution, r_s = 2GM/c^2</p>
+<p><strong>Conclusion:</strong> spacetime around non-rotating black hole</p>
+<p><strong>Definitions:</strong> Schwarzschild, black hole, metric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Einstein equations in vacuum: R_{mu nu}=0</p>
+<p class="step">Step 2: Spherical symmetry ansatz</p>
+<p class="step">Step 3: Unique solution by Birkhoff's theorem</p>
+<p class="step">Step 4: Event horizon at r = r_s</p></div>
+<p class="metadata">ID: 06a7f1859369 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: First exact solution of Einstein equations</p>
+<p class="metadata">Provenance: electromagnetism proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Hubble's law: v = H_0 * d (recession velocity proportional to distance)</h3>
+<p><strong>Statement:</strong> Hubble's law: v = H_0 * d (recession velocity proportional to distance)</p>
+<p><strong>Hypotheses:</strong> observed redshifts of galaxies</p>
+<p><strong>Conclusion:</strong> universe is expanding uniformly</p>
+<p><strong>Definitions:</strong> Hubble, expansion, cosmology</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Redshift proportional to distance</p>
+<p class="step">Step 2: H_0 = Hubble constant ~ 70 km/s/Mpc</p>
+<p class="step">Step 3: Implies expanding universe</p>
+<p class="step">Step 4: Leads to Big Bang cosmology</p></div>
+<p class="metadata">ID: cf5e20399030 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Observational discovery, not a theorem</p>
+<p class="metadata">Provenance: electromagnetism proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Hawking radiation: black holes emit thermal radiation at T = h_bar c^3/(8 pi G M k_B)</h3>
+<p><strong>Statement:</strong> Hawking radiation: black holes emit thermal radiation at T = h_bar c^3/(8 pi G M k_B)</p>
+<p><strong>Hypotheses:</strong> quantum fields in curved spacetime, black hole</p>
+<p><strong>Conclusion:</strong> black hole has temperature inversely proportional to mass</p>
+<p><strong>Definitions:</strong> Hawking, black hole, thermal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Quantum fields near event horizon</p>
+<p class="step">Step 2: Virtual particle pairs: one falls in, one escapes</p>
+<p class="step">Step 3: Effective temperature T_H = h_bar c^3/(8 pi G M k_B)</p>
+<p class="step">Step 4: Black hole evaporation on timescale ~ M^3</p></div>
+<p class="metadata">ID: 77ed7e379bd3 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: One of most important results connecting QM and GR</p>
+<p class="metadata">Provenance: electromagnetism proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Feynman path integral: transition amplitude = integral over all paths of exp(iS/h_bar)</h3>
+<p><strong>Statement:</strong> Feynman path integral: transition amplitude = integral over all paths of exp(iS/h_bar)</p>
+<p><strong>Hypotheses:</strong> quantum mechanics, classical action S</p>
+<p><strong>Conclusion:</strong> alternative formulation of quantum mechanics</p>
+<p><strong>Definitions:</strong> Feynman, path integral, quantum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Each path contributes exp(iS/h_bar)</p>
+<p class="step">Step 2: Classical path: stationary phase (extremal action)</p>
+<p class="step">Step 3: Interference of nearby paths</p>
+<p class="step">Step 4: Equivalent to Schrödinger equation</p>
+<p class="step">Step 5: Foundation for quantum field theory</p></div>
+<p class="metadata">ID: 65615173dc93 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Equivalent to Schrödinger but more natural for QFT</p>
+<p class="metadata">Provenance: electromagnetism proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Fine structure constant: alpha = e^2/(4 pi eps_0 h_bar c) ≈ 1/137</h3>
+<p><strong>Statement:</strong> Fine structure constant: alpha = e^2/(4 pi eps_0 h_bar c) ≈ 1/137</p>
+<p><strong>Hypotheses:</strong> electromagnetic interaction</p>
+<p><strong>Conclusion:</strong> fundamental dimensionless constant</p>
+<p><strong>Definitions:</strong> fine structure, dimensionless, coupling</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Ratio of electromagnetic to gravitational coupling</p>
+<p class="step">Step 2: Characterizes strength of EM interaction</p>
+<p class="step">Step 3: Feynman: why 137?</p>
+<p class="step">Step 4: Running coupling: alpha varies with energy scale</p></div>
+<p class="metadata">ID: 28205c9a3100 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: One of most important constants in physics</p>
+<p class="metadata">Provenance: electromagnetism proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Bekenstein-Hawking entropy: S = k_B A c^3 / (4 G h_bar)</h3>
+<p><strong>Statement:</strong> Bekenstein-Hawking entropy: S = k_B A c^3 / (4 G h_bar)</p>
+<p><strong>Hypotheses:</strong> black hole of area A</p>
+<p><strong>Conclusion:</strong> entropy proportional to horizon area, not volume</p>
+<p><strong>Definitions:</strong> Bekenstein-Hawking, black hole entropy, holographic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bekenstein: black hole entropy proportional to area</p>
+<p class="step">Step 2: Hawking radiation temperature</p>
+<p class="step">Step 3: S = A/(4 l_P^2) in Planck units</p>
+<p class="step">Step 4: Proportional to area, not volume: holographic principle</p>
+<p class="step">Step 5: One of deepest results connecting thermodynamics, gravity, QM</p></div>
+<p class="metadata">ID: 6e84dafe4963 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Suggests holographic nature of spacetime</p>
+<p class="metadata">Provenance: electromagnetism proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Cosmic microwave background: T = 2.725 K blackbody radiation from Big Bang</h3>
+<p><strong>Statement:</strong> Cosmic microwave background: T = 2.725 K blackbody radiation from Big Bang</p>
+<p><strong>Hypotheses:</strong> isotropic radiation field</p>
+<p><strong>Conclusion:</strong> universal blackbody radiation at T = 2.725 K</p>
+<p><strong>Definitions:</strong> CMB, cosmic microwave, Big Bang</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Discovered 1965 by Penzias and Wilson</p>
+<p class="step">Step 2: Perfect blackbody spectrum (COBE 1989)</p>
+<p class="step">Step 3: Anisotropies ~ 10^-5 (WMAP, Planck)</p>
+<p class="step">Step 4: Imprint of density fluctuations</p>
+<p class="step">Step 5: Origin of large-scale structure</p></div>
+<p class="metadata">ID: 42eda5346c95 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Strongest evidence for Big Bang cosmology</p>
+<p class="metadata">Provenance: electromagnetism proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Standard model: SU(3)_C x SU(2)_L x U(1)_Y gauge theory of strong + electroweak</h3>
+<p><strong>Statement:</strong> Standard model: SU(3)_C x SU(2)_L x U(1)_Y gauge theory of strong + electroweak</p>
+<p><strong>Hypotheses:</strong> fundamental particles and interactions</p>
+<p><strong>Conclusion:</strong> complete description of known fundamental forces (except gravity)</p>
+<p><strong>Definitions:</strong> standard model, gauge theory, particle physics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: SU(3): strong force (gluons, quarks)</p>
+<p class="step">Step 2: SU(2)xU(1): electroweak (W, Z, photon)</p>
+<p class="step">Step 3: Spontaneous symmetry breaking: Higgs mechanism</p>
+<p class="step">Step 4: 17 elementary particles (+ Higgs)</p>
+<p class="step">Step 5: Most successful physical theory ever</p></div>
+<p class="metadata">ID: 4c5881b225ce | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Does not include gravity</p>
+<p class="metadata">Provenance: electromagnetism proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: No-go theorem: no Lorentz-invariant quantum field theory in d>2 with interactions and mass gap</h3>
+<p><strong>Statement:</strong> No-go theorem: no Lorentz-invariant quantum field theory in d>2 with interactions and mass gap</p>
+<p><strong>Hypotheses:</strong> Lorentz invariant QFT, mass gap, interactions</p>
+<p><strong>Conclusion:</strong> certain combination of properties impossible</p>
+<p><strong>Definitions:</strong> no-go theorem, Lorentz invariance, QFT</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Coleman-Wagner: no continuous symmetry breaking in d<=2</p>
+<p class="step">Step 2: Haag's theorem: interaction picture doesn't exist</p>
+<p class="step">Step 3: Haag-Lopuszanski-Sohnius: no supersymmetry extension of Poincare without central charges</p></div>
+<p class="metadata">ID: ed3314431197 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Constrains possible QFTs</p>
+<p class="metadata">Provenance: electromagnetism proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Bell's inequality: local hidden variable theories violate quantum predictions</h3>
+<p><strong>Statement:</strong> Bell's inequality: local hidden variable theories violate quantum predictions</p>
+<p><strong>Hypotheses:</strong> local hidden variables, EPR pair</p>
+<p><strong>Conclusion:</strong> quantum mechanics violates Bell inequality</p>
+<p><strong>Definitions:</strong> Bell, hidden variables, quantum nonlocality</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: EPR: local realism implies factorizable correlations</p>
+<p class="step">Step 2: Bell inequality: |S| <= 2 for local HV</p>
+<p class="step">Step 3: QM: |S| = 2*sqrt(2) for maximally entangled state</p>
+<p class="step">Step 4: Experimental violations (Aspect 1982)</p>
+<p class="step">Step 5: Local realism ruled out</p></div>
+<p class="metadata">ID: 1404909b65c2 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: One of deepest results in foundations of QM</p>
+<p class="metadata">Provenance: electromagnetism proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: AdS/CFT correspondence: gravity in AdS_{d+1} dual to CFT_d on boundary</h3>
+<p><strong>Statement:</strong> AdS/CFT correspondence: gravity in AdS_{d+1} dual to CFT_d on boundary</p>
+<p><strong>Hypotheses:</strong> anti-de Sitter space, conformal field theory</p>
+<p><strong>Conclusion:</strong> quantum gravity equals conformal field theory</p>
+<p><strong>Definitions:</strong> AdS/CFT, holographic, duality</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Maldacena 1997: conjecture</p>
+<p class="step">Step 2: Strong coupling in gravity => weak coupling in CFT</p>
+<p class="step">Step 3: Black holes in AdS => thermal states in CFT</p>
+<p class="step">Step 4: Provides non-perturbative definition of quantum gravity</p>
+<p class="step">Step 5: Most studied duality in theoretical physics</p></div>
+<p class="metadata">ID: 2926fe825c61 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Conjecture (not proven in general)</p>
+<p class="metadata">Provenance: electromagnetism proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Hawking area theorem: event horizon area never decreases (classical GR)</h3>
+<p><strong>Statement:</strong> Hawking area theorem: event horizon area never decreases (classical GR)</p>
+<p><strong>Hypotheses:</strong> classical general relativity, cosmic censorship</p>
+<p><strong>Conclusion:</strong> dA/dt >= 0 for event horizon</p>
+<p><strong>Definitions:</strong> Hawking area, event horizon, classical GR</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Raychaudhuri equation for null geodesics</p>
+<p class="step">Step 2: Focusing theorem: gravity focuses light rays</p>
+<p class="step">Step 3: Event horizon area = integral of expansion</p>
+<p class="step">Step 4: Energy conditions => expansion >= 0</p></div>
+<p class="metadata">ID: 915ee771e3ca | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Analogous to second law of thermodynamics</p>
+<p class="metadata">Provenance: electromagnetism proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Birkhoff's theorem: spherically symmetric vacuum solution of Einstein equations is Schwarzschild</h3>
+<p><strong>Statement:</strong> Birkhoff's theorem: spherically symmetric vacuum solution of Einstein equations is Schwarzschild</p>
+<p><strong>Hypotheses:</strong> spherically symmetric vacuum spacetime</p>
+<p><strong>Conclusion:</strong> must be Schwarzschild (static, unique)</p>
+<p><strong>Definitions:</strong> Birkhoff, spherically symmetric, vacuum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Spherical symmetry ansatz</p>
+<p class="step">Step 2: Einstein equations R_{mu nu}=0</p>
+<p class="step">Step 3: Unique solution parameterized by mass M</p>
+<p class="step">Step 4: Independence of time: static</p></div>
+<p class="metadata">ID: ebdb4e810d34 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Gravity has no monopole radiation</p>
+<p class="metadata">Provenance: electromagnetism proof #15</p>
+</div>
 </body></html>

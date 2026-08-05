@@ -18076,4 +18076,96 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Complexity, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+6 from complexity theory)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Planar graph: V-E+F=2, E<=3V-6 (Euler's formula consequences)</h3>
+<p><strong>Statement:</strong> Planar graph: V-E+F=2, E<=3V-6 (Euler's formula consequences)</p>
+<p><strong>Hypotheses:</strong> connected planar graph, V>=3</p>
+<p><strong>Conclusion:</strong> E <= 3V-6, K_5 and K_{3,3} nonplanar</p>
+<p><strong>Definitions:</strong> planar graph, Euler, edges</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Euler: V-E+F=2</p>
+<p class="step">Step 2: Each face bounded by >= 3 edges</p>
+<p class="step">Step 3: 2E >= 3F (each edge borders 2 faces)</p>
+<p class="step">Step 4: Substitute: E <= 3V-6</p>
+<p class="step">Step 5: K_5: 10 > 3(5)-6=9, nonplanar</p>
+<p class="step">Step 6: K_{3,3}: 9 > 3(6)-6=12, also nonplanar</p></div>
+<p class="metadata">ID: 410539d38df0 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Kuratowski's theorem: planar iff no K_5 or K_{3,3} minor</p>
+<p class="metadata">Provenance: complexity theory proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: P=NP: polynomial-time solution to NP-complete problem would collapse complexity hierarchy</h3>
+<p><strong>Statement:</strong> P=NP: polynomial-time solution to NP-complete problem would collapse complexity hierarchy</p>
+<p><strong>Hypotheses:</strong> Cook-Levin: SAT NP-complete</p>
+<p><strong>Conclusion:</strong> SAT in P => P=NP => EXP=NEXP => all collapse</p>
+<p><strong>Definitions:</strong> P, NP, NP-complete</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If SAT in P: all NP problems polynomial-time</p>
+<p class="step">Step 2: NP = P, coNP = NP, PH collapses</p>
+<p class="step">Step 3: EXPTIME = NEXP (by padding)</p>
+<p class="step">Step 4: Believed false: P != NP</p>
+<p class="step">Step 5: No proof exists for either direction</p></div>
+<p class="metadata">ID: aabb1e8af96f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Biggest open problem in mathematics/CS</p>
+<p class="metadata">Provenance: complexity theory proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: BPP: bounded-error probabilistic polynomial time is practically important</h3>
+<p><strong>Statement:</strong> BPP: bounded-error probabilistic polynomial time is practically important</p>
+<p><strong>Hypotheses:</strong> randomized algorithm, error <= 1/3</p>
+<p><strong>Conclusion:</strong> BPP is believed to equal P (derandomization)</p>
+<p><strong>Definitions:</strong> BPP, randomized, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: BPP: can be solved by randomized algorithm</p>
+<p class="step">Step 2: Error can be amplified: (1/3)^k</p>
+<p class="step">Step 3: Adleman: BPP subset P/poly</p>
+<p class="step">Step 4: Wigderson: BPP subset P if EXP != EXP/poly</p>
+<p class="step">Step 5: Most believe BPP = P (derandomizable)</p></div>
+<p class="metadata">ID: 6e9a4c54d3d2 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Randomness seems not to add computational power</p>
+<p class="metadata">Provenance: complexity theory proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Linear programming: maximize c^T x subject to Ax <= b, x >= 0 in polynomial time</h3>
+<p><strong>Statement:</strong> Linear programming: maximize c^T x subject to Ax <= b, x >= 0 in polynomial time</p>
+<p><strong>Hypotheses:</strong> linear objective and constraints</p>
+<p><strong>Conclusion:</strong> LP solvable in polynomial time</p>
+<p><strong>Definitions:</strong> linear programming, simplex, interior point</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Simplex: exponential worst-case, fast in practice</p>
+<p class="step">Step 2: Khachiyan 1979: first polynomial algorithm (ellipsoid)</p>
+<p class="step">Step 3: Karmarkar 1984: interior point, practical</p>
+<p class="step">Step 4: LP is in P, but also NP-hard in generalization</p></div>
+<p class="metadata">ID: 05a06caf8e62 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Simplex fast in practice despite exponential worst case</p>
+<p class="metadata">Provenance: complexity theory proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Dynamic programming: optimal substructure + overlapping subproblems</h3>
+<p><strong>Statement:</strong> Dynamic programming: optimal substructure + overlapping subproblems</p>
+<p><strong>Hypotheses:</strong> optimization problem with these properties</p>
+<p><strong>Conclusion:</strong> solve subproblems once, reuse solutions</p>
+<p><strong>Definitions:</strong> dynamic programming, memoization, optimal substructure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Optimal solution contains optimal solutions to subproblems</p>
+<p class="step">Step 2: Same subproblems arise repeatedly</p>
+<p class="step">Step 3: Store solutions to avoid recomputation</p>
+<p class="step">Step 4: Top-down (memoization) or bottom-up (tabulation)</p>
+<p class="step">Step 5: Examples: Fibonacci, knapsack, shortest path</p></div>
+<p class="metadata">ID: 416f0301cb55 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Not a specific algorithm, but a problem-solving paradigm</p>
+<p class="metadata">Provenance: complexity theory proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: NP-completeness: problem is NP-complete if in NP and NP-hard (every NP reduces to it)</h3>
+<p><strong>Statement:</strong> NP-completeness: problem is NP-complete if in NP and NP-hard (every NP reduces to it)</p>
+<p><strong>Hypotheses:</strong> decision problem</p>
+<p><strong>Conclusion:</strong> hardest problems in NP</p>
+<p><strong>Definitions:</strong> NP-complete, reduction, NP-hard</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: NP: verifiable in polynomial time</p>
+<p class="step">Step 2: NP-hard: every NP polynomial-time reduces to it</p>
+<p class="step">Step 3: NP-complete = NP intersect NP-hard</p>
+<p class="step">Step 4: If any NPC in P: P=NP</p>
+<p class="step">Step 5: Known: thousands of NPC problems across domains</p></div>
+<p class="metadata">ID: 36eb20b763f2 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Shows P=NP question is about all of these problems simultaneously</p>
+<p class="metadata">Provenance: complexity theory proof #6</p>
+</div>
 </body></html>

@@ -18088,4 +18088,217 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without separating points: constants subalgebra is not dense</p>
 <p class="metadata">Provenance: Domain General Chemistry, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+15 from general chemistry)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Hess's law: enthalpy change is path-independent (state function)</h3>
+<p><strong>Statement:</strong> Hess's law: enthalpy change is path-independent (state function)</p>
+<p><strong>Hypotheses:</strong> chemical reaction at constant pressure</p>
+<p><strong>Conclusion:</strong> Delta H depends only on initial and final states</p>
+<p><strong>Definitions:</strong> Hess, enthalpy, state function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: First law: energy conserved</p>
+<p class="step">Step 2: Enthalpy is state function</p>
+<p class="step">Step 3: For any cycle: sum Delta H = 0</p>
+<p class="step">Step 4: Two paths A->B: Delta H_1 = Delta H_2</p></div>
+<p class="metadata">ID: 29b88013142a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Application of First law to chemistry</p>
+<p class="metadata">Provenance: general chemistry proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Gibbs free energy: Delta G = Delta H - T*Delta S determines spontaneity</h3>
+<p><strong>Statement:</strong> Gibbs free energy: Delta G = Delta H - T*Delta S determines spontaneity</p>
+<p><strong>Hypotheses:</strong> constant T, P</p>
+<p><strong>Conclusion:</strong> Delta G < 0 => spontaneous</p>
+<p><strong>Definitions:</strong> Gibbs free energy, spontaneity, thermodynamics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define G = H - TS</p>
+<p class="step">Step 2: dG = VdP - SdT (at constant P: dG = -SdT)</p>
+<p class="step">Step 3: Total entropy change >= 0</p>
+<p class="step">Step 4: Delta G < 0 equivalent to spontaneous at constant T,P</p></div>
+<p class="metadata">ID: 13dd41607fac | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Most useful criterion for chemical spontaneity</p>
+<p class="metadata">Provenance: general chemistry proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Chemical equilibrium: K = prod [products]^v / prod [reactants]^v</h3>
+<p><strong>Statement:</strong> Chemical equilibrium: K = prod [products]^v / prod [reactants]^v</p>
+<p><strong>Hypotheses:</strong> reversible reaction at equilibrium</p>
+<p><strong>Conclusion:</strong> Delta G = -RT ln K</p>
+<p><strong>Definitions:</strong> equilibrium constant, van't Hoff, thermodynamics</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: At equilibrium: Delta G = 0</p>
+<p class="step">Step 2: Relate to standard free energy</p>
+<p class="step">Step 3: Delta G = Delta G^0 + RT ln Q</p>
+<p class="step">Step 4: At equilibrium Q = K, Delta G = 0</p></div>
+<p class="metadata">ID: 5480777eec19 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Connects thermodynamics to equilibrium concentrations</p>
+<p class="metadata">Provenance: general chemistry proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Arrhenius equation: k = A exp(-Ea/RT) (rate depends on activation energy)</h3>
+<p><strong>Statement:</strong> Arrhenius equation: k = A exp(-Ea/RT) (rate depends on activation energy)</p>
+<p><strong>Hypotheses:</strong> chemical reaction at temperature T</p>
+<p><strong>Conclusion:</strong> rate constant increases with temperature</p>
+<p><strong>Definitions:</strong> Arrhenius, activation energy, rate constant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: More molecules have energy > Ea at higher T</p>
+<p class="step">Step 2: Boltzmann factor: fraction with E > Ea is exp(-Ea/RT)</p>
+<p class="step">Step 3: k = A exp(-Ea/RT)</p>
+<p class="step">Step 4: Plot ln(k) vs 1/T: straight line with slope -Ea/R</p></div>
+<p class="metadata">ID: 62ecf8f954e9 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Empirical law with theoretical justification from transition state theory</p>
+<p class="metadata">Provenance: general chemistry proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Ideal gas law: PV = nRT</h3>
+<p><strong>Statement:</strong> Ideal gas law: PV = nRT</p>
+<p><strong>Hypotheses:</strong> low pressure, high temperature</p>
+<p><strong>Conclusion:</strong> PV = nRT</p>
+<p><strong>Definitions:</strong> ideal gas, equation of state</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Boyle: PV = const at fixed T</p>
+<p class="step">Step 2: Charles: V/T = const at fixed P</p>
+<p class="step">Step 3: Avogadro: V/n = const at fixed T,P</p>
+<p class="step">Step 4: Combined: PV = nRT</p></div>
+<p class="metadata">ID: 89149573c00f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Fails for real gases at high pressure</p>
+<p class="metadata">Provenance: general chemistry proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: van der Waals equation: (P + a/V^2)(V - b) = RT (corrects for molecular interactions)</h3>
+<p><strong>Statement:</strong> van der Waals equation: (P + a/V^2)(V - b) = RT (corrects for molecular interactions)</p>
+<p><strong>Hypotheses:</strong> real gas at moderate pressure</p>
+<p><strong>Conclusion:</strong> modified equation of state</p>
+<p><strong>Definitions:</strong> van der Waals, real gas, corrections</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Correction for molecular volume: V -> V-b</p>
+<p class="step">Step 2: Correction for intermolecular attraction: P -> P+a/V^2</p>
+<p class="step">Step 3: Parameters a,b specific to each gas</p>
+<p class="step">Step 4: Better than ideal gas at moderate conditions</p></div>
+<p class="metadata">ID: 00da5c3c9d40 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Still fails at very high pressures</p>
+<p class="metadata">Provenance: general chemistry proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Beer-Lambert law: A = epsilon * c * l (absorbance proportional to concentration)</h3>
+<p><strong>Statement:</strong> Beer-Lambert law: A = epsilon * c * l (absorbance proportional to concentration)</p>
+<p><strong>Hypotheses:</strong> monochromatic light, dilute solution</p>
+<p><strong>Conclusion:</strong> absorbance = epsilon * c * l</p>
+<p><strong>Definitions:</strong> Beer-Lambert, absorbance, spectrophotometry</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Light intensity decreases exponentially through solution</p>
+<p class="step">Step 2: A = log(I_0/I) = epsilon * c * l</p>
+<p class="step">Step 3: epsilon = molar absorptivity</p>
+<p class="step">Step 4: Foundation of UV-Vis spectroscopy</p></div>
+<p class="metadata">ID: 092258fdf166 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Deviations at high concentrations</p>
+<p class="metadata">Provenance: general chemistry proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Le Chatelier's principle: system at equilibrium shifts to counteract disturbance</h3>
+<p><strong>Statement:</strong> Le Chatelier's principle: system at equilibrium shifts to counteract disturbance</p>
+<p><strong>Hypotheses:</strong> system at chemical equilibrium</p>
+<p><strong>Conclusion:</strong> system opposes applied change</p>
+<p><strong>Definitions:</strong> Le Chatelier, equilibrium, stress</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Increase concentration: shift to consume</p>
+<p class="step">Step 2: Increase temperature: shift to endothermic direction</p>
+<p class="step">Step 3: Increase pressure: shift to fewer moles</p>
+<p class="step">Step 4: Qualitative prediction tool</p></div>
+<p class="metadata">ID: 18f366443a52 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Qualitative, not quantitative (use Delta G for that)</p>
+<p class="metadata">Provenance: general chemistry proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Atomic orbitals: s, p, d, f shapes from Schrödinger equation solutions</h3>
+<p><strong>Statement:</strong> Atomic orbitals: s, p, d, f shapes from Schrödinger equation solutions</p>
+<p><strong>Hypotheses:</strong> hydrogen-like atom</p>
+<p><strong>Conclusion:</strong> quantized angular momentum, radial functions</p>
+<p><strong>Definitions:</strong> atomic orbital, quantum numbers, Schrödinger</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Separate Schrödinger in spherical coords</p>
+<p class="step">Step 2: Radial equation: associated Laguerre polynomials</p>
+<p class="step">Step 3: Angular: spherical harmonics Y_l^m</p>
+<p class="step">Step 4: 4 quantum numbers: n, l, m_l, m_s</p></div>
+<p class="metadata">ID: 64eb12d637d5 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation of quantum chemistry</p>
+<p class="metadata">Provenance: general chemistry proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Pauli exclusion principle in chemistry: no two electrons in same orbital with same spin</h3>
+<p><strong>Statement:</strong> Pauli exclusion principle in chemistry: no two electrons in same orbital with same spin</p>
+<p><strong>Hypotheses:</strong> multi-electron atom</p>
+<p><strong>Conclusion:</strong> electrons fill orbitals with different quantum numbers</p>
+<p><strong>Definitions:</strong> Pauli exclusion, electron configuration, Aufbau</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: At most 2 electrons per orbital (opposite spins)</p>
+<p class="step">Step 2: Aufbau: fill lowest energy first</p>
+<p class="step">Step 3: Hund's rule: maximize unpaired spins first</p>
+<p class="step">Step 4: Explains periodic table structure</p></div>
+<p class="metadata">ID: c42c859c1505 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation of chemistry</p>
+<p class="metadata">Provenance: general chemistry proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: VSEPR theory: molecular geometry determined by electron pair repulsion</h3>
+<p><strong>Statement:</strong> VSEPR theory: molecular geometry determined by electron pair repulsion</p>
+<p><strong>Hypotheses:</strong> molecule with central atom</p>
+<p><strong>Conclusion:</strong> 3D geometry from Lewis structure</p>
+<p><strong>Definitions:</strong> VSEPR, molecular geometry, electron pairs</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count bonding and lone pairs around central atom</p>
+<p class="step">Step 2: Electron pairs repel: maximize separation</p>
+<p class="step">Step 3: Determine geometry: linear, trigonal, tetrahedral etc.</p>
+<p class="step">Step 4: Lone pairs compress bond angles</p></div>
+<p class="metadata">ID: 6b06ea772d50 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Qualitative but very useful</p>
+<p class="metadata">Provenance: general chemistry proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Hückel's rule: aromatic if 4n+2 pi electrons</h3>
+<p><strong>Statement:</strong> Hückel's rule: aromatic if 4n+2 pi electrons</p>
+<p><strong>Hypotheses:</strong> cyclic planar conjugated molecule</p>
+<p><strong>Conclusion:</strong> 4n+2 pi electrons => aromatic (stable)</p>
+<p><strong>Definitions:</strong> Hückel, aromaticity, pi electrons</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Pi electron energy levels from Hückel theory</p>
+<p class="step">Step 2: Energy levels: alpha +/- 2beta cos(2pi*k/n)</p>
+<p class="step">Step 3: Filling 4n+2 electrons gives closed shell</p>
+<p class="step">Step 4: Maximum stabilization energy</p>
+<p class="step">Step 5: Benzene: 6 = 4(1)+2 pi electrons</p></div>
+<p class="metadata">ID: d032f4616ca0 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: For 4n pi electrons: antiaromatic (unstable)</p>
+<p class="metadata">Provenance: general chemistry proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Nernst equation: E = E^0 - (RT/nF) ln Q (electrode potential depends on concentration)</h3>
+<p><strong>Statement:</strong> Nernst equation: E = E^0 - (RT/nF) ln Q (electrode potential depends on concentration)</p>
+<p><strong>Hypotheses:</strong> electrochemical cell, non-standard conditions</p>
+<p><strong>Conclusion:</strong> cell potential corrected for concentrations</p>
+<p><strong>Definitions:</strong> Nernst, electrode potential, electrochemistry</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Delta G = -nFE</p>
+<p class="step">Step 2: Delta G = Delta G^0 + RT ln Q</p>
+<p class="step">Step 3: -nFE = -nFE^0 + RT ln Q</p>
+<p class="step">Step 4: E = E^0 - (RT/nF) ln Q</p></div>
+<p class="metadata">ID: 2b3079e3648d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: For standard conditions: Q=1, E=E^0</p>
+<p class="metadata">Provenance: general chemistry proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Born-Haber cycle: lattice energy from thermochemical data</h3>
+<p><strong>Statement:</strong> Born-Haber cycle: lattice energy from thermochemical data</p>
+<p><strong>Hypotheses:</strong> ionic compound</p>
+<p><strong>Conclusion:</strong> lattice energy calculated from energy cycle</p>
+<p><strong>Definitions:</strong> Born-Haber, lattice energy, Hess's law</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct thermochemical cycle</p>
+<p class="step">Step 2: Sublimation + ionization + dissociation + electron affinity + lattice</p>
+<p class="step">Step 3: Sum = enthalpy of formation</p>
+<p class="step">Step 4: Solve for lattice energy</p></div>
+<p class="metadata">ID: 7e9a5cccf542 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Application of Hess's law</p>
+<p class="metadata">Provenance: general chemistry proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Hund's rule: maximize total spin in degenerate orbitals</h3>
+<p><strong>Statement:</strong> Hund's rule: maximize total spin in degenerate orbitals</p>
+<p><strong>Hypotheses:</strong> atom with partially filled subshell</p>
+<p><strong>Conclusion:</strong> electrons occupy separate orbitals with same spin first</p>
+<p><strong>Definitions:</strong> Hund, spin multiplicity, degenerate orbitals</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Minimize electron-electron repulsion</p>
+<p class="step">Step 2: Exchange energy favors parallel spins</p>
+<p class="step">Step 3: Maximize total spin S</p>
+<p class="step">Step 4: Term symbol: ^{2S+1}L_J</p></div>
+<p class="metadata">ID: 40a38ce8ece4 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Qualitative rule for ground state configurations</p>
+<p class="metadata">Provenance: general chemistry proof #15</p>
+</div>
 </body></html>

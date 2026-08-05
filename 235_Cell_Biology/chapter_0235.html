@@ -17060,4 +17060,227 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Violation of assumptions indicates evolution</p>
 <p class="metadata">Provenance: Domain Cell Biology, theorem #1</p>
 </div>
+
+<h2>Extra proofs (+15 from cell biology)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Hardy-Weinberg equilibrium: allele frequencies constant without evolution</h3>
+<p><strong>Statement:</strong> Hardy-Weinberg equilibrium: allele frequencies constant without evolution</p>
+<p><strong>Hypotheses:</strong> large population, random mating, no selection, no mutation, no migration</p>
+<p><strong>Conclusion:</strong> p^2 + 2pq + q^2 = 1</p>
+<p><strong>Definitions:</strong> Hardy-Weinberg, equilibrium, genetic drift</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: p = freq(A), q = freq(a)</p>
+<p class="step">Step 2: Random mating: p^2 AA, 2pq Aa, q^2 aa</p>
+<p class="step">Step 3: No forces change p or q</p>
+<p class="step">Step 4: Deviation indicates evolution</p></div>
+<p class="metadata">ID: 43e851ea4ebc | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Violation of assumptions indicates evolutionary forces at work</p>
+<p class="metadata">Provenance: cell biology proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Central dogma: DNA -> RNA -> Protein</h3>
+<p><strong>Statement:</strong> Central dogma: DNA -> RNA -> Protein</p>
+<p><strong>Hypotheses:</strong> molecular biology</p>
+<p><strong>Conclusion:</strong> genetic information flows from DNA to RNA to protein</p>
+<p><strong>Definitions:</strong> central dogma, molecular biology, transcription</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: DNA replicates itself</p>
+<p class="step">Step 2: Transcription: DNA -> mRNA</p>
+<p class="step">Step 3: Translation: mRNA -> protein at ribosome</p>
+<p class="step">Step 4: Reverse transcriptase: RNA -> DNA (exception)</p>
+<p class="step">Step 5: Prions: protein -> protein (special case)</p></div>
+<p class="metadata">ID: de58476216f6 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Exceptions: reverse transcriptase, prions</p>
+<p class="metadata">Provenance: cell biology proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Mendel's law of segregation: alleles separate during gamete formation</h3>
+<p><strong>Statement:</strong> Mendel's law of segregation: alleles separate during gamete formation</p>
+<p><strong>Hypotheses:</strong> diploid organism, sexual reproduction</p>
+<p><strong>Conclusion:</strong> each gamete gets one allele per gene</p>
+<p><strong>Definitions:</strong> Mendel, segregation, allele</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Meiosis I: homologous chromosomes separate</p>
+<p class="step">Step 2: Each gamete: one copy of each pair</p>
+<p class="step">Step 3: F2 ratio 3:1 confirms segregation</p>
+<p class="step">Step 4: Independent assortment: separate law</p></div>
+<p class="metadata">ID: 9a7093e451ef | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundation of classical genetics</p>
+<p class="metadata">Provenance: cell biology proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Mendel's law of independent assortment: genes on different chromosomes assort independently</h3>
+<p><strong>Statement:</strong> Mendel's law of independent assortment: genes on different chromosomes assort independently</p>
+<p><strong>Hypotheses:</strong> genes on different chromosomes</p>
+<p><strong>Conclusion:</strong> 9:3:3:1 ratio for dihybrid cross</p>
+<p><strong>Definitions:</strong> independent assortment, chromosomes, meiosis</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Meiosis I: independent alignment of chromosome pairs</p>
+<p class="step">Step 2: Gene A assortment independent of gene B</p>
+<p class="step">Step 3: 9:3:3:1 ratio in F2</p>
+<p class="step">Step 4: Exception: linked genes</p></div>
+<p class="metadata">ID: d78fb222ad64 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fails for linked genes on same chromosome</p>
+<p class="metadata">Provenance: cell biology proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: DNA double helix: two antiparallel strands with complementary base pairing</h3>
+<p><strong>Statement:</strong> DNA double helix: two antiparallel strands with complementary base pairing</p>
+<p><strong>Hypotheses:</strong> B-DNA structure</p>
+<p><strong>Conclusion:</strong> A=T and G=C hydrogen bonding</p>
+<p><strong>Definitions:</strong> double helix, Watson-Crick, base pairing</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: X-ray crystallography (Franklin, Wilkins)</p>
+<p class="step">Step 2: Watson-Crick model: right-handed helix</p>
+<p class="step">Step 3: Base pairs in interior, sugar-phosphate backbone outside</p>
+<p class="step">Step 4: A-T: 2 hydrogen bonds, G-C: 3 hydrogen bonds</p>
+<p class="step">Step 5: 10.5 base pairs per turn</p></div>
+<p class="metadata">ID: 2b34fa16c033 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Discovered 1953, Nobel 1962</p>
+<p class="metadata">Provenance: cell biology proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Enzyme kinetics: Michaelis-Menten v = Vmax[S]/(Km+[S])</h3>
+<p><strong>Statement:</strong> Enzyme kinetics: Michaelis-Menten v = Vmax[S]/(Km+[S])</p>
+<p><strong>Hypotheses:</strong> enzyme E + substrate S <=> ES -> E + P</p>
+<p><strong>Conclusion:</strong> reaction rate as function of substrate concentration</p>
+<p><strong>Definitions:</strong> Michaelis-Menten, enzyme kinetics, Vmax</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E + S <=> ES (fast equilibrium)</p>
+<p class="step">Step 2: ES -> E + P (rate = k_cat[ES])</p>
+<p class="step">Step 3: Steady state: d[ES]/dt = 0</p>
+<p class="step">Step 4: v = Vmax[S]/(Km + [S])</p>
+<p class="step">Step 5: Km = (k_{-1} + k_cat)/k_1</p></div>
+<p class="metadata">ID: 49ccea006087 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: At half-Vmax: [S] = Km</p>
+<p class="metadata">Provenance: cell biology proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Krebs cycle: oxidizes acetyl-CoA to CO2, producing NADH and FADH2</h3>
+<p><strong>Statement:</strong> Krebs cycle: oxidizes acetyl-CoA to CO2, producing NADH and FADH2</p>
+<p><strong>Hypotheses:</strong> aerobic metabolism</p>
+<p><strong>Conclusion:</strong> 8-step cycle producing energy carriers</p>
+<p><strong>Definitions:</strong> Krebs cycle, citric acid, TCA</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Acetyl-CoA + oxaloacetate -> citrate</p>
+<p class="step">Step 2: 8 enzymatic reactions</p>
+<p class="step">Step 3: Produces: 3 NADH, 1 FADH2, 1 GTP, 2 CO2 per turn</p>
+<p class="step">Step 4: NADH and FADH2 feed into electron transport chain</p></div>
+<p class="metadata">ID: 18a3b6e06fb8 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Central metabolic pathway</p>
+<p class="metadata">Provenance: cell biology proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: DNA replication: semi-conservative (each strand serves as template)</h3>
+<p><strong>Statement:</strong> DNA replication: semi-conservative (each strand serves as template)</p>
+<p><strong>Hypotheses:</strong> DNA replication</p>
+<p><strong>Conclusion:</strong> each daughter molecule has one old + one new strand</p>
+<p><strong>Definitions:</strong> semi-conservative, replication, Meselson-Stahl</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Three models: conservative, semi-conservative, dispersive</p>
+<p class="step">Step 2: Meselson-Stahl experiment: density gradient</p>
+<p class="step">Step 3: After 1 generation: all intermediate density</p>
+<p class="step">Step 4: After 2: half intermediate, half light</p>
+<p class="step">Step 5: Semi-conservative confirmed</p></div>
+<p class="metadata">ID: 85e97dd5a10a | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Discovered by Watson and Crick, confirmed by Meselson-Stahl</p>
+<p class="metadata">Provenance: cell biology proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Natural selection: differential survival and reproduction based on fitness</h3>
+<p><strong>Statement:</strong> Natural selection: differential survival and reproduction based on fitness</p>
+<p><strong>Hypotheses:</strong> variation in population, heritable traits, differential fitness</p>
+<p><strong>Conclusion:</strong> favorable traits increase in frequency</p>
+<p><strong>Definitions:</strong> natural selection, Darwin, fitness</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Variation exists in population</p>
+<p class="step">Step 2: Variation is heritable</p>
+<p class="step">Step 3: More offspring produced than survive</p>
+<p class="step">Step 4: Those best adapted survive and reproduce</p>
+<p class="step">Step 5: Allele frequencies change over generations</p></div>
+<p class="metadata">ID: de16d1247ce2 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Darwin 1859, modern synthesis integrates with genetics</p>
+<p class="metadata">Provenance: cell biology proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Koch's postulates: four criteria to establish disease causation</h3>
+<p><strong>Statement:</strong> Koch's postulates: four criteria to establish disease causation</p>
+<p><strong>Hypotheses:</strong> suspected pathogen and disease</p>
+<p><strong>Conclusion:</strong> four criteria linking microorganism to disease</p>
+<p><strong>Definitions:</strong> Koch, postulates, pathogen</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: 1. Pathogen present in all cases of disease</p>
+<p class="step">Step 2: 2. Pathogen isolated and grown pure</p>
+<p class="step">Step 3: 3. Pure culture causes disease in healthy host</p>
+<p class="step">Step 4: 4. Pathogen re-isolated from experimentally infected host</p>
+<p class="step">Step 5: Four criteria establish causation</p></div>
+<p class="metadata">ID: 7aa42e743b42 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Exceptions: HIV (can't fulfill all 4), prions</p>
+<p class="metadata">Provenance: cell biology proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Watson-Crick base pairing: A-T (2 H-bonds), G-C (3 H-bonds)</h3>
+<p><strong>Statement:</strong> Watson-Crick base pairing: A-T (2 H-bonds), G-C (3 H-bonds)</p>
+<p><strong>Hypotheses:</strong> DNA double helix</p>
+<p><strong>Conclusion:</strong> specific base pairing rules</p>
+<p><strong>Definitions:</strong> base pairing, hydrogen bonding, complementarity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Purines pair with pyrimidines</p>
+<p class="step">Step 2: A-T: 2 hydrogen bonds</p>
+<p class="step">Step 3: G-C: 3 hydrogen bonds</p>
+<p class="step">Step 4: GC content correlates with stability</p>
+<p class="step">Step 5: Chargaff's rules: A=T, G=C</p></div>
+<p class="metadata">ID: 9866b61fac12 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation of DNA replication and transcription</p>
+<p class="metadata">Provenance: cell biology proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Logistic growth: dN/dt = rN(1-N/K) (population growth with carrying capacity)</h3>
+<p><strong>Statement:</strong> Logistic growth: dN/dt = rN(1-N/K) (population growth with carrying capacity)</p>
+<p><strong>Hypotheses:</strong> population N, intrinsic growth rate r, carrying capacity K</p>
+<p><strong>Conclusion:</strong> S-shaped growth curve approaching K</p>
+<p><strong>Definitions:</strong> logistic growth, carrying capacity, population</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Exponential growth near N=0</p>
+<p class="step">Step 2: Growth slows as N approaches K</p>
+<p class="step">Step 3: dN/dt = 0 at N = K</p>
+<p class="step">Step 4: Sigmoidal (S-shaped) curve</p>
+<p class="step">Step 5: K = carrying capacity</p></div>
+<p class="metadata">ID: 22af86e9f532 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: More realistic than exponential growth</p>
+<p class="metadata">Provenance: cell biology proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Action potential: all-or-nothing nerve impulse via Na+/K+ channel dynamics</h3>
+<p><strong>Statement:</strong> Action potential: all-or-nothing nerve impulse via Na+/K+ channel dynamics</p>
+<p><strong>Hypotheses:</strong> neuron membrane, voltage-gated channels</p>
+<p><strong>Conclusion:</strong> rapid depolarization and repolarization cycle</p>
+<p><strong>Definitions:</strong> action potential, nerve impulse, ion channels</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Resting potential: -70 mV (K+ leak)</p>
+<p class="step">Step 2: Threshold: -55 mV triggers opening</p>
+<p class="step">Step 3: Na+ influx: rapid depolarization to +30 mV</p>
+<p class="step">Step 4: K+ efflux: repolarization back to -70 mV</p>
+<p class="step">Step 5: Refractory period prevents backpropagation</p></div>
+<p class="metadata">ID: 6e719b3405cd | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: All-or-nothing: no partial action potentials</p>
+<p class="metadata">Provenance: cell biology proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Photosynthesis: 6CO2 + 6H2O -> C6H12O6 + 6O2 using light energy</h3>
+<p><strong>Statement:</strong> Photosynthesis: 6CO2 + 6H2O -> C6H12O6 + 6O2 using light energy</p>
+<p><strong>Hypotheses:</strong> plants, algae, cyanobacteria</p>
+<p><strong>Conclusion:</strong> light energy converted to chemical energy</p>
+<p><strong>Definitions:</strong> photosynthesis, chloroplast, light reactions</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Light reactions: thylakoid membrane</p>
+<p class="step">Step 2: Photolysis: H2O -> O2 + H+ + e-</p>
+<p class="step">Step 3: Electron transport chain -> ATP + NADPH</p>
+<p class="step">Step 4: Calvin cycle: CO2 -> glucose</p>
+<p class="step">Step 5: Net: 6CO2 + 6H2O -> C6H12O6 + 6O2</p></div>
+<p class="metadata">ID: dd35095f94da | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Most important chemical reaction on Earth</p>
+<p class="metadata">Provenance: cell biology proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Cellular respiration: C6H12O6 + 6O2 -> 6CO2 + 6H2O + 36 ATP</h3>
+<p><strong>Statement:</strong> Cellular respiration: C6H12O6 + 6O2 -> 6CO2 + 6H2O + 36 ATP</p>
+<p><strong>Hypotheses:</strong> aerobic conditions</p>
+<p><strong>Conclusion:</strong> glucose oxidized to CO2, producing ATP</p>
+<p><strong>Definitions:</strong> cellular respiration, ATP, oxidative phosphorylation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Glycolysis: glucose -> pyruvate (2 ATP)</p>
+<p class="step">Step 2: Pyruvate oxidation: -> Acetyl-CoA</p>
+<p class="step">Step 3: Krebs cycle: -> 2 ATP + NADH + FADH2</p>
+<p class="step">Step 4: Electron transport chain: -> 34 ATP</p>
+<p class="step">Step 5: Total: ~36-38 ATP per glucose</p></div>
+<p class="metadata">ID: c198d1e4e329 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Inverse of photosynthesis</p>
+<p class="metadata">Provenance: cell biology proof #15</p>
+</div>
 </body></html>

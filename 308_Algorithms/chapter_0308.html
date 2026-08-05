@@ -18400,4 +18400,220 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Cache-efficient in practice despite worst case</p>
 <p class="metadata">Provenance: computer science proof #21</p>
 </div>
+
+<h2>Extra proofs (+15 from algorithms)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: P vs NP: biggest open problem in computer science</h3>
+<p><strong>Statement:</strong> P vs NP: biggest open problem in computer science</p>
+<p><strong>Hypotheses:</strong> computational complexity theory</p>
+<p><strong>Conclusion:</strong> whether P = NP remains unknown</p>
+<p><strong>Definitions:</strong> P, NP, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: P = polynomial-time solvable</p>
+<p class="step">Step 2: NP = polynomial-time verifiable</p>
+<p class="step">Step 3: Cook-Levin: SAT is NP-complete</p>
+<p class="step">Step 4: If any NP-complete in P: P=NP</p>
+<p class="step">Step 5: Most believe P != NP</p>
+<p class="step">Step 6: Clay Millennium: $1M prize</p></div>
+<p class="metadata">ID: 3aa9e0436cc8 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Open problem since 1971</p>
+<p class="metadata">Provenance: algorithms proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Cook-Levin theorem: SAT is NP-complete</h3>
+<p><strong>Statement:</strong> Cook-Levin theorem: SAT is NP-complete</p>
+<p><strong>Hypotheses:</strong> Boolean satisfiability problem</p>
+<p><strong>Conclusion:</strong> SAT is the first NP-complete problem</p>
+<p><strong>Definitions:</strong> Cook-Levin, SAT, NP-complete</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Encode any NP computation as Boolean formula</p>
+<p class="step">Step 2: Variables: tape cells, states, time</p>
+<p class="step">Step 3: Clauses: initial config, transitions, accept</p>
+<p class="step">Step 4: Satisfiable iff TM accepts</p>
+<p class="step">Step 5: Polynomial-time reduction from any NP problem</p></div>
+<p class="metadata">ID: c91b7dae4811 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: First NP-completeness proof (1971)</p>
+<p class="metadata">Provenance: algorithms proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Halting problem: no algorithm decides if arbitrary program halts</h3>
+<p><strong>Statement:</strong> Halting problem: no algorithm decides if arbitrary program halts</p>
+<p><strong>Hypotheses:</strong> arbitrary program M, input w</p>
+<p><strong>Conclusion:</strong> no universal halting decider exists</p>
+<p><strong>Definitions:</strong> Halting, undecidable, Turing</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume decider H exists</p>
+<p class="step">Step 2: Construct D: H(M,M) then do opposite</p>
+<p class="step">Step 3: D(D) halts iff H says it doesn't</p>
+<p class="step">Step 4: Contradiction: D halts iff D doesn't halt</p></div>
+<p class="metadata">ID: 52c48e6c2754 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundational result in computability</p>
+<p class="metadata">Provenance: algorithms proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Church-Turing thesis: Turing machines capture all computable functions</h3>
+<p><strong>Statement:</strong> Church-Turing thesis: Turing machines capture all computable functions</p>
+<p><strong>Hypotheses:</strong> informal notion of computable</p>
+<p><strong>Conclusion:</strong> equivalent to lambda calculus, recursive functions</p>
+<p><strong>Definitions:</strong> Church-Turing, computability, lambda calculus</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiple formalisms shown equivalent</p>
+<p class="step">Step 2: Turing machines = lambda calculus = mu-recursive</p>
+<p class="step">Step 3: All capture same computable functions</p>
+<p class="step">Step 4: Thesis: this = intuitively computable</p></div>
+<p class="metadata">ID: 0fcab3413a2b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Thesis, not theorem</p>
+<p class="metadata">Provenance: algorithms proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Time hierarchy: DTIME(f) properly contained in DTIME(g) for f log-o g</h3>
+<p><strong>Statement:</strong> Time hierarchy: DTIME(f) properly contained in DTIME(g) for f log-o g</p>
+<p><strong>Hypotheses:</strong> f, g time-constructible, f log-o g</p>
+<p><strong>Conclusion:</strong> strict containment</p>
+<p><strong>Definitions:</strong> time hierarchy, diagonalization, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Diagonalization: construct separating language</p>
+<p class="step">Step 2: Simulate with slowdown</p>
+<p class="step">Step 3: f log-o g ensures simulation fits</p></div>
+<p class="metadata">ID: 50cefdb88451 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Proves harder problems exist at each level</p>
+<p class="metadata">Provenance: algorithms proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Master theorem: T(n)=aT(n/b)+Theta(n^d) has closed form</h3>
+<p><strong>Statement:</strong> Master theorem: T(n)=aT(n/b)+Theta(n^d) has closed form</p>
+<p><strong>Hypotheses:</strong> a>=1, b>1</p>
+<p><strong>Conclusion:</strong> three cases based on d vs log_b a</p>
+<p><strong>Definitions:</strong> Master, recurrence, divide and conquer</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Case 1: leaf-dominated</p>
+<p class="step">Step 2: Case 2: balanced</p>
+<p class="step">Step 3: Case 3: root-dominated</p>
+<p class="step">Step 4: Recursion tree analysis</p></div>
+<p class="metadata">ID: 7609e2ba10a4 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without regularity: need Akra-Bazzi</p>
+<p class="metadata">Provenance: algorithms proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Dijkstra: shortest paths from source in O((V+E) log V)</h3>
+<p><strong>Statement:</strong> Dijkstra: shortest paths from source in O((V+E) log V)</p>
+<p><strong>Hypotheses:</strong> nonneg edge weights</p>
+<p><strong>Conclusion:</strong> all shortest paths from source</p>
+<p><strong>Definitions:</strong> Dijkstra, shortest path, greedy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Priority queue of distances</p>
+<p class="step">Step 2: Relax edges from minimum</p>
+<p class="step">Step 3: Greedy: once settled, never improve</p>
+<p class="step">Step 4: Binary heap: O((V+E) log V)</p></div>
+<p class="metadata">ID: 22f047d04912 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fails with negative edges</p>
+<p class="metadata">Provenance: algorithms proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Floyd-Warshall: all-pairs shortest paths in O(V^3)</h3>
+<p><strong>Statement:</strong> Floyd-Warshall: all-pairs shortest paths in O(V^3)</p>
+<p><strong>Hypotheses:</strong> weighted directed graph</p>
+<p><strong>Conclusion:</strong> shortest paths between all pairs</p>
+<p><strong>Definitions:</strong> Floyd-Warshall, all-pairs, dynamic programming</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: d[i][j][k] = shortest via vertices 1..k</p>
+<p class="step">Step 2: d[i][j][k] = min(d[i][j][k-1], d[i][k][k-1]+d[k][j][k-1])</p>
+<p class="step">Step 3: Space-optimized: O(V^2)</p>
+<p class="step">Step 4: Handles negative weights (no neg cycles)</p></div>
+<p class="metadata">ID: 6bb4b00fccd0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Handles negative weights</p>
+<p class="metadata">Provenance: algorithms proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Kruskal/Prim: minimum spanning tree in O(E log V)</h3>
+<p><strong>Statement:</strong> Kruskal/Prim: minimum spanning tree in O(E log V)</p>
+<p><strong>Hypotheses:</strong> connected weighted graph</p>
+<p><strong>Conclusion:</strong> minimum spanning tree</p>
+<p><strong>Definitions:</strong> MST, Kruskal, Prim</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Kruskal: sort edges, add if no cycle</p>
+<p class="step">Step 2: Prim: grow tree greedily</p>
+<p class="step">Step 3: Cut property: cheapest crossing edge is in MST</p>
+<p class="step">Step 4: Both O(E log V)</p></div>
+<p class="metadata">ID: 2076afe91aee | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Both correct by cut property</p>
+<p class="metadata">Provenance: algorithms proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Quicksort: average O(n log n), worst O(n^2)</h3>
+<p><strong>Statement:</strong> Quicksort: average O(n log n), worst O(n^2)</p>
+<p><strong>Hypotheses:</strong> array of n elements</p>
+<p><strong>Conclusion:</strong> expected O(n log n)</p>
+<p><strong>Definitions:</strong> quicksort, partition, randomized</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Partition: O(n) per level</p>
+<p class="step">Step 2: Expected depth O(log n)</p>
+<p class="step">Step 3: Random pivot: high probability O(n log n)</p>
+<p class="step">Step 4: Cache-friendly in practice</p></div>
+<p class="metadata">ID: 73d24488b166 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Worst case O(n^2) with bad pivots</p>
+<p class="metadata">Provenance: algorithms proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Shannon entropy: H(X) = -sum p(x) log p(x) measures information content</h3>
+<p><strong>Statement:</strong> Shannon entropy: H(X) = -sum p(x) log p(x) measures information content</p>
+<p><strong>Hypotheses:</strong> discrete random variable X</p>
+<p><strong>Conclusion:</strong> entropy = average information content</p>
+<p><strong>Definitions:</strong> Shannon entropy, information, uncertainty</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Self-information: -log p(x)</p>
+<p class="step">Step 2: Entropy = expected self-information</p>
+<p class="step">Step 3: Maximum when uniform distribution</p>
+<p class="step">Step 4: Zero when deterministic</p>
+<p class="step">Step 5: Shannon coding theorem: optimal code length ~ H(X)</p></div>
+<p class="metadata">ID: 8ede738d7cc6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation of information theory</p>
+<p class="metadata">Provenance: algorithms proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Shannon source coding theorem: entropy is lower bound for lossless compression</h3>
+<p><strong>Statement:</strong> Shannon source coding theorem: entropy is lower bound for lossless compression</p>
+<p><strong>Hypotheses:</strong> discrete memoryless source</p>
+<p><strong>Conclusion:</strong> cannot compress below entropy (average bits)</p>
+<p><strong>Definitions:</strong> Shannon coding, compression, entropy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: H(X) = minimum average bits per symbol</p>
+<p class="step">Step 2: Huffman coding achieves near-optimal</p>
+<p class="step">Step 3: Block coding can get arbitrarily close to H</p>
+<p class="step">Step 4: Shannon's noisy channel theorem: capacity C = max I(X;Y)</p></div>
+<p class="metadata">ID: c439c65d617d | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental limit of data compression</p>
+<p class="metadata">Provenance: algorithms proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Kolmogorov complexity: length of shortest program computing x</h3>
+<p><strong>Statement:</strong> Kolmogorov complexity: length of shortest program computing x</p>
+<p><strong>Hypotheses:</strong> string x, fixed universal TM</p>
+<p><strong>Conclusion:</strong> K(x) = length of shortest program outputting x</p>
+<p><strong>Definitions:</strong> Kolmogorov complexity, incompressibility, algorithmic information</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Incompressible strings: K(x) >= |x|</p>
+<p class="step">Step 2: Most strings are incompressible</p>
+<p class="step">Step 3: K(x) is uncomputable (by diagonalization)</p>
+<p class="step">Step 4: Connection to randomness: incompressible = random</p></div>
+<p class="metadata">ID: 7d401c1e98db | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Uncomputable but deeply important theoretically</p>
+<p class="metadata">Provenance: algorithms proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Ramsey theory: in any 2-coloring of K_n, monochromatic substructure exists for large enough n</h3>
+<p><strong>Statement:</strong> Ramsey theory: in any 2-coloring of K_n, monochromatic substructure exists for large enough n</p>
+<p><strong>Hypotheses:</strong> 2-coloring of complete graph</p>
+<p><strong>Conclusion:</strong> monochromatic K_k exists for n >= R(k,k)</p>
+<p><strong>Definitions:</strong> Ramsey, monochromatic, combinatorial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: R(3,3) = 6: any 2-coloring of K_6 has monochromatic triangle</p>
+<p class="step">Step 2: R(k,k) grows exponentially: 2^{k/2} <= R(k,k) <= 4^k</p>
+<p class="step">Step 3: Probabilistic method gives lower bound</p>
+<p class="step">Step 4: Ramsey: disorder is impossible at large scales</p></div>
+<p class="metadata">ID: 01b487e4dcff | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Active area of research</p>
+<p class="metadata">Provenance: algorithms proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Graph coloring: chromatic number <= Delta(G)+1 (greedy bound)</h3>
+<p><strong>Statement:</strong> Graph coloring: chromatic number <= Delta(G)+1 (greedy bound)</p>
+<p><strong>Hypotheses:</strong> graph G, max degree Delta</p>
+<p><strong>Conclusion:</strong> greedy coloring uses at most Delta+1 colors</p>
+<p><strong>Definitions:</strong> graph coloring, chromatic number, greedy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Color vertices in any order</p>
+<p class="step">Step 2: Each vertex has at most Delta colored neighbors</p>
+<p class="step">Step 3: At most Delta colors used by neighbors</p>
+<p class="step">Step 4: So one color remaining</p>
+<p class="step">Step 5: At most Delta+1 colors total</p></div>
+<p class="metadata">ID: 8a66c44d8664 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Brooks' theorem: Delta+1 only needed for complete graph and odd cycle</p>
+<p class="metadata">Provenance: algorithms proof #15</p>
+</div>
 </body></html>

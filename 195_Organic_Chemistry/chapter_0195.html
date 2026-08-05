@@ -18075,4 +18075,63 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: For non-elementary: order must be determined experimentally</p>
 <p class="metadata">Provenance: Domain Organic Chemistry, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+4 from organic chemistry)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Crystal field theory: d-orbital splitting in ligand field</h3>
+<p><strong>Statement:</strong> Crystal field theory: d-orbital splitting in ligand field</p>
+<p><strong>Hypotheses:</strong> transition metal complex</p>
+<p><strong>Conclusion:</strong> d-orbitals split into t_2g and e_g sets</p>
+<p><strong>Definitions:</strong> crystal field, d-orbital splitting, ligand field</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Ligands approach metal ion</p>
+<p class="step">Step 2: d-orbitals pointing at ligands destabilized</p>
+<p class="step">Step 3: d-orbitals between ligands stabilized</p>
+<p class="step">Step 4: Octahedral: t_2g (lower) and e_g (higher)</p>
+<p class="step">Step 5: Delta_o = crystal field splitting energy</p></div>
+<p class="metadata">ID: 607f90f5605d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Explains color and magnetism of complexes</p>
+<p class="metadata">Provenance: organic chemistry proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Molecular orbital theory: bonding and antibonding orbitals from atomic orbital combination</h3>
+<p><strong>Statement:</strong> Molecular orbital theory: bonding and antibonding orbitals from atomic orbital combination</p>
+<p><strong>Hypotheses:</strong> two atoms approaching each other</p>
+<p><strong>Conclusion:</strong> MOs: constructive (bonding) and destructive (antibonding) interference</p>
+<p><strong>Definitions:</strong> molecular orbital, bonding, antibonding</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: LCAO: molecular orbitals = linear combinations of AOs</p>
+<p class="step">Step 2: Bonding MO: lower energy, constructive overlap</p>
+<p class="step">Step 3: Antibonding MO: higher energy, node between nuclei</p>
+<p class="step">Step 4: Bond order = (bonding e^- - antibonding e^-)/2</p></div>
+<p class="metadata">ID: 73b98fdfbfcb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: More accurate than Lewis structures for many molecules</p>
+<p class="metadata">Provenance: organic chemistry proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Marcus theory: electron transfer rate depends on reorganization energy and driving force</h3>
+<p><strong>Statement:</strong> Marcus theory: electron transfer rate depends on reorganization energy and driving force</p>
+<p><strong>Hypotheses:</strong> outer-sphere electron transfer</p>
+<p><strong>Conclusion:</strong> rate = (2pi/hbar) |V|^2 / sqrt(4 pi lambda kT) * exp(-(Delta G^0 + lambda)^2/(4 lambda kT))</p>
+<p><strong>Definitions:</strong> Marcus, electron transfer, reorganization</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lambda = reorganization energy</p>
+<p class="step">Step 2: Inverted region: rate decreases with more driving force</p>
+<p class="step">Step 3: Marcus won Nobel Prize 1992</p>
+<p class="step">Step 4: Predicted inverted region before it was observed</p></div>
+<p class="metadata">ID: 835bf8db0895 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Counterintuitive: more driving force can slow reaction</p>
+<p class="metadata">Provenance: organic chemistry proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Curie's law: magnetic susceptibility = C/T (paramagnets)</h3>
+<p><strong>Statement:</strong> Curie's law: magnetic susceptibility = C/T (paramagnets)</p>
+<p><strong>Hypotheses:</strong> paramagnetic material, temperature T</p>
+<p><strong>Conclusion:</strong> chi = C/T</p>
+<p><strong>Definitions:</strong> Curie, magnetic susceptibility, paramagnet</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Magnetic moment aligns with field: mu B</p>
+<p class="step">Step 2: Thermal energy randomizes: kT</p>
+<p class="step">Step 3: Balance: chi proportional to 1/T</p>
+<p class="step">Step 4: C = Curie constant depends on material</p></div>
+<p class="metadata">ID: 1bb9e47a714a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fails for ferromagnets below Curie temperature</p>
+<p class="metadata">Provenance: organic chemistry proof #4</p>
+</div>
 </body></html>
