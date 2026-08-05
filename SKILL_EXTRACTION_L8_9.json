@@ -1,0 +1,33 @@
+{
+  "chapters": 17630,
+  "skills": 17630,
+  "unique": 330,
+  "overlap": 117,
+  "deep": 101,
+  "top_patterns": [
+    "extension",
+    "symmetry",
+    "duality",
+    "generalization",
+    "interpolation"
+  ],
+  "tech_freq": {
+    "algebraic": 5253,
+    "spectral": 4647,
+    "minimal": 4298,
+    "induction": 4284,
+    "topological": 2783,
+    "maximal": 2696,
+    "contradiction": 1699,
+    "categorical": 625,
+    "variational": 458,
+    "probabilistic": 241
+  },
+  "pat_freq": {
+    "extension": 493,
+    "symmetry": 470,
+    "duality": 279,
+    "generalization": 257,
+    "interpolation": 41
+  }
+}
