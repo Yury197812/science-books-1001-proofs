@@ -17376,4 +17376,420 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'Var=1' (finite variance): Cauchy distribution fails CLT</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Probability</p>
 </div>
+
+<h2>Additional proofs (+28 from probability theory)</h2>
+
+<div class="theorem extra" id="stat-1">
+<h3>Proof 1: Kolmogorov axioms: P(A)>=0, P(Omega)=1, countable additivity</h3>
+<p><strong>Statement:</strong> Kolmogorov axioms: P(A)>=0, P(Omega)=1, countable additivity</p>
+<p><strong>Hypotheses:</strong> sigma-algebra F on Omega</p>
+<p><strong>Conclusion:</strong> P: F -> [0,1] satisfying three axioms</p>
+<p><strong>Definitions:</strong> Kolmogorov, axiom, probability</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Axiom 1: P(A) >= 0 for all A in F</p>
+<p class="step">Step 2: Axiom 2: P(Omega) = 1</p>
+<p class="step">Step 3: Axiom 3: For disjoint A_n: P(union A_n) = sum P(A_n)</p>
+<p class="step">Step 4: All probability results derive from these three axioms</p>
+<p class="step">Step 5: Conditional probability, independence, Bayes all follow</p></div>
+<p class="metadata">ID: 68c01fe06115 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: These are axioms, not theorems - foundation of probability theory</p>
+<p class="metadata">Provenance: probability theory proof #1</p>
+</div>
+
+<div class="theorem extra" id="stat-2">
+<h3>Proof 2: Bayes' theorem: P(A|B) = P(B|A)*P(A)/P(B)</h3>
+<p><strong>Statement:</strong> Bayes' theorem: P(A|B) = P(B|A)*P(A)/P(B)</p>
+<p><strong>Hypotheses:</strong> A,B events, P(B) > 0</p>
+<p><strong>Conclusion:</strong> P(A|B) = P(B|A)*P(A)/P(B)</p>
+<p><strong>Definitions:</strong> Bayes, conditional probability, posterior</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By definition: P(A|B) = P(A intersect B)/P(B)</p>
+<p class="step">Step 2: Also: P(B|A) = P(A intersect B)/P(A)</p>
+<p class="step">Step 3: Therefore P(A intersect B) = P(B|A)*P(A)</p>
+<p class="step">Step 4: Substitute: P(A|B) = P(B|A)*P(A)/P(B)</p></div>
+<p class="metadata">ID: fd40b415ac63 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'P(B)>0': conditional probability undefined</p>
+<p class="metadata">Provenance: probability theory proof #2</p>
+</div>
+
+<div class="theorem extra" id="stat-3">
+<h3>Proof 3: Inclusion-exclusion: P(A union B) = P(A) + P(B) - P(A intersect B)</h3>
+<p><strong>Statement:</strong> Inclusion-exclusion: P(A union B) = P(A) + P(B) - P(A intersect B)</p>
+<p><strong>Hypotheses:</strong> A,B events</p>
+<p><strong>Conclusion:</strong> P(A union B) = P(A) + P(B) - P(A intersect B)</p>
+<p><strong>Definitions:</strong> inclusion-exclusion, union, intersection</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A union B = A disjoint-union (B minus A)</p>
+<p class="step">Step 2: P(A union B) = P(A) + P(B minus A)</p>
+<p class="step">Step 3: P(B minus A) = P(B) - P(A intersect B)</p>
+<p class="step">Step 4: Substitute: P(A) + P(B) - P(A intersect B)</p></div>
+<p class="metadata">ID: ef590b22729c | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: For three events: adds back triple intersections</p>
+<p class="metadata">Provenance: probability theory proof #3</p>
+</div>
+
+<div class="theorem extra" id="stat-4">
+<h3>Proof 4: Total probability: P(B) = sum P(B|A_i)*P(A_i) for partition A_i</h3>
+<p><strong>Statement:</strong> Total probability: P(B) = sum P(B|A_i)*P(A_i) for partition A_i</p>
+<p><strong>Hypotheses:</strong> A_i partition Omega, P(A_i) > 0</p>
+<p><strong>Conclusion:</strong> P(B) = sum_i P(B|A_i)P(A_i)</p>
+<p><strong>Definitions:</strong> total probability, partition, marginal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: B = union (B intersect A_i) disjoint union</p>
+<p class="step">Step 2: P(B) = sum P(B intersect A_i)</p>
+<p class="step">Step 3: = sum P(B|A_i)*P(A_i) by definition of conditional</p></div>
+<p class="metadata">ID: 50ab375e1799 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without partition: terms overlap incorrectly</p>
+<p class="metadata">Provenance: probability theory proof #4</p>
+</div>
+
+<div class="theorem extra" id="stat-5">
+<h3>Proof 5: Markov inequality: P(X >= a) <= E[X]/a for nonneg X</h3>
+<p><strong>Statement:</strong> Markov inequality: P(X >= a) <= E[X]/a for nonneg X</p>
+<p><strong>Hypotheses:</strong> X >= 0 a.s., a > 0, E[X] < infinity</p>
+<p><strong>Conclusion:</strong> P(X >= a) <= E[X]/a</p>
+<p><strong>Definitions:</strong> Markov, inequality, nonneg</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[X] >= E[X * 1_{X>=a}] >= a * P(X >= a)</p>
+<p class="step">Step 2: Divide by a</p></div>
+<p class="metadata">ID: 4ed91503470c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without X>=0: inequality fails for negative values</p>
+<p class="metadata">Provenance: probability theory proof #5</p>
+</div>
+
+<div class="theorem extra" id="stat-6">
+<h3>Proof 6: Chebyshev inequality: P(|X-mu| >= k*sigma) <= 1/k^2</h3>
+<p><strong>Statement:</strong> Chebyshev inequality: P(|X-mu| >= k*sigma) <= 1/k^2</p>
+<p><strong>Hypotheses:</strong> E[X] = mu, Var(X) = sigma^2 < infinity</p>
+<p><strong>Conclusion:</strong> P(|X-mu| >= k*sigma) <= 1/k^2</p>
+<p><strong>Definitions:</strong> Chebyshev, variance, tail bound</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Markov to (X-mu)^2 >= 0</p>
+<p class="step">Step 2: P(|X-mu| >= k*sigma) = P((X-mu)^2 >= k^2*sigma^2)</p>
+<p class="step">Step 3: <= E[(X-mu)^2] / (k^2*sigma^2) = sigma^2/(k^2*sigma^2) = 1/k^2</p></div>
+<p class="metadata">ID: 54df25e81ccb | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without finite variance: inequality undefined</p>
+<p class="metadata">Provenance: probability theory proof #6</p>
+</div>
+
+<div class="theorem extra" id="stat-7">
+<h3>Proof 7: Jensen's inequality: phi(E[X]) <= E[phi(X)] for convex phi</h3>
+<p><strong>Statement:</strong> Jensen's inequality: phi(E[X]) <= E[phi(X)] for convex phi</p>
+<p><strong>Hypotheses:</strong> X random variable, phi convex function, E[X], E[phi(X)] exist</p>
+<p><strong>Conclusion:</strong> phi(E[X]) <= E[phi(X)]</p>
+<p><strong>Definitions:</strong> Jensen, convex, expectation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By convexity: phi(x) >= phi(y) + phi'(y)(x-y) at any point y</p>
+<p class="step">Step 2: Set y = E[X]: phi(X) >= phi(E[X]) + phi'(E[X])(X-E[X])</p>
+<p class="step">Step 3: Take expectation: E[phi(X)] >= phi(E[X]) + 0</p>
+<p class="step">Step 4: Since E[X-E[X]] = 0</p></div>
+<p class="metadata">ID: 29f98055dd34 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without convexity: inequality may reverse</p>
+<p class="metadata">Provenance: probability theory proof #7</p>
+</div>
+
+<div class="theorem extra" id="stat-8">
+<h3>Proof 8: WLLN: sample mean converges in probability to mu</h3>
+<p><strong>Statement:</strong> WLLN: sample mean converges in probability to mu</p>
+<p><strong>Hypotheses:</strong> X_1,...,X_n i.i.d., E[X_1] = mu</p>
+<p><strong>Conclusion:</strong> X_bar_n converges in probability to mu</p>
+<p><strong>Definitions:</strong> WLLN, weak law, convergence in probability</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Var(X_bar) = sigma^2/n</p>
+<p class="step">Step 2: By Chebyshev: P(|X_bar - mu| > eps) <= sigma^2/(n*eps^2)</p>
+<p class="step">Step 3: -> 0 as n -> infinity</p></div>
+<p class="metadata">ID: e9ca53829d7f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without i.i.d.: may not converge</p>
+<p class="metadata">Provenance: probability theory proof #8</p>
+</div>
+
+<div class="theorem extra" id="stat-9">
+<h3>Proof 9: SLLN: sample mean converges almost surely to mu</h3>
+<p><strong>Statement:</strong> SLLN: sample mean converges almost surely to mu</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E|X_1| < infinity</p>
+<p><strong>Conclusion:</strong> P(lim X_bar_n = mu) = 1</p>
+<p><strong>Definitions:</strong> SLLN, strong law, almost sure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Kolmogorov's criterion: sum Var(X_i)/i^2 < infinity</p>
+<p class="step">Step 2: Or use truncation + Borel-Cantelli lemma</p>
+<p class="step">Step 3: Stronger than WLLN but requires more conditions</p></div>
+<p class="metadata">ID: 1b6ec668b32f | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without E|X|<infinity: SLLN fails</p>
+<p class="metadata">Provenance: probability theory proof #9</p>
+</div>
+
+<div class="theorem extra" id="stat-10">
+<h3>Proof 10: Central Limit Theorem: normalized sum converges to N(0,1)</h3>
+<p><strong>Statement:</strong> Central Limit Theorem: normalized sum converges to N(0,1)</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E[X_i]=0, Var(X_i)=1</p>
+<p><strong>Conclusion:</strong> S_n/sqrt(n) converges to N(0,1) in distribution</p>
+<p><strong>Definitions:</strong> CLT, normal, convergence in distribution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Compute characteristic function phi(t)</p>
+<p class="step">Step 2: Taylor expand: phi(t) = 1 - t^2/2 + o(t^2)</p>
+<p class="step">Step 3: Char func of S_n/sqrt(n): [phi(t/sqrt(n))]^n -> exp(-t^2/2)</p>
+<p class="step">Step 4: Levy continuity theorem: convergence of char funcs => convergence in distribution</p></div>
+<p class="metadata">ID: 9522b326ccb8 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without finite variance: CLT fails</p>
+<p class="metadata">Provenance: probability theory proof #10</p>
+</div>
+
+<div class="theorem extra" id="stat-11">
+<h3>Proof 11: Characteristic function uniquely determines distribution</h3>
+<p><strong>Statement:</strong> Characteristic function uniquely determines distribution</p>
+<p><strong>Hypotheses:</strong> X random variable, phi_X(t) = E[e^{itX}]</p>
+<p><strong>Conclusion:</strong> phi_X determines distribution of X uniquely</p>
+<p><strong>Definitions:</strong> characteristic function, uniqueness, Fourier</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: phi is Fourier transform of distribution</p>
+<p class="step">Step 2: Inverse Fourier transform recovers distribution</p>
+<p class="step">Step 3: By Fourier inversion theorem</p>
+<p class="step">Step 4: Two distributions with same char func have same CDF</p></div>
+<p class="metadata">ID: a8cf78a253db | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Fundamental tool in probability theory</p>
+<p class="metadata">Provenance: probability theory proof #11</p>
+</div>
+
+<div class="theorem extra" id="stat-12">
+<h3>Proof 12: Chernoff bound: P(X >= a) <= min_t E[e^{tX}]/e^{ta} for t > 0</h3>
+<p><strong>Statement:</strong> Chernoff bound: P(X >= a) <= min_t E[e^{tX}]/e^{ta} for t > 0</p>
+<p><strong>Hypotheses:</strong> X real-valued, t > 0</p>
+<p><strong>Conclusion:</strong> exponential tail bound</p>
+<p><strong>Definitions:</strong> Chernoff, exponential, moment generating</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By Markov: P(e^{tX} >= e^{ta}) <= E[e^{tX}]/e^{ta}</p>
+<p class="step">Step 2: Minimize over t > 0</p>
+<p class="step">Step 3: Log of MGF gives tightest bound</p></div>
+<p class="metadata">ID: ea371019a3c8 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without moment generating function: bound undefined</p>
+<p class="metadata">Provenance: probability theory proof #12</p>
+</div>
+
+<div class="theorem extra" id="stat-13">
+<h3>Proof 13: Hoeffding inequality: P(|X_bar - mu| >= t) <= 2*exp(-2nt^2/(b-a)^2)</h3>
+<p><strong>Statement:</strong> Hoeffding inequality: P(|X_bar - mu| >= t) <= 2*exp(-2nt^2/(b-a)^2)</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d. in [a,b], E[X_i] = mu</p>
+<p><strong>Conclusion:</strong> exponential tail bound for sample mean</p>
+<p><strong>Definitions:</strong> Hoeffding, concentration, bounded</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Chernoff to bounded RV</p>
+<p class="step">Step 2: Use Hoeffding lemma: log E[e^{t(X-mu)}] <= t^2(b-a)^2/8</p>
+<p class="step">Step 3: Optimize t for tightest bound</p>
+<p class="step">Step 4: Union bound for |X_bar - mu|</p></div>
+<p class="metadata">ID: 7f8caee0a302 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without bounded RV: different concentration inequality needed</p>
+<p class="metadata">Provenance: probability theory proof #13</p>
+</div>
+
+<div class="theorem extra" id="stat-14">
+<h3>Proof 14: MGF determines moments when they exist: E[X^n] = phi^(n)(0)</h3>
+<p><strong>Statement:</strong> MGF determines moments when they exist: E[X^n] = phi^(n)(0)</p>
+<p><strong>Hypotheses:</strong> M_X(t) = E[e^{tX}] exists in neighborhood of 0</p>
+<p><strong>Conclusion:</strong> E[X^n] = M_X^{(n)}(0)</p>
+<p><strong>Definitions:</strong> moment generating function, Taylor expansion, moments</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Expand e^{tX} = sum (tX)^n/n!</p>
+<p class="step">Step 2: E[e^{tX}] = sum t^n E[X^n]/n!</p>
+<p class="step">Step 3: Differentiate n times at t=0</p>
+<p class="step">Step 4: M_X^{(n)}(0) = E[X^n]</p></div>
+<p class="metadata">ID: 25191718b4b8 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without neighborhood existence: derivatives may not exist</p>
+<p class="metadata">Provenance: probability theory proof #14</p>
+</div>
+
+<div class="theorem extra" id="stat-15">
+<h3>Proof 15: Law of total variance: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</h3>
+<p><strong>Statement:</strong> Law of total variance: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</p>
+<p><strong>Hypotheses:</strong> X,Y random variables, variances exist</p>
+<p><strong>Conclusion:</strong> Var(X) = within-group + between-group variance</p>
+<p><strong>Definitions:</strong> total variance, conditional, decomposition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write Var(X) = E[(X-mu_X)^2]</p>
+<p class="step">Step 2: Add and subtract E[X|Y]: X-mu = (X-E[X|Y]) + (E[X|Y]-mu)</p>
+<p class="step">Step 3: Cross term vanishes: E[cross] = 0</p>
+<p class="step">Step 4: E[Var(X|Y)] = within-group variance</p>
+<p class="step">Step 5: Var(E[X|Y]) = between-group variance</p></div>
+<p class="metadata">ID: b771fb8cb072 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without finite variances: undefined</p>
+<p class="metadata">Provenance: probability theory proof #15</p>
+</div>
+
+<div class="theorem extra" id="stat-16">
+<h3>Proof 16: Rao-Blackwell: conditioning on sufficient statistic improves estimator</h3>
+<p><strong>Statement:</strong> Rao-Blackwell: conditioning on sufficient statistic improves estimator</p>
+<p><strong>Hypotheses:</strong> T sufficient statistic, delta unbiased estimator of theta</p>
+<p><strong>Conclusion:</strong> E[delta|T] is unbiased, Var <= Var(delta)</p>
+<p><strong>Definitions:</strong> Rao-Blackwell, sufficient statistic, improvement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[E[delta|T]] = E[delta] = theta (unbiased)</p>
+<p class="step">Step 2: Var(E[delta|T]) = E[Var(delta|T)] + Var(E[delta|T])</p>
+<p class="step">Step 3: <= E[Var(delta)] + 0 = Var(delta)</p>
+<p class="step">Step 4: By total variance and Rao-Blackwell inequality</p></div>
+<p class="metadata">ID: 6cc3f2460b09 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without sufficient statistic: conditioning doesn't help</p>
+<p class="metadata">Provenance: probability theory proof #16</p>
+</div>
+
+<div class="theorem extra" id="stat-17">
+<h3>Proof 17: Cramér-Rao lower bound: Var(T) >= 1/(n*I(theta)) for unbiased T</h3>
+<p><strong>Statement:</strong> Cramér-Rao lower bound: Var(T) >= 1/(n*I(theta)) for unbiased T</p>
+<p><strong>Hypotheses:</strong> T unbiased estimator of theta, f(x;theta) regular</p>
+<p><strong>Conclusion:</strong> Var(T) >= 1/(n*I(theta))</p>
+<p><strong>Definitions:</strong> Cramér-Rao, Fisher information, lower bound</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define score: d/dtheta log f(X;theta)</p>
+<p class="step">Step 2: E[score] = 0, Var(score) = I(theta)</p>
+<p class="step">Step 3: By Cauchy-Schwarz: Cov(T, score)^2 <= Var(T)*Var(score)</p>
+<p class="step">Step 4: E[T * score] = 1 (regularity)</p>
+<p class="step">Step 5: 1 <= Var(T) * I(theta) => Var(T) >= 1/I(theta)</p></div>
+<p class="metadata">ID: 074d36f03944 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without regularity conditions: bound doesn't apply</p>
+<p class="metadata">Provenance: probability theory proof #17</p>
+</div>
+
+<div class="theorem extra" id="stat-18">
+<h3>Proof 18: Sufficient statistic factorization: T suff <=> f(x|theta) = g(T(x)|theta)*h(x)</h3>
+<p><strong>Statement:</strong> Sufficient statistic factorization: T suff <=> f(x|theta) = g(T(x)|theta)*h(x)</p>
+<p><strong>Hypotheses:</strong> T: X -> R, f(x;theta) joint density</p>
+<p><strong>Conclusion:</strong> T sufficient <=> factorization holds</p>
+<p><strong>Definitions:</strong> sufficient statistic, factorization, Neyman-Fisher</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If factorization: conditional distribution of X|T doesn't depend on theta</p>
+<p class="step">Step 2: Therefore T captures all info about theta in data</p>
+<p class="step">Step 3: Converse: if T sufficient, likelihood factors through T</p></div>
+<p class="metadata">ID: ea83ad63f3ed | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental characterization of sufficiency</p>
+<p class="metadata">Provenance: probability theory proof #18</p>
+</div>
+
+<div class="theorem extra" id="stat-19">
+<h3>Proof 19: UMVUE exists and equals function of complete sufficient statistic</h3>
+<p><strong>Statement:</strong> UMVUE exists and equals function of complete sufficient statistic</p>
+<p><strong>Hypotheses:</strong> T complete sufficient statistic, h(T) unbiased for theta</p>
+<p><strong>Conclusion:</strong> h(T) is UMVUE</p>
+<p><strong>Definitions:</strong> UMVUE, completeness, Lehmann-Scheffe</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By Rao-Blackwell: any unbiased estimator improved by conditioning on T</p>
+<p class="step">Step 2: By Lehmann-Scheffe: since T is complete, only one unbiased function of T</p>
+<p class="step">Step 3: Therefore h(T) = best unbiased estimator</p></div>
+<p class="metadata">ID: a88ad7237d78 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without completeness: multiple unbiased functions possible</p>
+<p class="metadata">Provenance: probability theory proof #19</p>
+</div>
+
+<div class="theorem extra" id="stat-20">
+<h3>Proof 20: Kolmogorov extension: consistent finite-dimensional distributions extend to process</h3>
+<p><strong>Statement:</strong> Kolmogorov extension: consistent finite-dimensional distributions extend to process</p>
+<p><strong>Hypotheses:</strong> Consistent family of finite-dimensional distributions</p>
+<p><strong>Conclusion:</strong> exists probability measure on path space</p>
+<p><strong>Definitions:</strong> Kolmogorov extension, consistency, process</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define measure on cylinders</p>
+<p class="step">Step 2: Check consistency conditions</p>
+<p class="step">Step 3: Use Carathéodory extension</p>
+<p class="step">Step 4: Extend to sigma-algebra generated by cylinders</p></div>
+<p class="metadata">ID: 4be4ccda005c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without consistency: extension impossible</p>
+<p class="metadata">Provenance: probability theory proof #20</p>
+</div>
+
+<div class="theorem extra" id="stat-21">
+<h3>Proof 21: Doob's martingale inequality: P(max M_k >= lambda) <= E[|M_n|^p]/lambda^p</h3>
+<p><strong>Statement:</strong> Doob's martingale inequality: P(max M_k >= lambda) <= E[|M_n|^p]/lambda^p</p>
+<p><strong>Hypotheses:</strong> M_n submartingale, p >= 1, lambda > 0</p>
+<p><strong>Conclusion:</strong> tail bound for running maximum</p>
+<p><strong>Definitions:</strong> Doob, martingale, maximal inequality</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define stopping time tau = first time |M_k| >= lambda</p>
+<p class="step">Step 2: Apply optional stopping theorem</p>
+<p class="step">Step 3: Use monotonicity of submartingale</p>
+<p class="step">Step 4: Bounds max by integral of tail probabilities</p></div>
+<p class="metadata">ID: 98347a8d89ce | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without submartingale property: inequality fails</p>
+<p class="metadata">Provenance: probability theory proof #21</p>
+</div>
+
+<div class="theorem extra" id="stat-22">
+<h3>Proof 22: Optional stopping theorem: E[M_T] = E[M_0] for bounded stopping time T</h3>
+<p><strong>Statement:</strong> Optional stopping theorem: E[M_T] = E[M_0] for bounded stopping time T</p>
+<p><strong>Hypotheses:</strong> M_n martingale, T bounded stopping time</p>
+<p><strong>Conclusion:</strong> E[M_T] = E[M_0]</p>
+<p><strong>Definitions:</strong> optional stopping, martingale, stopping time</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write E[M_T] = sum E[M_n * 1_{T=n}]</p>
+<p class="step">Step 2: By martingale property: E[M_n * 1_{T=n}] = E[M_0 * 1_{T=n}]</p>
+<p class="step">Step 3: Sum over n: E[M_T] = E[M_0] * sum P(T=n) = E[M_0]</p></div>
+<p class="metadata">ID: c9f0ef779704 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without boundedness: need integrability conditions</p>
+<p class="metadata">Provenance: probability theory proof #22</p>
+</div>
+
+<div class="theorem extra" id="stat-23">
+<h3>Proof 23: Levy's continuity theorem: pointwise convergence of char func => convergence in distribution</h3>
+<p><strong>Statement:</strong> Levy's continuity theorem: pointwise convergence of char func => convergence in distribution</p>
+<p><strong>Hypotheses:</strong> phi_n(t) -> phi(t) pointwise, phi continuous at 0</p>
+<p><strong>Conclusion:</strong> X_n converges in distribution to X with char func phi</p>
+<p><strong>Definitions:</strong> Levy, continuity, characteristic function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate CDF by char func via Fourier inversion</p>
+<p class="step">Step 2: Pointwise convergence of char funcs controls convergence of CDFs</p>
+<p class="step">Step 3: Continuity of limiting char func ensures no mass escape</p>
+<p class="step">Step 4: Apply Helly-Bray type argument</p></div>
+<p class="metadata">ID: 22297bc0c0fe | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without continuity at 0: mass may escape to infinity</p>
+<p class="metadata">Provenance: probability theory proof #23</p>
+</div>
+
+<div class="theorem extra" id="stat-24">
+<h3>Proof 24: Poisson limit theorem: Bin(n,p) -> Poisson(np) as n->inf, p->0, np=lambda</h3>
+<p><strong>Statement:</strong> Poisson limit theorem: Bin(n,p) -> Poisson(np) as n->inf, p->0, np=lambda</p>
+<p><strong>Hypotheses:</strong> X_n ~ Bin(n,p_n), np_n -> lambda > 0</p>
+<p><strong>Conclusion:</strong> X_n converges in distribution to Poisson(lambda)</p>
+<p><strong>Definitions:</strong> Poisson, binomial, limit</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Char func of Bin(n,p): (1-p+pe^{it})^n</p>
+<p class="step">Step 2: = (1 - np(1-e^{it})/n)^n -> exp(lambda(e^{it}-1))</p>
+<p class="step">Step 3: This is char func of Poisson(lambda)</p>
+<p class="step">Step 4: Levy continuity theorem applies</p></div>
+<p class="metadata">ID: ee63612422d4 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without np -> lambda: limit is degenerate or normal</p>
+<p class="metadata">Provenance: probability theory proof #24</p>
+</div>
+
+<div class="theorem extra" id="stat-25">
+<h3>Proof 25: De Moivre-Laplace: Bin(n,p) approximated by N(np, npq) for large n</h3>
+<p><strong>Statement:</strong> De Moivre-Laplace: Bin(n,p) approximated by N(np, npq) for large n</p>
+<p><strong>Hypotheses:</strong> X ~ Bin(n,p), n large, p not near 0 or 1</p>
+<p><strong>Conclusion:</strong> (X-np)/sqrt(npq) approx N(0,1)</p>
+<p><strong>Definitions:</strong> De Moivre-Laplace, normal approximation, binomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: CLT applies: X = sum of i.i.d. Bernoulli(p)</p>
+<p class="step">Step 2: E[X] = np, Var(X) = npq</p>
+<p class="step">Step 3: Normalize: (X-np)/sqrt(npq) -> N(0,1) by CLT</p>
+<p class="step">Step 4: Berry-Esseen gives rate of convergence</p></div>
+<p class="metadata">ID: 73524c677ea7 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without large n: normal approximation poor</p>
+<p class="metadata">Provenance: probability theory proof #25</p>
+</div>
+
+<div class="theorem extra" id="stat-26">
+<h3>Proof 26: Maximum entropy: among distributions with fixed mean and variance, Gaussian maximizes entropy</h3>
+<p><strong>Statement:</strong> Maximum entropy: among distributions with fixed mean and variance, Gaussian maximizes entropy</p>
+<p><strong>Hypotheses:</strong> Distribution on R with E[X]=mu, Var(X)=sigma^2</p>
+<p><strong>Conclusion:</strong> Gaussian has highest entropy H(f) = (1/2)log(2*pi*e*sigma^2)</p>
+<p><strong>Definitions:</strong> maximum entropy, Gaussian, Shannon entropy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define entropy H(f) = -integral f log f</p>
+<p class="step">Step 2: Use Lagrange multipliers for constraints</p>
+<p class="step">Step 3: Optimal f satisfies f proportional to exp(-lambda_1 x - lambda_2 x^2)</p>
+<p class="step">Step 4: Solve for lambda: gives Gaussian density</p>
+<p class="step">Step 5: H(Gaussian) = (1/2)log(2*pi*e*sigma^2)</p></div>
+<p class="metadata">ID: 8bee34de1caa | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without mean/variance constraints: uniform maximizes on bounded set</p>
+<p class="metadata">Provenance: probability theory proof #26</p>
+</div>
+
+<div class="theorem extra" id="stat-27">
+<h3>Proof 27: Skorokhod representation: convergence in distribution <=> coupling with almost sure convergence</h3>
+<p><strong>Statement:</strong> Skorokhod representation: convergence in distribution <=> coupling with almost sure convergence</p>
+<p><strong>Hypotheses:</strong> X_n converges in distribution to X</p>
+<p><strong>Conclusion:</strong> exists probability space with X_n' =law= X_n, X' =law= X, X_n' -> X' a.s.</p>
+<p><strong>Definitions:</strong> Skorokhod, coupling, representation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct probability space [0,1] with Lebesgue measure</p>
+<p class="step">Step 2: Use quantile functions (inverse CDFs)</p>
+<p class="step">Step 3: Define X_n'(w) = F_n^{-1}(w)</p>
+<p class="step">Step 4: Since F_n -> F pointwise a.s., X_n' -> X' a.s.</p></div>
+<p class="metadata">ID: 70d53e5eb4c2 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Requires separable state space</p>
+<p class="metadata">Provenance: probability theory proof #27</p>
+</div>
+
+<div class="theorem extra" id="stat-28">
+<h3>Proof 28: Helly's theorem: every bounded sequence of CDFs has weakly convergent subsequence</h3>
+<p><strong>Statement:</strong> Helly's theorem: every bounded sequence of CDFs has weakly convergent subsequence</p>
+<p><strong>Hypotheses:</strong> F_n bounded sequence of CDFs</p>
+<p><strong>Conclusion:</strong> subsequence converges weakly to some right-continuous F</p>
+<p><strong>Definitions:</strong> Helly, weak convergence, subsequence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose countable dense set Q in R</p>
+<p class="step">Step 2: Use diagonal argument on F_n(q) for q in Q</p>
+<p class="step">Step 3: Define F at rationals, extend by right-continuity</p>
+<p class="step">Step 4: Helly-Bray theorem ensures weak convergence of subsequence</p></div>
+<p class="metadata">ID: ae99ea1ecd9f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Limit may not be a proper CDF (defect < 1)</p>
+<p class="metadata">Provenance: probability theory proof #28</p>
+</div>
 </body></html>

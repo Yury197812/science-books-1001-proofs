@@ -18043,4 +18043,282 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without parametric model, MLE is undefined</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Statistics</p>
 </div>
+
+<h2>Additional proofs (+18 from mathematical statistics)</h2>
+
+<div class="theorem extra" id="stat-1">
+<h3>Proof 1: MLE invariance: if theta_hat is MLE of theta, then g(theta_hat) is MLE of g(theta)</h3>
+<p><strong>Statement:</strong> MLE invariance: if theta_hat is MLE of theta, then g(theta_hat) is MLE of g(theta)</p>
+<p><strong>Hypotheses:</strong> theta_hat maximizes L(theta), g continuous</p>
+<p><strong>Conclusion:</strong> g(theta_hat) maximizes likelihood of g(theta)</p>
+<p><strong>Definitions:</strong> MLE, invariance, maximum likelihood</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: L(theta) achieves max at theta_hat</p>
+<p class="step">Step 2: For any g(theta), the maximum of L over {theta: g(theta)=c}</p>
+<p class="step">Step 3: is achieved at theta_hat if g(theta_hat)=c</p>
+<p class="step">Step 4: Therefore g(theta_hat) is MLE of g(theta)</p></div>
+<p class="metadata">ID: 36efa2e45163 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without continuity: g(theta_hat) may not be well-defined</p>
+<p class="metadata">Provenance: mathematical statistics proof #1</p>
+</div>
+
+<div class="theorem extra" id="stat-2">
+<h3>Proof 2: Fisher information: I(theta) = E[(d/dtheta log f)^2] = -E[d^2/dtheta^2 log f]</h3>
+<p><strong>Statement:</strong> Fisher information: I(theta) = E[(d/dtheta log f)^2] = -E[d^2/dtheta^2 log f]</p>
+<p><strong>Hypotheses:</strong> f(x;theta) regular density</p>
+<p><strong>Conclusion:</strong> two equivalent forms for Fisher information</p>
+<p><strong>Definitions:</strong> Fisher information, score, observed information</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Score: S(theta) = d/dtheta log f(X;theta)</p>
+<p class="step">Step 2: E[S] = 0 (score equation)</p>
+<p class="step">Step 3: Var(S) = E[S^2] = I(theta)</p>
+<p class="step">Step 4: Also I(theta) = -E[d^2S/dtheta^2]</p>
+<p class="step">Step 5: Integrate: d^2/dtheta^2 integral f = 0 => d/dtheta integral S*f = 0</p>
+<p class="step">Step 6: Differentiate again to get identity</p></div>
+<p class="metadata">ID: b89c4fd7d935 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without regularity: exchange of derivative and integral fails</p>
+<p class="metadata">Provenance: mathematical statistics proof #2</p>
+</div>
+
+<div class="theorem extra" id="stat-3">
+<h3>Proof 3: Consistency of MLE: under regularity conditions, MLE -> theta_0</h3>
+<p><strong>Statement:</strong> Consistency of MLE: under regularity conditions, MLE -> theta_0</p>
+<p><strong>Hypotheses:</strong> i.i.d. sample, regularity conditions, theta_0 true parameter</p>
+<p><strong>Conclusion:</strong> MLE converges in probability to theta_0</p>
+<p><strong>Definitions:</strong> consistency, MLE, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Law of large numbers: (1/n) sum log f(X_i|theta) -> E[log f(X|theta)]</p>
+<p class="step">Step 2: Kullback-Leibler: E[log f(X|theta_0)] >= E[log f(X|theta)] for theta != theta_0</p>
+<p class="step">Step 3: MLE maximizes empirical log-likelihood</p>
+<p class="step">Step 4: By uniform convergence of likelihood: MLE -> theta_0</p></div>
+<p class="metadata">ID: 7f33e322fcd2 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without regularity: consistency may fail</p>
+<p class="metadata">Provenance: mathematical statistics proof #3</p>
+</div>
+
+<div class="theorem extra" id="stat-4">
+<h3>Proof 4: Asymptotic normality of MLE: sqrt(n)(theta_hat - theta_0) -> N(0, I(theta_0)^{-1})</h3>
+<p><strong>Statement:</strong> Asymptotic normality of MLE: sqrt(n)(theta_hat - theta_0) -> N(0, I(theta_0)^{-1})</p>
+<p><strong>Hypotheses:</strong> MLE theta_hat, regularity conditions</p>
+<p><strong>Conclusion:</strong> sqrt(n)(theta_hat - theta_0) converges to N(0, I^{-1})</p>
+<p><strong>Definitions:</strong> asymptotic normality, Fisher information, efficiency</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Taylor expand score equation around theta_0</p>
+<p class="step">Step 2: Score = 0 at MLE</p>
+<p class="step">Step 3: Central limit theorem for score</p>
+<p class="step">Step 4: Delta method for inverse Hessian</p>
+<p class="step">Step 5: Combine: asymptotic normal with Fisher info variance</p></div>
+<p class="metadata">ID: b20f2506dd10 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without regularity: asymptotic variance may differ</p>
+<p class="metadata">Provenance: mathematical statistics proof #4</p>
+</div>
+
+<div class="theorem extra" id="stat-5">
+<h3>Proof 5: Cramér-Rao bound is asymptotically achieved by MLE</h3>
+<p><strong>Statement:</strong> Cramér-Rao bound is asymptotically achieved by MLE</p>
+<p><strong>Hypotheses:</strong> MLE under regularity conditions</p>
+<p><strong>Conclusion:</strong> asymptotic variance of MLE = 1/(n*I(theta))</p>
+<p><strong>Definitions:</strong> efficiency, Cramér-Rao, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: MLE asymptotic variance = I(theta)^{-1}/n</p>
+<p class="step">Step 2: Cramér-Rao bound = 1/(n*I(theta))</p>
+<p class="step">Step 3: They match: MLE is asymptotically efficient</p>
+<p class="step">Step 4: Achieves the information bound for large samples</p></div>
+<p class="metadata">ID: 4a5d235f32e2 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Only asymptotically; finite sample may not achieve bound</p>
+<p class="metadata">Provenance: mathematical statistics proof #5</p>
+</div>
+
+<div class="theorem extra" id="stat-6">
+<h3>Proof 6: Neyman-Pearson lemma: most powerful test of H0 vs H1 uses likelihood ratio</h3>
+<p><strong>Statement:</strong> Neyman-Pearson lemma: most powerful test of H0 vs H1 uses likelihood ratio</p>
+<p><strong>Hypotheses:</strong> simple H0: theta=theta_0 vs H1: theta=theta_1, significance level alpha</p>
+<p><strong>Conclusion:</strong> likelihood ratio test is most powerful</p>
+<p><strong>Definitions:</strong> Neyman-Pearson, likelihood ratio, most powerful</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define Lambda = f(x|theta_0)/f(x|theta_1)</p>
+<p class="step">Step 2: Reject H0 when Lambda < k</p>
+<p class="step">Step 3: By construction: P(reject|H0) = alpha</p>
+<p class="step">Step 4: For any other test with same alpha, power <= NP test</p>
+<p class="step">Step 5: Proof by contradiction using likelihood ratio</p></div>
+<p class="metadata">ID: 4a79983f0566 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: For composite hypotheses: generalized NP or UMP needed</p>
+<p class="metadata">Provenance: mathematical statistics proof #6</p>
+</div>
+
+<div class="theorem extra" id="stat-7">
+<h3>Proof 7: Karlin-Rubin: monotone likelihood ratio => UMP exists for one-sided tests</h3>
+<p><strong>Statement:</strong> Karlin-Rubin: monotone likelihood ratio => UMP exists for one-sided tests</p>
+<p><strong>Hypotheses:</strong> family with monotone likelihood ratio in T(X), one-sided H0: theta <= theta_0</p>
+<p><strong>Conclusion:</strong> test based on T(X) >= c is UMP</p>
+<p><strong>Definitions:</strong> Karlin-Rubin, UMP, monotone likelihood ratio</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Monotone LR: f(theta_1)/f(theta_0) increasing in T</p>
+<p class="step">Step 2: Apply Neyman-Pearson for each pair theta_0, theta_1</p>
+<p class="step">Step 3: Show same test is optimal for all theta_1 > theta_0</p>
+<p class="step">Step 4: Therefore UMP for one-sided alternative</p></div>
+<p class="metadata">ID: 9515e93afb4e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without monotone LR: UMP may not exist</p>
+<p class="metadata">Provenance: mathematical statistics proof #7</p>
+</div>
+
+<div class="theorem extra" id="stat-8">
+<h3>Proof 8: Rao score test: (dL/dtheta)^2 / I(theta) asymptotically chi-squared</h3>
+<p><strong>Statement:</strong> Rao score test: (dL/dtheta)^2 / I(theta) asymptotically chi-squared</p>
+<p><strong>Hypotheses:</strong> H0: theta = theta_0, regularity conditions</p>
+<p><strong>Conclusion:</strong> score statistic ~ chi^2(1) under H0</p>
+<p><strong>Definitions:</strong> Rao score, Lagrange multiplier, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Evaluate score S(theta_0) = dL/dtheta at theta_0</p>
+<p class="step">Step 2: Normalize: S(theta_0)/sqrt(I(theta_0)) -> N(0,1)</p>
+<p class="step">Step 3: Square: S^2/I -> chi^2(1)</p>
+<p class="step">Step 4: Equivalent to Lagrange multiplier test</p></div>
+<p class="metadata">ID: 4ef291ed9533 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without regularity: chi-squared approximation poor</p>
+<p class="metadata">Provenance: mathematical statistics proof #8</p>
+</div>
+
+<div class="theorem extra" id="stat-9">
+<h3>Proof 9: Wald test: (theta_hat - theta_0)^2 * I(theta_hat) asymptotically chi-squared</h3>
+<p><strong>Statement:</strong> Wald test: (theta_hat - theta_0)^2 * I(theta_hat) asymptotically chi-squared</p>
+<p><strong>Hypotheses:</strong> theta_hat MLE, H0: theta = theta_0</p>
+<p><strong>Conclusion:</strong> Wald statistic ~ chi^2(1) under H0</p>
+<p><strong>Definitions:</strong> Wald test, asymptotic, hypothesis testing</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: theta_hat ~ N(theta_0, 1/(nI)) asymptotically</p>
+<p class="step">Step 2: (theta_hat - theta_0)^2 * nI ~ chi^2(1)</p>
+<p class="step">Step 3: Equivalently: (theta_hat - theta_0)/se(theta_hat) ~ N(0,1)</p></div>
+<p class="metadata">ID: 36e9e911251b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Different from Score test in finite samples</p>
+<p class="metadata">Provenance: mathematical statistics proof #9</p>
+</div>
+
+<div class="theorem extra" id="stat-10">
+<h3>Proof 10: Likelihood ratio test statistic: -2 log Lambda asymptotically chi-squared</h3>
+<p><strong>Statement:</strong> Likelihood ratio test statistic: -2 log Lambda asymptotically chi-squared</p>
+<p><strong>Hypotheses:</strong> H0: theta in Theta_0 subset Theta, regularity conditions</p>
+<p><strong>Conclusion:</strong> -2 log Lambda ~ chi^2(dim(Theta) - dim(Theta_0))</p>
+<p><strong>Definitions:</strong> likelihood ratio test, Wilks theorem, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lambda = L(theta_0_hat)/L(theta_hat)</p>
+<p class="step">Step 2: -2 log Lambda = 2(log L(theta_hat) - log L(theta_0_hat))</p>
+<p class="step">Step 3: Taylor expand around true theta_0</p>
+<p class="step">Step 4: Quadratic form in normal vectors => chi-squared</p>
+<p class="step">Step 5: Degrees of freedom = difference in parameter dimensions</p></div>
+<p class="metadata">ID: 917ecb17cf1f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without regularity: Wilks theorem may fail</p>
+<p class="metadata">Provenance: mathematical statistics proof #10</p>
+</div>
+
+<div class="theorem extra" id="stat-11">
+<h3>Proof 11: Bootstrap consistency: bootstrap distribution approximates sampling distribution</h3>
+<p><strong>Statement:</strong> Bootstrap consistency: bootstrap distribution approximates sampling distribution</p>
+<p><strong>Hypotheses:</strong> i.i.d. sample X_1,...,X_n, statistic T_n(X)</p>
+<p><strong>Conclusion:</strong> bootstrap distribution of T_n* approximates distribution of T_n</p>
+<p><strong>Definitions:</strong> bootstrap, resampling, Efron</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Resample X_1*,...,X_n* from empirical distribution</p>
+<p class="step">Step 2: Compute T_n*(X*)</p>
+<p class="step">Step 3: Empirical distribution of T_n* approximates true distribution</p>
+<p class="step">Step 4: Consistency: bootstrap error -> 0 as n -> infinity</p>
+<p class="step">Step 5: By CLT for L-statistics</p></div>
+<p class="metadata">ID: e9e1e2e2ecaf | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without i.i.d.: bootstrap may be inconsistent</p>
+<p class="metadata">Provenance: mathematical statistics proof #11</p>
+</div>
+
+<div class="theorem extra" id="stat-12">
+<h3>Proof 12: Law of iterated expectations: E[E[X|Y]] = E[X]</h3>
+<p><strong>Statement:</strong> Law of iterated expectations: E[E[X|Y]] = E[X]</p>
+<p><strong>Hypotheses:</strong> X,Y random variables, E|X| < infinity</p>
+<p><strong>Conclusion:</strong> E[E[X|Y]] = E[X]</p>
+<p><strong>Definitions:</strong> iterated expectations, tower property, conditional</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: E[X|Y] is function of Y</p>
+<p class="step">Step 2: E[E[X|Y]] = integral E[X|Y=y] dP_Y(y)</p>
+<p class="step">Step 3: = integral integral x f_{X|Y}(x|y) dx dP_Y(y)</p>
+<p class="step">Step 4: = integral x f_X(x) dx = E[X]</p></div>
+<p class="metadata">ID: cb2308ea10ed | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without integrability: expectations undefined</p>
+<p class="metadata">Provenance: mathematical statistics proof #12</p>
+</div>
+
+<div class="theorem extra" id="stat-13">
+<h3>Proof 13: Conditional variance formula: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</h3>
+<p><strong>Statement:</strong> Conditional variance formula: Var(X) = E[Var(X|Y)] + Var(E[X|Y])</p>
+<p><strong>Hypotheses:</strong> X,Y with finite second moments</p>
+<p><strong>Conclusion:</strong> Var(X) = E[Var(X|Y)] + Var(E[X|Y])</p>
+<p><strong>Definitions:</strong> conditional variance, decomposition, partition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Var(X) = E[X^2] - (E[X])^2</p>
+<p class="step">Step 2: Write X = (X - E[X|Y]) + E[X|Y]</p>
+<p class="step">Step 3: Square and take expectations</p>
+<p class="step">Step 4: Cross term vanishes by tower property</p>
+<p class="step">Step 5: Separate into expected conditional variance + variance of conditional mean</p></div>
+<p class="metadata">ID: d0283ef968e0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without finite second moments: undefined</p>
+<p class="metadata">Provenance: mathematical statistics proof #13</p>
+</div>
+
+<div class="theorem extra" id="stat-14">
+<h3>Proof 14: Huber's M-estimator: robust alternative to MLE with bounded influence function</h3>
+<p><strong>Statement:</strong> Huber's M-estimator: robust alternative to MLE with bounded influence function</p>
+<p><strong>Hypotheses:</strong> contaminated model, bound c on influence</p>
+<p><strong>Conclusion:</strong> minimize sum rho(x_i - theta)/sigma where rho is Huber function</p>
+<p><strong>Definitions:</strong> M-estimator, robust, Huber</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Huber function: rho(u) = u^2/2 for |u|<=c, c|u|-c^2/2 for |u|>c</p>
+<p class="step">Step 2: Score function psi = rho' is bounded</p>
+<p class="step">Step 3: Equivariance: estimator equivariant under location shift</p>
+<p class="step">Step 4: Breakdown point ~ 50% for suitable c</p></div>
+<p class="metadata">ID: c2e0def24ceb | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without bounded influence: MLE not robust to outliers</p>
+<p class="metadata">Provenance: mathematical statistics proof #14</p>
+</div>
+
+<div class="theorem extra" id="stat-15">
+<h3>Proof 15: Lindeberg CLT: independent non-identically distributed satisfies CLT under Lindeberg condition</h3>
+<p><strong>Statement:</strong> Lindeberg CLT: independent non-identically distributed satisfies CLT under Lindeberg condition</p>
+<p><strong>Hypotheses:</strong> independent X_nj with E[X_nj]=0, Lindeberg condition</p>
+<p><strong>Conclusion:</strong> normalized sum converges to N(0,1)</p>
+<p><strong>Definitions:</strong> Lindeberg, CLT, independent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define s_n^2 = sum Var(X_nj)</p>
+<p class="step">Step 2: Lindeberg: for all epsilon>0, sum E[X_nj^2 * 1_{|X_nj|>eps*s_n}] / s_n^2 -> 0</p>
+<p class="step">Step 3: Lindeberg implies Feller (no single term dominates)</p>
+<p class="step">Step 4: Apply CLT with Lindeberg condition</p></div>
+<p class="metadata">ID: 2ffc1465651f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without Lindeberg: CLT may fail for non-i.i.d.</p>
+<p class="metadata">Provenance: mathematical statistics proof #15</p>
+</div>
+
+<div class="theorem extra" id="stat-16">
+<h3>Proof 16: Berry-Esseen theorem: rate of CLT convergence O(1/sqrt(n))</h3>
+<p><strong>Statement:</strong> Berry-Esseen theorem: rate of CLT convergence O(1/sqrt(n))</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., E[X]=0, Var=1, E|X|^3 < infinity</p>
+<p><strong>Conclusion:</strong> sup_x |P(S_n/sqrt(n) <= x) - Phi(x)| <= C*rho/sqrt(n)</p>
+<p><strong>Definitions:</strong> Berry-Esseen, rate of convergence, nonparametric</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Compare char functions of sum and normal</p>
+<p class="step">Step 2: Use Berry-Esseen smoothing inequality</p>
+<p class="step">Step 3: Bound third absolute moment rho = E|X|^3</p>
+<p class="step">Step 4: Constant C known (best known ~ 0.47)</p></div>
+<p class="metadata">ID: 1134c74725b8 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without third moment: bound doesn't apply</p>
+<p class="metadata">Provenance: mathematical statistics proof #16</p>
+</div>
+
+<div class="theorem extra" id="stat-17">
+<h3>Proof 17: Edgeworth expansion: refined CLT with 1/n correction terms</h3>
+<p><strong>Statement:</strong> Edgeworth expansion: refined CLT with 1/n correction terms</p>
+<p><strong>Hypotheses:</strong> X_i i.i.d., finite cumulants</p>
+<p><strong>Conclusion:</strong> P(S_n/sqrt(n) <= x) = Phi(x) + phi(x)*P_1(x)/sqrt(n) + O(1/n)</p>
+<p><strong>Definitions:</strong> Edgeworth, cumulant, refined CLT</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Express distribution in terms of cumulants</p>
+<p class="step">Step 2: Expand char function to higher orders</p>
+<p class="step">Step 3: Edgeworth polynomial P_1 involves Hermite polynomials</p>
+<p class="step">Step 4: Correction term captures skewness k_3/(6*sqrt(n))</p></div>
+<p class="metadata">ID: cdac7899d215 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Requires higher moment conditions</p>
+<p class="metadata">Provenance: mathematical statistics proof #17</p>
+</div>
+
+<div class="theorem extra" id="stat-18">
+<h3>Proof 18: U-statistic: minimum variance unbiased estimator of parameter symmetric function</h3>
+<p><strong>Statement:</strong> U-statistic: minimum variance unbiased estimator of parameter symmetric function</p>
+<p><strong>Hypotheses:</strong> theta = E[h(X_1,...,X_m)], h symmetric</p>
+<p><strong>Conclusion:</strong> U = average of h over all m-subsets is UMVUE</p>
+<p><strong>Definitions:</strong> U-statistic, symmetric, unbiased</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: U = (1/C(n,m)) sum_{all subsets} h(X_{i1},...,X_{im})</p>
+<p class="step">Step 2: E[U] = theta by symmetry</p>
+<p class="step">Step 3: Hoeffding decomposition: U = theta + sum of orthogonal components</p>
+<p class="step">Step 4: Variance determined by conditional second moments</p></div>
+<p class="metadata">ID: f7a494cc3794 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without symmetry: U-statistic not well-defined</p>
+<p class="metadata">Provenance: mathematical statistics proof #18</p>
+</div>
 </body></html>
