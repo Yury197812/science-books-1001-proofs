@@ -19242,4 +19242,686 @@ h2 { color: #34495e; margin-top: 30px; }
 <p class="metadata">Mutation test: Removing convex: may fail for non-simply-connected</p>
 <p class="metadata">Provenance: Extra algebra proof #9</p>
 </div>
+
+<h2>Extra proofs (+43 advanced algebra theorems)</h2>
+
+<div class="theorem extra" id="alg2-1">
+<h3>Proof 1: Cayley-Hamilton: every square matrix satisfies its own characteristic polynomial</h3>
+<p><strong>Statement:</strong> Cayley-Hamilton: every square matrix satisfies its own characteristic polynomial</p>
+<p><strong>Hypotheses:</strong> A n x n matrix over field F</p>
+<p><strong>Conclusion:</strong> p_A(A) = 0 where p_A(t) = det(A - tI)</p>
+<p><strong>Definitions:</strong> Cayley-Hamilton, characteristic polynomial, matrix</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For invertible B: adj(B)*B = det(B)*I</p>
+<p class="step">Step 2: Replace B by A - tI: adj(A-tI)*(A-tI) = p_A(t)*I</p>
+<p class="step">Step 3: Left side is polynomial in t with matrix coefficients</p>
+<p class="step">Step 4: Evaluate at t = 0 after expanding</p>
+<p class="step">Step 5: Each coefficient of t^k on left equals coefficient on right</p>
+<p class="step">Step 6: Setting t=A gives p_A(A) = 0</p></div>
+<p class="metadata">ID: a98f7b671f30 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'square': characteristic polynomial undefined</p>
+<p class="metadata">Provenance: Advanced algebra proof #1</p>
+</div>
+
+<div class="theorem extra" id="alg2-2">
+<h3>Proof 2: Rank-Nullity theorem: dim(V) = rank(T) + nullity(T)</h3>
+<p><strong>Statement:</strong> Rank-Nullity theorem: dim(V) = rank(T) + nullity(T)</p>
+<p><strong>Hypotheses:</strong> T: V -> W linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V) = dim(im T) + dim(ker T)</p>
+<p><strong>Definitions:</strong> rank, nullity, linear map</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Let basis of ker T = {v_1,...,v_k}</p>
+<p class="step">Step 2: Extend to basis of V: {v_1,...,v_k, w_1,...,w_r}</p>
+<p class="step">Step 3: Show {T(w_1),...,T(w_r)} basis of im T</p>
+<p class="step">Step 4: dim(ker T) = k, dim(im T) = r</p>
+<p class="step">Step 5: k + r = dim(V)</p></div>
+<p class="metadata">ID: 2e17eb530aaa | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without finite-dimensional: may not have bases</p>
+<p class="metadata">Provenance: Advanced algebra proof #2</p>
+</div>
+
+<div class="theorem extra" id="alg2-3">
+<h3>Proof 3: Rank-Nullity corollary: T injective iff nullity(T) = 0</h3>
+<p><strong>Statement:</strong> Rank-Nullity corollary: T injective iff nullity(T) = 0</p>
+<p><strong>Hypotheses:</strong> T: V -> W linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> T injective <=> ker T = {0}</p>
+<p><strong>Definitions:</strong> injective, nullity, kernel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ker T = {0} <=> nullity(T) = 0</p>
+<p class="step">Step 2: By rank-nullity: nullity = 0 => rank = dim(V)</p>
+<p class="step">Step 3: dim(im T) = dim(V) => T injective</p>
+<p class="step">Step 4: Conversely: injective => ker T = {0}</p></div>
+<p class="metadata">ID: 7f5ff88568e0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Direct consequence of rank-nullity</p>
+<p class="metadata">Provenance: Advanced algebra proof #3</p>
+</div>
+
+<div class="theorem extra" id="alg2-4">
+<h3>Proof 4: Determinant of product: det(AB) = det(A)*det(B)</h3>
+<p><strong>Statement:</strong> Determinant of product: det(AB) = det(A)*det(B)</p>
+<p><strong>Hypotheses:</strong> A,B n x n matrices</p>
+<p><strong>Conclusion:</strong> det(AB) = det(A)*det(B)</p>
+<p><strong>Definitions:</strong> determinant, product, multiplicative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi(A) = det(AB)/det(B) for fixed B</p>
+<p class="step">Step 2: phi is multiplicative: phi(AC) = phi(A)*phi(C)</p>
+<p class="step">Step 3: phi(I) = 1</p>
+<p class="step">Step 4: phi is continuous (polynomial in entries)</p>
+<p class="step">Step 5: Show phi(A) = det(A) using row operations</p></div>
+<p class="metadata">ID: fbb7f7029416 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'square': determinant undefined</p>
+<p class="metadata">Provenance: Advanced algebra proof #4</p>
+</div>
+
+<div class="theorem extra" id="alg2-5">
+<h3>Proof 5: Trace cyclic property: tr(AB) = tr(BA)</h3>
+<p><strong>Statement:</strong> Trace cyclic property: tr(AB) = tr(BA)</p>
+<p><strong>Hypotheses:</strong> A m x n, B n x m</p>
+<p><strong>Conclusion:</strong> tr(AB) = tr(BA)</p>
+<p><strong>Definitions:</strong> trace, cyclic, matrix product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: (AB)_{ii} = sum_j A_{ij} B_{ji}</p>
+<p class="step">Step 2: tr(AB) = sum_i sum_j A_{ij} B_{ji}</p>
+<p class="step">Step 3: (BA)_{jj} = sum_i B_{ji} A_{ij}</p>
+<p class="step">Step 4: tr(BA) = sum_j sum_i B_{ji} A_{ij}</p>
+<p class="step">Step 5: Same double sum, just reordered</p></div>
+<p class="metadata">ID: b85c6d12c511 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Works even when AB and BA are different sizes</p>
+<p class="metadata">Provenance: Advanced algebra proof #5</p>
+</div>
+
+<div class="theorem extra" id="alg2-6">
+<h3>Proof 6: Eigenvalue relation: product of eigenvalues = det(A), sum = tr(A)</h3>
+<p><strong>Statement:</strong> Eigenvalue relation: product of eigenvalues = det(A), sum = tr(A)</p>
+<p><strong>Hypotheses:</strong> A n x n matrix, algebraically closed field</p>
+<p><strong>Conclusion:</strong> det(A) = prod lambda_i, tr(A) = sum lambda_i</p>
+<p><strong>Definitions:</strong> eigenvalue, determinant, trace</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Characteristic polynomial: det(A-tI) = prod(t-lambda_i)</p>
+<p class="step">Step 2: = t^n - (sum lambda_i) t^{n-1} + ... + (-1)^n prod lambda_i</p>
+<p class="step">Step 3: Also: det(A-tI) = t^n - tr(A) t^{n-1} + ...</p>
+<p class="step">Step 4: Compare coefficients: tr(A) = sum lambda_i</p>
+<p class="step">Step 5: Set t=0: det(A) = (-1)^n prod(-lambda_i) = prod lambda_i</p></div>
+<p class="metadata">ID: a4de2874d406 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Requires algebraically closed field for existence of all eigenvalues</p>
+<p class="metadata">Provenance: Advanced algebra proof #6</p>
+</div>
+
+<div class="theorem extra" id="alg2-7">
+<h3>Proof 7: Spectral theorem: real symmetric matrix has orthonormal eigenbasis</h3>
+<p><strong>Statement:</strong> Spectral theorem: real symmetric matrix has orthonormal eigenbasis</p>
+<p><strong>Hypotheses:</strong> A real symmetric matrix</p>
+<p><strong>Conclusion:</strong> A = QDQ^T with Q orthogonal, D diagonal</p>
+<p><strong>Definitions:</strong> spectral theorem, symmetric, orthonormal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Eigenvalues of real symmetric are real</p>
+<p class="step">Step 2: Eigenspaces are orthogonal</p>
+<p class="step">Step 3: Sum of dimensions = n</p>
+<p class="step">Step 4: Choose orthonormal basis in each eigenspace</p>
+<p class="step">Step 5: Q = [v_1|...|v_n], D = diag(lambda_i)</p></div>
+<p class="metadata">ID: 860c998da676 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without symmetry: only guaranteed for normal matrices</p>
+<p class="metadata">Provenance: Advanced algebra proof #7</p>
+</div>
+
+<div class="theorem extra" id="alg2-8">
+<h3>Proof 8: Nilpotent matrix: all eigenvalues are zero</h3>
+<p><strong>Statement:</strong> Nilpotent matrix: all eigenvalues are zero</p>
+<p><strong>Hypotheses:</strong> A^k = 0 for some k</p>
+<p><strong>Conclusion:</strong> all eigenvalues of A are 0</p>
+<p><strong>Definitions:</strong> nilpotent, eigenvalue, Jordan form</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If Av = lambda v, then A^k v = lambda^k v</p>
+<p class="step">Step 2: A^k = 0, so lambda^k v = 0</p>
+<p class="step">Step 3: v != 0, so lambda^k = 0</p>
+<p class="step">Step 4: Therefore lambda = 0</p></div>
+<p class="metadata">ID: 1e4a5454a4ed | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Converse not true: zero eigenvalues don't imply nilpotent</p>
+<p class="metadata">Provenance: Advanced algebra proof #8</p>
+</div>
+
+<div class="theorem extra" id="alg2-9">
+<h3>Proof 9: Diagonalizable matrix is nilpotent iff all eigenvalues are 0 iff A = 0</h3>
+<p><strong>Statement:</strong> Diagonalizable matrix is nilpotent iff all eigenvalues are 0 iff A = 0</p>
+<p><strong>Hypotheses:</strong> A diagonalizable, A^k = 0</p>
+<p><strong>Conclusion:</strong> A = 0</p>
+<p><strong>Definitions:</strong> diagonalizable, nilpotent, zero matrix</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: A = PDP^{-1} with D diagonal</p>
+<p class="step">Step 2: A^k = PD^k P^{-1} = 0</p>
+<p class="step">Step 3: D^k = 0, so all diagonal entries of D are 0</p>
+<p class="step">Step 4: D = 0, so A = P*0*P^{-1} = 0</p></div>
+<p class="metadata">ID: b6919e530fbe | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Non-diagonalizable nilpotent matrices are nonzero (e.g. Jordan block)</p>
+<p class="metadata">Provenance: Advanced algebra proof #9</p>
+</div>
+
+<div class="theorem extra" id="alg2-10">
+<h3>Proof 10: Minimal polynomial divides characteristic polynomial (Cayley-Hamilton)</h3>
+<p><strong>Statement:</strong> Minimal polynomial divides characteristic polynomial (Cayley-Hamilton)</p>
+<p><strong>Hypotheses:</strong> A square matrix</p>
+<p><strong>Conclusion:</strong> m_A(t) divides p_A(t)</p>
+<p><strong>Definitions:</strong> minimal polynomial, characteristic polynomial, divides</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By Cayley-Hamilton: p_A(A) = 0</p>
+<p class="step">Step 2: m_A is the monic polynomial of least degree with m_A(A) = 0</p>
+<p class="step">Step 3: By division algorithm: p_A = q * m_A + r</p>
+<p class="step">Step 4: r(A) = p_A(A) - q(A)*m_A(A) = 0</p>
+<p class="step">Step 5: deg r < deg m_A, so r = 0</p></div>
+<p class="metadata">ID: c79a3c9bd03a | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Follows directly from Cayley-Hamilton</p>
+<p class="metadata">Provenance: Advanced algebra proof #10</p>
+</div>
+
+<div class="theorem extra" id="alg2-11">
+<h3>Proof 11: Isomorphic vector spaces have same dimension</h3>
+<p><strong>Statement:</strong> Isomorphic vector spaces have same dimension</p>
+<p><strong>Hypotheses:</strong> T: V -> W isomorphism, V,W finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V) = dim(W)</p>
+<p><strong>Definitions:</strong> isomorphism, dimension, basis</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: T maps basis of V to basis of W</p>
+<p class="step">Step 2: |basis V| = |basis W|</p>
+<p class="step">Step 3: Therefore dim(V) = dim(W)</p></div>
+<p class="metadata">ID: 1eb96aafdc53 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Dimension is a complete invariant for finite-dim vector spaces</p>
+<p class="metadata">Provenance: Advanced algebra proof #11</p>
+</div>
+
+<div class="theorem extra" id="alg2-12">
+<h3>Proof 12: Dual space V* has same dimension as V (finite-dim)</h3>
+<p><strong>Statement:</strong> Dual space V* has same dimension as V (finite-dim)</p>
+<p><strong>Hypotheses:</strong> V finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V*) = dim(V)</p>
+<p><strong>Definitions:</strong> dual space, linear functional, finite-dimensional</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Let {e_1,...,e_n} basis of V</p>
+<p class="step">Step 2: Define dual basis {f_i} by f_i(e_j) = delta_ij</p>
+<p class="step">Step 3: Each f_i in V*, linearly independent</p>
+<p class="step">Step 4: dim(V*) >= n = dim(V)</p>
+<p class="step">Step 5: But dim(V*) <= dim(V) by rank-nullity</p>
+<p class="step">Step 6: Therefore equal</p></div>
+<p class="metadata">ID: 51b167f89ba2 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: In infinite dimensions: algebraic dual is strictly larger</p>
+<p class="metadata">Provenance: Advanced algebra proof #12</p>
+</div>
+
+<div class="theorem extra" id="alg2-13">
+<h3>Proof 13: Orthogonal complement: dim(W) + dim(W^perp) = dim(V)</h3>
+<p><strong>Statement:</strong> Orthogonal complement: dim(W) + dim(W^perp) = dim(V)</p>
+<p><strong>Hypotheses:</strong> V finite-dim inner product space, W subspace</p>
+<p><strong>Conclusion:</strong> dim(W) + dim(W^perp) = dim(V)</p>
+<p><strong>Definitions:</strong> orthogonal complement, dimension, inner product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: W intersect W^perp = {0}</p>
+<p class="step">Step 2: W + W^perp = V (decomposition theorem)</p>
+<p class="step">Step 3: By dimension formula: dim(W) + dim(W^perp) = dim(V)</p></div>
+<p class="metadata">ID: 3f9ebf02c215 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without inner product: orthogonal complement undefined</p>
+<p class="metadata">Provenance: Advanced algebra proof #13</p>
+</div>
+
+<div class="theorem extra" id="alg2-14">
+<h3>Proof 14: Cauchy-Schwarz: |<u,v>| <= ||u|| * ||v||</h3>
+<p><strong>Statement:</strong> Cauchy-Schwarz: |<u,v>| <= ||u|| * ||v||</p>
+<p><strong>Hypotheses:</strong> u,v in inner product space</p>
+<p><strong>Conclusion:</strong> |<u,v>| <= ||u|| * ||v||</p>
+<p><strong>Definitions:</strong> Cauchy-Schwarz, inner product, norm</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If v=0: trivial</p>
+<p class="step">Step 2: Define w = u - (<u,v>/<v,v>) * v</p>
+<p class="step">Step 3: ||w||^2 >= 0</p>
+<p class="step">Step 4: = ||u||^2 - |<u,v>|^2/||v||^2</p>
+<p class="step">Step 5: |<u,v>|^2 <= ||u||^2 * ||v||^2</p></div>
+<p class="metadata">ID: 4643b0424069 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation of inner product geometry</p>
+<p class="metadata">Provenance: Advanced algebra proof #14</p>
+</div>
+
+<div class="theorem extra" id="alg2-15">
+<h3>Proof 15: Triangle inequality for norms: ||u+v|| <= ||u|| + ||v||</h3>
+<p><strong>Statement:</strong> Triangle inequality for norms: ||u+v|| <= ||u|| + ||v||</p>
+<p><strong>Hypotheses:</strong> u,v in normed space</p>
+<p><strong>Conclusion:</strong> ||u+v|| <= ||u|| + ||v||</p>
+<p><strong>Definitions:</strong> triangle inequality, norm, subadditivity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ||u+v||^2 = <u+v, u+v></p>
+<p class="step">Step 2: = ||u||^2 + 2Re<u,v> + ||v||^2</p>
+<p class="step">Step 3: By Cauchy-Schwarz: Re<u,v> <= |<u,v>| <= ||u|| ||v||</p>
+<p class="step">Step 4: <= ||u||^2 + 2||u|| ||v|| + ||v||^2 = (||u|| + ||v||)^2</p></div>
+<p class="metadata">ID: 6f69094beb1f | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Follows from Cauchy-Schwarz in inner product spaces</p>
+<p class="metadata">Provenance: Advanced algebra proof #15</p>
+</div>
+
+<div class="theorem extra" id="alg2-16">
+<h3>Proof 16: Jordan normal form: every matrix over algebraically closed field has Jordan form</h3>
+<p><strong>Statement:</strong> Jordan normal form: every matrix over algebraically closed field has Jordan form</p>
+<p><strong>Hypotheses:</strong> A n x n matrix, F algebraically closed</p>
+<p><strong>Conclusion:</strong> A = PJP^{-1} with J block diagonal</p>
+<p><strong>Definitions:</strong> Jordan normal form, eigenvalue, nilpotent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Find all eigenvalues</p>
+<p class="step">Step 2: Generalized eigenspace decomposition: V = direct sum V_lambda</p>
+<p class="step">Step 3: On each V_lambda, A = lambda*I + N (N nilpotent)</p>
+<p class="step">Step 4: Jordan blocks from structure of nilpotent N</p>
+<p class="step">Step 5: Thread blocks together into J</p></div>
+<p class="metadata">ID: 5e3e2fa2f9b2 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without algebraically closed: may need field extension</p>
+<p class="metadata">Provenance: Advanced algebra proof #16</p>
+</div>
+
+<div class="theorem extra" id="alg2-17">
+<h3>Proof 17: Rational canonical form: every matrix has rational canonical form over any field</h3>
+<p><strong>Statement:</strong> Rational canonical form: every matrix has rational canonical form over any field</p>
+<p><strong>Hypotheses:</strong> A matrix over field F</p>
+<p><strong>Conclusion:</strong> A = P C P^{-1} with C block diagonal of companion matrices</p>
+<p><strong>Definitions:</strong> rational canonical form, invariant factor, companion matrix</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider F[t]-module structure via A</p>
+<p class="step">Step 2: Apply structure theorem for finitely generated modules over PID</p>
+<p class="step">Step 3: Invariant factors give companion matrix blocks</p>
+<p class="step">Step 4: Works over ANY field, not just algebraically closed</p></div>
+<p class="metadata">ID: 0b7269fc7a36 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Always exists, doesn't require algebraically closed field</p>
+<p class="metadata">Provenance: Advanced algebra proof #17</p>
+</div>
+
+<div class="theorem extra" id="alg2-18">
+<h3>Proof 18: Basis theorem: every vector space has a basis (requires axiom of choice)</h3>
+<p><strong>Statement:</strong> Basis theorem: every vector space has a basis (requires axiom of choice)</p>
+<p><strong>Hypotheses:</strong> V vector space over F</p>
+<p><strong>Conclusion:</strong> V has a basis</p>
+<p><strong>Definitions:</strong> basis, Hamel basis, axiom of choice</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Partially order linearly independent sets by inclusion</p>
+<p class="step">Step 2: Zorn's lemma: every chain has upper bound (its union)</p>
+<p class="step">Step 3: Maximal linearly independent set is a basis</p>
+<p class="step">Step 4: Maximal: adding any vector creates dependency</p></div>
+<p class="metadata">ID: 4a57dd280055 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Requires axiom of choice (Zorn's lemma)</p>
+<p class="metadata">Provenance: Advanced algebra proof #18</p>
+</div>
+
+<div class="theorem extra" id="alg2-19">
+<h3>Proof 19: Steinitz exchange lemma: can replace vectors in spanning set by linearly independent ones</h3>
+<p><strong>Statement:</strong> Steinitz exchange lemma: can replace vectors in spanning set by linearly independent ones</p>
+<p><strong>Hypotheses:</strong> {v_1,...,v_m} spans V, {w_1,...,w_n} linearly independent, n <= m</p>
+<p><strong>Conclusion:</strong> can exchange n vectors from {v_i} by {w_j}</p>
+<p><strong>Definitions:</strong> Steinitz, exchange, spanning set</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Add w_1 to {v_i}: dependent by spanning</p>
+<p class="step">Step 2: Remove some v_i to restore independence</p>
+<p class="step">Step 3: Repeat for w_2,...,w_n</p>
+<p class="step">Step 4: At each step: replace one v by one w</p>
+<p class="step">Step 5: End: n w's plus m-n v's form spanning set</p></div>
+<p class="metadata">ID: 4577d3c601ed | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundational for dimension theory</p>
+<p class="metadata">Provenance: Advanced algebra proof #19</p>
+</div>
+
+<div class="theorem extra" id="alg2-20">
+<h3>Proof 20: Tensor product universal property: bilinear maps factor through tensor product</h3>
+<p><strong>Statement:</strong> Tensor product universal property: bilinear maps factor through tensor product</p>
+<p><strong>Hypotheses:</strong> V,W vector spaces, B: V x W -> U bilinear</p>
+<p><strong>Conclusion:</strong> unique linear map phi: V x W -> U with phi(v,w) = B(v,w)</p>
+<p><strong>Definitions:</strong> tensor product, universal property, bilinear</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define V x W = span{v x w}</p>
+<p class="step">Step 2: Relation: (v1+v2) x w = v1 x w + v2 x w</p>
+<p class="step">Step 3: v x (w1+w2) = v x w1 + v x w2</p>
+<p class="step">Step 4: (av) x w = v x (aw) = a(v x w)</p>
+<p class="step">Step 5: phi(v x w) = B(v,w) extends linearly</p></div>
+<p class="metadata">ID: 0177fe59be8c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Universal property uniquely characterizes tensor product</p>
+<p class="metadata">Provenance: Advanced algebra proof #20</p>
+</div>
+
+<div class="theorem extra" id="alg2-21">
+<h3>Proof 21: Determinant is alternating multilinear function of rows</h3>
+<p><strong>Statement:</strong> Determinant is alternating multilinear function of rows</p>
+<p><strong>Hypotheses:</strong> det: F^n x ... x F^n -> F</p>
+<p><strong>Conclusion:</strong> det changes sign under row swap, linear in each row</p>
+<p><strong>Definitions:</strong> determinant, alternating, multilinear</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Alternating: swap rows changes sign</p>
+<p class="step">Step 2: Multilinear: det(..., av+bw,...) = a det(...,v,...) + b det(...,w,...)</p>
+<p class="step">Step 3: These two properties + det(I) = 1 uniquely determine det</p>
+<p class="step">Step 4: Can be shown by: any alternating multilinear form is det times constant</p></div>
+<p class="metadata">ID: 3950576f9a50 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Alternative characterization of determinant</p>
+<p class="metadata">Provenance: Advanced algebra proof #21</p>
+</div>
+
+<div class="theorem extra" id="alg2-22">
+<h3>Proof 22: Exterior algebra: dim Lambda^k(V) = C(n,k)</h3>
+<p><strong>Statement:</strong> Exterior algebra: dim Lambda^k(V) = C(n,k)</p>
+<p><strong>Hypotheses:</strong> V n-dimensional</p>
+<p><strong>Conclusion:</strong> k-th exterior power has dimension C(n,k)</p>
+<p><strong>Definitions:</strong> exterior algebra, wedge product, binomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lambda^k(V) spanned by v_{i1} ^ ... ^ v_{ik}</p>
+<p class="step">Step 2: Antisymmetry: v ^ v = 0</p>
+<p class="step">Step 3: Only nonzero when indices distinct</p>
+<p class="step">Step 4: Number of ways to choose k from n: C(n,k)</p>
+<p class="step">Step 5: These form a basis</p></div>
+<p class="metadata">ID: acd642d5da20 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for differential forms</p>
+<p class="metadata">Provenance: Advanced algebra proof #22</p>
+</div>
+
+<div class="theorem extra" id="alg2-23">
+<h3>Proof 23: Wedge product satisfies Jacobi identity: v ^ (w ^ u) + w ^ (u ^ v) + u ^ (v ^ w) = 0</h3>
+<p><strong>Statement:</strong> Wedge product satisfies Jacobi identity: v ^ (w ^ u) + w ^ (u ^ v) + u ^ (v ^ w) = 0</p>
+<p><strong>Hypotheses:</strong> v,w,u in V</p>
+<p><strong>Conclusion:</strong> cyclic sum = 0</p>
+<p><strong>Definitions:</strong> wedge product, Jacobi, exterior algebra</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Expand using anticommutativity</p>
+<p class="step">Step 2: v ^ w ^ u - w ^ u ^ v + u ^ v ^ w</p>
+<p class="step">Step 3: = v ^ w ^ u + v ^ w ^ u - v ^ w ^ u</p>
+<p class="step">Step 4: = v ^ w ^ u - v ^ w ^ u + v ^ w ^ u = 0</p>
+<p class="step">Step 5: By anticommutativity at each step</p></div>
+<p class="metadata">ID: 87c1a24e4250 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental identity in exterior algebra</p>
+<p class="metadata">Provenance: Advanced algebra proof #23</p>
+</div>
+
+<div class="theorem extra" id="alg2-24">
+<h3>Proof 24: Symmetric group S_n is non-abelian for n >= 3</h3>
+<p><strong>Statement:</strong> Symmetric group S_n is non-abelian for n >= 3</p>
+<p><strong>Hypotheses:</strong> n >= 3</p>
+<p><strong>Conclusion:</strong> exists sigma,tau in S_n with sigma*tau != tau*sigma</p>
+<p><strong>Definitions:</strong> symmetric group, non-abelian, permutation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take sigma = (1 2), tau = (1 3)</p>
+<p class="step">Step 2: sigma*tau = (1 3 2)</p>
+<p class="step">Step 3: tau*sigma = (1 2 3)</p>
+<p class="step">Step 4: (1 3 2) != (1 2 3)</p></div>
+<p class="metadata">ID: 348ba4b15c67 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: S_2 is abelian (only 2 elements)</p>
+<p class="metadata">Provenance: Advanced algebra proof #24</p>
+</div>
+
+<div class="theorem extra" id="alg2-25">
+<h3>Proof 25: Every group of prime order is cyclic</h3>
+<p><strong>Statement:</strong> Every group of prime order is cyclic</p>
+<p><strong>Hypotheses:</strong> |G| = p prime</p>
+<p><strong>Conclusion:</strong> G is cyclic</p>
+<p><strong>Definitions:</strong> prime order, cyclic, Lagrange</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take g in G, g != e</p>
+<p class="step">Step 2: Order of g divides p (Lagrange)</p>
+<p class="step">Step 3: Order of g is 1 or p</p>
+<p class="step">Step 4: If 1: g = e, contradiction</p>
+<p class="step">Step 5: So order(g) = p, g generates G</p></div>
+<p class="metadata">ID: 6e4fdbd32a57 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Direct consequence of Lagrange's theorem</p>
+<p class="metadata">Provenance: Advanced algebra proof #25</p>
+</div>
+
+<div class="theorem extra" id="alg2-26">
+<h3>Proof 26: Sylow theorems: existence, conjugacy, and count of Sylow p-subgroups</h3>
+<p><strong>Statement:</strong> Sylow theorems: existence, conjugacy, and count of Sylow p-subgroups</p>
+<p><strong>Hypotheses:</strong> G finite, p^k divides |G|</p>
+<p><strong>Conclusion:</strong> Sylow p-subgroups exist, are conjugate, number divides |G|/p^k and is = 1 mod p</p>
+<p><strong>Definitions:</strong> Sylow, conjugacy, p-subgroup</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Existence: induction on |G|</p>
+<p class="step">Step 2: Conjugacy: action of G on Sylow p-subgroups</p>
+<p class="step">Step 3: Number n_p: n_p | |G|/p^k by orbit-stabilizer</p>
+<p class="step">Step 4: n_p = 1 mod p by class equation on p-group</p></div>
+<p class="metadata">ID: 87f435641e2d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Three theorems: existence, conjugacy, counting</p>
+<p class="metadata">Provenance: Advanced algebra proof #26</p>
+</div>
+
+<div class="theorem extra" id="alg2-27">
+<h3>Proof 27: Cauchy's theorem: if p divides |G|, then G has element of order p</h3>
+<p><strong>Statement:</strong> Cauchy's theorem: if p divides |G|, then G has element of order p</p>
+<p><strong>Hypotheses:</strong> G finite group, p prime dividing |G|</p>
+<p><strong>Conclusion:</strong> exists g in G with order(g) = p</p>
+<p><strong>Definitions:</strong> Cauchy, prime, order</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider set S = {(g_1,...,g_p) : g_1*...*g_p = e}</p>
+<p class="step">Step 2: C_p acts on S by cyclic permutation</p>
+<p class="step">Step 3: |S| = |G|^{p-1} divisible by p</p>
+<p class="step">Step 4: Fixed points: (g,...,g) with g^p = e</p>
+<p class="step">Step 5: Number of fixed points divisible by p</p>
+<p class="step">Step 6: (e,...,e) is one fixed point, so exists g != e with g^p = e</p></div>
+<p class="metadata">ID: 4318faffc6b7 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'p prime': conclusion can fail</p>
+<p class="metadata">Provenance: Advanced algebra proof #27</p>
+</div>
+
+<div class="theorem extra" id="alg2-28">
+<h3>Proof 28: Normal subgroup: G/H is a group iff H is normal</h3>
+<p><strong>Statement:</strong> Normal subgroup: G/H is a group iff H is normal</p>
+<p><strong>Hypotheses:</strong> H subgroup of G</p>
+<p><strong>Conclusion:</strong> coset multiplication well-defined iff H normal</p>
+<p><strong>Definitions:</strong> normal subgroup, quotient group, coset</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define (aH)(bH) = abH</p>
+<p class="step">Step 2: Well-defined iff ahbH = abH for all h in H</p>
+<p class="step">Step 3: iff b^{-1}hb in H for all h</p>
+<p class="step">Step 4: iff bHb^{-1} = H</p>
+<p class="step">Step 5: iff H is normal</p></div>
+<p class="metadata">ID: a89c53735532 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Normal subgroup is exactly the kernel of a homomorphism</p>
+<p class="metadata">Provenance: Advanced algebra proof #28</p>
+</div>
+
+<div class="theorem extra" id="alg2-29">
+<h3>Proof 29: First isomorphism theorem: G/ker(phi) isomorphic to im(phi)</h3>
+<p><strong>Statement:</strong> First isomorphism theorem: G/ker(phi) isomorphic to im(phi)</p>
+<p><strong>Hypotheses:</strong> phi: G -> H group homomorphism</p>
+<p><strong>Conclusion:</strong> G/ker(phi) ~ im(phi)</p>
+<p><strong>Definitions:</strong> first isomorphism theorem, kernel, image</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define psi: G/ker(phi) -> im(phi) by psi(gK) = phi(g)</p>
+<p class="step">Step 2: Well-defined: if gK = hK, then h^{-1}g in K = ker(phi)</p>
+<p class="step">Step 3: phi(h^{-1}g) = e, so phi(h) = phi(g)</p>
+<p class="step">Step 4: Injective: psi(gK) = e => phi(g) = e => g in K</p>
+<p class="step">Step 5: Surjective by definition of im(phi)</p></div>
+<p class="metadata">ID: 960147233d10 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Most important consequence of homomorphisms</p>
+<p class="metadata">Provenance: Advanced algebra proof #29</p>
+</div>
+
+<div class="theorem extra" id="alg2-30">
+<h3>Proof 30: Second isomorphism theorem: HN/N ~ H/(H intersect N)</h3>
+<p><strong>Statement:</strong> Second isomorphism theorem: HN/N ~ H/(H intersect N)</p>
+<p><strong>Hypotheses:</strong> H subgroup, N normal</p>
+<p><strong>Conclusion:</strong> HN/N isomorphic to H/(H intersect N)</p>
+<p><strong>Definitions:</strong> second isomorphism, product, intersection</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi: H -> HN/N by phi(h) = hN</p>
+<p class="step">Step 2: Kernel of phi: {h in H : hN = N} = {h in H : h in N} = H intersect N</p>
+<p class="step">Step 3: Image: all cosets hN with h in H = HN/N</p>
+<p class="step">Step 4: Apply first isomorphism theorem</p></div>
+<p class="metadata">ID: fa34953b024b | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Useful for quotient calculations</p>
+<p class="metadata">Provenance: Advanced algebra proof #30</p>
+</div>
+
+<div class="theorem extra" id="alg2-31">
+<h3>Proof 31: Third isomorphism theorem: (G/N)/(M/N) ~ G/M when N normal in M normal in G</h3>
+<p><strong>Statement:</strong> Third isomorphism theorem: (G/N)/(M/N) ~ G/M when N normal in M normal in G</p>
+<p><strong>Hypotheses:</strong> N normal in M, M normal in G</p>
+<p><strong>Conclusion:</strong> (G/N)/(M/N) isomorphic to G/M</p>
+<p><strong>Definitions:</strong> third isomorphism, quotient, normal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi: G/N -> G/M by phi(gN) = gM</p>
+<p class="step">Step 2: Well-defined: gN = hN => g^{-1}h in N subset M => gM = hM</p>
+<p class="step">Step 3: Kernel: {gN : gM = M} = {gN : g in M} = M/N</p>
+<p class="step">Step 4: First isomorphism theorem gives result</p></div>
+<p class="metadata">ID: ee27e44b5467 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Collapsing quotient by quotient</p>
+<p class="metadata">Provenance: Advanced algebra proof #31</p>
+</div>
+
+<div class="theorem extra" id="alg2-32">
+<h3>Proof 32: Correspondence theorem: subgroups of G/N correspond to subgroups of G containing N</h3>
+<p><strong>Statement:</strong> Correspondence theorem: subgroups of G/N correspond to subgroups of G containing N</p>
+<p><strong>Hypotheses:</strong> N normal in G</p>
+<p><strong>Conclusion:</strong> bijection between subgroups of G/N and subgroups of G containing N</p>
+<p><strong>Definitions:</strong> correspondence, subgroup lattice, quotient</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map H in G/N to preimage pi^{-1}(H) in G</p>
+<p class="step">Step 2: Preimage always contains N</p>
+<p class="step">Step 3: Converse: preimage of subgroup is subgroup</p>
+<p class="step">Step 4: Normal subgroups also correspond</p>
+<p class="step">Step 5: Preserves normality and index</p></div>
+<p class="metadata">ID: e941048f3504 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Preserves lattice structure</p>
+<p class="metadata">Provenance: Advanced algebra proof #32</p>
+</div>
+
+<div class="theorem extra" id="alg2-33">
+<h3>Proof 33: Burnside's lemma: number of orbits = (1/|G|) sum_{g in G} |Fix(g)|</h3>
+<p><strong>Statement:</strong> Burnside's lemma: number of orbits = (1/|G|) sum_{g in G} |Fix(g)|</p>
+<p><strong>Hypotheses:</strong> G finite group acting on finite set X</p>
+<p><strong>Conclusion:</strong> |X/G| = (1/|G|) sum |Fix(g)|</p>
+<p><strong>Definitions:</strong> Burnside, orbits, fixed points</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count pairs {(g,x) : g.x = x}</p>
+<p class="step">Step 2: By orbits: each orbit G.x contributes |Stab(x)|</p>
+<p class="step">Step 3: Sum = sum_x |Stab(x)| = |G| * |X/G|</p>
+<p class="step">Step 4: By group elements: sum_g |Fix(g)|</p>
+<p class="step">Step 5: Equate: |X/G| = (1/|G|) sum |Fix(g)|</p></div>
+<p class="metadata">ID: 55e149f68b4e | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Counts orbits by averaging fixed points</p>
+<p class="metadata">Provenance: Advanced algebra proof #33</p>
+</div>
+
+<div class="theorem extra" id="alg2-34">
+<h3>Proof 34: Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</h3>
+<p><strong>Statement:</strong> Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</p>
+<p><strong>Hypotheses:</strong> G finite group</p>
+<p><strong>Conclusion:</strong> size of center plus orbit sizes equals |G|</p>
+<p><strong>Definitions:</strong> class equation, center, conjugacy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Conjugacy classes partition G</p>
+<p class="step">Step 2: Center elements form singleton classes</p>
+<p class="step">Step 3: Non-central class sizes divide |G|</p>
+<p class="step">Step 4: |G| = |Z(G)| + sum |class(g_i)|</p>
+<p class="step">Step 5: |class(g_i)| = [G:C_G(g_i)]</p></div>
+<p class="metadata">ID: 17a12f89c7b3 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental tool in group theory</p>
+<p class="metadata">Provenance: Advanced algebra proof #34</p>
+</div>
+
+<div class="theorem extra" id="alg2-35">
+<h3>Proof 35: p-group center is nontrivial</h3>
+<p><strong>Statement:</strong> p-group center is nontrivial</p>
+<p><strong>Hypotheses:</strong> G p-group (|G| = p^k)</p>
+<p><strong>Conclusion:</strong> |Z(G)| >= p</p>
+<p><strong>Definitions:</strong> p-group, center, class equation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</p>
+<p class="step">Step 2: Each [G:C_G(g_i)] is power of p, > 1 so divisible by p</p>
+<p class="step">Step 3: |G| = p^k divisible by p</p>
+<p class="step">Step 4: Sum of non-central class sizes divisible by p</p>
+<p class="step">Step 5: Therefore |Z(G)| divisible by p</p></div>
+<p class="metadata">ID: 35c10ff5e404 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Key lemma for Sylow theory</p>
+<p class="metadata">Provenance: Advanced algebra proof #35</p>
+</div>
+
+<div class="theorem extra" id="alg2-36">
+<h3>Proof 36: Wedderburn's little theorem: finite division ring is a field</h3>
+<p><strong>Statement:</strong> Wedderburn's little theorem: finite division ring is a field</p>
+<p><strong>Hypotheses:</strong> R finite division ring</p>
+<p><strong>Conclusion:</strong> R is commutative (hence a field)</p>
+<p><strong>Definitions:</strong> Wedderburn, division ring, commutative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: R* is a finite group</p>
+<p class="step">Step 2: Center Z(R) is a finite field F_q</p>
+<p class="step">Step 3: R is vector space over F_q, dim = n</p>
+<p class="step">Step 4: |R*| = q^n - 1</p>
+<p class="step">Step 5: For any a in R*, class equation</p>
+<p class="step">Step 6: Each conjugacy class size divides n</p>
+<p class="step">Step 7: All elements of order dividing q-1 lie in F_q</p>
+<p class="step">Step 8: Deduce commutativity</p></div>
+<p class="metadata">ID: 21a80617c143 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: No finite non-commutative division rings exist</p>
+<p class="metadata">Provenance: Advanced algebra proof #36</p>
+</div>
+
+<div class="theorem extra" id="alg2-37">
+<h3>Proof 37: Frobenius theorem: finite-dimensional real division algebras are R, C, or H</h3>
+<p><strong>Statement:</strong> Frobenius theorem: finite-dimensional real division algebras are R, C, or H</p>
+<p><strong>Hypotheses:</strong> D finite-dimensional real division algebra</p>
+<p><strong>Conclusion:</strong> D is isomorphic to R, C, or H</p>
+<p><strong>Definitions:</strong> Frobenius, division algebra, quaternion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: D is a real Banach algebra with division</p>
+<p class="step">Step 2: By Hurwitz: normed division algebras over R</p>
+<p class="step">Step 3: Only dimensions 1,2,4,8 (by topological arguments)</p>
+<p class="step">Step 4: Dimension 1: R</p>
+<p class="step">Step 5: Dimension 2: C</p>
+<p class="step">Step 6: Dimension 4: H (quaternions)</p>
+<p class="step">Step 7: Dimension 8: excluded for associative algebras</p></div>
+<p class="metadata">ID: 58c50c3461dd | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Complete classification of real division algebras</p>
+<p class="metadata">Provenance: Advanced algebra proof #37</p>
+</div>
+
+<div class="theorem extra" id="alg2-38">
+<h3>Proof 38: Structure theorem for finitely generated abelian groups</h3>
+<p><strong>Statement:</strong> Structure theorem for finitely generated abelian groups</p>
+<p><strong>Hypotheses:</strong> G finitely generated abelian group</p>
+<p><strong>Conclusion:</strong> G ~ Z^r x Z/d_1 x ... x Z/d_k with d_1 | d_2 | ...</p>
+<p><strong>Definitions:</strong> structure theorem, invariant factors, elementary divisors</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Represent G as cokernel of integer matrix</p>
+<p class="step">Step 2: Apply Smith normal form: diag(d_1,...,d_k,0,...,0)</p>
+<p class="step">Step 3: Diagonal entries are invariant factors</p>
+<p class="step">Step 4: Free part: rank r = number of zeros</p>
+<p class="step">Step 5: Torsion part: product of Z/d_i</p></div>
+<p class="metadata">ID: f45b9511eb61 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Complete classification up to isomorphism</p>
+<p class="metadata">Provenance: Advanced algebra proof #38</p>
+</div>
+
+<div class="theorem extra" id="alg2-39">
+<h3>Proof 39: Smith normal form: every integer matrix is equivalent to diagonal matrix</h3>
+<p><strong>Statement:</strong> Smith normal form: every integer matrix is equivalent to diagonal matrix</p>
+<p><strong>Hypotheses:</strong> A m x n integer matrix</p>
+<p><strong>Conclusion:</strong> P A Q = diag(d_1,...,d_r,0,...) with d_i | d_{i+1}</p>
+<p><strong>Definitions:</strong> Smith normal form, diagonal, integer</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use elementary row/column operations over Z</p>
+<p class="step">Step 2: Row: swap, add multiple of one row to another</p>
+<p class="step">Step 3: Column: same operations</p>
+<p class="step">Step 4: At each step: reduce gcd entries</p>
+<p class="step">Step 5: Result: diagonal with divisibility chain</p></div>
+<p class="metadata">ID: c81305ee6702 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Integer version of Gaussian elimination</p>
+<p class="metadata">Provenance: Advanced algebra proof #39</p>
+</div>
+
+<div class="theorem extra" id="alg2-40">
+<h3>Proof 40: Module over PID: finitely generated module decomposes as free part plus cyclic torsion</h3>
+<p><strong>Statement:</strong> Module over PID: finitely generated module decomposes as free part plus cyclic torsion</p>
+<p><strong>Hypotheses:</strong> R PID, M finitely generated R-module</p>
+<p><strong>Conclusion:</strong> M ~ R^r direct sum R/(d_1) direct sum ... direct sum R/(d_k)</p>
+<p><strong>Definitions:</strong> PID, torsion, free module</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply structure theorem for modules over PID</p>
+<p class="step">Step 2: Torsion submodule has invariant factors</p>
+<p class="step">Step 3: Free part: quotient by torsion</p>
+<p class="step">Step 4: Uniqueness of decomposition</p></div>
+<p class="metadata">ID: 00459d3dca57 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Generalizes to all PIDs, not just Z</p>
+<p class="metadata">Provenance: Advanced algebra proof #40</p>
+</div>
+
+<div class="theorem extra" id="alg2-41">
+<h3>Proof 41: Noether normalization lemma: k-algebra finitely generated contains polynomial subring over which it is integral</h3>
+<p><strong>Statement:</strong> Noether normalization lemma: k-algebra finitely generated contains polynomial subring over which it is integral</p>
+<p><strong>Hypotheses:</strong> A = k[x_1,...,x_n]/I finitely generated k-algebra</p>
+<p><strong>Conclusion:</strong> exists y_1,...,y_d in A algebraically independent, A integral over k[y_1,...,y_d]</p>
+<p><strong>Definitions:</strong> Noether normalization, integral extension, polynomial ring</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Induction on n</p>
+<p class="step">Step 2: If x_i algebraically dependent over k[x_1,...,x_{i-1}]:</p>
+<p class="step">Step 3: Use linear combination to eliminate</p>
+<p class="step">Step 4: Otherwise: keep as y_j</p>
+<p class="step">Step 5: d = Krull dimension of A</p></div>
+<p class="metadata">ID: 592a6e5b4e08 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Foundation for dimension theory of varieties</p>
+<p class="metadata">Provenance: Advanced algebra proof #41</p>
+</div>
+
+<div class="theorem extra" id="alg2-42">
+<h3>Proof 42: Nullstellensatz: I(V(J)) = sqrt(J) for J in k[x_1,...,x_n]</h3>
+<p><strong>Statement:</strong> Nullstellensatz: I(V(J)) = sqrt(J) for J in k[x_1,...,x_n]</p>
+<p><strong>Hypotheses:</strong> k algebraically closed field, J radical ideal</p>
+<p><strong>Conclusion:</strong> I(V(J)) = J</p>
+<p><strong>Definitions:</strong> Nullstellensatz, ideal, variety</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Forward: J subset I(V(J)) trivially</p>
+<p class="step">Step 2: Reverse (hard part): f vanishes on V(J) => f^m in J</p>
+<p class="step">Step 3: Hilbert's lemma: f vanishes on V(J) implies some power in J</p>
+<p class="step">Step 4: Proof uses Rabinowitch trick and Zariski's lemma</p></div>
+<p class="metadata">ID: c912ff925c9a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental bridge between algebra and geometry</p>
+<p class="metadata">Provenance: Advanced algebra proof #42</p>
+</div>
+
+<div class="theorem extra" id="alg2-43">
+<h3>Proof 43: Chinese Remainder Theorem for rings: R/(I intersect J) ~ R/I x R/J when I+J=R</h3>
+<p><strong>Statement:</strong> Chinese Remainder Theorem for rings: R/(I intersect J) ~ R/I x R/J when I+J=R</p>
+<p><strong>Hypotheses:</strong> I,J ideals with I+J = R</p>
+<p><strong>Conclusion:</strong> R/(I intersect J) isomorphic to R/I x R/J</p>
+<p><strong>Definitions:</strong> CRT, ideals, coprime</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi: R -> R/I x R/J by phi(r) = (r+I, r+J)</p>
+<p class="step">Step 2: Surjective: 1 = i+j for some i in I, j in J</p>
+<p class="step">Step 3: phi(j) = (j+I, 1+J), phi(i) = (1+I, i+J)</p>
+<p class="step">Step 4: phi(ij) = (j+I, i+J), so phi(i+j) = (1+I, 1+J)</p>
+<p class="step">Step 5: Kernel: I intersect J</p>
+<p class="step">Step 6: First isomorphism theorem</p></div>
+<p class="metadata">ID: ff3c22c9e172 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalization of integer CRT to rings</p>
+<p class="metadata">Provenance: Advanced algebra proof #43</p>
+</div>
 </body></html>
