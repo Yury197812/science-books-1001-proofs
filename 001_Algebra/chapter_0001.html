@@ -19924,4 +19924,509 @@ h2 { color: #34495e; margin-top: 30px; }
 <p class="metadata">Mutation test: Generalization of integer CRT to rings</p>
 <p class="metadata">Provenance: Advanced algebra proof #43</p>
 </div>
+
+<h2>Extra proofs (+36 from algebra)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Fundamental theorem of algebra: every nonconstant polynomial over C has a root</h3>
+<p><strong>Statement:</strong> Fundamental theorem of algebra: every nonconstant polynomial over C has a root</p>
+<p><strong>Hypotheses:</strong> p(z) nonconstant complex polynomial</p>
+<p><strong>Conclusion:</strong> exists z_0 with p(z_0) = 0</p>
+<p><strong>Definitions:</strong> FTA, polynomial, root</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume p nonzero everywhere</p>
+<p class="step">Step 2: 1/p is entire</p>
+<p class="step">Step 3: |p(z)|->inf as |z|->inf so 1/p->0: bounded</p>
+<p class="step">Step 4: Liouville: 1/p constant, contradiction</p></div>
+<p class="metadata">ID: 9dbc9364c338 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without nonconstant: trivially true for constants</p>
+<p class="metadata">Provenance: algebra proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Cayley-Hamilton: matrix satisfies its characteristic polynomial</h3>
+<p><strong>Statement:</strong> Cayley-Hamilton: matrix satisfies its characteristic polynomial</p>
+<p><strong>Hypotheses:</strong> A n x n matrix</p>
+<p><strong>Conclusion:</strong> p_A(A) = 0</p>
+<p><strong>Definitions:</strong> Cayley-Hamilton, characteristic, matrix</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: adj(A-tI)*(A-tI) = p_A(t)*I</p>
+<p class="step">Step 2: Each entry is polynomial in t</p>
+<p class="step">Step 3: Evaluate at t after expanding each coefficient</p>
+<p class="step">Step 4: Result: p_A(A) = 0 matrix</p></div>
+<p class="metadata">ID: 8344d2a0af54 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental in linear algebra</p>
+<p class="metadata">Provenance: algebra proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Jordan normal form over algebraically closed field</h3>
+<p><strong>Statement:</strong> Jordan normal form over algebraically closed field</p>
+<p><strong>Hypotheses:</strong> A square matrix over alg. closed F</p>
+<p><strong>Conclusion:</strong> A = PJP^{-1}, J block diagonal</p>
+<p><strong>Definitions:</strong> Jordan, eigenvalue, nilpotent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Eigenvalues exist (alg. closed)</p>
+<p class="step">Step 2: Generalized eigenspace decomposition</p>
+<p class="step">Step 3: Jordan blocks from nilpotent parts</p>
+<p class="step">Step 4: P from generalized eigenvectors</p></div>
+<p class="metadata">ID: e59dc2bc602a | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without alg. closed: may need field extension</p>
+<p class="metadata">Provenance: algebra proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Spectral theorem: self-adjoint operator has orthonormal eigenbasis</h3>
+<p><strong>Statement:</strong> Spectral theorem: self-adjoint operator has orthonormal eigenbasis</p>
+<p><strong>Hypotheses:</strong> T self-adjoint on finite-dim Hilbert space</p>
+<p><strong>Conclusion:</strong> orthonormal basis of eigenvectors</p>
+<p><strong>Definitions:</strong> spectral, self-adjoint, orthonormal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Eigenvalues are real (self-adjoint)</p>
+<p class="step">Step 2: Eigenspaces orthogonal</p>
+<p class="step">Step 3: Sum of dimensions = n</p>
+<p class="step">Step 4: Restrict, apply induction</p></div>
+<p class="metadata">ID: cbe433eea6a1 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without self-adjoint: may not be diagonalizable</p>
+<p class="metadata">Provenance: algebra proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Minimal polynomial divides any annihilating polynomial</h3>
+<p><strong>Statement:</strong> Minimal polynomial divides any annihilating polynomial</p>
+<p><strong>Hypotheses:</strong> m minimal polynomial of A, p(A)=0</p>
+<p><strong>Conclusion:</strong> m divides p</p>
+<p><strong>Definitions:</strong> minimal polynomial, annihilating, divides</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Division: p = qm + r</p>
+<p class="step">Step 2: r(A) = 0, deg r < deg m</p>
+<p class="step">Step 3: Minimality => r=0</p></div>
+<p class="metadata">ID: d7c9e79439f6 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Follows from division algorithm</p>
+<p class="metadata">Provenance: algebra proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Determinant of product equals product of determinants</h3>
+<p><strong>Statement:</strong> Determinant of product equals product of determinants</p>
+<p><strong>Hypotheses:</strong> A,B n x n</p>
+<p><strong>Conclusion:</strong> det(AB) = det(A)det(B)</p>
+<p><strong>Definitions:</strong> determinant, product, multiplicative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi(A) = det(AB)/det(B)</p>
+<p class="step">Step 2: phi multiplicative, phi(I)=1, continuous</p>
+<p class="step">Step 3: phi(A) = det(A) by row operations</p></div>
+<p class="metadata">ID: 78437c207dff | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without square: undefined</p>
+<p class="metadata">Provenance: algebra proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Sylow theorems: existence, conjugacy, counting of Sylow p-subgroups</h3>
+<p><strong>Statement:</strong> Sylow theorems: existence, conjugacy, counting of Sylow p-subgroups</p>
+<p><strong>Hypotheses:</strong> G finite, p^k || |G|</p>
+<p><strong>Conclusion:</strong> exist, conjugate, n_p | |G|/p^k, n_p = 1 mod p</p>
+<p><strong>Definitions:</strong> Sylow, conjugacy, counting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Existence: class equation + induction</p>
+<p class="step">Step 2: Conjugacy: group action</p>
+<p class="step">Step 3: Counting: orbit-stabilizer</p></div>
+<p class="metadata">ID: 2d37e126fc7e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Three separate theorems, each essential</p>
+<p class="metadata">Provenance: algebra proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Cauchy theorem: p | |G| implies element of order p</h3>
+<p><strong>Statement:</strong> Cauchy theorem: p | |G| implies element of order p</p>
+<p><strong>Hypotheses:</strong> G finite, p prime | |G|</p>
+<p><strong>Conclusion:</strong> exists g with order(g)=p</p>
+<p><strong>Definitions:</strong> Cauchy, prime, order</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: S = {(g_1,...,g_p): product = e}</p>
+<p class="step">Step 2: C_p acts by cyclic permutation</p>
+<p class="step">Step 3: Fixed points: (g,...,g) with g^p = e</p>
+<p class="step">Step 4: Count: |S| = |G|^{p-1} divisible by p</p>
+<p class="step">Step 5: More fixed points than just identity</p></div>
+<p class="metadata">ID: a5fbb61fa5b8 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without prime: fails</p>
+<p class="metadata">Provenance: algebra proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Burnside's lemma: |X/G| = (1/|G|) sum |Fix(g)|</h3>
+<p><strong>Statement:</strong> Burnside's lemma: |X/G| = (1/|G|) sum |Fix(g)|</p>
+<p><strong>Hypotheses:</strong> G finite acting on X finite</p>
+<p><strong>Conclusion:</strong> number of orbits = average fixed points</p>
+<p><strong>Definitions:</strong> Burnside, orbits, fixed points</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count pairs {(g,x): gx=x}</p>
+<p class="step">Step 2: By orbits: sum |Stab(x)| = |G| |X/G|</p>
+<p class="step">Step 3: By elements: sum |Fix(g)|</p></div>
+<p class="metadata">ID: a3da6fac57e6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without finite: sums diverge</p>
+<p class="metadata">Provenance: algebra proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</h3>
+<p><strong>Statement:</strong> Class equation: |G| = |Z(G)| + sum [G:C_G(g_i)]</p>
+<p><strong>Hypotheses:</strong> G finite</p>
+<p><strong>Conclusion:</strong> center plus class sizes equals |G|</p>
+<p><strong>Definitions:</strong> class equation, center, conjugacy class</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Conjugacy classes partition G</p>
+<p class="step">Step 2: Center = singleton classes</p>
+<p class="step">Step 3: Non-central: |class| = [G:C_G(g_i)]</p></div>
+<p class="metadata">ID: c0c53320c02b | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Fundamental counting in group theory</p>
+<p class="metadata">Provenance: algebra proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: First isomorphism theorem: G/ker(phi) ~ im(phi)</h3>
+<p><strong>Statement:</strong> First isomorphism theorem: G/ker(phi) ~ im(phi)</p>
+<p><strong>Hypotheses:</strong> phi: G->H homomorphism</p>
+<p><strong>Conclusion:</strong> G/ker(phi) isomorphic to im(phi)</p>
+<p><strong>Definitions:</strong> isomorphism, kernel, image</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define psi(gK) = phi(g)</p>
+<p class="step">Step 2: Well-defined, injective, surjective</p>
+<p class="step">Step 3: First isomorphism theorem</p></div>
+<p class="metadata">ID: 69043ca617f1 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Most important consequence of homomorphisms</p>
+<p class="metadata">Provenance: algebra proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Normal subgroup characterization: H normal <=> gHg^{-1} = H for all g</h3>
+<p><strong>Statement:</strong> Normal subgroup characterization: H normal <=> gHg^{-1} = H for all g</p>
+<p><strong>Hypotheses:</strong> H subgroup of G</p>
+<p><strong>Conclusion:</strong> H normal <=> conjugation preserves H</p>
+<p><strong>Definitions:</strong> normal, subgroup, conjugation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: gHg^{-1} = H for all g</p>
+<p class="step">Step 2: iff gH = Hg for all g</p>
+<p class="step">Step 3: iff coset multiplication well-defined</p>
+<p class="step">Step 4: iff H = kernel of some homomorphism</p></div>
+<p class="metadata">ID: 09a1d1153feb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Equivalent characterizations of normal subgroups</p>
+<p class="metadata">Provenance: algebra proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Chinese Remainder Theorem for rings: R/(I cap J) ~ R/I x R/J when I+J=R</h3>
+<p><strong>Statement:</strong> Chinese Remainder Theorem for rings: R/(I cap J) ~ R/I x R/J when I+J=R</p>
+<p><strong>Hypotheses:</strong> I,J coprime ideals</p>
+<p><strong>Conclusion:</strong> quotient is product of quotients</p>
+<p><strong>Definitions:</strong> CRT, rings, ideals</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map r -> (r+I, r+J)</p>
+<p class="step">Step 2: Surjective: 1 = i+j, get (j+I, i+J)</p>
+<p class="step">Step 3: Kernel: I cap J</p>
+<p class="step">Step 4: First isomorphism theorem</p></div>
+<p class="metadata">ID: d240d08a6427 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalizes integer CRT</p>
+<p class="metadata">Provenance: algebra proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Wedderburn's little theorem: finite division ring is a field</h3>
+<p><strong>Statement:</strong> Wedderburn's little theorem: finite division ring is a field</p>
+<p><strong>Hypotheses:</strong> R finite division ring</p>
+<p><strong>Conclusion:</strong> R is commutative</p>
+<p><strong>Definitions:</strong> Wedderburn, division ring, commutative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: R* finite, center F_q finite field</p>
+<p class="step">Step 2: Class equation for R*</p>
+<p class="step">Step 3: All elements satisfy degree constraints</p>
+<p class="step">Step 4: Deduce commutativity</p></div>
+<p class="metadata">ID: b29a88ffaa78 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: No non-commutative finite division rings</p>
+<p class="metadata">Provenance: algebra proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Structure theorem for finitely generated abelian groups</h3>
+<p><strong>Statement:</strong> Structure theorem for finitely generated abelian groups</p>
+<p><strong>Hypotheses:</strong> G fg abelian</p>
+<p><strong>Conclusion:</strong> G ~ Z^r x Z/d_1 x ... x Z/d_k</p>
+<p><strong>Definitions:</strong> structure theorem, invariant factors, elementary divisors</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Smith normal form of relation matrix</p>
+<p class="step">Step 2: Diagonal = invariant factors</p>
+<p class="step">Step 3: Free rank r from zeros</p>
+<p class="step">Step 4: Torsion from nonzero entries</p></div>
+<p class="metadata">ID: 0be386bd5345 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Complete classification up to isomorphism</p>
+<p class="metadata">Provenance: algebra proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Smith normal form: integer matrix equivalent to diagonal with divisibility</h3>
+<p><strong>Statement:</strong> Smith normal form: integer matrix equivalent to diagonal with divisibility</p>
+<p><strong>Hypotheses:</strong> A integer m x n matrix</p>
+<p><strong>Conclusion:</strong> PAQ = diag(d_1,...,d_r) with d_i | d_{i+1}</p>
+<p><strong>Definitions:</strong> Smith normal, integer, diagonal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Row/column operations over Z</p>
+<p class="step">Step 2: Reduce by gcd operations</p>
+<p class="step">Step 3: Maintain divisibility chain</p>
+<p class="step">Step 4: Algorithm terminates</p></div>
+<p class="metadata">ID: b2c7aa6e209c | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Integer Gaussian elimination</p>
+<p class="metadata">Provenance: algebra proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Nullstellensatz: I(V(J)) = sqrt(J) for ideal J in k[x_1,...,x_n]</h3>
+<p><strong>Statement:</strong> Nullstellensatz: I(V(J)) = sqrt(J) for ideal J in k[x_1,...,x_n]</p>
+<p><strong>Hypotheses:</strong> k algebraically closed, J radical ideal</p>
+<p><strong>Conclusion:</strong> ideal of variety equals J</p>
+<p><strong>Definitions:</strong> Nullstellensatz, ideal, variety</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: J subset I(V(J)) trivially</p>
+<p class="step">Step 2: Reverse: Rabinowitch trick</p>
+<p class="step">Step 3: Zariski's lemma: if K/k finite extension, K=k</p>
+<p class="step">Step 4: Combines to give result</p></div>
+<p class="metadata">ID: b7da511837bb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Bridge between algebra and geometry</p>
+<p class="metadata">Provenance: algebra proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Ext and Tor: derived functors of Hom and tensor</h3>
+<p><strong>Statement:</strong> Ext and Tor: derived functors of Hom and tensor</p>
+<p><strong>Hypotheses:</strong> M,N R-modules</p>
+<p><strong>Conclusion:</strong> Ext^1 classifies extensions, Tor measures tensor failure</p>
+<p><strong>Definitions:</strong> Ext, Tor, derived functor</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Projective resolution of M</p>
+<p class="step">Step 2: Apply Hom(-,N) or tensor with N</p>
+<p class="step">Step 3: Compute cohomology</p>
+<p class="step">Step 4: Ext^1 = 1st cohomology, Tor_0 = tensor</p></div>
+<p class="metadata">ID: 79c636c6a1bb | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Foundation of homological algebra</p>
+<p class="metadata">Provenance: algebra proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Homological dimension: projective resolution length is invariant</h3>
+<p><strong>Statement:</strong> Homological dimension: projective resolution length is invariant</p>
+<p><strong>Hypotheses:</strong> M R-module, finite projective dimension</p>
+<p><strong>Conclusion:</strong> pd(M) is well-defined</p>
+<p><strong>Definitions:</strong> homological dimension, projective, resolution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Any two projective resolutions connected by chain maps</p>
+<p class="step">Step 2: Chain maps unique up to homotopy</p>
+<p class="step">Step 3: Length of minimal resolution invariant</p>
+<p class="step">Step 4: pd(M) = sup{n: Ext^n(M,-) != 0}</p></div>
+<p class="metadata">ID: 95febc71d99a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Homological invariants of modules</p>
+<p class="metadata">Provenance: algebra proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Representation theory: every representation of finite group decomposes into irreducibles</h3>
+<p><strong>Statement:</strong> Representation theory: every representation of finite group decomposes into irreducibles</p>
+<p><strong>Hypotheses:</strong> G finite group, V representation</p>
+<p><strong>Conclusion:</strong> V = direct sum of irreducible subrepresentations</p>
+<p><strong>Definitions:</strong> representation, irreducible, Maschke</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Maschke's theorem: complements exist</p>
+<p class="step">Step 2: If W subrep, exists complement W'</p>
+<p class="step">Step 3: W and W' decompose further</p>
+<p class="step">Step 4: Process terminates: finite dimensional</p></div>
+<p class="metadata">ID: d6af79b28f17 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without finite group: Maschke may fail</p>
+<p class="metadata">Provenance: algebra proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Schur's lemma: irreducible representations have only scalar intertwiners</h3>
+<p><strong>Statement:</strong> Schur's lemma: irreducible representations have only scalar intertwiners</p>
+<p><strong>Hypotheses:</strong> V,W irreducible, f: V->W intertwining</p>
+<p><strong>Conclusion:</strong> f is isomorphism or zero</p>
+<p><strong>Definitions:</strong> Schur, irreducible, intertwining</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ker f is subrepresentation of V</p>
+<p class="step">Step 2: Irreducible: ker=0 or ker=V</p>
+<p class="step">Step 3: Im f subrep of W</p>
+<p class="step">Step 4: Im=0 or Im=W</p>
+<p class="step">Step 5: Combines to give result</p></div>
+<p class="metadata">ID: 2176a08c2a06 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without irreducible: proper subreps possible</p>
+<p class="metadata">Provenance: algebra proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Character theory: irreducible characters form orthonormal basis of class functions</h3>
+<p><strong>Statement:</strong> Character theory: irreducible characters form orthonormal basis of class functions</p>
+<p><strong>Hypotheses:</strong> G finite group</p>
+<p><strong>Conclusion:</strong> <chi_i, chi_j> = delta_ij for irreducibles</p>
+<p><strong>Definitions:</strong> character, orthonormal, class function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Character: chi_V(g) = trace of rho_V(g)</p>
+<p class="step">Step 2: Orthonormality from Schur's lemma</p>
+<p class="step">Step 3: Number of irreducibles = number of conjugacy classes</p>
+<p class="step">Step 4: Characters determine representations up to isomorphism</p></div>
+<p class="metadata">ID: c6b06701a3ce | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Characters are the primary computational tool</p>
+<p class="metadata">Provenance: algebra proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Wedderburn-Artin: semisimple ring is matrix ring product over division rings</h3>
+<p><strong>Statement:</strong> Wedderburn-Artin: semisimple ring is matrix ring product over division rings</p>
+<p><strong>Hypotheses:</strong> R semisimple ring</p>
+<p><strong>Conclusion:</strong> R ~ product of M_{n_i}(D_i) for division rings D_i</p>
+<p><strong>Definitions:</strong> Wedderburn-Artin, semisimple, matrix ring</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Jacobson radical is zero</p>
+<p class="step">Step 2: Artin-Wedderburn: semisimple = product of simple</p>
+<p class="step">Step 3: Simple Artinian ring is M_n(D)</p>
+<p class="step">Step 4: Complete classification</p></div>
+<p class="metadata">ID: 2d50a791c643 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Complete structure theory for semisimple rings</p>
+<p class="metadata">Provenance: algebra proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Hilbert's basis theorem: if R Noetherian, then R[x] is Noetherian</h3>
+<p><strong>Statement:</strong> Hilbert's basis theorem: if R Noetherian, then R[x] is Noetherian</p>
+<p><strong>Hypotheses:</strong> R Noetherian ring</p>
+<p><strong>Conclusion:</strong> R[x] is Noetherian</p>
+<p><strong>Definitions:</strong> Hilbert basis, Noetherian, polynomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take ideal I in R[x]</p>
+<p class="step">Step 2: I_n = leading coefficients of degree n polys</p>
+<p class="step">Step 3: Each I_n ideal in R, ascending chain</p>
+<p class="step">Step 4: Stabilizes at I_N</p>
+<p class="step">Step 5: Lift generators, show they generate I</p></div>
+<p class="metadata">ID: 8177dbb6595a | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without Noetherian: fails (Z[x,y,z,...] not Noetherian)</p>
+<p class="metadata">Provenance: algebra proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Krull dimension: height of maximal chain of prime ideals</h3>
+<p><strong>Statement:</strong> Krull dimension: height of maximal chain of prime ideals</p>
+<p><strong>Hypotheses:</strong> R commutative ring</p>
+<p><strong>Conclusion:</strong> dim(R) = sup length of chains of prime ideals</p>
+<p><strong>Definitions:</strong> Krull dimension, prime ideal, chain</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Chain: P_0 subset P_1 subset ... subset P_n</p>
+<p class="step">Step 2: Height of P = max chain ending at P</p>
+<p class="step">Step 3: dim R = max height over all primes</p>
+<p class="step">Step 4: dim(k[x_1,...,x_n]) = n</p>
+<p class="step">Step 5: dim(Z) = 1</p></div>
+<p class="metadata">ID: 5acb635478b1 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Algebraic dimension of a ring</p>
+<p class="metadata">Provenance: algebra proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Localization: inverting elements preserves exactness</h3>
+<p><strong>Statement:</strong> Localization: inverting elements preserves exactness</p>
+<p><strong>Hypotheses:</strong> 0 -> A -> B -> C exact, S multiplicatively closed</p>
+<p><strong>Conclusion:</strong> 0 -> S^{-1}A -> S^{-1}B -> S^{-1}C exact</p>
+<p><strong>Definitions:</strong> localization, exactness, flat</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Localization is exact functor</p>
+<p class="step">Step 2: Proof: check kernel/cokernel</p>
+<p class="step">Step 3: s in S, s*a=0 in S^{-1}A iff exists s' with s'sa=0 in A</p>
+<p class="step">Step 4: Exactness preserved by construction</p></div>
+<p class="metadata">ID: 05d027c9b2c7 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Localization is flat: tensor with S^{-1}R is exact</p>
+<p class="metadata">Provenance: algebra proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Chinese Remainder for coprime ideals: R/I_1...I_n ~ product R/I_i</h3>
+<p><strong>Statement:</strong> Chinese Remainder for coprime ideals: R/I_1...I_n ~ product R/I_i</p>
+<p><strong>Hypotheses:</strong> I_i pairwise coprime</p>
+<p><strong>Conclusion:</strong> quotient is product</p>
+<p><strong>Definitions:</strong> CRT, coprime, product</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: CRT for two: R/(I cap J) ~ R/I x R/J when I+J=R</p>
+<p class="step">Step 2: Induction: product for n ideals</p>
+<p class="step">Step 3: Pairwise coprime => total coprime structure</p></div>
+<p class="metadata">ID: bdd69f22b90f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Generalization of integer CRT to arbitrary rings</p>
+<p class="metadata">Provenance: algebra proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Dedekind domain: every nonzero ideal factors uniquely into prime ideals</h3>
+<p><strong>Statement:</strong> Dedekind domain: every nonzero ideal factors uniquely into prime ideals</p>
+<p><strong>Hypotheses:</strong> R Dedekind domain</p>
+<p><strong>Conclusion:</strong> unique factorization of ideals</p>
+<p><strong>Definitions:</strong> Dedekind, factorization, prime ideal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Every proper ideal is intersection of prime ideals</p>
+<p class="step">Step 2: Localization at each prime gives DVR</p>
+<p class="step">Step 3: Product of localizations gives factorization</p>
+<p class="step">Step 4: Uniqueness from DVR structure</p></div>
+<p class="metadata">ID: fccb1f2a181f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Rings of algebraic integers are Dedekind</p>
+<p class="metadata">Provenance: algebra proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Class group of number field measures failure of unique factorization</h3>
+<p><strong>Statement:</strong> Class group of number field measures failure of unique factorization</p>
+<p><strong>Hypotheses:</strong> K number field</p>
+<p><strong>Conclusion:</strong> Cl(K) measures how far O_K is from UFD</p>
+<p><strong>Definitions:</strong> class group, fractional ideal, failure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fractional ideals form group under multiplication</p>
+<p class="step">Step 2: Principal ideals are subgroup</p>
+<p class="step">Step 3: Cl(K) = fractional/principal</p>
+<p class="step">Step 4: Cl(K) = 0 iff O_K is UFD</p>
+<p class="step">Step 5: Class number h_K = |Cl(K)|</p></div>
+<p class="metadata">ID: c02a55103352 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Class number 1: unique factorization holds</p>
+<p class="metadata">Provenance: algebra proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Dirichlet unit theorem: unit group of O_K has rank r_1+r_2-1</h3>
+<p><strong>Statement:</strong> Dirichlet unit theorem: unit group of O_K has rank r_1+r_2-1</p>
+<p><strong>Hypotheses:</strong> K number field, r_1 real, r_2 complex embeddings</p>
+<p><strong>Conclusion:</strong> O_K^* ~ Z^{r_1+r_2-1} x roots of unity</p>
+<p><strong>Definitions:</strong> Dirichlet unit, rank, logarithmic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Log map: embed units in R^{r_1+r_2}</p>
+<p class="step">Step 2: Image lies in hyperplane sum=0</p>
+<p class="step">Step 3: Image is lattice</p>
+<p class="step">Step 4: Rank = r_1+r_2-1</p></div>
+<p class="metadata">ID: d156f0a2ce1e | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Complete description of unit structure</p>
+<p class="metadata">Provenance: algebra proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Galois theory: subgroups of Gal(L/K) correspond to intermediate fields</h3>
+<p><strong>Statement:</strong> Galois theory: subgroups of Gal(L/K) correspond to intermediate fields</p>
+<p><strong>Hypotheses:</strong> L/K Galois, G = Gal(L/K)</p>
+<p><strong>Conclusion:</strong> bijection: intermediate fields <-> subgroups of G</p>
+<p><strong>Definitions:</strong> Galois, fundamental theorem, intermediate field</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map K' -> Gal(L/K')</p>
+<p class="step">Step 2: Map H -> L^H (fixed field)</p>
+<p class="step">Step 3: Both inclusions reverse</p>
+<p class="step">Step 4: Normal subgroups <-> normal extensions</p>
+<p class="step">Step 5: Index = degree of extension</p></div>
+<p class="metadata">ID: 9f4aa69e2cbf | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: One of the most beautiful theorems in mathematics</p>
+<p class="metadata">Provenance: algebra proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Fundamental theorem of Galois theory correspondence properties</h3>
+<p><strong>Statement:</strong> Fundamental theorem of Galois theory correspondence properties</p>
+<p><strong>Hypotheses:</strong> L/K Galois</p>
+<p><strong>Conclusion:</strong> intermediate field K' normal over K iff Gal(L/K') normal in G</p>
+<p><strong>Definitions:</strong> Galois, normal, separable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: K'/K normal <=> sigma(K')=K' for all sigma in G</p>
+<p class="step">Step 2: sigma(K') depends only on sigma modulo Gal(L/K')</p>
+<p class="step">Step 3: Therefore Gal(L/K') is normal in G</p>
+<p class="step">Step 4: Quotient G/Gal(L/K') = Gal(K'/K)</p></div>
+<p class="metadata">ID: 273febf26186 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Extends correspondence to normality</p>
+<p class="metadata">Provenance: algebra proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Primitive element theorem: finite separable extension is simple</h3>
+<p><strong>Statement:</strong> Primitive element theorem: finite separable extension is simple</p>
+<p><strong>Hypotheses:</strong> L/K finite separable</p>
+<p><strong>Conclusion:</strong> exists alpha with L = K(alpha)</p>
+<p><strong>Definitions:</strong> primitive element, simple extension, separable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: L = K(a_1,...,a_n) finite separable</p>
+<p class="step">Step 2: Each a_i separable: has minimal polynomial</p>
+<p class="step">Step 3: Take alpha = a_1 + c*a_2 + ... for suitable c</p>
+<p class="step">Step 4: Show K(alpha) = L by degree argument</p>
+<p class="step">Step 5: Only finitely many bad c to avoid</p></div>
+<p class="metadata">ID: b3d31860c819 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without separable: e.g. F_p(t^{1/p}) over F_p(t)</p>
+<p class="metadata">Provenance: algebra proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Tower law: [L:K] = [L:F][F:K] for F intermediate field</h3>
+<p><strong>Statement:</strong> Tower law: [L:K] = [L:F][F:K] for F intermediate field</p>
+<p><strong>Hypotheses:</strong> K subset F subset L, all finite degree</p>
+<p><strong>Conclusion:</strong> [L:K] = [L:F][F:K]</p>
+<p><strong>Definitions:</strong> tower law, degree, extension</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take basis of L over F: {b_i}</p>
+<p class="step">Step 2: Take basis of F over K: {c_j}</p>
+<p class="step">Step 3: Show {b_i c_j} spans L over K</p>
+<p class="step">Step 4: Show linearly independent</p></div>
+<p class="metadata">ID: 974a1c25ac6f | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation for degree calculations</p>
+<p class="metadata">Provenance: algebra proof #34</p>
+</div>
+<div class="theorem extra" id="xp-35">
+<h3>Proof 35: Kronecker-Weber: every abelian extension of Q is contained in cyclotomic field</h3>
+<p><strong>Statement:</strong> Kronecker-Weber: every abelian extension of Q is contained in cyclotomic field</p>
+<p><strong>Hypotheses:</strong> L/Q abelian Galois</p>
+<p><strong>Conclusion:</strong> L subset Q(zeta_n) for some n</p>
+<p><strong>Definitions:</strong> Kronecker-Weber, cyclotomic, abelian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Tame ramification: abelian => tame</p>
+<p class="step">Step 2: Only cyclotomic fields have such ramification</p>
+<p class="step">Step 3: Embed L into appropriate Q(zeta_n)</p></div>
+<p class="metadata">ID: 093cfddb151d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Precursor to class field theory</p>
+<p class="metadata">Provenance: algebra proof #35</p>
+</div>
+<div class="theorem extra" id="xp-36">
+<h3>Proof 36: Artin reciprocity: abelian extensions classified by idele class group</h3>
+<p><strong>Statement:</strong> Artin reciprocity: abelian extensions classified by idele class group</p>
+<p><strong>Hypotheses:</strong> K number field, L/K abelian</p>
+<p><strong>Conclusion:</strong> Artin map from idele class group onto Gal(L/K)</p>
+<p><strong>Definitions:</strong> Artin reciprocity, class field theory, idele</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Artin map: idele class group -> Gal(L/K)</p>
+<p class="step">Step 2: Surjective for abelian extensions</p>
+<p class="step">Step 3: Kernel determines ray class field</p>
+<p class="step">Step 4: Generalizes quadratic reciprocity</p></div>
+<p class="metadata">ID: 382bdf28af68 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Crown jewel of class field theory</p>
+<p class="metadata">Provenance: algebra proof #36</p>
+</div>
 </body></html>

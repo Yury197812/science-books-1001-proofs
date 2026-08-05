@@ -19275,4 +19275,495 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Implies pi and e are transcendental</p>
 <p class="metadata">Provenance: number theory proof #25</p>
 </div>
+
+<h2>Extra proofs (+37 from number theory)</h2>
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Infinitely many primes (Euclid)</h3>
+<p><strong>Statement:</strong> Infinitely many primes (Euclid)</p>
+<p><strong>Hypotheses:</strong> </p>
+<p><strong>Conclusion:</strong> infinitely many primes</p>
+<p><strong>Definitions:</strong> Euclid, primes, infinite</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume finitely many p_1,...,p_n</p>
+<p class="step">Step 2: N = p_1...p_n + 1</p>
+<p class="step">Step 3: N has new prime factor</p>
+<p class="step">Step 4: Not in list, contradiction</p></div>
+<p class="metadata">ID: 52ee6744b3da | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: No removable hypothesis</p>
+<p class="metadata">Provenance: number theory proof #1</p>
+</div>
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Fermat little theorem: a^{p-1} = 1 mod p</h3>
+<p><strong>Statement:</strong> Fermat little theorem: a^{p-1} = 1 mod p</p>
+<p><strong>Hypotheses:</strong> p prime, gcd(a,p)=1</p>
+<p><strong>Conclusion:</strong> a^{p-1} = 1 mod p</p>
+<p><strong>Definitions:</strong> Fermat, modular, prime</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Set {a,2a,...,(p-1)a} permutes {1,...,p-1} mod p</p>
+<p class="step">Step 2: Product: a^{p-1}(p-1)! = (p-1)! mod p</p>
+<p class="step">Step 3: Cancel (p-1)!</p></div>
+<p class="metadata">ID: 4dc22c99226f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without gcd=1: 2^3=0 mod 4, not 1</p>
+<p class="metadata">Provenance: number theory proof #2</p>
+</div>
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Wilson: (p-1)! = -1 mod p iff p prime</h3>
+<p><strong>Statement:</strong> Wilson: (p-1)! = -1 mod p iff p prime</p>
+<p><strong>Hypotheses:</strong> p > 1 integer</p>
+<p><strong>Conclusion:</strong> (p-1)! = -1 mod p <=> p prime</p>
+<p><strong>Definitions:</strong> Wilson, factorial, iff</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prime: pair inverses, only 1 and p-1 self-inverse</p>
+<p class="step">Step 2: Composite: exists a|p, 1<a<p, so (p-1)!=0 mod a</p>
+<p class="step">Step 3: But -1 != 0 mod a</p></div>
+<p class="metadata">ID: 348b1737b154 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Characterizes primes</p>
+<p class="metadata">Provenance: number theory proof #3</p>
+</div>
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Chinese Remainder Theorem: x=a_i mod n_i solvable for coprime n_i</h3>
+<p><strong>Statement:</strong> Chinese Remainder Theorem: x=a_i mod n_i solvable for coprime n_i</p>
+<p><strong>Hypotheses:</strong> n_i pairwise coprime</p>
+<p><strong>Conclusion:</strong> unique solution mod prod n_i</p>
+<p><strong>Definitions:</strong> CRT, modular, coprime</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: N_i = N/n_i, find s_i with N_i s_i = 1 mod n_i</p>
+<p class="step">Step 2: x = sum a_i N_i s_i</p>
+<p class="step">Step 3: Uniqueness by degree argument</p></div>
+<p class="metadata">ID: 8fb6a8ca9bac | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without coprimality: may not exist</p>
+<p class="metadata">Provenance: number theory proof #4</p>
+</div>
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Euler theorem: a^{phi(n)} = 1 mod n for gcd(a,n)=1</h3>
+<p><strong>Statement:</strong> Euler theorem: a^{phi(n)} = 1 mod n for gcd(a,n)=1</p>
+<p><strong>Hypotheses:</strong> gcd(a,n)=1</p>
+<p><strong>Conclusion:</strong> a^{phi(n)} = 1 mod n</p>
+<p><strong>Definitions:</strong> Euler, totient, modular</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: (Z/nZ)* has order phi(n)</p>
+<p class="step">Step 2: Lagrange: element order divides group order</p></div>
+<p class="metadata">ID: 0bde65ae9e7e | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Generalizes Fermat</p>
+<p class="metadata">Provenance: number theory proof #5</p>
+</div>
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Quadratic reciprocity: (p/q)(q/p) = (-1)^{(p-1)(q-1)/4}</h3>
+<p><strong>Statement:</strong> Quadratic reciprocity: (p/q)(q/p) = (-1)^{(p-1)(q-1)/4}</p>
+<p><strong>Hypotheses:</strong> p,q odd primes</p>
+<p><strong>Conclusion:</strong> reciprocity law</p>
+<p><strong>Definitions:</strong> quadratic reciprocity, Legendre</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gauss lemma: count lattice points</p>
+<p class="step">Step 2: Geometric argument on rectangle</p>
+<p class="step">Step 3: Compare counts</p></div>
+<p class="metadata">ID: 9a3c1b4fc644 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: 100+ proofs known, Gauss gave 6</p>
+<p class="metadata">Provenance: number theory proof #6</p>
+</div>
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Bertrand postulate: prime between n and 2n</h3>
+<p><strong>Statement:</strong> Bertrand postulate: prime between n and 2n</p>
+<p><strong>Hypotheses:</strong> n >= 1</p>
+<p><strong>Conclusion:</strong> exists prime p with n < p < 2n</p>
+<p><strong>Definitions:</strong> Bertrand, prime, between</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Chebyshev: central binomial C(2n,n) has large prime factor</p>
+<p class="step">Step 2: Erdos elementary proof</p></div>
+<p class="metadata">ID: 77443f05aeb7 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: First proved Chebyshev 1852</p>
+<p class="metadata">Provenance: number theory proof #7</p>
+</div>
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Prime Number Theorem: pi(x) ~ x/log(x)</h3>
+<p><strong>Statement:</strong> Prime Number Theorem: pi(x) ~ x/log(x)</p>
+<p><strong>Hypotheses:</strong> </p>
+<p><strong>Conclusion:</strong> pi(x) log(x)/x -> 1</p>
+<p><strong>Definitions:</strong> PNT, counting primes, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hadamard and de la Vallee-Poussin 1896</p>
+<p class="step">Step 2: zeta function: no zeros on Re(s)=1</p>
+<p class="step">Step 3: Explicit formula from complex analysis</p></div>
+<p class="metadata">ID: c67f636eabb8 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Deep result using zeta function</p>
+<p class="metadata">Provenance: number theory proof #8</p>
+</div>
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Fermat's Last Theorem: x^n+y^n=z^n no solutions for n>=3</h3>
+<p><strong>Statement:</strong> Fermat's Last Theorem: x^n+y^n=z^n no solutions for n>=3</p>
+<p><strong>Hypotheses:</strong> n >= 3</p>
+<p><strong>Conclusion:</strong> no positive integer solutions</p>
+<p><strong>Definitions:</strong> Fermat, Wiles, modular</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: n=4: infinite descent (Fermat)</p>
+<p class="step">Step 2: n=3: Euler</p>
+<p class="step">Step 3: General: Wiles 1995 via Taniyama-Shimura</p>
+<p class="step">Step 4: Every semistable elliptic curve is modular</p>
+<p class="step">Step 5: Frey curve contradiction</p></div>
+<p class="metadata">ID: f75012174b53 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Open 358 years until Wiles</p>
+<p class="metadata">Provenance: number theory proof #9</p>
+</div>
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Minkowski: convex symmetric body with vol > 2^n det(L) has nonzero lattice point</h3>
+<p><strong>Statement:</strong> Minkowski: convex symmetric body with vol > 2^n det(L) has nonzero lattice point</p>
+<p><strong>Hypotheses:</strong> K convex symmetric, vol(K) > 2^n det(L)</p>
+<p><strong>Conclusion:</strong> nonzero lattice point in K</p>
+<p><strong>Definitions:</strong> Minkowski, lattice, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider K/2</p>
+<p class="step">Step 2: Two translates must overlap</p>
+<p class="step">Step 3: Overlap point = lattice point in K</p></div>
+<p class="metadata">ID: e1c9f06dd08c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without convex: counterexample</p>
+<p class="metadata">Provenance: number theory proof #10</p>
+</div>
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Hensel's lemma: lifting solutions mod p^k to mod p^{k+1}</h3>
+<p><strong>Statement:</strong> Hensel's lemma: lifting solutions mod p^k to mod p^{k+1}</p>
+<p><strong>Hypotheses:</strong> f(a)=0 mod p, f'(a) != 0 mod p</p>
+<p><strong>Conclusion:</strong> unique lift a' mod p^{k+1}</p>
+<p><strong>Definitions:</strong> Hensel, lifting, p-adic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: a' = a + t p^k</p>
+<p class="step">Step 2: f(a') = f(a) + t p^k f'(a) mod p^{k+1}</p>
+<p class="step">Step 3: Solve for t using f'(a) invertible mod p</p></div>
+<p class="metadata">ID: 5bf73ee3ed20 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without f'(a)!=0: may fail</p>
+<p class="metadata">Provenance: number theory proof #11</p>
+</div>
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Lagrange four-square: every positive integer is sum of 4 squares</h3>
+<p><strong>Statement:</strong> Lagrange four-square: every positive integer is sum of 4 squares</p>
+<p><strong>Hypotheses:</strong> n positive integer</p>
+<p><strong>Conclusion:</strong> n = a^2+b^2+c^2+d^2</p>
+<p><strong>Definitions:</strong> Lagrange, four squares, quaternions</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Euler four-square identity: product of sums is sum</p>
+<p class="step">Step 2: Suffices for primes</p>
+<p class="step">Step 3: For odd prime p: -1 is sum of 2 squares mod p</p>
+<p class="step">Step 4: Descent argument</p></div>
+<p class="metadata">ID: be85a337cb6c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Every natural number = sum of at most 4 squares</p>
+<p class="metadata">Provenance: number theory proof #12</p>
+</div>
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Fermat two-square: p=4k+1 prime is sum of 2 squares</h3>
+<p><strong>Statement:</strong> Fermat two-square: p=4k+1 prime is sum of 2 squares</p>
+<p><strong>Hypotheses:</strong> p = 1 mod 4 prime</p>
+<p><strong>Conclusion:</strong> p = a^2+b^2</p>
+<p><strong>Definitions:</strong> Fermat, two squares, Gaussian integer</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: -1 quadratic residue mod p</p>
+<p class="step">Step 2: x^2 = -1 mod p has solution</p>
+<p class="step">Step 3: p divides x^2+1 = (x+i)(x-i) in Z[i]</p>
+<p class="step">Step 4: p not prime in Z[i]</p>
+<p class="step">Step 5: p = alpha * beta, |alpha|^2 = p</p></div>
+<p class="metadata">ID: d4db2c8bca09 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: For p=3 mod 4: not representable</p>
+<p class="metadata">Provenance: number theory proof #13</p>
+</div>
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Thue-Siegel-Roth: algebraic irrational well-approximated by rationals only finitely often</h3>
+<p><strong>Statement:</strong> Thue-Siegel-Roth: algebraic irrational well-approximated by rationals only finitely often</p>
+<p><strong>Hypotheses:</strong> alpha algebraic irrational, epsilon > 0</p>
+<p><strong>Conclusion:</strong> finitely many p/q with |alpha-p/q| < 1/q^{2+epsilon}</p>
+<p><strong>Definitions:</strong> Roth, Diophantine, approximation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Thue (1909): exponent n/2+1</p>
+<p class="step">Step 2: Siegel (1921): 2*sqrt(deg)+eps</p>
+<p class="step">Step 3: Roth (1955): 2+epsilon (optimal)</p>
+<p class="step">Step 4: Auxiliary polynomial method</p></div>
+<p class="metadata">ID: a5c9e75f824d | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Optimal: 2 cannot be improved. Fields medal 1958</p>
+<p class="metadata">Provenance: number theory proof #14</p>
+</div>
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Baker: explicit lower bound for linear forms in logarithms</h3>
+<p><strong>Statement:</strong> Baker: explicit lower bound for linear forms in logarithms</p>
+<p><strong>Hypotheses:</strong> alpha_i algebraic, beta_i algebraic</p>
+<p><strong>Conclusion:</strong> log|Lambda| > -C(log B)</p>
+<p><strong>Definitions:</strong> Baker, logarithm, linear form</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Auxiliary polynomial construction</p>
+<p class="step">Step 2: Mean value theorem</p>
+<p class="step">Step 3: Effective bound on linear form</p></div>
+<p class="metadata">ID: c0567cd4067a | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Fields medal 1970. Effective number theory</p>
+<p class="metadata">Provenance: number theory proof #15</p>
+</div>
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Dirichlet: infinitely many primes in AP (gcd(a,d)=1)</h3>
+<p><strong>Statement:</strong> Dirichlet: infinitely many primes in AP (gcd(a,d)=1)</p>
+<p><strong>Hypotheses:</strong> gcd(a,d)=1</p>
+<p><strong>Conclusion:</strong> infinitely many primes p=a mod d</p>
+<p><strong>Definitions:</strong> Dirichlet, primes, AP</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Dirichlet L-functions L(s,chi)</p>
+<p class="step">Step 2: L(1,chi) != 0 for all chi</p>
+<p class="step">Step 3: Sum over primes in AP diverges</p></div>
+<p class="metadata">ID: bbc7f2ac88ff | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without gcd=1: at most one prime in AP</p>
+<p class="metadata">Provenance: number theory proof #16</p>
+</div>
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Sato-Tate: a_p/(2sqrt(p)) distributed as semicircle for non-CM curves</h3>
+<p><strong>Statement:</strong> Sato-Tate: a_p/(2sqrt(p)) distributed as semicircle for non-CM curves</p>
+<p><strong>Hypotheses:</strong> E elliptic curve over Q, non-CM</p>
+<p><strong>Conclusion:</strong> distribution is semicircle</p>
+<p><strong>Definitions:</strong> Sato-Tate, elliptic, semicircle</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: a_p = p+1-#E(F_p)</p>
+<p class="step">Step 2: Hasse bound: |a_p| <= 2sqrt(p)</p>
+<p class="step">Step 3: Proved 2008 by Taylor et al.</p>
+<p class="step">Step 4: Uses modular forms and Ribet</p></div>
+<p class="metadata">ID: 08a6a98e8a3e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Proved after 50 years. Taylor et al. 2008</p>
+<p class="metadata">Provenance: number theory proof #17</p>
+</div>
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Artin reciprocity: abelian extensions via idele class group</h3>
+<p><strong>Statement:</strong> Artin reciprocity: abelian extensions via idele class group</p>
+<p><strong>Hypotheses:</strong> K number field, L/K abelian</p>
+<p><strong>Conclusion:</strong> Artin map surjective from idele class group</p>
+<p><strong>Definitions:</strong> Artin, class field theory</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Generalizes all reciprocity laws</p>
+<p class="step">Step 2: Kernel = open subgroup of finite index</p>
+<p class="step">Step 3: Ray class fields from kernel</p></div>
+<p class="metadata">ID: de8fe42a5f2a | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Crown jewel of algebraic number theory</p>
+<p class="metadata">Provenance: number theory proof #18</p>
+</div>
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Kronecker-Weber: abelian extension of Q in cyclotomic field</h3>
+<p><strong>Statement:</strong> Kronecker-Weber: abelian extension of Q in cyclotomic field</p>
+<p><strong>Hypotheses:</strong> L/Q abelian</p>
+<p><strong>Conclusion:</strong> L subset Q(zeta_n)</p>
+<p><strong>Definitions:</strong> Kronecker-Weber, cyclotomic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Tame ramification only</p>
+<p class="step">Step 2: Cyclotomic fields match ramification</p></div>
+<p class="metadata">ID: 5830dd301011 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Precursor to class field theory</p>
+<p class="metadata">Provenance: number theory proof #19</p>
+</div>
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Siegel zeros: at most one real zero of L(s,chi) near 1</h3>
+<p><strong>Statement:</strong> Siegel zeros: at most one real zero of L(s,chi) near 1</p>
+<p><strong>Hypotheses:</strong> chi non-principal</p>
+<p><strong>Conclusion:</strong> at most one real zero in (1-c/log q, 1)</p>
+<p><strong>Definitions:</strong> Siegel zero, L-function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Sieve methods</p>
+<p class="step">Step 2: Zero-free region</p>
+<p class="step">Step 3: GRH would eliminate all</p></div>
+<p class="metadata">ID: dbe3fd003399 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Major open problem</p>
+<p class="metadata">Provenance: number theory proof #20</p>
+</div>
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Mertens: sum_{p<=x} 1/p ~ log(log(x))</h3>
+<p><strong>Statement:</strong> Mertens: sum_{p<=x} 1/p ~ log(log(x))</p>
+<p><strong>Hypotheses:</strong> x -> infinity</p>
+<p><strong>Conclusion:</strong> sum diverges like log(log(x))</p>
+<p><strong>Definitions:</strong> Mertens, prime reciprocals</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: PNT => sum ~ integral dx/(x log x)</p>
+<p class="step">Step 2: = log(log(x))</p></div>
+<p class="metadata">ID: 09f7c4d4d697 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Primes sparse but reciprocals diverge</p>
+<p class="metadata">Provenance: number theory proof #21</p>
+</div>
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Bombieri-Vinogradov: average prime distribution near-GRH</h3>
+<p><strong>Statement:</strong> Bombieri-Vinogradov: average prime distribution near-GRH</p>
+<p><strong>Hypotheses:</strong> sum over moduli q<=Q</p>
+<p><strong>Conclusion:</strong> error bound like GRH, unconditionally</p>
+<p><strong>Definitions:</strong> Bombieri-Vinogradov, average, GRH</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Average over moduli</p>
+<p class="step">Step 2: Zeros of L-functions contribute</p>
+<p class="step">Step 3: Most powerful unconditional result</p></div>
+<p class="metadata">ID: 108738572524 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Replaces GRH in many applications</p>
+<p class="metadata">Provenance: number theory proof #22</p>
+</div>
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Vinogradov: every large odd integer is sum of 3 primes</h3>
+<p><strong>Statement:</strong> Vinogradov: every large odd integer is sum of 3 primes</p>
+<p><strong>Hypotheses:</strong> n odd, n > N_0</p>
+<p><strong>Conclusion:</strong> n = p_1+p_2+p_3</p>
+<p><strong>Definitions:</strong> Vinogradov, three primes</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Circle method (Hardy-Littlewood)</p>
+<p class="step">Step 2: Exponential sums over primes</p>
+<p class="step">Step 3: Major arcs + minor arcs</p>
+<p class="step">Step 4: Error < main term for large n</p></div>
+<p class="metadata">ID: c7e07a713fdc | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Weak Goldbach, proved 1937</p>
+<p class="metadata">Provenance: number theory proof #23</p>
+</div>
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Chen: every large even integer is sum of prime + almost-prime</h3>
+<p><strong>Statement:</strong> Chen: every large even integer is sum of prime + almost-prime</p>
+<p><strong>Hypotheses:</strong> n even, n large</p>
+<p><strong>Conclusion:</strong> n = p + q where q is prime or product of 2 primes</p>
+<p><strong>Definitions:</strong> Chen, Goldbach, semiprime</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Sieve methods</p>
+<p class="step">Step 2: Bombier-Vinogradov as input</p>
+<p class="step">Step 3: Chen's theorem: best partial result</p>
+<p class="step">Step 4: n = p + q' with Omega(q') <= 2</p></div>
+<p class="metadata">ID: 7078f0a35ddb | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Closest to Goldbach conjecture</p>
+<p class="metadata">Provenance: number theory proof #24</p>
+</div>
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: ABC conjecture: quality bounded for coprime a+b=c</h3>
+<p><strong>Statement:</strong> ABC conjecture: quality bounded for coprime a+b=c</p>
+<p><strong>Hypotheses:</strong> gcd(a,b,c)=1, a+b=c</p>
+<p><strong>Conclusion:</strong> log(c)/log(rad(abc)) bounded</p>
+<p><strong>Definitions:</strong> ABC, radical</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: rad(abc) = product of distinct primes</p>
+<p class="step">Step 2: Mochizuki: IUT proof (controversial)</p>
+<p class="step">Step 3: Many consequences if true</p></div>
+<p class="metadata">ID: 9967fcb3235a | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Proof still debated</p>
+<p class="metadata">Provenance: number theory proof #25</p>
+</div>
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Goldbach verified up to 4*10^18</h3>
+<p><strong>Statement:</strong> Goldbach verified up to 4*10^18</p>
+<p><strong>Hypotheses:</strong> n even, n <= 4*10^18</p>
+<p><strong>Conclusion:</strong> n = p+q verified computationally</p>
+<p><strong>Definitions:</strong> Goldbach, computation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Odlyzko and others</p>
+<p class="step">Step 2: Sieve-based verification</p>
+<p class="step">Step 3: Up to 4*10^18 checked</p></div>
+<p class="metadata">ID: c3c6bf2d3c83 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Full conjecture still open</p>
+<p class="metadata">Provenance: number theory proof #26</p>
+</div>
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Stark-Heegner: exactly 9 imaginary quadratic fields with class number 1</h3>
+<p><strong>Statement:</strong> Stark-Heegner: exactly 9 imaginary quadratic fields with class number 1</p>
+<p><strong>Hypotheses:</strong> K = Q(sqrt(-d))</p>
+<p><strong>Conclusion:</strong> d = 1,2,3,7,11,19,43,67,163 only</p>
+<p><strong>Definitions:</strong> Stark-Heegner, class number</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gauss conjectured</p>
+<p class="step">Step 2: Heegner proved 1952</p>
+<p class="step">Step 3: Baker-Stark independent proof</p></div>
+<p class="metadata">ID: bb20f905867f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Gauss class number problem</p>
+<p class="metadata">Provenance: number theory proof #27</p>
+</div>
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Hecke L-functions generalize Dirichlet L-functions</h3>
+<p><strong>Statement:</strong> Hecke L-functions generalize Dirichlet L-functions</p>
+<p><strong>Hypotheses:</strong> K number field</p>
+<p><strong>Conclusion:</strong> Hecke L-functions for idele class characters</p>
+<p><strong>Definitions:</strong> Hecke, L-function, Grössencharakter</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Euler product over prime ideals</p>
+<p class="step">Step 2: Functional equation</p>
+<p class="step">Step 3: Special values connect to class numbers</p></div>
+<p class="metadata">ID: 4e0059e2c3c0 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Generalization to number fields</p>
+<p class="metadata">Provenance: number theory proof #28</p>
+</div>
+<div class="theorem extra" id="xp-29">
+<h3>Proof 29: Taniyama-Shimura: every elliptic curve over Q is modular</h3>
+<p><strong>Statement:</strong> Taniyama-Shimura: every elliptic curve over Q is modular</p>
+<p><strong>Hypotheses:</strong> E elliptic curve over Q</p>
+<p><strong>Conclusion:</strong> associated modular form exists</p>
+<p><strong>Definitions:</strong> Taniyama-Shimura, modular, elliptic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Proved by Wiles, Taylor et al.</p>
+<p class="step">Step 2: Key step in FLT proof</p>
+<p class="step">Step 3: Connects elliptic curves and modular forms</p></div>
+<p class="metadata">ID: 749e3db4bde8 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Proved 1995, used for FLT</p>
+<p class="metadata">Provenance: number theory proof #29</p>
+</div>
+<div class="theorem extra" id="xp-30">
+<h3>Proof 30: Euler product: zeta(s) = prod (1-p^{-s})^{-1} for Re(s)>1</h3>
+<p><strong>Statement:</strong> Euler product: zeta(s) = prod (1-p^{-s})^{-1} for Re(s)>1</p>
+<p><strong>Hypotheses:</strong> Re(s) > 1</p>
+<p><strong>Conclusion:</strong> Dirichlet series = product over primes</p>
+<p><strong>Definitions:</strong> Euler product, zeta, multiplicative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Each prime: geometric series</p>
+<p class="step">Step 2: Multiply: unique factorization gives each n once</p>
+<p class="step">Step 3: Converges for Re(s)>1</p></div>
+<p class="metadata">ID: a6439d30045d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Connects additive and multiplicative structures</p>
+<p class="metadata">Provenance: number theory proof #30</p>
+</div>
+<div class="theorem extra" id="xp-31">
+<h3>Proof 31: Zeta functional equation: zeta(s) relates to zeta(1-s)</h3>
+<p><strong>Statement:</strong> Zeta functional equation: zeta(s) relates to zeta(1-s)</p>
+<p><strong>Hypotheses:</strong> s complex, s != 0,1</p>
+<p><strong>Conclusion:</strong> zeta(s) = 2^s pi^{s-1} sin(pi s/2) Gamma(1-s) zeta(1-s)</p>
+<p><strong>Definitions:</strong> zeta functional, Gamma, reflection</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Poisson summation on theta function</p>
+<p class="step">Step 2: Mellin transform</p>
+<p class="step">Step 3: Symmetry of theta</p></div>
+<p class="metadata">ID: b93a8eca3a48 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Reflection across Re(s)=1/2</p>
+<p class="metadata">Provenance: number theory proof #31</p>
+</div>
+<div class="theorem extra" id="xp-32">
+<h3>Proof 32: Möbius inversion: g(n)=sum f(d) => f(n)=sum mu(d)g(n/d)</h3>
+<p><strong>Statement:</strong> Möbius inversion: g(n)=sum f(d) => f(n)=sum mu(d)g(n/d)</p>
+<p><strong>Hypotheses:</strong> g = f * 1</p>
+<p><strong>Conclusion:</strong> f = mu * g</p>
+<p><strong>Definitions:</strong> Möbius, inversion, convolution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: mu * 1 = epsilon</p>
+<p class="step">Step 2: mu * g = mu * (f * 1) = (mu * 1) * f = f</p></div>
+<p class="metadata">ID: 73fd848669cd | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation of multiplicative number theory</p>
+<p class="metadata">Provenance: number theory proof #32</p>
+</div>
+<div class="theorem extra" id="xp-33">
+<h3>Proof 33: Von Mangoldt: sum_{d|n} Lambda(d) = log(n)</h3>
+<p><strong>Statement:</strong> Von Mangoldt: sum_{d|n} Lambda(d) = log(n)</p>
+<p><strong>Hypotheses:</strong> n positive integer</p>
+<p><strong>Conclusion:</strong> sum Lambda(d) = log n</p>
+<p><strong>Definitions:</strong> von Mangoldt, Möbius, Chebyshev</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lambda(p^k) = log p, else 0</p>
+<p class="step">Step 2: sum_{d|n} Lambda(d) = sum a_i log p_i = log n</p></div>
+<p class="metadata">ID: 8c103a9799b2 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Central function in prime number theory</p>
+<p class="metadata">Provenance: number theory proof #33</p>
+</div>
+<div class="theorem extra" id="xp-34">
+<h3>Proof 34: Prime counting: psi(x) = sum_{n<=x} Lambda(n) ~ x</h3>
+<p><strong>Statement:</strong> Prime counting: psi(x) = sum_{n<=x} Lambda(n) ~ x</p>
+<p><strong>Hypotheses:</strong> x large</p>
+<p><strong>Conclusion:</strong> psi(x) ~ x (PNT equivalent)</p>
+<p><strong>Definitions:</strong> Chebyshev function, prime counting</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: psi counts primes with weight log p</p>
+<p class="step">Step 2: PNT <=> psi(x) ~ x</p>
+<p class="step">Step 3: Stronger forms: error bounds</p>
+<p class="step">Step 4: Explicit: |psi(x)-x| < epsilon*x for x > x_0(epsilon)</p></div>
+<p class="metadata">ID: 32a3e2dfc0ba | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Equivalent form of PNT</p>
+<p class="metadata">Provenance: number theory proof #34</p>
+</div>
+<div class="theorem extra" id="xp-35">
+<h3>Proof 35: Schinzel Hypothesis H: simultaneous prime values of polynomials</h3>
+<p><strong>Statement:</strong> Schinzel Hypothesis H: simultaneous prime values of polynomials</p>
+<p><strong>Hypotheses:</strong> f_1,...,f_k irreducible, no local obstruction</p>
+<p><strong>Conclusion:</strong> infinitely many n with all f_i(n) prime</p>
+<p><strong>Definitions:</strong> Schinzel, prime values, polynomial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Generalizes Bunyakovsky</p>
+<p class="step">Step 2: Bunyakovsky: k=1</p>
+<p class="step">Step 3: Bateman-Horn: conjectural count</p>
+<p class="step">Step 4: No proof for k >= 2</p></div>
+<p class="metadata">ID: c772a3df709d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Major open conjecture</p>
+<p class="metadata">Provenance: number theory proof #35</p>
+</div>
+<div class="theorem extra" id="xp-36">
+<h3>Proof 36: Langlands program: automorphic forms connected to Galois representations</h3>
+<p><strong>Statement:</strong> Langlands program: automorphic forms connected to Galois representations</p>
+<p><strong>Hypotheses:</strong> reductive group G over Q</p>
+<p><strong>Conclusion:</strong> deep connection between number theory and representation theory</p>
+<p><strong>Definitions:</strong> Langlands, automorphic, Galois</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Reciprocity laws: Artin, Shimura-Taniyama</p>
+<p class="step">Step 2: Functoriality: transfer between groups</p>
+<p class="step">Step 3: Many cases proved, program ongoing</p>
+<p class="step">Step 4: Grand unified theory of mathematics</p></div>
+<p class="metadata">ID: 47902480613e | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Grand vision connecting all of number theory</p>
+<p class="metadata">Provenance: number theory proof #36</p>
+</div>
+<div class="theorem extra" id="xp-37">
+<h3>Proof 37: Euler characteristic of number field: chi(O_K) = (-1)^{r_2} * 2^{r_1} * h_K * R_K / w_K</h3>
+<p><strong>Statement:</strong> Euler characteristic of number field: chi(O_K) = (-1)^{r_2} * 2^{r_1} * h_K * R_K / w_K</p>
+<p><strong>Hypotheses:</strong> K number field</p>
+<p><strong>Conclusion:</strong> connects Euler characteristic to arithmetic invariants</p>
+<p><strong>Definitions:</strong> Euler characteristic, analytic, class number formula</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Dedekind zeta residue at s=1</p>
+<p class="step">Step 2: Class number formula</p>
+<p class="step">Step 3: Relates h_K, R_K, r_1, r_2, w_K</p>
+<p class="step">Step 4: w_K = #roots of unity in K</p></div>
+<p class="metadata">ID: 0eff638f01b8 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Arithmetic counterpart of topological Euler characteristic</p>
+<p class="metadata">Provenance: number theory proof #37</p>
+</div>
 </body></html>
