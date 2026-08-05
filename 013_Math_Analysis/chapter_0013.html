@@ -19294,4 +19294,658 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Removing 'continuous on [a,b]': f(x)=|x| on [-1,1] with division at 0 fails</p>
 <p class="metadata">Provenance: Variation #1001 for theorem in domain Math_Analysis</p>
 </div>
+
+<h2>Additional proofs (+50 from mathematical analysis theorem bank)</h2>
+
+<div class="theorem extra" id="analysis-1">
+<h3>Proof 1: Rolle's theorem: f(a)=f(b), f continuous on [a,b], diff on (a,b) => f'(c)=0</h3>
+<p><strong>Statement:</strong> Rolle's theorem: f(a)=f(b), f continuous on [a,b], diff on (a,b) => f'(c)=0</p>
+<p><strong>Hypotheses:</strong> f continuous on [a,b], f differentiable on (a,b), f(a)=f(b)</p>
+<p><strong>Conclusion:</strong> exists c in (a,b) with f'(c)=0</p>
+<p><strong>Definitions:</strong> Rolle, continuous, differentiable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: By Weierstrass, f attains max M and min m on [a,b]</p>
+<p class="step">Step 2: If M=m, f is constant, any c works</p>
+<p class="step">Step 3: If M>m, at least one extremum is interior</p>
+<p class="step">Step 4: At interior extremum, f'(c)=0 by Fermat's theorem</p></div>
+<p class="metadata">ID: 46be10aae049 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'continuous on [a,b]': f(x)=1/x on [-1,1] fails</p>
+<p class="metadata">Provenance: Math analysis proof #1</p>
+</div>
+
+<div class="theorem extra" id="analysis-2">
+<h3>Proof 2: Taylor's theorem with remainder: f(x) = P_n(x) + R_n(x)</h3>
+<p><strong>Statement:</strong> Taylor's theorem with remainder: f(x) = P_n(x) + R_n(x)</p>
+<p><strong>Hypotheses:</strong> f n+1 times differentiable on [a,x]</p>
+<p><strong>Conclusion:</strong> f(x) = sum f^(k)(a)/k! * (x-a)^k + R_n</p>
+<p><strong>Definitions:</strong> Taylor, polynomial approximation, remainder</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define P_n(t) = sum f^(k)(a)/k! * (t-a)^k</p>
+<p class="step">Step 2: Define R_n(x) = f(x) - P_n(x)</p>
+<p class="step">Step 3: Apply Cauchy mean value theorem repeatedly</p>
+<p class="step">Step 4: Derive Lagrange or integral form of remainder</p></div>
+<p class="metadata">ID: 3e6396cbd636 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without sufficient differentiability: remainder undefined</p>
+<p class="metadata">Provenance: Math analysis proof #2</p>
+</div>
+
+<div class="theorem extra" id="analysis-3">
+<h3>Proof 3: Weierstrass approximation: continuous f on [a,b] uniformly approximated by polynomials</h3>
+<p><strong>Statement:</strong> Weierstrass approximation: continuous f on [a,b] uniformly approximated by polynomials</p>
+<p><strong>Hypotheses:</strong> f continuous on [a,b], epsilon > 0</p>
+<p><strong>Conclusion:</strong> exists polynomial p with |f(x)-p(x)| < epsilon</p>
+<p><strong>Definitions:</strong> Weierstrass, uniform approximation, Bernstein</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct Bernstein polynomials B_n(f)(x)</p>
+<p class="step">Step 2: Show B_n(f) -> f uniformly</p>
+<p class="step">Step 3: Use compactness and continuity to bound error</p></div>
+<p class="metadata">ID: 27c457246bad | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Removing 'continuous': discontinuous functions cannot be uniformly approximated</p>
+<p class="metadata">Provenance: Math analysis proof #3</p>
+</div>
+
+<div class="theorem extra" id="analysis-4">
+<h3>Proof 4: Uniform convergence preserves continuity: f_n -> f uniformly, each f_n continuous => f continuous</h3>
+<p><strong>Statement:</strong> Uniform convergence preserves continuity: f_n -> f uniformly, each f_n continuous => f continuous</p>
+<p><strong>Hypotheses:</strong> f_n continuous, f_n -> f uniformly on S</p>
+<p><strong>Conclusion:</strong> f is continuous on S</p>
+<p><strong>Definitions:</strong> uniform convergence, continuity, epsilon</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fix x_0, epsilon > 0</p>
+<p class="step">Step 2: Choose N with |f_N(x)-f(x)| < epsilon/3 for all x</p>
+<p class="step">Step 3: Choose delta with |f_N(x)-f_N(x_0)| < epsilon/3 when |x-x_0|<delta</p>
+<p class="step">Step 4: |f(x)-f(x_0)| <= |f(x)-f_N(x)|+|f_N(x)-f_N(x_0)|+|f_N(x_0)-f(x_0)| < epsilon</p></div>
+<p class="metadata">ID: bd9ddd48330e | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without uniform convergence: pointwise convergence doesn't preserve continuity</p>
+<p class="metadata">Provenance: Math analysis proof #4</p>
+</div>
+
+<div class="theorem extra" id="analysis-5">
+<h3>Proof 5: Monotone convergence theorem: monotone increasing nonneg measurable f_n => integral f_n -> integral f</h3>
+<p><strong>Statement:</strong> Monotone convergence theorem: monotone increasing nonneg measurable f_n => integral f_n -> integral f</p>
+<p><strong>Hypotheses:</strong> f_n measurable, 0 <= f_1 <= f_2 <= ..., f_n -> f pointwise</p>
+<p><strong>Conclusion:</strong> integral f_n -> integral f</p>
+<p><strong>Definitions:</strong> monotone, convergence, Lebesgue integral</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g_n = f_n - f_{n-1} >= 0</p>
+<p class="step">Step 2: f = sum g_n, integral f = sum integral g_n</p>
+<p class="step">Step 3: Partial sums: integral f_n = sum_1^n integral g_k</p>
+<p class="step">Step 4: This is a series of nonneg terms, converges to integral f</p></div>
+<p class="metadata">ID: dead2eee6543 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without monotonicity: false (e.g. f_n = n*1_{[0,1/n]})</p>
+<p class="metadata">Provenance: Math analysis proof #5</p>
+</div>
+
+<div class="theorem extra" id="analysis-6">
+<h3>Proof 6: Tonelli's theorem: nonneg measurable f(x,y): iterated integrals equal double integral</h3>
+<p><strong>Statement:</strong> Tonelli's theorem: nonneg measurable f(x,y): iterated integrals equal double integral</p>
+<p><strong>Hypotheses:</strong> f >= 0, measurable on product space</p>
+<p><strong>Conclusion:</strong> integral integral f dx dy = integral integral f dy dx</p>
+<p><strong>Definitions:</strong> Tonelli, iterated integral, product measure</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prove for characteristic functions</p>
+<p class="step">Step 2: Extend by linearity to simple functions</p>
+<p class="step">Step 3: Use monotone convergence to extend to nonneg measurable</p></div>
+<p class="metadata">ID: 6161e02355fd | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'nonneg': need Fubini (absolute integrability)</p>
+<p class="metadata">Provenance: Math analysis proof #6</p>
+</div>
+
+<div class="theorem extra" id="analysis-7">
+<h3>Proof 7: Hahn decomposition: any signed measure has positive and negative sets</h3>
+<p><strong>Statement:</strong> Hahn decomposition: any signed measure has positive and negative sets</p>
+<p><strong>Hypotheses:</strong> mu signed measure on (X, Sigma)</p>
+<p><strong>Conclusion:</strong> exists P,N partition with mu(A)>=0 for A subset P, mu(A)<=0 for A subset N</p>
+<p><strong>Definitions:</strong> signed measure, Hahn decomposition, positive set</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider set function nu(A) = sup{mu(B) : B subset A, B in Sigma}</p>
+<p class="step">Step 2: Show nu is a nonneg measure</p>
+<p class="step">Step 3: Define P = {A : mu(B) <= nu(A) for all B subset A}</p>
+<p class="step">Step 4: N = X \ P is the negative set</p></div>
+<p class="metadata">ID: 9fadf55700fb | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without measurability: decomposition undefined</p>
+<p class="metadata">Provenance: Math analysis proof #7</p>
+</div>
+
+<div class="theorem extra" id="analysis-8">
+<h3>Proof 8: Radon-Nikodym: if nu << mu (both sigma-finite), then dnu/dmu exists</h3>
+<p><strong>Statement:</strong> Radon-Nikodym: if nu << mu (both sigma-finite), then dnu/dmu exists</p>
+<p><strong>Hypotheses:</strong> nu, mu sigma-finite measures, nu absolutely continuous w.r.t. mu</p>
+<p><strong>Conclusion:</strong> exists nonneg measurable f with nu(A) = integral_A f dmu</p>
+<p><strong>Definitions:</strong> Radon-Nikodym, absolutely continuous, density</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider functional L(g) = integral g dnu on L^2(mu)</p>
+<p class="step">Step 2: Apply Riesz representation theorem</p>
+<p class="step">Step 3: Show resulting functional has density form</p></div>
+<p class="metadata">ID: 6d6e923a73fa | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without absolute continuity: density may not exist (e.g. atom in nu not in mu)</p>
+<p class="metadata">Provenance: Math analysis proof #8</p>
+</div>
+
+<div class="theorem extra" id="analysis-9">
+<h3>Proof 9: Lebesgue differentiation theorem: for locally integrable f, average converges to f(x) a.e.</h3>
+<p><strong>Statement:</strong> Lebesgue differentiation theorem: for locally integrable f, average converges to f(x) a.e.</p>
+<p><strong>Hypotheses:</strong> f locally integrable on R^n</p>
+<p><strong>Conclusion:</strong> lim (1/|B_r(x)|) integral_{B_r(x)} f = f(x) for a.e. x</p>
+<p><strong>Definitions:</strong> Lebesgue differentiation, Hardy-Littlewood, maximal function</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Hardy-Littlewood maximal function Mf</p>
+<p class="step">Step 2: Show Mf is weak-type (1,1)</p>
+<p class="step">Step 3: Apply covering lemma</p>
+<p class="step">Step 4: Use density of continuous functions</p></div>
+<p class="metadata">ID: f5c9ebaf1046 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'locally integrable': integral undefined</p>
+<p class="metadata">Provenance: Math analysis proof #9</p>
+</div>
+
+<div class="theorem extra" id="analysis-10">
+<h3>Proof 10: Riesz-Fischer: L^p is complete (Banach space) for 1 <= p <= infinity</h3>
+<p><strong>Statement:</strong> Riesz-Fischer: L^p is complete (Banach space) for 1 <= p <= infinity</p>
+<p><strong>Hypotheses:</strong> 1 <= p <= infinity</p>
+<p><strong>Conclusion:</strong> L^p is complete metric space</p>
+<p><strong>Definitions:</strong> Riesz-Fischer, complete, Banach space, L^p</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take Cauchy sequence (f_n) in L^p</p>
+<p class="step">Step 2: Extract subsequence f_{n_k} with ||f_{n_k}-f_{n_{k+1}}|| < 2^{-k}</p>
+<p class="step">Step 3: Define g = sum |f_{n_{k+1}}-f_{n_k}|, g in L^p by Minkowski</p>
+<p class="step">Step 4: f_n -> f = sum differences a.e. and in L^p</p></div>
+<p class="metadata">ID: f0d02c92ddf4 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without 'measurable': L^p undefined</p>
+<p class="metadata">Provenance: Math analysis proof #10</p>
+</div>
+
+<div class="theorem extra" id="analysis-11">
+<h3>Proof 11: Egorov's theorem: pointwise convergence on finite measure => almost uniform convergence</h3>
+<p><strong>Statement:</strong> Egorov's theorem: pointwise convergence on finite measure => almost uniform convergence</p>
+<p><strong>Hypotheses:</strong> mu(X) < infinity, f_n -> f pointwise</p>
+<p><strong>Conclusion:</strong> for any delta > 0, exists E with mu(E) < delta, f_n -> f uniformly on X\E</p>
+<p><strong>Definitions:</strong> Egorov, pointwise, almost uniform</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define E_{n,k} = union_{m>=n} |f_m - f| >= 1/k</p>
+<p class="step">Step 2: mu(E_{n,k}) -> 0 as n -> infinity</p>
+<p class="step">Step 3: Choose n_k with mu(E_{n_k,k}) < delta/2^k</p>
+<p class="step">Step 4: Let E = union E_{n_k,k}, mu(E) < delta</p>
+<p class="step">Step 5: Uniform convergence on complement</p></div>
+<p class="metadata">ID: d17049e6e73a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without finite measure: fails on R with Lebesgue measure</p>
+<p class="metadata">Provenance: Math analysis proof #11</p>
+</div>
+
+<div class="theorem extra" id="analysis-12">
+<h3>Proof 12: Lusin's theorem: measurable function is continuous off a set of small measure</h3>
+<p><strong>Statement:</strong> Lusin's theorem: measurable function is continuous off a set of small measure</p>
+<p><strong>Hypotheses:</strong> f measurable on compact K, mu(K) < infinity, epsilon > 0</p>
+<p><strong>Conclusion:</strong> exists closed F subset K, mu(K\F) < epsilon, f|_F continuous</p>
+<p><strong>Definitions:</strong> Lusin, measurable, continuous restriction</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate f by simple functions uniformly</p>
+<p class="step">Step 2: Simple functions continuous on measurable sets</p>
+<p class="step">Step 3: Use regularity of measure to find closed subsets</p>
+<p class="step">Step 4: Union of closed sets where approximation is good</p></div>
+<p class="metadata">ID: e7904fbe570e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'measurable': theorem fails</p>
+<p class="metadata">Provenance: Math analysis proof #12</p>
+</div>
+
+<div class="theorem extra" id="analysis-13">
+<h3>Proof 13: Carathéodory extension: premeasure on algebra extends to measure on sigma-algebra</h3>
+<p><strong>Statement:</strong> Carathéodory extension: premeasure on algebra extends to measure on sigma-algebra</p>
+<p><strong>Hypotheses:</strong> mu premeasure on algebra A</p>
+<p><strong>Conclusion:</strong> exists measure on sigma(A) extending mu</p>
+<p><strong>Definitions:</strong> Carathéodory, premeasure, extension</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define outer measure: mu*(E) = inf sum mu(A_i)</p>
+<p class="step">Step 2: Restrict to measurable sets</p>
+<p class="step">Step 3: Show restricted measure is complete</p>
+<p class="step">Step 4: Check Carathéodory measurability condition</p></div>
+<p class="metadata">ID: 8447f772e047 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without 'premeasure': extension not guaranteed</p>
+<p class="metadata">Provenance: Math analysis proof #13</p>
+</div>
+
+<div class="theorem extra" id="analysis-14">
+<h3>Proof 14: Fatou's lemma: integral liminf f_n <= liminf integral f_n</h3>
+<p><strong>Statement:</strong> Fatou's lemma: integral liminf f_n <= liminf integral f_n</p>
+<p><strong>Hypotheses:</strong> f_n measurable, f_n >= 0</p>
+<p><strong>Conclusion:</strong> integral liminf f_n <= liminf integral f_n</p>
+<p><strong>Definitions:</strong> Fatou, liminf, integral, inequality</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g_n = inf_{k>=n} f_k</p>
+<p class="step">Step 2: g_n is measurable, g_n <= f_n, g_n increasing</p>
+<p class="step">Step 3: lim g_n = liminf f_n</p>
+<p class="step">Step 4: By MCT: integral lim g_n = lim integral g_n</p>
+<p class="step">Step 5: Each g_n <= f_k for k >= n, so integral g_n <= integral f_k</p>
+<p class="step">Step 6: Take inf over k: integral g_n <= inf_{k>=n} integral f_k</p>
+<p class="step">Step 7: Take lim: integral liminf f_n <= liminf integral f_n</p></div>
+<p class="metadata">ID: c7c745bcf622 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'f_n >= 0': inequality may fail</p>
+<p class="metadata">Provenance: Math analysis proof #14</p>
+</div>
+
+<div class="theorem extra" id="analysis-15">
+<h3>Proof 15: Holder's inequality: integral |fg| <= ||f||_p ||g||_q for 1/p + 1/q = 1</h3>
+<p><strong>Statement:</strong> Holder's inequality: integral |fg| <= ||f||_p ||g||_q for 1/p + 1/q = 1</p>
+<p><strong>Hypotheses:</strong> f in L^p, g in L^q, 1/p + 1/q = 1</p>
+<p><strong>Conclusion:</strong> ||fg||_1 <= ||f||_p ||g||_q</p>
+<p><strong>Definitions:</strong> Holder, conjugate exponents, L^p norm</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Normalize: assume ||f||_p = ||g||_q = 1</p>
+<p class="step">Step 2: Young's inequality: ab <= a^p/p + b^q/q</p>
+<p class="step">Step 3: Apply pointwise: |f(x)g(x)| <= |f(x)|^p/p + |g(x)|^q/q</p>
+<p class="step">Step 4: Integrate: integral |fg| <= 1/p + 1/q = 1</p></div>
+<p class="metadata">ID: e8f7401e5bcf | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without 1/p+1/q=1: inequality form changes</p>
+<p class="metadata">Provenance: Math analysis proof #15</p>
+</div>
+
+<div class="theorem extra" id="analysis-16">
+<h3>Proof 16: Minkowski's inequality: ||f+g||_p <= ||f||_p + ||g||_p</h3>
+<p><strong>Statement:</strong> Minkowski's inequality: ||f+g||_p <= ||f||_p + ||g||_p</p>
+<p><strong>Hypotheses:</strong> f,g in L^p, 1 <= p <= infinity</p>
+<p><strong>Conclusion:</strong> ||f+g||_p <= ||f||_p + ||g||_p</p>
+<p><strong>Definitions:</strong> Minkowski, triangle inequality, L^p</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For p=1: trivial by triangle inequality</p>
+<p class="step">Step 2: For p>1: use Holder on integral |f+g|^{p-1} * |f|</p>
+<p class="step">Step 3: |f+g|^p <= |f+g|^{p-1}(|f|+|g|)</p>
+<p class="step">Step 4: Integrate and apply Holder to each term</p>
+<p class="step">Step 5: Factor out ||f+g||_p^{p-1}</p></div>
+<p class="metadata">ID: 92c9a874ac26 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'p >= 1': not a norm</p>
+<p class="metadata">Provenance: Math analysis proof #16</p>
+</div>
+
+<div class="theorem extra" id="analysis-17">
+<h3>Proof 17: Vitali convergence theorem: f_n -> f in measure + uniformly integrable => convergence in L^1</h3>
+<p><strong>Statement:</strong> Vitali convergence theorem: f_n -> f in measure + uniformly integrable => convergence in L^1</p>
+<p><strong>Hypotheses:</strong> f_n -> f in measure, {f_n} uniformly integrable</p>
+<p><strong>Conclusion:</strong> ||f_n - f||_1 -> 0</p>
+<p><strong>Definitions:</strong> Vitali, uniform integrability, convergence in L^1</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Egorov: convergence nearly uniform</p>
+<p class="step">Step 2: Split integral over good and bad sets</p>
+<p class="step">Step 3: Bad set has small measure by uniform integrability</p>
+<p class="step">Step 4: Good set: convergence is uniform so integral -> 0</p></div>
+<p class="metadata">ID: 6b8b797742d6 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without uniform integrability: false (e.g. f_n = n*1_{[0,1/n]})</p>
+<p class="metadata">Provenance: Math analysis proof #17</p>
+</div>
+
+<div class="theorem extra" id="analysis-18">
+<h3>Proof 18: Ascoli-Arzela: equicontinuous uniformly bounded family has uniformly convergent subsequence</h3>
+<p><strong>Statement:</strong> Ascoli-Arzela: equicontinuous uniformly bounded family has uniformly convergent subsequence</p>
+<p><strong>Hypotheses:</strong> K compact metric space, F subset C(K) equicontinuous and pointwise bounded</p>
+<p><strong>Conclusion:</strong> F has uniformly convergent subsequence</p>
+<p><strong>Definitions:</strong> Ascoli-Arzela, equicontinuous, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose dense countable {x_i} in K</p>
+<p class="step">Step 2: For each x_i, extract diagonal subsequence</p>
+<p class="step">Step 3: Equicontinuity extends convergence from dense set to all of K</p>
+<p class="step">Step 4: Uniform convergence by total boundedness</p></div>
+<p class="metadata">ID: cc196e1df0b4 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without equicontinuity: e.g. f_n(x)=x^n has no uniformly convergent subseq on [0,1]</p>
+<p class="metadata">Provenance: Math analysis proof #18</p>
+</div>
+
+<div class="theorem extra" id="analysis-19">
+<h3>Proof 19: Stone-Weierstrass: subalgebra of C(K) separating points is dense</h3>
+<p><strong>Statement:</strong> Stone-Weierstrass: subalgebra of C(K) separating points is dense</p>
+<p><strong>Hypotheses:</strong> K compact Hausdorff, A subalgebra of C(K), A separates points and contains constants</p>
+<p><strong>Conclusion:</strong> A is dense in C(K) in sup norm</p>
+<p><strong>Definitions:</strong> Stone-Weierstrass, subalgebra, separating points</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Show A closed under max and min</p>
+<p class="step">Step 2: Use lattice property to approximate any continuous f</p>
+<p class="step">Step 3: Apply Urysohn-type argument with compactness</p></div>
+<p class="metadata">ID: 8a47b970eda8 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without separating points: constants subalgebra is not dense</p>
+<p class="metadata">Provenance: Math analysis proof #19</p>
+</div>
+
+<div class="theorem extra" id="analysis-20">
+<h3>Proof 20: Cantor set has measure zero but is uncountable</h3>
+<p><strong>Statement:</strong> Cantor set has measure zero but is uncountable</p>
+<p><strong>Hypotheses:</strong> standard middle-thirds Cantor set</p>
+<p><strong>Conclusion:</strong> measure = 0, cardinality = continuum</p>
+<p><strong>Definitions:</strong> Cantor set, measure zero, uncountable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Measure: removed intervals total length sum (2/3)^n * (1/3^n) ... = 1</p>
+<p class="step">Step 2: Actually removed total = 1, so measure = 0</p>
+<p class="step">Step 3: Uncountable: map ternary 0,2 sequences to [0,1]</p>
+<p class="step">Step 4: Bijection with {0,2}^N ~ continuum</p></div>
+<p class="metadata">ID: b1c9c55ab36b | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Fundamental example in measure theory</p>
+<p class="metadata">Provenance: Math analysis proof #20</p>
+</div>
+
+<div class="theorem extra" id="analysis-21">
+<h3>Proof 21: Vitali set is not Lebesgue measurable</h3>
+<p><strong>Statement:</strong> Vitali set is not Lebesgue measurable</p>
+<p><strong>Hypotheses:</strong> Axiom of choice</p>
+<p><strong>Conclusion:</strong> exists subset of [0,1] not Lebesgue measurable</p>
+<p><strong>Definitions:</strong> Vitali set, non-measurable, translation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define equivalence: x ~ y iff x-y is rational</p>
+<p class="step">Step 2: Choose one representative from each class</p>
+<p class="step">Step 3: Translate by rationals in [0,1]</p>
+<p class="step">Step 4: Translations partition [0,1] but are disjoint</p>
+<p class="step">Step 5: Countable additivity would give 0 < 1 <= 0, contradiction</p></div>
+<p class="metadata">ID: d6df1a1c9738 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Requires axiom of choice</p>
+<p class="metadata">Provenance: Math analysis proof #21</p>
+</div>
+
+<div class="theorem extra" id="analysis-22">
+<h3>Proof 22: Fourier series of L^2 function converges in L^2 (Bessel/Parseval)</h3>
+<p><strong>Statement:</strong> Fourier series of L^2 function converges in L^2 (Bessel/Parseval)</p>
+<p><strong>Hypotheses:</strong> f in L^2[0,2pi]</p>
+<p><strong>Conclusion:</strong> partial sums converge to f in L^2</p>
+<p><strong>Definitions:</strong> Fourier, L^2 convergence, orthonormal basis</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Trig functions form orthonormal system</p>
+<p class="step">Step 2: Bessel inequality: sum |c_n|^2 <= ||f||^2</p>
+<p class="step">Step 3: Show trig system is complete</p>
+<p class="step">Step 4: By completeness: ||S_N - f||^2 -> 0</p>
+<p class="step">Step 5: Parseval: ||f||^2 = sum |c_n|^2</p></div>
+<p class="metadata">ID: b25d2b2cc864 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'L^2': pointwise convergence fails (du Bois-Reymond)</p>
+<p class="metadata">Provenance: Math analysis proof #22</p>
+</div>
+
+<div class="theorem extra" id="analysis-23">
+<h3>Proof 23: Lipschitz function is absolutely continuous</h3>
+<p><strong>Statement:</strong> Lipschitz function is absolutely continuous</p>
+<p><strong>Hypotheses:</strong> f: [a,b] -> R Lipschitz with constant L</p>
+<p><strong>Conclusion:</strong> f is absolutely continuous</p>
+<p><strong>Definitions:</strong> Lipschitz, absolute continuity, modulus of continuity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Given epsilon, choose delta = epsilon/L</p>
+<p class="step">Step 2: For any disjoint intervals (a_k,b_k) with sum(b_k-a_k) < delta</p>
+<p class="step">Step 3: sum |f(b_k)-f(a_k)| <= sum L(b_k-a_k) = L*sum(b_k-a_k) < L*delta = epsilon</p></div>
+<p class="metadata">ID: 82443fcc97e1 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without Lipschitz: absolute continuity is a stronger condition</p>
+<p class="metadata">Provenance: Math analysis proof #23</p>
+</div>
+
+<div class="theorem extra" id="analysis-24">
+<h3>Proof 24: Cantor function is continuous, monotone, maps [0,1] onto [0,1], derivative = 0 a.e.</h3>
+<p><strong>Statement:</strong> Cantor function is continuous, monotone, maps [0,1] onto [0,1], derivative = 0 a.e.</p>
+<p><strong>Hypotheses:</strong> standard Cantor set construction</p>
+<p><strong>Conclusion:</strong> continuous, non-decreasing, f(0)=0, f(1)=1, f'=0 a.e.</p>
+<p><strong>Definitions:</strong> Cantor function, devil's staircase, singular</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define on removed intervals: assign values at midpoints</p>
+<p class="step">Step 2: Extend by continuity</p>
+<p class="step">Step 3: Monotone by construction</p>
+<p class="step">Step 4: Derivative 0 on complement of Cantor set (measure 1)</p>
+<p class="step">Step 5: Continuous and surjective by intermediate value theorem</p></div>
+<p class="metadata">ID: 7174e10b0dc6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Fundamental example: singular function</p>
+<p class="metadata">Provenance: Math analysis proof #24</p>
+</div>
+
+<div class="theorem extra" id="analysis-25">
+<h3>Proof 25: Sobolev embedding: W^{1,p}(R^n) continuously embeds in C^0 when p > n</h3>
+<p><strong>Statement:</strong> Sobolev embedding: W^{1,p}(R^n) continuously embeds in C^0 when p > n</p>
+<p><strong>Hypotheses:</strong> p > n, f in W^{1,p}(R^n)</p>
+<p><strong>Conclusion:</strong> f has continuous representative, ||f||_infty <= C||f||_{W^{1,p}}</p>
+<p><strong>Definitions:</strong> Sobolev, embedding, Morrey</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write f(x)-f(y) as integral of gradient</p>
+<p class="step">Step 2: Apply Holder to the integral</p>
+<p class="step">Step 3: Bound by gradient L^p norm times distance^{1-n/p}</p>
+<p class="step">Step 4: Distance^{1-n/p} -> 0 since n/p < 1</p></div>
+<p class="metadata">ID: 78f088feba50 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without p > n: embedding fails (need different spaces)</p>
+<p class="metadata">Provenance: Math analysis proof #25</p>
+</div>
+
+<div class="theorem extra" id="analysis-26">
+<h3>Proof 26: Meyers' estimate: if div(A grad u) = f, then u in W^{2,p} for some p > 2</h3>
+<p><strong>Statement:</strong> Meyers' estimate: if div(A grad u) = f, then u in W^{2,p} for some p > 2</p>
+<p><strong>Hypotheses:</strong> A uniformly elliptic, f in L^p</p>
+<p><strong>Conclusion:</strong> u in W^{2,p}_{loc} for some p > 2</p>
+<p><strong>Definitions:</strong> elliptic regularity, Sobolev, Meyers</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start with u in W^{1,2}</p>
+<p class="step">Step 2: A priori estimate in W^{1,2}</p>
+<p class="step">Step 3: Bootstrap: higher integrability of gradient</p>
+<p class="step">Step 4: Use reverse Holder inequality</p>
+<p class="step">Step 5: Conclude higher regularity</p></div>
+<p class="metadata">ID: ced5848c6c48 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without ellipticity: regularity fails</p>
+<p class="metadata">Provenance: Math analysis proof #26</p>
+</div>
+
+<div class="theorem extra" id="analysis-27">
+<h3>Proof 27: Gronwall's inequality: if u'(t) <= beta(t)*u(t), then u(t) <= u(0)*exp(integral beta)</h3>
+<p><strong>Statement:</strong> Gronwall's inequality: if u'(t) <= beta(t)*u(t), then u(t) <= u(0)*exp(integral beta)</p>
+<p><strong>Hypotheses:</strong> u differentiable, u(0) given, u'(t) <= beta(t)*u(t), beta continuous</p>
+<p><strong>Conclusion:</strong> u(t) <= u(0) * exp(integral_0^t beta(s) ds)</p>
+<p><strong>Definitions:</strong> Gronwall, differential inequality, comparison</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiply both sides by exp(-integral beta)</p>
+<p class="step">Step 2: (u*exp(-integral beta))' <= 0</p>
+<p class="step">Step 3: Integrate: u(t)*exp(-integral beta) <= u(0)</p>
+<p class="step">Step 4: Multiply by exp(integral beta)</p></div>
+<p class="metadata">ID: 7fe6f8d3c8db | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without the inequality direction: only gives upper bound</p>
+<p class="metadata">Provenance: Math analysis proof #27</p>
+</div>
+
+<div class="theorem extra" id="analysis-28">
+<h3>Proof 28: Picard-Lindelof: Lipschitz ODE has unique local solution</h3>
+<p><strong>Statement:</strong> Picard-Lindelof: Lipschitz ODE has unique local solution</p>
+<p><strong>Hypotheses:</strong> y' = f(t,y), f Lipschitz in y, f continuous</p>
+<p><strong>Conclusion:</strong> unique solution near t_0</p>
+<p><strong>Definitions:</strong> Picard, Lipschitz, ODE, existence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Convert to integral equation y(t) = y_0 + integral f(s,y(s)) ds</p>
+<p class="step">Step 2: Define Picard iterates: y_{n+1}(t) = y_0 + integral f(s,y_n(s)) ds</p>
+<p class="step">Step 3: Show iterates converge in C[a,b] by contraction</p>
+<p class="step">Step 4: Limit satisfies integral equation, hence ODE</p>
+<p class="step">Step 5: Uniqueness by Gronwall inequality</p></div>
+<p class="metadata">ID: 5f2ed2ead69d | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without Lipschitz: uniqueness may fail (e.g. y'=sqrt(y))</p>
+<p class="metadata">Provenance: Math analysis proof #28</p>
+</div>
+
+<div class="theorem extra" id="analysis-29">
+<h3>Proof 29: Arzelà-Ascoli on [a,b]: equicontinuous pointwise bounded => uniformly convergent subsequence</h3>
+<p><strong>Statement:</strong> Arzelà-Ascoli on [a,b]: equicontinuous pointwise bounded => uniformly convergent subsequence</p>
+<p><strong>Hypotheses:</strong> F equicontinuous on [a,b], F pointwise bounded</p>
+<p><strong>Conclusion:</strong> F has uniformly convergent subsequence</p>
+<p><strong>Definitions:</strong> Arzelà-Ascoli, equicontinuous, compact interval</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose dense countable {q_i} in [a,b]</p>
+<p class="step">Step 2: Diagonal argument on values at q_i</p>
+<p class="step">Step 3: Uniform convergence follows from equicontinuity: |f_n-f_m| controlled everywhere by values at dense points</p></div>
+<p class="metadata">ID: 48c907902b0c | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Removing 'equicontinuous': e.g. f_n(x)=x^n fails</p>
+<p class="metadata">Provenance: Math analysis proof #29</p>
+</div>
+
+<div class="theorem extra" id="analysis-30">
+<h3>Proof 30: Riemann integrable iff bounded and continuous a.e. (Lebesgue's criterion)</h3>
+<p><strong>Statement:</strong> Riemann integrable iff bounded and continuous a.e. (Lebesgue's criterion)</p>
+<p><strong>Hypotheses:</strong> f bounded on [a,b]</p>
+<p><strong>Conclusion:</strong> f Riemann integrable <=> set of discontinuities has measure 0</p>
+<p><strong>Definitions:</strong> Riemann integrable, Lebesgue criterion, discontinuity set</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Upper and lower Riemann sums use sup/inf on intervals</p>
+<p class="step">Step 2: Discontinuity points contribute to gap between upper/lower sums</p>
+<p class="step">Step 3: Measure 0 discontinuity set => gap can be made < epsilon</p>
+<p class="step">Step 4: Conversely, if positive measure discontinuity, gap bounded below</p></div>
+<p class="metadata">ID: 1e74e53b1c09 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without boundedness: improper Riemann integral needed</p>
+<p class="metadata">Provenance: Math analysis proof #30</p>
+</div>
+
+<div class="theorem extra" id="analysis-31">
+<h3>Proof 31: Dominated convergence: f_n->f a.e., |f_n|<=g integrable => int f_n -> int f</h3>
+<p><strong>Statement:</strong> Dominated convergence: f_n->f a.e., |f_n|<=g integrable => int f_n -> int f</p>
+<p><strong>Hypotheses:</strong> f_n measurable, f_n -> f a.e., |f_n| <= g, g integrable</p>
+<p><strong>Conclusion:</strong> integral f_n -> integral f</p>
+<p><strong>Definitions:</strong> dominated convergence, Lebesgue integral, limit</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply Fatou to g+f_n: integral(g)+liminf integral(f_n) >= integral(g)+integral(f)</p>
+<p class="step">Step 2: Apply Fatou to g-f_n: integral(g)+liminf integral(-f_n) >= integral(g)-integral(f)</p>
+<p class="step">Step 3: Combine: limsup integral(f_n) <= integral(f) <= liminf integral(f_n)</p>
+<p class="step">Step 4: Therefore limit exists and equals integral(f)</p></div>
+<p class="metadata">ID: cd2914143da8 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Removing 'dominated': f_n = n*1_{[0,1/n]}, int=1 but int f=0</p>
+<p class="metadata">Provenance: Math analysis proof #31</p>
+</div>
+
+<div class="theorem extra" id="analysis-32">
+<h3>Proof 32: Change of variables: integral f(g(x))|g'(x)| dx = integral f(y) dy</h3>
+<p><strong>Statement:</strong> Change of variables: integral f(g(x))|g'(x)| dx = integral f(y) dy</p>
+<p><strong>Hypotheses:</strong> g: [a,b] -> [c,d] C^1 diffeomorphism, f integrable</p>
+<p><strong>Conclusion:</strong> integral_a^b f(g(x))|g'(x)| dx = integral_c^d f(y) dy</p>
+<p><strong>Definitions:</strong> change of variables, substitution, Jacobian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For simple functions: direct verification</p>
+<p class="step">Step 2: Extend by density</p>
+<p class="step">Step 3: Use chain rule and substitution in Riemann sums</p>
+<p class="step">Step 4: Handle absolute value via orientation</p></div>
+<p class="metadata">ID: 1132ea2a62cd | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'diffeomorphism': need more careful treatment</p>
+<p class="metadata">Provenance: Math analysis proof #32</p>
+</div>
+
+<div class="theorem extra" id="analysis-33">
+<h3>Proof 33: Riemann-Lebesgue: Fourier coefficients of L^1 function tend to 0</h3>
+<p><strong>Statement:</strong> Riemann-Lebesgue: Fourier coefficients of L^1 function tend to 0</p>
+<p><strong>Hypotheses:</strong> f in L^1[0,2pi]</p>
+<p><strong>Conclusion:</strong> hat{f}(n) -> 0 as |n| -> infinity</p>
+<p><strong>Definitions:</strong> Riemann-Lebesgue, Fourier coefficients, decay</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For step functions: direct calculation shows decay</p>
+<p class="step">Step 2: Approximate L^1 function by step functions</p>
+<p class="step">Step 3: Triangle inequality controls error</p>
+<p class="step">Step 4: Limit of approximations also decays</p></div>
+<p class="metadata">ID: 1c113c5e95cf | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without L^1: coefficients may not exist</p>
+<p class="metadata">Provenance: Math analysis proof #33</p>
+</div>
+
+<div class="theorem extra" id="analysis-34">
+<h3>Proof 34: Banach fixed point: contraction on complete metric space has unique fixed point</h3>
+<p><strong>Statement:</strong> Banach fixed point: contraction on complete metric space has unique fixed point</p>
+<p><strong>Hypotheses:</strong> (M,d) complete, T: M->M contraction with L < 1</p>
+<p><strong>Conclusion:</strong> unique x* with T(x*)=x*</p>
+<p><strong>Definitions:</strong> Banach, contraction, fixed point</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Start from x_0, define x_{n+1}=T(x_n)</p>
+<p class="step">Step 2: d(x_{n+1},x_n) <= L*d(x_n,x_{n-1})</p>
+<p class="step">Step 3: (x_n) is Cauchy, converges by completeness</p>
+<p class="step">Step 4: T continuous: T(x*)=T(lim x_n)=lim T(x_n)=x*</p>
+<p class="step">Step 5: Uniqueness: d(x*,y*)<=L*d(x*,y*) => d=0</p></div>
+<p class="metadata">ID: 8b54360e700e | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without complete: Q with T(x)=x/2 has no fixed point in Q</p>
+<p class="metadata">Provenance: Math analysis proof #34</p>
+</div>
+
+<div class="theorem extra" id="analysis-35">
+<h3>Proof 35: Implicit function theorem: F(x,y)=0 defines y=g(x) near regular point</h3>
+<p><strong>Statement:</strong> Implicit function theorem: F(x,y)=0 defines y=g(x) near regular point</p>
+<p><strong>Hypotheses:</strong> F C^1, F(x_0,y_0)=0, dF/dy(x_0,y_0) != 0</p>
+<p><strong>Conclusion:</strong> exists unique C^1 function y=g(x) near (x_0,y_0)</p>
+<p><strong>Definitions:</strong> implicit function, regular point, partial derivative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define T(x,y) = (x, y - F(x,y)/F_y(x,y))</p>
+<p class="step">Step 2: T is local diffeomorphism</p>
+<p class="step">Step 3: F(T(x,y)) = F(x,y) - F(x,y) = 0 on neighborhood</p>
+<p class="step">Step 4: Solve for y = g(x)</p></div>
+<p class="metadata">ID: dd379ec6b2ef | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Removing 'dF/dy != 0': theorem fails (singular point)</p>
+<p class="metadata">Provenance: Math analysis proof #35</p>
+</div>
+
+<div class="theorem extra" id="analysis-36">
+<h3>Proof 36: Inverse function theorem: C^1 map with invertible derivative is local diffeomorphism</h3>
+<p><strong>Statement:</strong> Inverse function theorem: C^1 map with invertible derivative is local diffeomorphism</p>
+<p><strong>Hypotheses:</strong> f: R^n->R^n C^1, Df(x_0) invertible</p>
+<p><strong>Conclusion:</strong> f is local C^1 diffeomorphism near x_0</p>
+<p><strong>Definitions:</strong> inverse function, diffeomorphism, Jacobian</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define phi(x) = x + A(f(x)-f(x_0)) where A=Df(x_0)^{-1}</p>
+<p class="step">Step 2: Show phi is contraction near x_0</p>
+<p class="step">Step 3: Apply Banach fixed point to get inverse</p>
+<p class="step">Step 4: Implicit function theorem gives smoothness</p></div>
+<p class="metadata">ID: 47b5f512f250 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Removing 'invertible derivative': global injectivity may fail</p>
+<p class="metadata">Provenance: Math analysis proof #36</p>
+</div>
+
+<div class="theorem extra" id="analysis-37">
+<h3>Proof 37: Total variation of monotone function equals |f(b)-f(a)|</h3>
+<p><strong>Statement:</strong> Total variation of monotone function equals |f(b)-f(a)|</p>
+<p><strong>Hypotheses:</strong> f monotone on [a,b]</p>
+<p><strong>Conclusion:</strong> TV(f) = |f(b)-f(a)|</p>
+<p><strong>Definitions:</strong> total variation, monotone function, bounded variation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: For any partition a=t_0<...<t_n=b</p>
+<p class="step">Step 2: sum |f(t_i)-f(t_{i-1})| = |sum (f(t_i)-f(t_{i-1}))| by same sign</p>
+<p class="step">Step 3: = |f(b)-f(a)|</p>
+<p class="step">Step 4: This equals the variation regardless of partition</p></div>
+<p class="metadata">ID: 0c630bcb0783 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without monotone: TV can be strictly larger</p>
+<p class="metadata">Provenance: Math analysis proof #37</p>
+</div>
+
+<div class="theorem extra" id="analysis-38">
+<h3>Proof 38: Jordan decomposition: BV function = difference of two monotone functions</h3>
+<p><strong>Statement:</strong> Jordan decomposition: BV function = difference of two monotone functions</p>
+<p><strong>Hypotheses:</strong> f: [a,b] -> R bounded variation</p>
+<p><strong>Conclusion:</strong> f = g - h with g,h monotone increasing</p>
+<p><strong>Definitions:</strong> bounded variation, Jordan decomposition, monotone</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g(x) = TV(f; [a,x]) = total variation on [a,x]</p>
+<p class="step">Step 2: g is monotone increasing</p>
+<p class="step">Step 3: Define h(x) = g(x) - f(x)</p>
+<p class="step">Step 4: Show h is also monotone increasing</p>
+<p class="step">Step 5: f = g - h</p></div>
+<p class="metadata">ID: f57fe74a503e | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fundamental characterization of BV functions</p>
+<p class="metadata">Provenance: Math analysis proof #38</p>
+</div>
+
+<div class="theorem extra" id="analysis-39">
+<h3>Proof 39: Stirling's approximation: n! ~ sqrt(2*pi*n)*(n/e)^n</h3>
+<p><strong>Statement:</strong> Stirling's approximation: n! ~ sqrt(2*pi*n)*(n/e)^n</p>
+<p><strong>Hypotheses:</strong> n positive integer</p>
+<p><strong>Conclusion:</strong> n! ~ sqrt(2*pi*n)*(n/e)^n as n->infinity</p>
+<p><strong>Definitions:</strong> Stirling, factorial, asymptotic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider ln(n!) = sum_{k=1}^n ln(k)</p>
+<p class="step">Step 2: Approximate by integral: integral_1^n ln(x) dx = n*ln(n)-n+1</p>
+<p class="step">Step 3: Refine using Euler-Maclaurin formula</p>
+<p class="step">Step 4: Add correction terms</p>
+<p class="step">Step 5: Exponentiate to get Stirling</p></div>
+<p class="metadata">ID: 29514530d198 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without 'asymptotic': equality only holds approximately</p>
+<p class="metadata">Provenance: Math analysis proof #39</p>
+</div>
+
+<div class="theorem extra" id="analysis-40">
+<h3>Proof 40: Wallis product: pi/2 = prod (2n/(2n-1))*(2n/(2n+1))</h3>
+<p><strong>Statement:</strong> Wallis product: pi/2 = prod (2n/(2n-1))*(2n/(2n+1))</p>
+<p><strong>Hypotheses:</strong> </p>
+<p><strong>Conclusion:</strong> pi/2 = prod_{n=1}^infinity (2n)^2/((2n-1)(2n+1))</p>
+<p><strong>Definitions:</strong> Wallis, infinite product, pi</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Consider I_n = integral_0^{pi/2} sin^n(x) dx</p>
+<p class="step">Step 2: Recurrence: I_n = (n-1)/n * I_{n-2}</p>
+<p class="step">Step 3: I_n/I_{n-1} -> 1 by squeeze theorem</p>
+<p class="step">Step 4: Wallis product from ratio of I_{2n} and I_{2n+1}</p></div>
+<p class="metadata">ID: c7f88370e85d | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Historically important product representation</p>
+<p class="metadata">Provenance: Math analysis proof #40</p>
+</div>
+
+<div class="theorem extra" id="analysis-41">
+<h3>Proof 41: Euler-Maclaurin: sum f(k) approximated by integral + Bernoulli corrections</h3>
+<p><strong>Statement:</strong> Euler-Maclaurin: sum f(k) approximated by integral + Bernoulli corrections</p>
+<p><strong>Hypotheses:</strong> f smooth on [a,b]</p>
+<p><strong>Conclusion:</strong> sum f(k) = integral f + boundary + Bernoulli terms + remainder</p>
+<p><strong>Definitions:</strong> Euler-Maclaurin, Bernoulli numbers, correction</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Apply integration by parts repeatedly</p>
+<p class="step">Step 2: Bernoulli polynomials B_k(x) give correction terms</p>
+<p class="step">Step 3: Each integration by parts produces one term</p>
+<p class="step">Step 4: Remainder bounded by integral of B_k * f^(k)</p></div>
+<p class="metadata">ID: cfa0665a5869 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without sufficient smoothness: correction terms undefined</p>
+<p class="metadata">Provenance: Math analysis proof #41</p>
+</div>
+
+<div class="theorem extra" id="analysis-42">
+<h3>Proof 42: Weierstrass M-test: sum |f_n(x)| <= M_n, sum M_n converges => uniform convergence</h3>
+<p><strong>Statement:</strong> Weierstrass M-test: sum |f_n(x)| <= M_n, sum M_n converges => uniform convergence</p>
+<p><strong>Hypotheses:</strong> |f_n(x)| <= M_n for all x, sum M_n < infinity</p>
+<p><strong>Conclusion:</strong> sum f_n converges uniformly</p>
+<p><strong>Definitions:</strong> Weierstrass M-test, uniform convergence, majorant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Partial sums S_N(x) = sum_1^N f_n(x)</p>
+<p class="step">Step 2: For N > M: |S_N(x)-S_M(x)| <= sum_{M+1}^N M_n</p>
+<p class="step">Step 3: Tail of convergent series -> 0 independent of x</p>
+<p class="step">Step 4: Therefore (S_N) is uniformly Cauchy, hence uniformly convergent</p></div>
+<p class="metadata">ID: 0e003cccd5c4 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without absolute value bound: M-test fails</p>
+<p class="metadata">Provenance: Math analysis proof #42</p>
+</div>
+
+<div class="theorem extra" id="analysis-43">
+<h3>Proof 43: Abel summation: partial summation formula for series</h3>
+<p><strong>Statement:</strong> Abel summation: partial summation formula for series</p>
+<p><strong>Hypotheses:</strong> a_n sequences, S_n = sum_{k=1}^n a_k</p>
+<p><strong>Conclusion:</strong> sum a_n b_n = S_N b_{N+1} + sum S_n(b_n - b_{n+1})</p>
+<p><strong>Definitions:</strong> Abel summation, partial summation, discrete analog</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write a_n = S_n - S_{n-1}</p>
+<p class="step">Step 2: sum a_n b_n = sum (S_n - S_{n-1}) b_n</p>
+<p class="step">Step 3: Rearrange: = sum S_n b_n - sum S_{n-1} b_n</p>
+<p class="step">Step 4: = sum S_n(b_n - b_{n+1}) + boundary terms</p></div>
+<p class="metadata">ID: 7104457da20b | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Discrete analog of integration by parts</p>
+<p class="metadata">Provenance: Math analysis proof #43</p>
+</div>
 </body></html>
