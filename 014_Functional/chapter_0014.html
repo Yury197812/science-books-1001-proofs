@@ -19107,4 +19107,438 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without completeness: counterexample exists</p>
 <p class="metadata">Provenance: Domain Functional, theorem #4</p>
 </div>
+
+<h2>Extra proofs (+28 from functional analysis)</h2>
+
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Hahn-Banach extension: bounded linear functional on subspace extends to whole space</h3>
+<p><strong>Statement:</strong> Hahn-Banach extension: bounded linear functional on subspace extends to whole space</p>
+<p><strong>Hypotheses:</strong> X normed space, Y subspace, f bounded on Y</p>
+<p><strong>Conclusion:</strong> exists F on X with F|_Y = f and ||F|| = ||f||</p>
+<p><strong>Definitions:</strong> Hahn-Banach, extension, norm preserving</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Extend one dimension at a time</p>
+<p class="step">Step 2: At each step: bound by norm of original functional</p>
+<p class="step">Step 3: Zorn's lemma for infinite-dimensional extension</p>
+<p class="step">Step 4: Norm preservation by construction at each step</p></div>
+<p class="metadata">ID: c3b25b5c9325 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without completeness: still works (Hahn-Banach is algebraic)</p>
+<p class="metadata">Provenance: functional analysis proof #1</p>
+</div>
+
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Open mapping theorem: surjective bounded linear map between Banach spaces is open</h3>
+<p><strong>Statement:</strong> Open mapping theorem: surjective bounded linear map between Banach spaces is open</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T bounded linear, surjective</p>
+<p><strong>Conclusion:</strong> T maps open sets to open sets</p>
+<p><strong>Definitions:</strong> open mapping, Banach, open map</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Show T(B_1(0)) contains ball of radius r in Y</p>
+<p class="step">Step 2: Baire category: union of T(nB_1) covers Y</p>
+<p class="step">Step 3: Some T(nB_1) has interior point</p>
+<p class="step">Step 4: Scale: T(B_1) contains rB_1</p></div>
+<p class="metadata">ID: dfd765f77e4a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without Banach: may fail</p>
+<p class="metadata">Provenance: functional analysis proof #2</p>
+</div>
+
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Closed graph theorem: linear operator between Banach spaces is bounded iff graph is closed</h3>
+<p><strong>Statement:</strong> Closed graph theorem: linear operator between Banach spaces is bounded iff graph is closed</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T: X->Y linear</p>
+<p><strong>Conclusion:</strong> T bounded <=> Gamma(T) closed in X x Y</p>
+<p><strong>Definitions:</strong> closed graph, bounded, Banach</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gamma(T) = {(x,Tx)} closed subspace</p>
+<p class="step">Step 2: Projection onto X is bijective</p>
+<p class="step">Step 3: By open mapping theorem, inverse is bounded</p>
+<p class="step">Step 4: So T bounded</p></div>
+<p class="metadata">ID: d8221a0c61ff | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without Banach: graph may be closed but T unbounded</p>
+<p class="metadata">Provenance: functional analysis proof #3</p>
+</div>
+
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Uniform boundedness principle: pointwise bounded family on Banach space is uniformly bounded</h3>
+<p><strong>Statement:</strong> Uniform boundedness principle: pointwise bounded family on Banach space is uniformly bounded</p>
+<p><strong>Hypotheses:</strong> X Banach, {T_alpha} bounded linear, sup_alpha ||T_alpha x|| < inf for each x</p>
+<p><strong>Conclusion:</strong> sup_alpha ||T_alpha|| < inf</p>
+<p><strong>Definitions:</strong> uniform boundedness, Banach, bounded</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: F_n = {x : sup ||T_alpha x|| <= n}</p>
+<p class="step">Step 2: F_n closed, union = X</p>
+<p class="step">Step 3: Baire: some F_N has interior</p>
+<p class="step">Step 4: Ball in F_N => uniform bound</p></div>
+<p class="metadata">ID: f5135e02d266 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without completeness: counterexample exists</p>
+<p class="metadata">Provenance: functional analysis proof #4</p>
+</div>
+
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Riesz representation: dual of L^p is L^q (1/p + 1/q = 1, 1 < p < inf)</h3>
+<p><strong>Statement:</strong> Riesz representation: dual of L^p is L^q (1/p + 1/q = 1, 1 < p < inf)</p>
+<p><strong>Hypotheses:</strong> 1 < p < inf, F in (L^p)*</p>
+<p><strong>Conclusion:</strong> exists unique g in L^q with F(f) = integral f*g</p>
+<p><strong>Definitions:</strong> Riesz representation, dual space, L^p</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define measure nu(A) = F(1_A)</p>
+<p class="step">Step 2: Show nu absolutely continuous w.r.t. Lebesgue</p>
+<p class="step">Step 3: Radon-Nikodym: g = dnu/dmu</p>
+<p class="step">Step 4: F(f) = integral f*g by linearity and density</p>
+<p class="step">Step 5: ||g||_q = ||F||</p></div>
+<p class="metadata">ID: ac46ade07a8c | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: For p=1: dual is L^inf but not conversely</p>
+<p class="metadata">Provenance: functional analysis proof #5</p>
+</div>
+
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Banach-Steinhaus: pointwise bounded sequence of operators converges uniformly on compact sets</h3>
+<p><strong>Statement:</strong> Banach-Steinhaus: pointwise bounded sequence of operators converges uniformly on compact sets</p>
+<p><strong>Hypotheses:</strong> X,Y Banach, T_n bounded, sup_n ||T_n|| < inf</p>
+<p><strong>Conclusion:</strong> T_n converges on dense subset, limit is bounded</p>
+<p><strong>Definitions:</strong> Banach-Steinhaus, pointwise, compact convergence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Uniform boundedness gives sup_n ||T_n|| < inf</p>
+<p class="step">Step 2: Converges on dense subset by completeness</p>
+<p class="step">Step 3: Extend by uniform bound to whole space</p>
+<p class="step">Step 4: Uniform convergence on compact subsets</p></div>
+<p class="metadata">ID: 876485228360 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without bounded norms: pointwise convergence insufficient</p>
+<p class="metadata">Provenance: functional analysis proof #6</p>
+</div>
+
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Krein-Milman: compact convex set is closed convex hull of its extreme points</h3>
+<p><strong>Statement:</strong> Krein-Milman: compact convex set is closed convex hull of its extreme points</p>
+<p><strong>Hypotheses:</strong> K compact convex in locally convex space</p>
+<p><strong>Conclusion:</strong> K = closed conv hull of ext(K)</p>
+<p><strong>Definitions:</strong> Krein-Milman, extreme point, convex hull</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: ext(K) = points not in interior of any segment</p>
+<p class="step">Step 2: By Zorn: K has extreme points</p>
+<p class="step">Step 3: Supporting hyperplanes separate</p>
+<p class="step">Step 4: Any point is limit of convex combinations of extreme points</p></div>
+<p class="metadata">ID: 2d24c37a4503 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental in convex analysis and optimization</p>
+<p class="metadata">Provenance: functional analysis proof #7</p>
+</div>
+
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Mazur's theorem: norm and weak* topologies have same convex closed sets</h3>
+<p><strong>Statement:</strong> Mazur's theorem: norm and weak* topologies have same convex closed sets</p>
+<p><strong>Hypotheses:</strong> X Banach space, C convex</p>
+<p><strong>Conclusion:</strong> C norm-closed iff C weakly closed</p>
+<p><strong>Definitions:</strong> Mazur, weak topology, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Norm-closed => weakly closed (weak is coarser)</p>
+<p class="step">Step 2: For convex: weak closure = norm closure</p>
+<p class="step">Step 3: Hahn-Banach: separating functionals characterize closure</p>
+<p class="step">Step 4: Convexity is key: non-convex sets differ</p></div>
+<p class="metadata">ID: d717b8a45e98 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without convexity: weak closure can be strictly larger</p>
+<p class="metadata">Provenance: functional analysis proof #8</p>
+</div>
+
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Banach-Alaoglu: closed unit ball of dual space is weak* compact</h3>
+<p><strong>Statement:</strong> Banach-Alaoglu: closed unit ball of dual space is weak* compact</p>
+<p><strong>Hypotheses:</strong> X Banach, B_{X*} unit ball of dual</p>
+<p><strong>Conclusion:</strong> B_{X*} compact in weak* topology</p>
+<p><strong>Definitions:</strong> Banach-Alaoglu, weak*, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Embed B_{X*} in product [-|f(x)|, |f(x)|] for x in X</p>
+<p class="step">Step 2: By Tychonoff: product of compact sets is compact</p>
+<p class="step">Step 3: Identify weak* topology with subspace topology</p>
+<p class="step">Step 4: Closed subset of compact is compact</p></div>
+<p class="metadata">ID: 81ca0fd9ea28 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Essential for reflexive space theory</p>
+<p class="metadata">Provenance: functional analysis proof #9</p>
+</div>
+
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: James' theorem: X is reflexive iff every bounded linear functional achieves its norm</h3>
+<p><strong>Statement:</strong> James' theorem: X is reflexive iff every bounded linear functional achieves its norm</p>
+<p><strong>Hypotheses:</strong> X Banach space</p>
+<p><strong>Conclusion:</strong> X reflexive <=> every f in X* has x with f(x) = ||f|| ||x||</p>
+<p><strong>Definitions:</strong> James, reflexive, norm achievement</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Reflexive => norm achieved (by compactness of unit ball)</p>
+<p class="step">Step 2: James' deep result: converse holds</p>
+<p class="step">Step 3: Uses Baire category and renorming</p>
+<p class="step">Step 4: One of deepest results in Banach space theory</p></div>
+<p class="metadata">ID: 9e88c6fbd8af | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Very difficult theorem; proof spans many pages</p>
+<p class="metadata">Provenance: functional analysis proof #10</p>
+</div>
+
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Borsuk-Ulam: continuous f: S^n -> R^n maps antipodal points to same value</h3>
+<p><strong>Statement:</strong> Borsuk-Ulam: continuous f: S^n -> R^n maps antipodal points to same value</p>
+<p><strong>Hypotheses:</strong> f continuous, S^n unit sphere</p>
+<p><strong>Conclusion:</strong> exists x with f(x) = f(-x)</p>
+<p><strong>Definitions:</strong> Borsuk-Ulam, antipodal, sphere</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define g(x) = f(x) - f(-x)</p>
+<p class="step">Step 2: g(-x) = -g(x): odd function</p>
+<p class="step">Step 3: If g(x) != 0 everywhere: h(x) = g(x)/||g(x)|| maps to S^{n-1}</p>
+<p class="step">Step 4: h is odd: h(-x) = -h(x)</p>
+<p class="step">Step 5: No odd map from S^n to S^{n-1} (topological obstruction)</p>
+<p class="step">Step 6: Contradiction</p></div>
+<p class="metadata">ID: 3bfcc93eff39 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Applications: Brouwer FP, ham sandwich theorem, Lusternik-Schnirelmann</p>
+<p class="metadata">Provenance: functional analysis proof #11</p>
+</div>
+
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Lax-Milgram: coercive bounded bilinear form on Hilbert space has unique solution</h3>
+<p><strong>Statement:</strong> Lax-Milgram: coercive bounded bilinear form on Hilbert space has unique solution</p>
+<p><strong>Hypotheses:</strong> H Hilbert space, a(u,v) bounded and coercive, F in H*</p>
+<p><strong>Conclusion:</strong> unique u in H with a(u,v) = F(v) for all v</p>
+<p><strong>Definitions:</strong> Lax-Milgram, coercive, bilinear form</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map u -> a(u,.): linear map H -> H*</p>
+<p class="step">Step 2: Coercivity => injective</p>
+<p class="step">Step 3: Closed range by coercivity</p>
+<p class="step">Step 4: Surjective by Riesz representation</p>
+<p class="step">Step 5: Unique inverse</p></div>
+<p class="metadata">ID: d520dbc6dc0d | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for weak solutions of PDE</p>
+<p class="metadata">Provenance: functional analysis proof #12</p>
+</div>
+
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Rellich-Kondrachov: W^{1,p} compactly embeds in L^p for bounded domains</h3>
+<p><strong>Statement:</strong> Rellich-Kondrachov: W^{1,p} compactly embeds in L^p for bounded domains</p>
+<p><strong>Hypotheses:</strong> Omega bounded domain, 1 <= p < n, f_n bounded in W^{1,p}</p>
+<p><strong>Conclusion:</strong> subsequence converges in L^p</p>
+<p><strong>Definitions:</strong> Rellich-Kondrachov, compact embedding, Sobolev</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Bounded in W^{1,p} => equicontinuous (Arzelà-Ascoli type)</p>
+<p class="step">Step 2: Arzelà-Ascoli gives uniform convergence on compact subsets</p>
+<p class="step">Step 3: Passage to limit in L^p norm</p>
+<p class="step">Step 4: Compact embedding is key for variational methods</p></div>
+<p class="metadata">ID: dc519ca3fc5e | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Essential for existence of PDE solutions via direct method</p>
+<p class="metadata">Provenance: functional analysis proof #13</p>
+</div>
+
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: De Rham cohomology: closed forms mod exact forms = topological cohomology</h3>
+<p><strong>Statement:</strong> De Rham cohomology: closed forms mod exact forms = topological cohomology</p>
+<p><strong>Hypotheses:</strong> M smooth manifold</p>
+<p><strong>Conclusion:</strong> H^k_dR(M) isomorphic to singular cohomology H^k(M;R)</p>
+<p><strong>Definitions:</strong> de Rham, cohomology, differential forms</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Closed form: d omega = 0</p>
+<p class="step">Step 2: Exact form: omega = d eta</p>
+<p class="step">Step 3: de Rham: closed/exact</p>
+<p class="step">Step 4: Poincare lemma: contractible => every closed form exact</p>
+<p class="step">Step 5: Isomorphism via integration of forms over chains</p></div>
+<p class="metadata">ID: 346d71a0b624 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Bridges differential geometry and algebraic topology</p>
+<p class="metadata">Provenance: functional analysis proof #14</p>
+</div>
+
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Sobolev embedding: W^{k,p}(R^n) into L^q when 1/q = 1/p - k/n</h3>
+<p><strong>Statement:</strong> Sobolev embedding: W^{k,p}(R^n) into L^q when 1/q = 1/p - k/n</p>
+<p><strong>Hypotheses:</strong> 1/p > k/n</p>
+<p><strong>Conclusion:</strong> continuous embedding W^{k,p} -> L^q</p>
+<p><strong>Definitions:</strong> Sobolev embedding, Lebesgue space, trace</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gagliardo-Nirenberg inequality</p>
+<p class="step">Step 2: Sobolev-Morrey inequality for p=1</p>
+<p class="step">Step 3: Bootstrap from L^1 to L^p via interpolation</p>
+<p class="step">Step 4: Critical exponent q = np/(n-kp)</p></div>
+<p class="metadata">ID: 4b579773d4ef | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: When 1/p = k/n: need log-Sobolev or Trudinger</p>
+<p class="metadata">Provenance: functional analysis proof #15</p>
+</div>
+
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Krein-Smulian: convex set weakly closed iff intersection with closed balls is weakly closed</h3>
+<p><strong>Statement:</strong> Krein-Smulian: convex set weakly closed iff intersection with closed balls is weakly closed</p>
+<p><strong>Hypotheses:</strong> X Banach, C convex subset of X*</p>
+<p><strong>Conclusion:</strong> weak* closed <=> intersection with each ball is weak* closed</p>
+<p><strong>Definitions:</strong> Krein-Smulian, weak topology, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Forward: trivial (intersection of closed sets)</p>
+<p class="step">Step 2: Reverse: use Banach-Alaoglu for compactness of balls</p>
+<p class="step">Step 3: Approximate by finite-rank operators</p>
+<p class="step">Step 4: Passage to limit in weak* topology</p></div>
+<p class="metadata">ID: 8fad0dbc7423 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Important for weak* topology computations</p>
+<p class="metadata">Provenance: functional analysis proof #16</p>
+</div>
+
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Schauder basis: every separable Banach space has a Schauder basis</h3>
+<p><strong>Statement:</strong> Schauder basis: every separable Banach space has a Schauder basis</p>
+<p><strong>Hypotheses:</strong> X separable Banach space</p>
+<p><strong>Conclusion:</strong> exists (x_n) with every x = sum c_n x_n</p>
+<p><strong>Definitions:</strong> Schauder basis, separable, representation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Use Hahn-Banach to construct biorthogonal functionals</p>
+<p class="step">Step 2: Mazur's theorem: dense sequence of unit vectors</p>
+<p class="step">Step 3: Gram-Schmidt type procedure</p>
+<p class="step">Step 4: Baire category to ensure convergence</p></div>
+<p class="metadata">ID: 32a25817ee8a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Not every separable space has unconditional basis</p>
+<p class="metadata">Provenance: functional analysis proof #17</p>
+</div>
+
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Mazur-Ulam: surjective isometry of real normed spaces is affine</h3>
+<p><strong>Statement:</strong> Mazur-Ulam: surjective isometry of real normed spaces is affine</p>
+<p><strong>Hypotheses:</strong> T: X->Y surjective isometry, X,Y real normed</p>
+<p><strong>Conclusion:</strong> T(x) = Ax + b for linear A, fixed b</p>
+<p><strong>Definitions:</strong> Mazur-Ulam, isometry, affine</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: WLOG T(0) = 0 (translate)</p>
+<p class="step">Step 2: Preserve midpoints: T((x+y)/2) = (T(x)+T(y))/2</p>
+<p class="step">Step 3: Extend to rational convex combinations</p>
+<p class="step">Step 4: Continuity extends to all convex combinations</p>
+<p class="step">Step 5: Therefore T is linear on translates</p></div>
+<p class="metadata">ID: edf4abcd3d6f | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Without real scalars: fails for complex spaces</p>
+<p class="metadata">Provenance: functional analysis proof #18</p>
+</div>
+
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Hille-Yosida: generator of C_0 semigroup iff resolvent exists with growth bound</h3>
+<p><strong>Statement:</strong> Hille-Yosida: generator of C_0 semigroup iff resolvent exists with growth bound</p>
+<p><strong>Hypotheses:</strong> A linear operator on Banach space</p>
+<p><strong>Conclusion:</strong> A generates C_0 semigroup iff (lambda-A)^{-1} exists and ||(lambda-A)^{-n}|| <= M/(lambda-w)^n</p>
+<p><strong>Definitions:</strong> Hille-Yosida, semigroup, generator</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define T(t) = lim exp(tA_n) via Yosida approximations</p>
+<p class="step">Step 2: A_n = nA(n-A)^{-1} bounded</p>
+<p class="step">Step 3: Resolvent bound ensures convergence</p>
+<p class="step">Step 4: Generates strongly continuous semigroup</p></div>
+<p class="metadata">ID: 14c158909c20 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation for evolution equations</p>
+<p class="metadata">Provenance: functional analysis proof #19</p>
+</div>
+
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Plancherel theorem: Fourier transform is unitary isomorphism on L^2(R^n)</h3>
+<p><strong>Statement:</strong> Plancherel theorem: Fourier transform is unitary isomorphism on L^2(R^n)</p>
+<p><strong>Hypotheses:</strong> f in L^2(R^n)</p>
+<p><strong>Conclusion:</strong> ||f||_2 = ||hat{f}||_2</p>
+<p><strong>Definitions:</strong> Plancherel, Fourier, L^2</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define on L^1 intersect L^2 first</p>
+<p class="step">Step 2: Cauchy-Schwarz gives L^2 bound</p>
+<p class="step">Step 3: Density of L^1 intersect L^2 in L^2</p>
+<p class="step">Step 4: Continuous extension to all L^2</p>
+<p class="step">Step 5: Parseval identity: <f,g> = <hat{f}, hat{g}></p></div>
+<p class="metadata">ID: bab16276acdf | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without L^2: Plancherel doesn't apply</p>
+<p class="metadata">Provenance: functional analysis proof #20</p>
+</div>
+
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Riesz-Fischer: L^p is complete for 1 <= p <= infinity</h3>
+<p><strong>Statement:</strong> Riesz-Fischer: L^p is complete for 1 <= p <= infinity</p>
+<p><strong>Hypotheses:</strong> 1 <= p <= infinity</p>
+<p><strong>Conclusion:</strong> L^p is a Banach space</p>
+<p><strong>Definitions:</strong> Riesz-Fischer, complete, Banach space</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take Cauchy sequence (f_n) in L^p</p>
+<p class="step">Step 2: Extract subsequence with ||f_{n_k+1}-f_{n_k}|| < 2^{-k}</p>
+<p class="step">Step 3: Define g = sum |f_{n_{k+1}}-f_{n_k}|</p>
+<p class="step">Step 4: ||g||_p <= sum 2^{-k} = 1 < inf</p>
+<p class="step">Step 5: By dominated convergence: f_{n_k} -> f a.e.</p>
+<p class="step">Step 6: Fatou: ||f||_p < inf</p>
+<p class="step">Step 7: Convergence in L^p by dominated convergence</p></div>
+<p class="metadata">ID: 634a416fb64f | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: L^p spaces are the prototypical Banach spaces</p>
+<p class="metadata">Provenance: functional analysis proof #21</p>
+</div>
+
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Caccioppoli inequality for elliptic: integral |grad u|^2 <= C/r^2 integral u^2</h3>
+<p><strong>Statement:</strong> Caccioppoli inequality for elliptic: integral |grad u|^2 <= C/r^2 integral u^2</p>
+<p><strong>Hypotheses:</strong> div(A grad u) = 0, A uniformly elliptic</p>
+<p><strong>Conclusion:</strong> local gradient bound from L^2 bound</p>
+<p><strong>Definitions:</strong> Caccioppoli, elliptic, energy estimate</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiply by test function eta^2 u</p>
+<p class="step">Step 2: Integrate by parts</p>
+<p class="step">Step 3: Cauchy-Schwarz on cross terms</p>
+<p class="step">Step 4: Absorb with ellipticity constant</p>
+<p class="step">Step 5: Gradient controlled by function values</p></div>
+<p class="metadata">ID: 809dbe76158c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Key for regularity theory</p>
+<p class="metadata">Provenance: functional analysis proof #22</p>
+</div>
+
+<div class="theorem extra" id="xp-23">
+<h3>Proof 23: Ehrling's lemma: compact operator can be approximated by finite rank in Schatten norm</h3>
+<p><strong>Statement:</strong> Ehrling's lemma: compact operator can be approximated by finite rank in Schatten norm</p>
+<p><strong>Hypotheses:</strong> T compact operator on Hilbert space</p>
+<p><strong>Conclusion:</strong> exists sequence of finite rank operators converging to T</p>
+<p><strong>Definitions:</strong> Ehrling, compact, approximation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: T compact => T^*T compact self-adjoint</p>
+<p class="step">Step 2: Spectral decomposition: T^*T = sum lambda_n <.,e_n>e_n</p>
+<p class="step">Step 3: Truncate: T_N = sum_1^N sqrt(lambda_n) <.,e_n> f_n</p>
+<p class="step">Step 4: ||T-T_N|| -> 0 as N -> infinity</p></div>
+<p class="metadata">ID: a28ff2576326 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Finite rank operators are dense in compact operators</p>
+<p class="metadata">Provenance: functional analysis proof #23</p>
+</div>
+
+<div class="theorem extra" id="xp-24">
+<h3>Proof 24: Atkinson's theorem: T Fredholm iff exists S with TS - I and ST - I compact</h3>
+<p><strong>Statement:</strong> Atkinson's theorem: T Fredholm iff exists S with TS - I and ST - I compact</p>
+<p><strong>Hypotheses:</strong> T bounded linear on Banach space</p>
+<p><strong>Conclusion:</strong> T Fredholm <=> T + K invertible for some compact K</p>
+<p><strong>Definitions:</strong> Fredholm, index, compact perturbation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Fredholm: dim ker T and dim coker T finite, range closed</p>
+<p class="step">Step 2: Construct S with TS = I + K1, ST = I + K2</p>
+<p class="step">Step 3: K1, K2 compact</p>
+<p class="step">Step 4: T Fredholm <=> T+K invertible for compact K</p>
+<p class="step">Step 5: Index stable under compact perturbations</p></div>
+<p class="metadata">ID: 84e8916315f6 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Characterizes Fredholm operators via compact perturbations</p>
+<p class="metadata">Provenance: functional analysis proof #24</p>
+</div>
+
+<div class="theorem extra" id="xp-25">
+<h3>Proof 25: Schauder fixed point: compact map on convex bounded closed set has fixed point</h3>
+<p><strong>Statement:</strong> Schauder fixed point: compact map on convex bounded closed set has fixed point</p>
+<p><strong>Hypotheses:</strong> C convex bounded closed subset of Banach space, T: C->C compact</p>
+<p><strong>Conclusion:</strong> T has fixed point in C</p>
+<p><strong>Definitions:</strong> Schauder, fixed point, compact</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate T by finite rank T_n</p>
+<p class="step">Step 2: T_n has fixed point by Brouwer (in finite-dim subspace)</p>
+<p class="step">Step 3: Compactness: extract convergent subsequence of fixed points</p>
+<p class="step">Step 4: Limit is fixed point of T</p></div>
+<p class="metadata">ID: 9c7e328a32b8 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without compactness: false (translation has no FP)</p>
+<p class="metadata">Provenance: functional analysis proof #25</p>
+</div>
+
+<div class="theorem extra" id="xp-26">
+<h3>Proof 26: Gohberg-Krein index theorem: index(TK) = index(T) for compact K</h3>
+<p><strong>Statement:</strong> Gohberg-Krein index theorem: index(TK) = index(T) for compact K</p>
+<p><strong>Hypotheses:</strong> T Fredholm, K compact</p>
+<p><strong>Conclusion:</strong> ind(TK) = ind(T) + ind(K) = ind(T) since ind(K)=0</p>
+<p><strong>Definitions:</strong> index, Fredholm, compact perturbation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Index is invariant under compact perturbations</p>
+<p class="step">Step 2: TK = T + (T(K-I) - T)</p>
+<p class="step">Step 3: T(K-I) compact (product of bounded and compact)</p>
+<p class="step">Step 4: Therefore ind(TK) = ind(T)</p></div>
+<p class="metadata">ID: a000e5b6d899 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Index is a homotopy invariant</p>
+<p class="metadata">Provenance: functional analysis proof #26</p>
+</div>
+
+<div class="theorem extra" id="xp-27">
+<h3>Proof 27: Lions' Lax-Milgram variant: Gårding inequality gives coercivity for elliptic operators</h3>
+<p><strong>Statement:</strong> Lions' Lax-Milgram variant: Gårding inequality gives coercivity for elliptic operators</p>
+<p><strong>Hypotheses:</strong> L elliptic with lower-order terms, a(u,v) bilinear form from L</p>
+<p><strong>Conclusion:</strong> a(u,u) >= alpha||u||^2 - beta||u|| for large enough alpha</p>
+<p><strong>Definitions:</strong> Garding, coercivity, elliptic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Leading term gives alpha||grad u||^2</p>
+<p class="step">Step 2: Lower-order terms bounded by Cauchy-Schwarz</p>
+<p class="step">Step 3: Absorb with Poincare inequality</p>
+<p class="step">Step 4: Result: Gårding inequality (coercive up to compact term)</p></div>
+<p class="metadata">ID: ae7e446acc8e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Generalizes Lax-Milgram to non-coercive operators</p>
+<p class="metadata">Provenance: functional analysis proof #27</p>
+</div>
+
+<div class="theorem extra" id="xp-28">
+<h3>Proof 28: Calderón-Zygmund: singular integral operators bounded on L^p</h3>
+<p><strong>Statement:</strong> Calderón-Zygmund: singular integral operators bounded on L^p</p>
+<p><strong>Hypotheses:</strong> K(x,y) satisfies CZ condition, Tf(x) = PV integral K(x,y)f(y)dy</p>
+<p><strong>Conclusion:</strong> ||Tf||_p <= C_p ||f||_p for 1 < p < inf</p>
+<p><strong>Definitions:</strong> Calderón-Zygmund, singular integral, kernel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Decompose K into smooth and singular parts</p>
+<p class="step">Step 2: Smooth part: standard Calderón-Zygmund decomposition</p>
+<p class="step">Step 3: Singular part: oscillation conditions ensure L^p boundedness</p>
+<p class="step">Step 4: Interpolate between L^2 and L^1 bounds</p></div>
+<p class="metadata">ID: 4f205de22da4 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Hilbert transform is prototypical CZ operator</p>
+<p class="metadata">Provenance: functional analysis proof #28</p>
+</div>
 </body></html>

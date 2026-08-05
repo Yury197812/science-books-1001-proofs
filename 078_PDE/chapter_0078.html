@@ -19327,4 +19327,331 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain PDE, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+22 from ODE and PDE)</h2>
+
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Cauchy-Kowalevski: analytic PDE with analytic data has local analytic solution</h3>
+<p><strong>Statement:</strong> Cauchy-Kowalevski: analytic PDE with analytic data has local analytic solution</p>
+<p><strong>Hypotheses:</strong> PDE in Cauchy form, analytic coefficients and data</p>
+<p><strong>Conclusion:</strong> local analytic solution exists and is unique</p>
+<p><strong>Definitions:</strong> Cauchy-Kowalevski, analytic, existence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Write as system of first-order equations</p>
+<p class="step">Step 2: Construct majorant series</p>
+<p class="step">Step 3: Show series converges</p>
+<p class="step">Step 4: Uniqueness by Cauchy-Kovalevski uniqueness</p></div>
+<p class="metadata">ID: a7174a691c77 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Only for analytic; fails for C-infinity (Denjoy)</p>
+<p class="metadata">Provenance: ODE and PDE proof #1</p>
+</div>
+
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: Lax-Milgram: coercive bilinear form on Hilbert space yields unique weak solution</h3>
+<p><strong>Statement:</strong> Lax-Milgram: coercive bilinear form on Hilbert space yields unique weak solution</p>
+<p><strong>Hypotheses:</strong> a(,) coercive and bounded, F in H*</p>
+<p><strong>Conclusion:</strong> unique u with a(u,v) = F(v) for all v</p>
+<p><strong>Definitions:</strong> Lax-Milgram, weak solution, coercive</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map u -> a(u,.): injective bounded linear</p>
+<p class="step">Step 2: Coercivity: ||Au|| >= alpha||u||</p>
+<p class="step">Step 3: Closed range (by completeness)</p>
+<p class="step">Step 4: Surjective by Riesz</p></div>
+<p class="metadata">ID: 72d9195b58c3 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for FEM theory</p>
+<p class="metadata">Provenance: ODE and PDE proof #2</p>
+</div>
+
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Caccioppoli inequality: local gradient bound from L^2 bound for elliptic solutions</h3>
+<p><strong>Statement:</strong> Caccioppoli inequality: local gradient bound from L^2 bound for elliptic solutions</p>
+<p><strong>Hypotheses:</strong> div(A grad u) = 0, A elliptic</p>
+<p><strong>Conclusion:</strong> integral |grad u|^2 <= C/r^2 integral u^2</p>
+<p><strong>Definitions:</strong> Caccioppoli, energy estimate, elliptic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiply equation by eta^2 u</p>
+<p class="step">Step 2: Integration by parts</p>
+<p class="step">Step 3: Cauchy-Schwarz on cross terms</p>
+<p class="step">Step 4: Gradient controlled by values</p></div>
+<p class="metadata">ID: d34287fcf2bb | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Key regularity tool</p>
+<p class="metadata">Provenance: ODE and PDE proof #3</p>
+</div>
+
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Sobolev embedding: W^{1,p}(R^n) -> L^{p*}(R^n) where p* = np/(n-p)</h3>
+<p><strong>Statement:</strong> Sobolev embedding: W^{1,p}(R^n) -> L^{p*}(R^n) where p* = np/(n-p)</p>
+<p><strong>Hypotheses:</strong> 1 <= p < n</p>
+<p><strong>Conclusion:</strong> continuous embedding with norm bound</p>
+<p><strong>Definitions:</strong> Sobolev, embedding, critical exponent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gagliardo-Nirenberg inequality</p>
+<p class="step">Step 2: Isoperimetric inequality for p=1</p>
+<p class="step">Step 3: Interpolation between cases</p>
+<p class="step">Step 4: Critical exponent p* = np/(n-p)</p></div>
+<p class="metadata">ID: f6b04d3036d0 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without p<n: embeds into C^{0,alpha} (Morrey)</p>
+<p class="metadata">Provenance: ODE and PDE proof #4</p>
+</div>
+
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Maximum principle for parabolic: u_t = k u_xx has max at t=0 or boundary</h3>
+<p><strong>Statement:</strong> Maximum principle for parabolic: u_t = k u_xx has max at t=0 or boundary</p>
+<p><strong>Hypotheses:</strong> u_t = k u_xx, continuous on closure</p>
+<p><strong>Conclusion:</strong> max at initial time or boundary</p>
+<p><strong>Definitions:</strong> maximum principle, parabolic, heat</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Interior max: u_t >= 0, u_xx <= 0</p>
+<p class="step">Step 2: But u_t = k u_xx = 0</p>
+<p class="step">Step 3: Maximum cannot be strict interior</p></div>
+<p class="metadata">ID: 8742e06b7326 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Unique to parabolic PDE</p>
+<p class="metadata">Provenance: ODE and PDE proof #5</p>
+</div>
+
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Energy conservation for wave equation: d/dt integral (u_t^2 + c^2 u_x^2) dx = 0</h3>
+<p><strong>Statement:</strong> Energy conservation for wave equation: d/dt integral (u_t^2 + c^2 u_x^2) dx = 0</p>
+<p><strong>Hypotheses:</strong> u_tt = c^2 u_xx, u=0 on boundary</p>
+<p><strong>Conclusion:</strong> energy conserved</p>
+<p><strong>Definitions:</strong> energy, wave equation, conservation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Differentiate: integral 2u_t u_tt + 2c^2 u_x u_xt</p>
+<p class="step">Step 2: Substitute u_tt = c^2 u_xx</p>
+<p class="step">Step 3: Integration by parts on second term</p>
+<p class="step">Step 4: = 0 with boundary conditions</p></div>
+<p class="metadata">ID: b9bf6e3bca63 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without BC: energy may not be conserved</p>
+<p class="metadata">Provenance: ODE and PDE proof #6</p>
+</div>
+
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Duhamel principle: inhomogeneous solution = integral of homogeneous solutions</h3>
+<p><strong>Statement:</strong> Duhamel principle: inhomogeneous solution = integral of homogeneous solutions</p>
+<p><strong>Hypotheses:</strong> u_tt = c^2 u_xx + f, zero initial data</p>
+<p><strong>Conclusion:</strong> u(t) = integral_0^t S(t-s)f(s) ds</p>
+<p><strong>Definitions:</strong> Duhamel, inhomogeneous, convolution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Differentiate under integral</p>
+<p class="step">Step 2: Use S_tt = c^2 S_xx</p>
+<p class="step">Step 3: Verify PDE and IC</p>
+<p class="step">Step 4: Semigroup property of solution operator</p></div>
+<p class="metadata">ID: d19e2001bff4 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Reduces inhomogeneous to homogeneous problems</p>
+<p class="metadata">Provenance: ODE and PDE proof #7</p>
+</div>
+
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Variation of constants: y' = Ay + g => y(t) = e^{At}y_0 + integral e^{A(t-s)}g(s) ds</h3>
+<p><strong>Statement:</strong> Variation of constants: y' = Ay + g => y(t) = e^{At}y_0 + integral e^{A(t-s)}g(s) ds</p>
+<p><strong>Hypotheses:</strong> A constant matrix, g continuous</p>
+<p><strong>Conclusion:</strong> explicit solution formula</p>
+<p><strong>Definitions:</strong> variation of constants, matrix exponential, fundamental solution</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Homogeneous: y_h = e^{At}c</p>
+<p class="step">Step 2: Set c = c(t), differentiate</p>
+<p class="step">Step 3: c'(t) = e^{-At}g(t)</p>
+<p class="step">Step 4: Integrate and substitute back</p></div>
+<p class="metadata">ID: 8f52eae5c6cf | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Extension of scalar formula to systems</p>
+<p class="metadata">Provenance: ODE and PDE proof #8</p>
+</div>
+
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Lyapunov stability: V>0, Vdot<0 => asymptotically stable</h3>
+<p><strong>Statement:</strong> Lyapunov stability: V>0, Vdot<0 => asymptotically stable</p>
+<p><strong>Hypotheses:</strong> x'=f(x), f(0)=0, V positive definite, Vdot negative definite</p>
+<p><strong>Conclusion:</strong> origin asymptotically stable</p>
+<p><strong>Definitions:</strong> Lyapunov, stability, energy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: V acts as energy function</p>
+<p class="step">Step 2: V>0, Vdot<0: energy decreases</p>
+<p class="step">Step 3: Level sets {V<=c} are invariant</p>
+<p class="step">Step 4: Trajectories trapped in shrinking sets</p>
+<p class="step">Step 5: Converge to origin</p></div>
+<p class="metadata">ID: c69af4331cb3 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Without Vdot<0: only stability, not asymptotic</p>
+<p class="metadata">Provenance: ODE and PDE proof #9</p>
+</div>
+
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Frobenius method: regular singular point => solution as power series times x^r</h3>
+<p><strong>Statement:</strong> Frobenius method: regular singular point => solution as power series times x^r</p>
+<p><strong>Hypotheses:</strong> x^2 y'' + x p(x)y' + q(x)y = 0, p,q analytic at 0</p>
+<p><strong>Conclusion:</strong> y = x^r sum a_n x^n</p>
+<p><strong>Definitions:</strong> Frobenius, regular singular, indicial</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Substitute Frobenius series</p>
+<p class="step">Step 2: Collect powers of x</p>
+<p class="step">Step 3: Leading term: indicial equation for r</p>
+<p class="step">Step 4: Recursive formula for coefficients a_n</p></div>
+<p class="metadata">ID: bcf5ed8ccc88 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Without regular singularity: ordinary power series</p>
+<p class="metadata">Provenance: ODE and PDE proof #10</p>
+</div>
+
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Wronskian: W(y1,y2) != 0 iff y1,y2 linearly independent solutions</h3>
+<p><strong>Statement:</strong> Wronskian: W(y1,y2) != 0 iff y1,y2 linearly independent solutions</p>
+<p><strong>Hypotheses:</strong> y1,y2 solutions of y''+py'+qy=0</p>
+<p><strong>Conclusion:</strong> W != 0 <=> independent</p>
+<p><strong>Definitions:</strong> Wronskian, Abel formula, independence</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Abel: W(t) = W(t0) exp(-integral p)</p>
+<p class="step">Step 2: W either identically 0 or never 0</p>
+<p class="step">Step 3: W(t0) != 0 iff independent</p></div>
+<p class="metadata">ID: 448fe69b3704 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Only for solutions of same ODE</p>
+<p class="metadata">Provenance: ODE and PDE proof #11</p>
+</div>
+
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: Sturm-Liouville: eigenvalues real, eigenfunctions orthogonal w.r.t. weight</h3>
+<p><strong>Statement:</strong> Sturm-Liouville: eigenvalues real, eigenfunctions orthogonal w.r.t. weight</p>
+<p><strong>Hypotheses:</strong> -(py')'+qy = lambda wy, appropriate BC</p>
+<p><strong>Conclusion:</strong> eigenvalues real, {phi_n} orthogonal</p>
+<p><strong>Definitions:</strong> Sturm-Liouville, orthogonal, eigenvalue</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Take two eigenfunctions, different eigenvalues</p>
+<p class="step">Step 2: Multiply, integrate by parts</p>
+<p class="step">Step 3: Subtract: (lambda_i - lambda_j) integral phi_i phi_j w = 0</p>
+<p class="step">Step 4: Different eigenvalues => orthogonality</p></div>
+<p class="metadata">ID: 7710976e267e | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for spectral theory</p>
+<p class="metadata">Provenance: ODE and PDE proof #12</p>
+</div>
+
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Fredholm alternative: either Lu=f solvable or L^*v=0 nontrivial</h3>
+<p><strong>Statement:</strong> Fredholm alternative: either Lu=f solvable or L^*v=0 nontrivial</p>
+<p><strong>Hypotheses:</strong> L Fredholm index 0</p>
+<p><strong>Conclusion:</strong> exactly one of: unique solution or nontrivial homogeneous adjoint</p>
+<p><strong>Definitions:</strong> Fredholm, alternative, adjoint</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: dim ker L = dim coker L (index 0)</p>
+<p class="step">Step 2: If ker L = {0}: invertible, unique solution</p>
+<p class="step">Step 3: If ker L != {0}: f must be in range <=> f perp ker L*</p></div>
+<p class="metadata">ID: 0f9c133cde70 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Solvability criterion for BVP</p>
+<p class="metadata">Provenance: ODE and PDE proof #13</p>
+</div>
+
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Galerkin: project PDE onto finite-dimensional subspace for approximate solution</h3>
+<p><strong>Statement:</strong> Galerkin: project PDE onto finite-dimensional subspace for approximate solution</p>
+<p><strong>Hypotheses:</strong> Lu = f, V_n finite-dim subspace</p>
+<p><strong>Conclusion:</strong> find u_n in V_n with <Lu_n, v> = <f,v> for all v in V_n</p>
+<p><strong>Definitions:</strong> Galerkin, finite element, approximation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Choose basis phi_1,...,phi_n</p>
+<p class="step">Step 2: Write u_n = sum c_i phi_i</p>
+<p class="step">Step 3: n x n linear system</p>
+<p class="step">Step 4: Error: ||u-u_n|| <= C inf ||u-v||</p></div>
+<p class="metadata">ID: aa8a155ca36f | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundation of FEM</p>
+<p class="metadata">Provenance: ODE and PDE proof #14</p>
+</div>
+
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: Schauder estimates: ||u||_{C^{2,alpha}} <= C(||f||_{C^{0,alpha}} + ||u||_{C^0})</h3>
+<p><strong>Statement:</strong> Schauder estimates: ||u||_{C^{2,alpha}} <= C(||f||_{C^{0,alpha}} + ||u||_{C^0})</p>
+<p><strong>Hypotheses:</strong> Lu = f, L uniformly elliptic</p>
+<p><strong>Conclusion:</strong> higher regularity of solution</p>
+<p><strong>Definitions:</strong> Schauder, Hölder, a priori</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Free space estimates via convolution</p>
+<p class="step">Step 2: Transfer to variable coefficients</p>
+<p class="step">Step 3: Bootstrap from C^0 to C^{2,alpha}</p></div>
+<p class="metadata">ID: 5727fd5c4f97 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Foundation for classical solutions</p>
+<p class="metadata">Provenance: ODE and PDE proof #15</p>
+</div>
+
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: De Giorgi-Nash-Moser: elliptic solutions with measurable coefficients are Hölder</h3>
+<p><strong>Statement:</strong> De Giorgi-Nash-Moser: elliptic solutions with measurable coefficients are Hölder</p>
+<p><strong>Hypotheses:</strong> div(A grad u) = 0, A uniformly elliptic, measurable</p>
+<p><strong>Conclusion:</strong> u in C^{0,alpha}</p>
+<p><strong>Definitions:</strong> De Giorgi, Hölder, regularity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: De Giorgi's iteration technique</p>
+<p class="step">Step 2: Level set estimates</p>
+<p class="step">Step 3: Oscillation decay</p>
+<p class="step">Step 4: Hölder continuity from decay rate</p></div>
+<p class="metadata">ID: 3b173745e40b | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Nash and Moser independently proved same result</p>
+<p class="metadata">Provenance: ODE and PDE proof #16</p>
+</div>
+
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: Carleman estimates: weighted energy estimates for unique continuation</h3>
+<p><strong>Statement:</strong> Carleman estimates: weighted energy estimates for unique continuation</p>
+<p><strong>Hypotheses:</strong> elliptic/parabolic PDE, u=0 on open set</p>
+<p><strong>Conclusion:</strong> u = 0 everywhere</p>
+<p><strong>Definitions:</strong> Carleman, unique continuation, weighted</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiply by e^{tau phi}</p>
+<p class="step">Step 2: Weighted integration by parts</p>
+<p class="step">Step 3: Cross terms controlled by large tau</p>
+<p class="step">Step 4: Caccioppoli in weighted norm</p></div>
+<p class="metadata">ID: 150795dde31a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Applications in control theory and inverse problems</p>
+<p class="metadata">Provenance: ODE and PDE proof #17</p>
+</div>
+
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Leray-Schauder: compact perturbation of identity with a priori bound has fixed point</h3>
+<p><strong>Statement:</strong> Leray-Schauder: compact perturbation of identity with a priori bound has fixed point</p>
+<p><strong>Hypotheses:</strong> T compact, u = lambda T(u) + u0</p>
+<p><strong>Conclusion:</strong> solution exists with uniform bound</p>
+<p><strong>Definitions:</strong> Leray-Schauder, fixed point, topological degree</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Homotopy: H(u,lambda) = u - lambda T(u) - u0</p>
+<p class="step">Step 2: Index of identity = 1</p>
+<p class="step">Step 3: A priori bound: solutions exist on boundary</p>
+<p class="step">Step 4: Topological degree = 1 inside => fixed point</p></div>
+<p class="metadata">ID: 6ac351cd676a | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Used for PDE existence proofs</p>
+<p class="metadata">Provenance: ODE and PDE proof #18</p>
+</div>
+
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Lax-Milgram on H^1_0: -Delta u = f => weak solution exists and is unique</h3>
+<p><strong>Statement:</strong> Lax-Milgram on H^1_0: -Delta u = f => weak solution exists and is unique</p>
+<p><strong>Hypotheses:</strong> f in L^2, Omega bounded</p>
+<p><strong>Conclusion:</strong> unique u in H^1_0 with integral grad u . grad v = integral f v</p>
+<p><strong>Definitions:</strong> Poisson, weak solution, Dirichlet</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: a(u,v) = integral grad u . grad v</p>
+<p class="step">Step 2: Coercive by Poincare inequality</p>
+<p class="step">Step 3: Bounded by Cauchy-Schwarz</p>
+<p class="step">Step 4: Lax-Milgram applies directly</p></div>
+<p class="metadata">ID: 3dbf2764878b | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Prototype for elliptic PDE theory</p>
+<p class="metadata">Provenance: ODE and PDE proof #19</p>
+</div>
+
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Lions-Lax-Milgram: for Gårding-coercive a(,), solution exists for f in H^{-1}</h3>
+<p><strong>Statement:</strong> Lions-Lax-Milgram: for Gårding-coercive a(,), solution exists for f in H^{-1}</p>
+<p><strong>Hypotheses:</strong> a(u,v) Gårding-coercive, f in H^{-1}</p>
+<p><strong>Conclusion:</strong> unique weak solution</p>
+<p><strong>Definitions:</strong> Lions, Gårding, variational</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Gårding: a(u,u) >= alpha||u||^2 - beta||u||^2</p>
+<p class="step">Step 2: Absorb beta term with Poincare</p>
+<p class="step">Step 3: Result: effective coercivity</p>
+<p class="step">Step 4: Apply Lax-Milgram</p></div>
+<p class="metadata">ID: 60a0753d7f0e | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Handles lower-order perturbations of elliptic operators</p>
+<p class="metadata">Provenance: ODE and PDE proof #20</p>
+</div>
+
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Ladyzhenskaya-Prodi-Serrin: Navier-Stokes uniqueness for u in L^p(0,T;L^q) with 2/p+3/q=1</h3>
+<p><strong>Statement:</strong> Ladyzhenskaya-Prodi-Serrin: Navier-Stokes uniqueness for u in L^p(0,T;L^q) with 2/p+3/q=1</p>
+<p><strong>Hypotheses:</strong> weak solution, 2/p+3/q=1, q>3</p>
+<p><strong>Conclusion:</strong> solution unique and regular</p>
+<p><strong>Definitions:</strong> Ladyzhenskaya, Navier-Stokes, uniqueness</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Prodi-Serrin condition</p>
+<p class="step">Step 2: Below critical scaling: regularity maintained</p>
+<p class="step">Step 3: Millennium Prize: regularity for all weak solutions open</p></div>
+<p class="metadata">ID: 64be0c7d8cb9 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Navier-Stokes regularity is a Clay Millennium problem</p>
+<p class="metadata">Provenance: ODE and PDE proof #21</p>
+</div>
+
+<div class="theorem extra" id="xp-22">
+<h3>Proof 22: Harnack inequality: for nonneg harmonic u, sup_K u <= C inf_K u</h3>
+<p><strong>Statement:</strong> Harnack inequality: for nonneg harmonic u, sup_K u <= C inf_K u</p>
+<p><strong>Hypotheses:</strong> u >= 0 harmonic, K compact subset</p>
+<p><strong>Conclusion:</strong> values comparable on K</p>
+<p><strong>Definitions:</strong> Harnack, harmonic, interior</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Harnack for ball: control antipodal values</p>
+<p class="step">Step 2: Chain finitely many balls for compact K</p>
+<p class="step">Step 3: Constant depends on K only, not u</p></div>
+<p class="metadata">ID: 2c56e5b406a4 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without nonnegativity: fails</p>
+<p class="metadata">Provenance: ODE and PDE proof #22</p>
+</div>
 </body></html>

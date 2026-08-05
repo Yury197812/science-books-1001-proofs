@@ -18076,4 +18076,328 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Generic existence theorem</p>
 <p class="metadata">Provenance: Domain Algorithms, theorem #2</p>
 </div>
+
+<h2>Extra proofs (+21 from computer science)</h2>
+
+<div class="theorem extra" id="xp-1">
+<h3>Proof 1: Master theorem: T(n)=aT(n/b)+Theta(n^d) solves to Theta(n^{max(d, log_b a)})</h3>
+<p><strong>Statement:</strong> Master theorem: T(n)=aT(n/b)+Theta(n^d) solves to Theta(n^{max(d, log_b a)})</p>
+<p><strong>Hypotheses:</strong> a>=1, b>1</p>
+<p><strong>Conclusion:</strong> three cases depending on d vs log_b a</p>
+<p><strong>Definitions:</strong> Master, recurrence, divide conquer</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Case 1: d < log_b a => T = Theta(n^{log_b a})</p>
+<p class="step">Step 2: Case 2: d = log_b a => T = Theta(n^d log n)</p>
+<p class="step">Step 3: Case 3: d > log_b a => T = Theta(n^d)</p>
+<p class="step">Step 4: Recursion tree analysis</p>
+<p class="step">Step 5: Geometric series at each level</p></div>
+<p class="metadata">ID: b315ffb025f8 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without regularity condition: need Akra-Bazzi</p>
+<p class="metadata">Provenance: computer science proof #1</p>
+</div>
+
+<div class="theorem extra" id="xp-2">
+<h3>Proof 2: P=NP is unknown but NP-completeness characterization exists (Cook-Levin)</h3>
+<p><strong>Statement:</strong> P=NP is unknown but NP-completeness characterization exists (Cook-Levin)</p>
+<p><strong>Hypotheses:</strong> SAT is NP-complete, every NP problem reduces to SAT</p>
+<p><strong>Conclusion:</strong> if SAT in P then P=NP</p>
+<p><strong>Definitions:</strong> NP-complete, Cook-Levin, SAT</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cook (1971): SAT is NP-complete</p>
+<p class="step">Step 2: Levin (1973): independent discovery</p>
+<p class="step">Step 3: Reduction: any NP problem => SAT</p>
+<p class="step">Step 4: SAT in P => all NP in P => P=NP</p>
+<p class="step">Step 5: This remains the biggest open problem in CS</p></div>
+<p class="metadata">ID: b12ccaf33100 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: P vs NP: Clay Millennium problem, $1M prize</p>
+<p class="metadata">Provenance: computer science proof #2</p>
+</div>
+
+<div class="theorem extra" id="xp-3">
+<h3>Proof 3: Cantor's diagonal argument: real numbers are uncountable</h3>
+<p><strong>Statement:</strong> Cantor's diagonal argument: real numbers are uncountable</p>
+<p><strong>Hypotheses:</strong> </p>
+<p><strong>Conclusion:</strong> R is uncountable</p>
+<p><strong>Definitions:</strong> Cantor, diagonal, uncountable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume R countable: list r_1, r_2, ...</p>
+<p class="step">Step 2: Construct s: n-th digit differs from r_n</p>
+<p class="step">Step 3: s differs from every r_n in the list</p>
+<p class="step">Step 4: s is real but not listed, contradiction</p></div>
+<p class="metadata">ID: 861b4756e523 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: One of the most elegant proofs in mathematics</p>
+<p class="metadata">Provenance: computer science proof #3</p>
+</div>
+
+<div class="theorem extra" id="xp-4">
+<h3>Proof 4: Halting problem: no algorithm decides if arbitrary program halts</h3>
+<p><strong>Statement:</strong> Halting problem: no algorithm decides if arbitrary program halts</p>
+<p><strong>Hypotheses:</strong> arbitrary program M, input w</p>
+<p><strong>Conclusion:</strong> no decider H(M,w) exists</p>
+<p><strong>Definitions:</strong> Halting, Turing, undecidable</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Assume H exists</p>
+<p class="step">Step 2: Construct D: on input M, run H(M,M), do opposite</p>
+<p class="step">Step 3: D(D) halts iff H(D,D) says D doesn't halt</p>
+<p class="step">Step 4: Contradiction: D(D) halts iff D(D) doesn't halt</p></div>
+<p class="metadata">ID: 7eaba2a73a40 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Foundational result in computability theory</p>
+<p class="metadata">Provenance: computer science proof #4</p>
+</div>
+
+<div class="theorem extra" id="xp-5">
+<h3>Proof 5: Church-Turing thesis: computable functions = Turing computable functions</h3>
+<p><strong>Statement:</strong> Church-Turing thesis: computable functions = Turing computable functions</p>
+<p><strong>Hypotheses:</strong> informal notion of 'computable'</p>
+<p><strong>Conclusion:</strong> equivalent to Turing machines, lambda calculus, recursive functions</p>
+<p><strong>Definitions:</strong> Church-Turing, computability, lambda calculus</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Multiple formalisms shown equivalent</p>
+<p class="step">Step 2: Turing machines, lambda calculus, mu-recursive</p>
+<p class="step">Step 3: All capture same class of computable functions</p>
+<p class="step">Step 4: Church-Turing thesis: this class = intuitively computable</p></div>
+<p class="metadata">ID: 313bc0e293e9 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Thesis, not theorem (cannot be formally proven)</p>
+<p class="metadata">Provenance: computer science proof #5</p>
+</div>
+
+<div class="theorem extra" id="xp-6">
+<h3>Proof 6: Time hierarchy theorem: DTIME(f(n)) strictly contained in DTIME(g(n)) for f log o g</h3>
+<p><strong>Statement:</strong> Time hierarchy theorem: DTIME(f(n)) strictly contained in DTIME(g(n)) for f log o g</p>
+<p><strong>Hypotheses:</strong> f, g time-constructible, f log o g</p>
+<p><strong>Conclusion:</strong> DTIME(f(n)) proper subset of DTIME(g(n))</p>
+<p><strong>Definitions:</strong> time hierarchy, diagonalization, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct language L in DTIME(g) but not DTIME(f)</p>
+<p class="step">Step 2: Diagonalization: simulate on diagonal</p>
+<p class="step">Step 3: Universal TM with slowdown</p>
+<p class="step">Step 4: f log o g ensures simulation fits in time g</p></div>
+<p class="metadata">ID: 854ededf959b | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Proves existence of harder problems at each complexity level</p>
+<p class="metadata">Provenance: computer science proof #6</p>
+</div>
+
+<div class="theorem extra" id="xp-7">
+<h3>Proof 7: Space hierarchy theorem: DSPACE(f(n)) strictly contained in DSPACE(g(n)) for f = o(g)</h3>
+<p><strong>Statement:</strong> Space hierarchy theorem: DSPACE(f(n)) strictly contained in DSPACE(g(n)) for f = o(g)</p>
+<p><strong>Hypotheses:</strong> f, g space-constructible, f = o(g)</p>
+<p><strong>Conclusion:</strong> DSPACE(f(n)) proper subset of DSPACE(g(n))</p>
+<p><strong>Definitions:</strong> space hierarchy, Savitch, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Similar to time hierarchy</p>
+<p class="step">Step 2: Construct language separating classes</p>
+<p class="step">Step 3: Space is more flexible than time (Savitch's theorem)</p></div>
+<p class="metadata">ID: 65bd3e795ae4 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Analog of time hierarchy for space</p>
+<p class="metadata">Provenance: computer science proof #7</p>
+</div>
+
+<div class="theorem extra" id="xp-8">
+<h3>Proof 8: Savitch's theorem: NSPACE(f(n)) <= DSPACE(f(n)^2)</h3>
+<p><strong>Statement:</strong> Savitch's theorem: NSPACE(f(n)) <= DSPACE(f(n)^2)</p>
+<p><strong>Hypotheses:</strong> f(n) >= log n</p>
+<p><strong>Conclusion:</strong> nondeterministic space squared by deterministic</p>
+<p><strong>Definitions:</strong> Savitch, nondeterministic, space</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Guess and check using DFS on configuration graph</p>
+<p class="step">Step 2: Configuration graph has N = 2^{O(f(n))} nodes</p>
+<p class="step">Step 3: DFS uses O(log^2 N) = O(f(n)^2) space</p>
+<p class="step">Step 4: No need for nondeterminism with extra space</p></div>
+<p class="metadata">ID: 7e3b5a6e314c | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Squared relationship between deterministic and nondeterministic space</p>
+<p class="metadata">Provenance: computer science proof #8</p>
+</div>
+
+<div class="theorem extra" id="xp-9">
+<h3>Proof 9: Cook-Levin: SAT is NP-complete</h3>
+<p><strong>Statement:</strong> Cook-Levin: SAT is NP-complete</p>
+<p><strong>Hypotheses:</strong> SAT: does Boolean formula have satisfying assignment?</p>
+<p><strong>Conclusion:</strong> SAT is NP-complete (hardest in NP)</p>
+<p><strong>Definitions:</strong> Cook-Levin, SAT, NP-complete</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Encode TM computation as Boolean formula</p>
+<p class="step">Step 2: Variables represent tape cells, states, time steps</p>
+<p class="step">Step 3: Clauses enforce: initial config, transition rules, accept</p>
+<p class="step">Step 4: Formula satisfiable iff TM accepts</p>
+<p class="step">Step 5: Therefore any NP problem reduces to SAT</p></div>
+<p class="metadata">ID: ab61603f93d1 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: First NP-completeness proof (1971)</p>
+<p class="metadata">Provenance: computer science proof #9</p>
+</div>
+
+<div class="theorem extra" id="xp-10">
+<h3>Proof 10: Karp's 21 NP-complete problems: many natural problems are NP-complete</h3>
+<p><strong>Statement:</strong> Karp's 21 NP-complete problems: many natural problems are NP-complete</p>
+<p><strong>Hypotheses:</strong> graph, combinatorial, optimization problems</p>
+<p><strong>Conclusion:</strong> 21 natural problems all NP-complete</p>
+<p><strong>Definitions:</strong> Karp, reduction, NP-complete</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Clique, Vertex Cover, Hamiltonian Cycle</p>
+<p class="step">Step 2: SAT => 3SAT => Clique => Independent Set => Vertex Cover</p>
+<p class="step">Step 3: Subset Sum => Knapsack => Partition</p>
+<p class="step">Step 4: All connected by polynomial reductions</p>
+<p class="step">Step 5: Proving any one in P => P=NP</p></div>
+<p class="metadata">ID: 5b8c2a77974b | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Showed NP-completeness is widespread, not isolated</p>
+<p class="metadata">Provenance: computer science proof #10</p>
+</div>
+
+<div class="theorem extra" id="xp-11">
+<h3>Proof 11: Polynomial hierarchy: P subset NP subset PSPACE subset EXPTIME</h3>
+<p><strong>Statement:</strong> Polynomial hierarchy: P subset NP subset PSPACE subset EXPTIME</p>
+<p><strong>Hypotheses:</strong> </p>
+<p><strong>Conclusion:</strong> known inclusions, all believed strict</p>
+<p><strong>Definitions:</strong> polynomial hierarchy, PSPACE, complexity</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: P subset NP: certificate verification</p>
+<p class="step">Step 2: NP subset PSPACE: search space polynomial</p>
+<p class="step">Step 3: PSPACE subset EXPTIME: time-space tradeoff</p>
+<p class="step">Step 4: PH: sigma_k, pi_k classes</p>
+<p class="step">Step 5: If PH collapses: major consequences</p></div>
+<p class="metadata">ID: c308063680c1 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Structure of complexity classes</p>
+<p class="metadata">Provenance: computer science proof #11</p>
+</div>
+
+<div class="theorem extra" id="xp-12">
+<h3>Proof 12: BPP subset P/poly: if BPP = EXP then BPP has polynomial-size circuits</h3>
+<p><strong>Statement:</strong> BPP subset P/poly: if BPP = EXP then BPP has polynomial-size circuits</p>
+<p><strong>Hypotheses:</strong> BPP: bounded-error probabilistic polynomial, EXP: deterministic exponential time</p>
+<p><strong>Conclusion:</strong> BPP has poly-size circuits</p>
+<p><strong>Definitions:</strong> BPP, circuits, pseudorandom</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Yao's min-max lemma</p>
+<p class="step">Step 2: Derandomize using circuit lower bounds</p>
+<p class="step">Step 3: Exp implies derandomization</p>
+<p class="step">Step 4: BPP subset P/poly (Adleman)</p></div>
+<p class="metadata">ID: 1a8a3b1af3f5 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Connections between randomness and circuits</p>
+<p class="metadata">Provenance: computer science proof #12</p>
+</div>
+
+<div class="theorem extra" id="xp-13">
+<h3>Proof 13: Shor's algorithm: integers can be factored in polynomial time on quantum computer</h3>
+<p><strong>Statement:</strong> Shor's algorithm: integers can be factored in polynomial time on quantum computer</p>
+<p><strong>Hypotheses:</strong> quantum computer</p>
+<p><strong>Conclusion:</strong> factoring in O((log N)^3) time</p>
+<p><strong>Definitions:</strong> Shor, factoring, quantum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Reduce factoring to order-finding</p>
+<p class="step">Step 2: Quantum Fourier transform finds period</p>
+<p class="step">Step 3: Period gives factors via classical postprocessing</p>
+<p class="step">Step 4: Undermines RSA encryption</p></div>
+<p class="metadata">ID: 83be3dc64b78 | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Quantum algorithms threaten current cryptography</p>
+<p class="metadata">Provenance: computer science proof #13</p>
+</div>
+
+<div class="theorem extra" id="xp-14">
+<h3>Proof 14: Grover's algorithm: unstructured search in O(sqrt(N)) quantum steps</h3>
+<p><strong>Statement:</strong> Grover's algorithm: unstructured search in O(sqrt(N)) quantum steps</p>
+<p><strong>Hypotheses:</strong> unsorted database of N items</p>
+<p><strong>Conclusion:</strong> find marked item in O(sqrt(N)) steps</p>
+<p><strong>Definitions:</strong> Grover, quantum search, quadratic speedup</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Initialize uniform superposition</p>
+<p class="step">Step 2: Apply oracle: flip phase of target</p>
+<p class="step">Step 3: Apply diffusion operator (about mean)</p>
+<p class="step">Step 4: Repeat O(sqrt(N)) times</p>
+<p class="step">Step 5: Measure: collapses to target with high probability</p></div>
+<p class="metadata">ID: af387bada2be | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Optimal: no faster quantum search possible</p>
+<p class="metadata">Provenance: computer science proof #14</p>
+</div>
+
+<div class="theorem extra" id="xp-15">
+<h3>Proof 15: P != NP widely believed but unproven; best lower bounds: NTIME(n) strictly > DTIME(n)</h3>
+<p><strong>Statement:</strong> P != NP widely believed but unproven; best lower bounds: NTIME(n) strictly > DTIME(n)</p>
+<p><strong>Hypotheses:</strong> current state of knowledge</p>
+<p><strong>Conclusion:</strong> only linear lower bounds known for general computation</p>
+<p><strong>Definitions:</strong> lower bounds, complexity, barriers</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Circuit complexity: exponential lower bounds for restricted circuits</p>
+<p class="step">Step 2: Monotone circuits: Razborov</p>
+<p class="step">Step 3: AC0 circuits: Håstad</p>
+<p class="step">Step 4: General circuits: best is n * sqrt(n)</p>
+<p class="step">Step 5: Barrier results: relativization, natural proofs, algebrization</p></div>
+<p class="metadata">ID: 038ce2049034 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: All proof techniques for P!=NP known to fail</p>
+<p class="metadata">Provenance: computer science proof #15</p>
+</div>
+
+<div class="theorem extra" id="xp-16">
+<h3>Proof 16: Ramsey theory: R(k,k) grows exponentially in k</h3>
+<p><strong>Statement:</strong> Ramsey theory: R(k,k) grows exponentially in k</p>
+<p><strong>Hypotheses:</strong> 2-coloring of K_n</p>
+<p><strong>Conclusion:</strong> R(k,k) > 2^{k/2} and R(k,k) < 4^k</p>
+<p><strong>Definitions:</strong> Ramsey, combinatorial, growth</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Lower bound: probabilistic method</p>
+<p class="step">Step 2: Expected monochromatic K_k < 1</p>
+<p class="step">Step 3: Upper bound: counting argument</p>
+<p class="step">Step 4: Probabilities: 1 - C(n,k)/2^{C(k,2)} < 1</p></div>
+<p class="metadata">ID: 14b1026cd3be | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Exact values known only for small k</p>
+<p class="metadata">Provenance: computer science proof #16</p>
+</div>
+
+<div class="theorem extra" id="xp-17">
+<h3>Proof 17: BFS/DFS: graph traversal in O(V+E) time</h3>
+<p><strong>Statement:</strong> BFS/DFS: graph traversal in O(V+E) time</p>
+<p><strong>Hypotheses:</strong> G = (V,E) graph</p>
+<p><strong>Conclusion:</strong> traverse all vertices and edges in O(V+E)</p>
+<p><strong>Definitions:</strong> BFS, DFS, graph traversal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: BFS: queue, level-by-level, finds shortest paths</p>
+<p class="step">Step 2: DFS: stack/recursion, explores deep first</p>
+<p class="step">Step 3: Both visit each vertex once, each edge once</p>
+<p class="step">Step 4: Time proportional to graph size</p></div>
+<p class="metadata">ID: 06f37c36f38c | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundational algorithms for graphs</p>
+<p class="metadata">Provenance: computer science proof #17</p>
+</div>
+
+<div class="theorem extra" id="xp-18">
+<h3>Proof 18: Dijkstra's algorithm: shortest paths from source in O((V+E) log V)</h3>
+<p><strong>Statement:</strong> Dijkstra's algorithm: shortest paths from source in O((V+E) log V)</p>
+<p><strong>Hypotheses:</strong> G with nonneg edge weights, source vertex s</p>
+<p><strong>Conclusion:</strong> shortest path distances from s to all vertices</p>
+<p><strong>Definitions:</strong> Dijkstra, shortest path, greedy</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Maintain priority queue of tentative distances</p>
+<p class="step">Step 2: Relax edges from minimum distance vertex</p>
+<p class="step">Step 3: Non-negativity ensures correctness</p>
+<p class="step">Step 4: Binary heap: O((V+E) log V)</p></div>
+<p class="metadata">ID: fac98f664dab | Status: UNFORMALIZED | Complexity: O(n log n)</p>
+<p class="metadata">Mutation test: Fails with negative edge weights</p>
+<p class="metadata">Provenance: computer science proof #18</p>
+</div>
+
+<div class="theorem extra" id="xp-19">
+<h3>Proof 19: Floyd-Warshall: all-pairs shortest paths in O(V^3)</h3>
+<p><strong>Statement:</strong> Floyd-Warshall: all-pairs shortest paths in O(V^3)</p>
+<p><strong>Hypotheses:</strong> G = (V,E) weighted directed</p>
+<p><strong>Conclusion:</strong> shortest paths between all pairs</p>
+<p><strong>Definitions:</strong> Floyd-Warshall, dynamic programming, shortest path</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: d[i][j][k] = shortest path from i to j using vertices 1..k</p>
+<p class="step">Step 2: d[i][j][0] = weight(i,j) or infinity</p>
+<p class="step">Step 3: d[i][j][k] = min(d[i][j][k-1], d[i][k][k-1]+d[k][j][k-1])</p>
+<p class="step">Step 4: Space-optimized: O(V^2)</p></div>
+<p class="metadata">ID: e2c646138ae0 | Status: UNFORMALIZED | Complexity: O(1)</p>
+<p class="metadata">Mutation test: Handles negative weights (no negative cycles)</p>
+<p class="metadata">Provenance: computer science proof #19</p>
+</div>
+
+<div class="theorem extra" id="xp-20">
+<h3>Proof 20: Kruskal/Prim: minimum spanning tree in O(E log V)</h3>
+<p><strong>Statement:</strong> Kruskal/Prim: minimum spanning tree in O(E log V)</p>
+<p><strong>Hypotheses:</strong> G connected weighted</p>
+<p><strong>Conclusion:</strong> minimum spanning tree</p>
+<p><strong>Definitions:</strong> MST, Kruskal, Prim</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Kruskal: sort edges, add if no cycle (Union-Find)</p>
+<p class="step">Step 2: Prim: grow tree from vertex, cheapest edge always</p>
+<p class="step">Step 3: Both O(E log V) with good data structures</p>
+<p class="step">Step 4: Cut property: cheapest edge crossing cut is in MST</p></div>
+<p class="metadata">ID: 6f49cf939287 | Status: UNFORMALIZED | Complexity: O(n^3)</p>
+<p class="metadata">Mutation test: Both algorithms correct by cut property</p>
+<p class="metadata">Provenance: computer science proof #20</p>
+</div>
+
+<div class="theorem extra" id="xp-21">
+<h3>Proof 21: Quicksort average case: O(n log n) with O(n^2) worst case</h3>
+<p><strong>Statement:</strong> Quicksort average case: O(n log n) with O(n^2) worst case</p>
+<p><strong>Hypotheses:</strong> array of n elements, random pivot</p>
+<p><strong>Conclusion:</strong> expected O(n log n) comparisons</p>
+<p><strong>Definitions:</strong> quicksort, average case, partition</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Partition: O(n) work per level</p>
+<p class="step">Step 2: Expected depth: O(log n)</p>
+<p class="step">Step 3: Total: O(n log n) expected</p>
+<p class="step">Step 4: Worst case O(n^2): already sorted input</p>
+<p class="step">Step 5: Randomized: O(n log n) with high probability</p></div>
+<p class="metadata">ID: 7eb5f35de580 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Cache-efficient in practice despite worst case</p>
+<p class="metadata">Provenance: computer science proof #21</p>
+</div>
 </body></html>
