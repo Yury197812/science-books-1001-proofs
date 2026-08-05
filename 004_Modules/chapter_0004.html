@@ -17090,4 +17090,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without PID: structure theorem fails</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Structure theorem: finitely generated module over PID decomposes as free + torsion</h3>
+<p><strong>Statement:</strong> Structure theorem: finitely generated module over PID decomposes as free + torsion</p>
+<p><strong>Hypotheses:</strong> R PID, M finitely generated</p>
+<p><strong>Conclusion:</strong> M ~ R^r + sum R/(d_i)</p>
+<p><strong>Definitions:</strong> structure theorem, PID, torsion</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Smith normal form of relation matrix</p>
+<p class="step">Step 2: d_i | d_{i+1} (invariant factors)</p>
+<p class="step">Step 3: Free rank r from zeros</p>
+<p class="step">Step 4: Uniqueness of decomposition</p></div>
+<p class="metadata">ID: 04daead6e71d | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without PID: fails for general rings</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Tensor product universal property: bilinear maps factor through tensor</h3>
+<p><strong>Statement:</strong> Tensor product universal property: bilinear maps factor through tensor</p>
+<p><strong>Hypotheses:</strong> V,W vector spaces, B: V x W -> U bilinear</p>
+<p><strong>Conclusion:</strong> unique linear phi: V (x) W -> U</p>
+<p><strong>Definitions:</strong> tensor product, universal property, bilinear</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define V (x) W with relations</p>
+<p class="step">Step 2: (v1+v2) x w = v1 x w + v2 x w</p>
+<p class="step">Step 3: (av) x w = v x (aw)</p>
+<p class="step">Step 4: phi(v x w) = B(v,w)</p></div>
+<p class="metadata">ID: 31cc0b8812cc | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without bilinearity: factorization fails</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

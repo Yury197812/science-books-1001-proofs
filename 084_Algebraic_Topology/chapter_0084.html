@@ -18757,4 +18757,33 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 </div>
 
 <h2>Extra proofs (+0 from algebraic topology (advanced))</h2>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Urysohn lemma: disjoint closed sets in normal space separated by continuous function</h3>
+<p><strong>Statement:</strong> Urysohn lemma: disjoint closed sets in normal space separated by continuous function</p>
+<p><strong>Hypotheses:</strong> X normal, A,B disjoint closed</p>
+<p><strong>Conclusion:</strong> continuous f: X -> [0,1] with f(A)=0, f(B)=1</p>
+<p><strong>Definitions:</strong> Urysohn, normal, separation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct f at dyadic rationals</p>
+<p class="step">Step 2: Use normality to separate</p>
+<p class="step">Step 3: Extend by continuity</p>
+<p class="step">Step 4: Result: f is continuous</p></div>
+<p class="metadata">ID: 7356c0724e5a | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'normal': separation may not exist</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Tietze extension: continuous function on closed subset of normal space extends</h3>
+<p><strong>Statement:</strong> Tietze extension: continuous function on closed subset of normal space extends</p>
+<p><strong>Hypotheses:</strong> X normal, A closed, f: A -> R continuous</p>
+<p><strong>Conclusion:</strong> extends to F: X -> R continuous</p>
+<p><strong>Definitions:</strong> Tietze, extension, normal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Approximate by step functions</p>
+<p class="step">Step 2: Each extends by Urysohn lemma</p>
+<p class="step">Step 3: Sum converges to extension</p></div>
+<p class="metadata">ID: a3e3e245530d | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Foundation for global-to-local arguments</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

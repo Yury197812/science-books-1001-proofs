@@ -18093,4 +18093,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Global geometry requires additional data</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Hopf-Rinow: geodesically complete <=> metrically complete for Riemannian manifolds</h3>
+<p><strong>Statement:</strong> Hopf-Rinow: geodesically complete <=> metrically complete for Riemannian manifolds</p>
+<p><strong>Hypotheses:</strong> M connected Riemannian</p>
+<p><strong>Conclusion:</strong> geodesic complete <=> metric complete <=> closed bounded compact</p>
+<p><strong>Definitions:</strong> Hopf-Rinow, completeness, geodesic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Geodesic => metric complete</p>
+<p class="step">Step 2: Metric complete => closed bounded sets compact</p>
+<p class="step">Step 3: Compact => geodesic complete</p>
+<p class="step">Step 4: Any two points connected by minimizing geodesic</p></div>
+<p class="metadata">ID: db04d6405509 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Key equivalence in Riemannian geometry</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Gauss equation: intrinsic curvature determined by first fundamental form for surfaces</h3>
+<p><strong>Statement:</strong> Gauss equation: intrinsic curvature determined by first fundamental form for surfaces</p>
+<p><strong>Hypotheses:</strong> M surface in R^3</p>
+<p><strong>Conclusion:</strong> Gaussian curvature K = LN - M^2 (depends only on first fund. form)</p>
+<p><strong>Definitions:</strong> Gauss equation, curvature, surface</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Theorema Egregium: K is intrinsic</p>
+<p class="step">Step 2: K = det(II)/det(I)</p>
+<p class="step">Step 3: LN - M^2 from second fundamental form</p>
+<p class="step">Step 4: Equal to expression in first fundamental form</p></div>
+<p class="metadata">ID: ae3552602a7a | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Theorema Egregium: curvature is intrinsic</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

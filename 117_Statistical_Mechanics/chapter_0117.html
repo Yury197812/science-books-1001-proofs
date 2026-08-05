@@ -17090,4 +17090,35 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Bridge between atoms and thermodynamics</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Newton's second law: F = ma determines motion from force</h3>
+<p><strong>Statement:</strong> Newton's second law: F = ma determines motion from force</p>
+<p><strong>Hypotheses:</strong> classical regime, inertial frame</p>
+<p><strong>Conclusion:</strong> F = ma</p>
+<p><strong>Definitions:</strong> Newton, second law, inertia</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define F = dp/dt</p>
+<p class="step">Step 2: p = mv for constant mass</p>
+<p class="step">Step 3: F = ma is the equation of motion</p>
+<p class="step">Step 4: Solve ODE for trajectory</p></div>
+<p class="metadata">ID: faee0d3acffe | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Postulate of classical mechanics</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Noether theorem: continuous symmetry gives conserved quantity</h3>
+<p><strong>Statement:</strong> Noether theorem: continuous symmetry gives conserved quantity</p>
+<p><strong>Hypotheses:</strong> Lagrangian L, continuous symmetry</p>
+<p><strong>Conclusion:</strong> conserved charge Q with dQ/dt = 0</p>
+<p><strong>Definitions:</strong> Noether, symmetry, conservation</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Invariance of action under symmetry</p>
+<p class="step">Step 2: Euler-Lagrange + symmetry => conservation</p>
+<p class="step">Step 3: Translation => momentum</p>
+<p class="step">Step 4: Rotation => angular momentum</p>
+<p class="step">Step 5: Time translation => energy</p></div>
+<p class="metadata">ID: 65dba947385f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: One of deepest results connecting symmetry to physics</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

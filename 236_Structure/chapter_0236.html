@@ -17092,4 +17092,36 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Three domains of life</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Hash tables: O(1) average-case lookup via hash function</h3>
+<p><strong>Statement:</strong> Hash tables: O(1) average-case lookup via hash function</p>
+<p><strong>Hypotheses:</strong> key-value pairs</p>
+<p><strong>Conclusion:</strong> O(1) amortized lookup, insert, delete</p>
+<p><strong>Definitions:</strong> hash table, hash function, collision</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Hash function: key -> bucket index</p>
+<p class="step">Step 2: Collision resolution: chaining or open addressing</p>
+<p class="step">Step 3: Load factor: entries / table size</p>
+<p class="step">Step 4: Resize when load factor > threshold</p>
+<p class="step">Step 5: Amortized O(1) by doubling</p></div>
+<p class="metadata">ID: 4f98a0d9c2d6 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: O(n) worst case with poor hash function</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Balanced BSTs: AVL/Red-black trees guarantee O(log n) operations</h3>
+<p><strong>Statement:</strong> Balanced BSTs: AVL/Red-black trees guarantee O(log n) operations</p>
+<p><strong>Hypotheses:</strong> ordered data</p>
+<p><strong>Conclusion:</strong> O(log n) guaranteed for search, insert, delete</p>
+<p><strong>Definitions:</strong> balanced BST, AVL, logarithmic</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: BST property: left < root < right</p>
+<p class="step">Step 2: Height at most c*log(n)</p>
+<p class="step">Step 3: Rotations maintain balance after insert/delete</p>
+<p class="step">Step 4: AVL: balance factor at most 1</p>
+<p class="step">Step 5: Red-black: at most 2 consecutive reds</p></div>
+<p class="metadata">ID: a8f5147f1756 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Worst case O(n) for unbalanced BST</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

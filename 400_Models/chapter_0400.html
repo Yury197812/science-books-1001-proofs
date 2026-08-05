@@ -17092,4 +17092,35 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: IPCC uses ensemble of climate models</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Model theory: compactness + completeness characterize first-order logic</h3>
+<p><strong>Statement:</strong> Model theory: compactness + completeness characterize first-order logic</p>
+<p><strong>Hypotheses:</strong> first-order theory</p>
+<p><strong>Conclusion:</strong> first-order logic is uniquely characterized</p>
+<p><strong>Definitions:</strong> compactness, completeness, first-order</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Compactness: finitely satisfiable => satisfiable</p>
+<p class="step">Step 2: Löwenheim-Skolem: infinite model => all infinite sizes</p>
+<p class="step">Step 3: Lindström: maximal with both properties</p>
+<p class="step">Step 4: No stronger logic has both</p></div>
+<p class="metadata">ID: 5d9448a99ada | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Lindström's theorem (1969)</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Gödel incompleteness: consistent r.e. theory cannot prove own consistency</h3>
+<p><strong>Statement:</strong> Gödel incompleteness: consistent r.e. theory cannot prove own consistency</p>
+<p><strong>Hypotheses:</strong> S consistent recursively enumerable theory, S expresses basic arithmetic</p>
+<p><strong>Conclusion:</strong> exists sentence G neither provable nor disprovable</p>
+<p><strong>Definitions:</strong> Gödel, incompleteness, consistent</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Arithmetize syntax: encode proofs as numbers</p>
+<p class="step">Step 2: Gödel sentence G: 'G is not provable in S'</p>
+<p class="step">Step 3: If S proves G: contradiction (if S sound)</p>
+<p class="step">Step 4: If S disproves G: S inconsistent</p>
+<p class="step">Step 5: G is independent of S</p></div>
+<p class="metadata">ID: 4992cf4f0b15 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Proved 1931, one of most important results in logic</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

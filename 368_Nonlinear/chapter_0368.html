@@ -18093,4 +18093,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: More flexible but harder to fit</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Rank-nullity: dim(V) = rank(T) + nullity(T)</h3>
+<p><strong>Statement:</strong> Rank-nullity: dim(V) = rank(T) + nullity(T)</p>
+<p><strong>Hypotheses:</strong> T: V -> W linear, V finite-dimensional</p>
+<p><strong>Conclusion:</strong> dim(V) = dim(im T) + dim(ker T)</p>
+<p><strong>Definitions:</strong> rank, nullity, linear map</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Basis of ker T: {v_1,...,v_k}</p>
+<p class="step">Step 2: Extend to basis of V: add w_1,...,w_r</p>
+<p class="step">Step 3: Show T(w_i) span im T</p>
+<p class="step">Step 4: k + r = dim V</p></div>
+<p class="metadata">ID: 3bafbffd8141 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without finite-dimensional: no bases</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Spectral theorem: real symmetric matrix has orthonormal eigenbasis</h3>
+<p><strong>Statement:</strong> Spectral theorem: real symmetric matrix has orthonormal eigenbasis</p>
+<p><strong>Hypotheses:</strong> A real symmetric n x n matrix</p>
+<p><strong>Conclusion:</strong> A = QDQ^T with Q orthogonal, D diagonal</p>
+<p><strong>Definitions:</strong> spectral, symmetric, orthonormal</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Eigenvalues of symmetric are real</p>
+<p class="step">Step 2: Eigenspaces for different eigenvalues are orthogonal</p>
+<p class="step">Step 3: Sum of dimensions = n</p>
+<p class="step">Step 4: Construct orthonormal basis in each eigenspace</p></div>
+<p class="metadata">ID: af53e5fc3230 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without symmetry: only guaranteed for normal matrices</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

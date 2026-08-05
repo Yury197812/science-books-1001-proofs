@@ -17455,4 +17455,33 @@ h2 { color: #34495e; margin-top: 30px; }
 <p class="metadata">Mutation test: Uniqueness often follows from universality</p>
 <p class="metadata">Provenance: domain expansion proof #2</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Pythagorean theorem: a^2 + b^2 = c^2 for right triangles</h3>
+<p><strong>Statement:</strong> Pythagorean theorem: a^2 + b^2 = c^2 for right triangles</p>
+<p><strong>Hypotheses:</strong> right triangle with legs a,b</p>
+<p><strong>Conclusion:</strong> a^2 + b^2 = c^2</p>
+<p><strong>Definitions:</strong> Pythagorean, right triangle, hypotenuse</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct squares on each side</p>
+<p class="step">Step 2: Use area comparison</p>
+<p class="step">Step 3: Similar triangles provide key identity</p></div>
+<p class="metadata">ID: c80653d1b3c3 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'right': Law of Cosines generalizes</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Euler's formula for convex polyhedra: V - E + F = 2</h3>
+<p><strong>Statement:</strong> Euler's formula for convex polyhedra: V - E + F = 2</p>
+<p><strong>Hypotheses:</strong> convex polyhedron</p>
+<p><strong>Conclusion:</strong> V - E + F = 2</p>
+<p><strong>Definitions:</strong> Euler, polyhedron, convex</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Remove faces one by one</p>
+<p class="step">Step 2: Each removal preserves V-E+F</p>
+<p class="step">Step 3: Reduce to single face</p>
+<p class="step">Step 4: Tree + face gives V-E+F=2</p></div>
+<p class="metadata">ID: d4d09b14d398 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'convex': may fail for non-simply-connected surfaces</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

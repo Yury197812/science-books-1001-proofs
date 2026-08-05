@@ -17091,4 +17091,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without Euclidean: angle sum differs in non-Euclidean geometry</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Angle sum of triangle equals pi in Euclidean geometry</h3>
+<p><strong>Statement:</strong> Angle sum of triangle equals pi in Euclidean geometry</p>
+<p><strong>Hypotheses:</strong> Euclidean plane</p>
+<p><strong>Conclusion:</strong> angle sum = pi</p>
+<p><strong>Definitions:</strong> angle sum, Euclidean, parallel</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Construct parallels through vertices</p>
+<p class="step">Step 2: Use alternate interior angles</p>
+<p class="step">Step 3: Sum of angles at each vertex</p>
+<p class="step">Step 4: Conclude total = pi</p></div>
+<p class="metadata">ID: 660e35e343e7 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without Euclidean: angle sum differs (hyperbolic < pi, spherical > pi)</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Law of sines: a/sin(A) = b/sin(B) = c/sin(C) = 2R</h3>
+<p><strong>Statement:</strong> Law of sines: a/sin(A) = b/sin(B) = c/sin(C) = 2R</p>
+<p><strong>Hypotheses:</strong> triangle ABC</p>
+<p><strong>Conclusion:</strong> sides proportional to sines of opposite angles</p>
+<p><strong>Definitions:</strong> law of sines, circumradius, triangle</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Place circumcenter at origin</p>
+<p class="step">Step 2: Each vertex at distance R</p>
+<p class="step">Step 3: Use inscribed angle theorem</p>
+<p class="step">Step 4: Derive sine relationship from chord lengths</p></div>
+<p class="metadata">ID: 31cc4b4866ae | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: R = circumradius of triangle</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

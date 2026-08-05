@@ -17424,4 +17424,33 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without 'bounded': e^z is entire and unbounded</p>
 <p class="metadata">Provenance: Domain Complex, theorem #3</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Maximum modulus: |f| achieves maximum on boundary unless f is constant</h3>
+<p><strong>Statement:</strong> Maximum modulus: |f| achieves maximum on boundary unless f is constant</p>
+<p><strong>Hypotheses:</strong> f holomorphic on domain, f not constant</p>
+<p><strong>Conclusion:</strong> no interior maximum for |f|</p>
+<p><strong>Definitions:</strong> maximum modulus, boundary, constant</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: If max at interior z0, use mean value property</p>
+<p class="step">Step 2: |f(z0)| <= average of |f| on circle</p>
+<p class="step">Step 3: Contradiction unless |f| constant on circle</p>
+<p class="step">Step 4: Connected => |f| constant everywhere</p></div>
+<p class="metadata">ID: f018dd1c27eb | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'holomorphic': real functions have interior maxima</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Liouville: bounded entire function is constant</h3>
+<p><strong>Statement:</strong> Liouville: bounded entire function is constant</p>
+<p><strong>Hypotheses:</strong> f: C -> C entire, |f(z)| <= M for all z</p>
+<p><strong>Conclusion:</strong> f is constant</p>
+<p><strong>Definitions:</strong> Liouville, bounded, entire</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Cauchy estimate: |f'(z)| <= M/R</p>
+<p class="step">Step 2: Let R -> infinity: f'(z) = 0</p>
+<p class="step">Step 3: f constant by connectedness</p></div>
+<p class="metadata">ID: d18170ddb395 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'bounded': e^z is entire, unbounded, non-constant</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

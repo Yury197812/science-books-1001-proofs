@@ -19093,4 +19093,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without bounded: spectrum may be empty or unbounded</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Spectrum of operator: lambda in spectrum iff (A-lambda I) not invertible</h3>
+<p><strong>Statement:</strong> Spectrum of operator: lambda in spectrum iff (A-lambda I) not invertible</p>
+<p><strong>Hypotheses:</strong> bounded linear operator A</p>
+<p><strong>Conclusion:</strong> spectrum is compact subset of C</p>
+<p><strong>Definitions:</strong> spectrum, resolvent, invertible</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Resolvent R(lambda) = (A-lambda I)^{-1}</p>
+<p class="step">Step 2: Spectrum = {lambda : R(lambda) not defined or unbounded}</p>
+<p class="step">Step 3: Closed and bounded for bounded A</p>
+<p class="step">Step 4: For self-adjoint: spectrum is real interval</p></div>
+<p class="metadata">ID: cfc525c61b4c | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Spectral theory central to functional analysis</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Compact operators have at most countable eigenvalues accumulating at 0</h3>
+<p><strong>Statement:</strong> Compact operators have at most countable eigenvalues accumulating at 0</p>
+<p><strong>Hypotheses:</strong> compact operator T on Banach space</p>
+<p><strong>Conclusion:</strong> nonzero eigenvalues are countable, 0 is only limit point</p>
+<p><strong>Definitions:</strong> compact operator, eigenvalue, spectrum</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: T compact => T(B) relatively compact</p>
+<p class="step">Step 2: Nonzero spectrum consists of eigenvalues only</p>
+<p class="step">Step 3: Countable by compactness argument</p>
+<p class="step">Step 4: 0 always in spectrum (if infinite-dimensional)</p></div>
+<p class="metadata">ID: de390874736f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Fundamental structure theorem for compact operators</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

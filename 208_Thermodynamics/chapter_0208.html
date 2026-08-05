@@ -18092,4 +18092,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Most useful criterion in chemistry</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Second law of thermodynamics: entropy never decreases in isolated system</h3>
+<p><strong>Statement:</strong> Second law of thermodynamics: entropy never decreases in isolated system</p>
+<p><strong>Hypotheses:</strong> isolated thermodynamic system</p>
+<p><strong>Conclusion:</strong> dS >= 0</p>
+<p><strong>Definitions:</strong> second law, entropy, isolated</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Statistical: system evolves to states with more microstates</p>
+<p class="step">Step 2: Clausius: heat cannot flow cold to hot spontaneously</p>
+<p class="step">Step 3: Kelvin: no perfect heat engine</p>
+<p class="step">Step 4: Arrow of time follows</p></div>
+<p class="metadata">ID: 10c13d6af861 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Empirical law, not derivable from mechanics alone</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Carnot efficiency: no engine can exceed eta = 1 - T_cold/T_hot</h3>
+<p><strong>Statement:</strong> Carnot efficiency: no engine can exceed eta = 1 - T_cold/T_hot</p>
+<p><strong>Hypotheses:</strong> heat engine between two reservoirs</p>
+<p><strong>Conclusion:</strong> maximum efficiency depends only on temperatures</p>
+<p><strong>Definitions:</strong> Carnot, efficiency, heat engine</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Carnot cycle: 2 isothermal + 2 adiabatic steps</p>
+<p class="step">Step 2: Efficiency = 1 - T_cold/T_hot</p>
+<p class="step">Step 3: Proved by Clausius (1854)</p>
+<p class="step">Step 4: Sets fundamental limit on all engines</p></div>
+<p class="metadata">ID: 7836b35c8d7f | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Real engines always have lower efficiency due to irreversibilities</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

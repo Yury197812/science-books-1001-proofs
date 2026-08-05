@@ -17291,4 +17291,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Without connected: only generates identity component</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Lagrange: every subgroup of finite group has order dividing group order</h3>
+<p><strong>Statement:</strong> Lagrange: every subgroup of finite group has order dividing group order</p>
+<p><strong>Hypotheses:</strong> G finite group, H subgroup of G</p>
+<p><strong>Conclusion:</strong> |H| divides |G|</p>
+<p><strong>Definitions:</strong> Lagrange, subgroup, order</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Define left cosets of H</p>
+<p class="step">Step 2: Show each coset has |H| elements</p>
+<p class="step">Step 3: Cosets partition G</p>
+<p class="step">Step 4: |G| = [G:H] * |H|, so |H| divides |G|</p></div>
+<p class="metadata">ID: 20828b780ddb | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Removing 'finite' fails for infinite index subgroups</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Burnside: |X/G| = (1/|G|) sum |Fix(g)| for group action</h3>
+<p><strong>Statement:</strong> Burnside: |X/G| = (1/|G|) sum |Fix(g)| for group action</p>
+<p><strong>Hypotheses:</strong> G finite acting on X finite</p>
+<p><strong>Conclusion:</strong> number of orbits = average fixed points</p>
+<p><strong>Definitions:</strong> Burnside, orbit, fixed point</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Count pairs {(g,x): g.x = x}</p>
+<p class="step">Step 2: By orbits: |G| * |orbits| = sum |Stab(x)|</p>
+<p class="step">Step 3: By elements: sum |Fix(g)|</p>
+<p class="step">Step 4: Equate and solve</p></div>
+<p class="metadata">ID: 98b5ec134997 | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without 'finite': sums diverge</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>

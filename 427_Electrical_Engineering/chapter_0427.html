@@ -17092,4 +17092,34 @@ h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
 <p class="metadata">Mutation test: Foundation of modern infrastructure</p>
 <p class="metadata">Provenance: domain theorem bank proof #1</p>
 </div>
+
+<h2>Extra proofs (+2 from mass expansion)</h2>
+<div class="theorem extra" id="v3-1">
+<h3>Proof 1: Wedderburn: finite division ring is a field</h3>
+<p><strong>Statement:</strong> Wedderburn: finite division ring is a field</p>
+<p><strong>Hypotheses:</strong> R finite division ring</p>
+<p><strong>Conclusion:</strong> R is commutative</p>
+<p><strong>Definitions:</strong> Wedderburn, division ring, commutative</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Center Z(R) is finite field</p>
+<p class="step">Step 2: Class equation for R*</p>
+<p class="step">Step 3: All elements satisfy degree constraints</p>
+<p class="step">Step 4: Deduce commutativity</p></div>
+<p class="metadata">ID: 35f77d9f2697 | Status: UNFORMALIZED | Complexity: O(n)</p>
+<p class="metadata">Mutation test: Without 'finite': quaternions are non-commutative division ring</p>
+<p class="metadata">Provenance: mass expansion proof #1</p>
+</div>
+<div class="theorem extra" id="v3-2">
+<h3>Proof 2: Chinese Remainder for rings: R/(I+J) ~ R/I x R/J when I+J=R</h3>
+<p><strong>Statement:</strong> Chinese Remainder for rings: R/(I+J) ~ R/I x R/J when I+J=R</p>
+<p><strong>Hypotheses:</strong> I,J coprime ideals (I+J=R)</p>
+<p><strong>Conclusion:</strong> quotient is product of quotients</p>
+<p><strong>Definitions:</strong> CRT, rings, ideals</p>
+<div class="proof"><p><strong>Proof:</strong></p><p class="step">Step 1: Map r -> (r+I, r+J)</p>
+<p class="step">Step 2: Surjective by Bezout: 1=i+j</p>
+<p class="step">Step 3: Kernel = I+J</p>
+<p class="step">Step 4: First isomorphism theorem</p></div>
+<p class="metadata">ID: 39683bbf68cf | Status: UNFORMALIZED | Complexity: O(n^2)</p>
+<p class="metadata">Mutation test: Without I+J=R: kernel larger</p>
+<p class="metadata">Provenance: mass expansion proof #2</p>
+</div>
 </body></html>
