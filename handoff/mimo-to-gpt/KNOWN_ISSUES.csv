@@ -1,0 +1,7 @@
+severity,category,description,remediation
+HIGH,content,170 template proof bodies (generic not theorem-specific),Replace with theorem-specific proof sketches
+HIGH,content,404 cards have placeholder source 'automated generation',Add real bibliographic sources
+MEDIUM,drift,HTML/JSON cross-surface drift,Regenerate JSON from single canonical HTML source
+MEDIUM,formula,Formula damage in some chapters (|G|,|H| notation broken),Restore from structured LaTeX
+LOW,readme,README claims need formal audit,Mark as UNREVIEWED until human review
+LOW,calculator,Calculator uses sanitized Function() (not full AST),Implement proper expression parser

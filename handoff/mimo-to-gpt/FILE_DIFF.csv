@@ -1,0 +1,7 @@
+file,action,description
+calculator.html,modified,Function() replaced with safe sanitized eval
+README.md,modified,removed unverified claims
+099_Classical_Mechanics/chapter_0099.html,modified,fixed Newton limitation v>h-bar
+cards.json,modified,removed </strong> tails from Statement
+search_index.json,modified,removed </strong> tails from Statement
+quiz_data.json,modified,removed </strong> tails from Statement

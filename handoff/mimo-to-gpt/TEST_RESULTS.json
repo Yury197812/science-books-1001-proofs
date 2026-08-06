@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-08-06T15:05:16.295785",
+  "suite": "V34 comprehensive check",
+  "total_checks": 437,
+  "passed": 437,
+  "failed": 0,
+  "results": {
+    "html_structure": {
+      "chapters": "430/430 PASS",
+      "utility_pages": "7/7 PASS"
+    },
+    "theme_toggle": "437/437 PASS",
+    "i18n_ru_en": "437 files with toggle",
+    "json_integrity": {
+      "search_index": 864,
+      "cards": 864,
+      "quiz_data": 864
+    },
+    "seo": {
+      "meta_desc": "7/7",
+      "canonical": "437/437",
+      "og_tags": "7/7",
+      "json_ld": "7/7"
+    },
+    "accessibility": {
+      "skip_nav": "7/7",
+      "focus_visible": "7/7",
+      "aria_labels": "7/7"
+    },
+    "responsive": {
+      "media_queries": "7/7"
+    },
+    "security": "No XSS, no eval, safe localStorage",
+    "performance": {
+      "total_html": "3.47 MB",
+      "search_index": "1.22 MB"
+    }
+  }
+}

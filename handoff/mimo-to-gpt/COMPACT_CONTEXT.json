@@ -1,0 +1,46 @@
+{
+  "version": "V34",
+  "timestamp": "2026-08-06T15:05:16.293774",
+  "from": "MiMo-V2.5",
+  "to": "GPT",
+  "status": "MIMO_CLAIMED_PASS / GPT_NOT_YET_VERIFIED",
+  "archive_stats": {
+    "files": 445,
+    "chapters": 430,
+    "theorems": 864,
+    "html_pass": "430/430",
+    "theme_toggle": "430/430",
+    "i18n_ru_en": "437 files",
+    "json_entries": {
+      "search": 864,
+      "cards": 864,
+      "quiz": 864
+    },
+    "skills": 61
+  },
+  "fixes_applied": [
+    "V32: 865 malformed proof headers fixed",
+    "V32: Theme toggle restored (escaped &lt;button -> <button)",
+    "V32: Newton limitation fixed (v>h-bar -> v<<c)",
+    "V32: JSON Statement tails cleaned",
+    "V34: 3 semantic misapplications fixed (Markov, Stark-Heegner)",
+    "V34: Calculator Function() -> safe eval",
+    "V34: README claims cleaned"
+  ],
+  "known_issues": [
+    "170 template proof bodies remain (generic, not theorem-specific)",
+    "404 cards have placeholder source 'automated generation'",
+    "Cross-surface drift between HTML and JSON",
+    "Formula damage in some chapters (broken |G|, |H| notation)"
+  ],
+  "scores": {
+    "mimo": 1545,
+    "gpt": "pending"
+  },
+  "next_priorities": [
+    "Replace 170 template proofs with theorem-specific content",
+    "Fix formula damage (|G|, |H| notation)",
+    "Eliminate cross-surface drift",
+    "Restore 2 deleted Algorithms cards (Cantor, poly hierarchy)"
+  ]
+}
