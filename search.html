@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Full-text search across 864 unique theorems. Search by statement, formula, author, or keyword with area, type, and difficulty filters.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theorem Search — 864 Theorems</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#0f172a,#1e293b);padding:30px 20px 20px;text-align:center;border-bottom:1px solid #334155}
+.header h1{font-size:1.8em;font-weight:700;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#94a3b8;margin-top:5px;font-size:.9em}
+.search-box{max-width:900px;margin:20px auto 0;position:relative}
+.search-box input{width:100%;padding:14px 20px 14px 44px;background:#1e293b;border:2px solid #334155;border-radius:12px;color:#e2e8f0;font-size:1.05em;outline:none;transition:border .2s}
+.search-box input:focus{border-color:#60a5fa}
+.search-box::before{content:"\1F50D";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.1em}
+.filters{max-width:900px;margin:15px auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filters select,.filters input[type=number]{padding:8px 12px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:.85em;outline:none}
+.filters label{color:#94a3b8;font-size:.8em}
+.filters .fgroup{display:flex;align-items:center;gap:5px}
+.stats{max-width:900px;margin:10px auto;color:#64748b;font-size:.85em;display:flex;gap:20px;justify-content:space-between}
+.results{max-width:900px;margin:10px auto;padding:0 20px 40px}
+.result{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px 18px;margin-bottom:10px;transition:border .2s}
+.result:hover{border-color:#60a5fa}
+.result h3{font-size:1em;margin-bottom:6px}
+.result h3 a{color:#60a5fa;text-decoration:none;font-weight:600}
+.result h3 a:hover{text-decoration:underline}
+.result .meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:600;color:white}
+.result .stmt{color:#cbd5e1;font-size:.88em;line-height:1.5;margin-bottom:6px}
+.result .stmt mark{background:#fbbf24;color:#0f172a;border-radius:2px;padding:0 2px}
+.result .src{color:#64748b;font-size:.78em}
+.result .steps-preview{color:#94a3b8;font-size:.82em;margin-top:6px;font-style:italic}
+.badge-diff-Elementary{background:#059669}
+.badge-diff-Intermediate{background:#d97706}
+.badge-diff-Advanced{background:#dc2626}
+.badge-type-EMPIRICAL_LAW{background:#7c3aed}
+.badge-type-THEOREM{background:#2563eb}
+.highlight-match{background:rgba(96,165,250,.2);border-left:3px solid #60a5fa;padding-left:8px}
+.empty{text-align:center;color:#64748b;padding:60px 20px;font-size:1.1em}
+.loading{text-align:center;color:#94a3b8;padding:40px}
+.author-tag{background:#334155;padding:1px 6px;border-radius:4px;font-size:.7em;color:#94a3b8}
+</style>
+
+<style>
+html.light{--ink:#f8fafc;--paper:#1e293b;--accent:#2563eb;--green:#16a34a;--muted:#64748b;--border:#e2e8f0;--card:#ffffff;--card2:#f1f5f9}
+html.light body{background:var(--ink);color:var(--paper)}
+html.light .nav{background:#ffffff;border-color:#e2e8f0}
+html.light .nav a{color:#2563eb}
+html.light .hero{background:linear-gradient(170deg,#f8fafc 0%,#ffffff 40%,#f1f5f9 70%,#ffffff 100%)}
+html.light .hero h1{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .hero .sub{color:#64748b}
+html.light .stats{background:#ffffff;border-color:#e2e8f0}
+html.light .stat .num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat .lbl{color:#64748b}
+html.light .card{background:#ffffff;border-color:#e2e8f0}
+html.light .card:hover{border-color:#2563eb;background:#f8fafc}
+html.light .card a{color:#2563eb}
+html.light .card .count{color:#64748b}
+html.light .section{background:#ffffff;border-color:#e2e8f0}
+html.light .section h2{color:#1e293b}
+html.light a{color:#2563eb}
+html.light a:hover{color:#7c3aed}
+html.light .area-link{color:#1e293b}
+html.light .area-link:hover{background:#f1f5f9}
+html.light .area h2{color:#1e293b;border-color:#e2e8f0}
+html.light .badge-ok{background:rgba(22,163,74,.1);color:#16a34a}
+html.light .search input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .search input::placeholder{color:#94a3b8}
+html.light .footer{color:#64748b;border-color:#e2e8f0}
+html.light .nav{background:#ffffff}
+html.light #themeToggle{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+
+/* Tool cards */
+html.light .tool{background:#ffffff;border-color:#e2e8f0}
+html.light .tool:hover{border-color:#2563eb}
+html.light .tool .name{color:#1e293b}
+html.light .tool .desc{color:#64748b}
+
+/* Nav bar */
+html.light .nav a{background:transparent;border-color:#e2e8f0;color:#1e293b}
+html.light .nav a:hover{border-color:#2563eb;background:#f1f5f9}
+
+/* Search page */
+html.light .search-box input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .filters select,.html.light .filters input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .result{background:#ffffff;border-color:#e2e8f0}
+html.light .result:hover{border-color:#2563eb}
+html.light .result h3 a{color:#2563eb}
+html.light .result .stmt{color:#475569}
+html.light .result .src{color:#94a3b8}
+html.light .result .steps-preview{color:#64748b}
+html.light .stats span{color:#64748b}
+
+/* Catalog */
+html.light #catalogTable th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light #catalogTable td{border-color:#f1f5f9;color:#1e293b}
+html.light #catalogTable tr:hover{background:#f8fafc}
+
+/* Analytics */
+html.light .chart-box{background:#ffffff;border-color:#e2e8f0}
+html.light .chart-box h2{color:#475569}
+html.light .stats-row .stat-card{background:#ffffff;border-color:#e2e8f0}
+html.light .stat-card .stat-num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat-card .stat-label{color:#64748b}
+html.light table{border-color:#e2e8f0}
+html.light th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light td{border-color:#f1f5f9;color:#1e293b}
+
+/* Quiz */
+html.light .settings{background:#ffffff;border-color:#e2e8f0}
+html.light .settings h2{color:#475569}
+html.light .settings select,.html.light .settings input{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .question-card{background:#ffffff;border-color:#e2e8f0}
+html.light .q-text{color:#1e293b}
+html.light .option{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .option:hover{border-color:#2563eb;background:#eff6ff}
+html.light .explanation{background:#eff6ff;color:#1e40af}
+html.light .score-panel{background:#ffffff;border-color:#e2e8f0}
+html.light .progress-bar{background:#e2e8f0}
+html.light .progress-fill{background:linear-gradient(90deg,#2563eb,#16a34a)}
+
+/* Flashcards */
+html.light .card-front{background:linear-gradient(135deg,#ffffff,#f8fafc);border-color:#e2e8f0}
+html.light .card-back{background:linear-gradient(135deg,#eff6ff,#ffffff);border-color:#2563eb}
+html.light .card-title{color:#1e293b}
+html-light .card-stmt{color:#475569}
+html.light .card-hint{color:#94a3b8}
+html.light .card-section h4{color:#2563eb}
+html.light .card-section p,.html.light .card-section li{color:#475569}
+html.light .card-meta{color:#94a3b8;border-color:#e2e8f0}
+html.light .s-stat{background:#ffffff;border-color:#e2e8f0}
+html.light .s-stat .l{color:#64748b}
+html.light .counter{color:#64748b}
+html.light .interval{color:#94a3b8}
+html.light .btn-again{background:#ef4444}.html.light .btn-hard{background:#f59e0b}
+html.light .btn-good{background:#2563eb}.html.light .btn-easy{background:#16a34a}
+html.light .done-panel{color:#1e293b}
+html.light .done-panel h2{color:#16a34a}
+html.light .done-panel p{color:#64748b}
+</style>
+<link rel="canonical" href="https://yury197812.github.io/science-books-1001-proofs/search.html">
+<meta property="og:title" content="Theorem Search — 864 Theorems">
+<meta property="og:description" content="Full-text search across 864 unique theorems. Search by statement, formula, author, or keyword with area, type, and difficulty filters.">
+<meta property="og:url" content="https://yury197812.github.io/science-books-1001-proofs/search.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Theorem Search — 864 Theorems">
+<meta name="twitter:description" content="Full-text search across 864 unique theorems. Search by statement, formula, author, or keyword with area, type, and difficulty filters.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "1001 Proofs — Clean Archive",
+  "description": "Full-text search across 864 unique theorems. Search by statement, formula, author, or keyword with area, type, and difficulty filters.",
+  "url": "https://yury197812.github.io/science-books-1001-proofs/search.html",
+  "author": {"@type": "Person", "name": "Yuriy Aronov"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-08-06"
+}
+</script>
+
+<style>
+/* Focus styles for keyboard navigation */
+*:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+/* Skip to main content */
+.skip-nav{position:absolute;top:-100px;left:0;padding:10px 20px;background:#2563eb;color:white;z-index:10000;font-size:.9em;text-decoration:none;border-radius:0 0 8px 0}
+.skip-nav:focus{top:0}
+/* Calculator tab keyboard support */
+.tab{cursor:pointer}
+.tab:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.formula-card:focus-visible,.const-card:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+</style>
+
+<style>
+@media(max-width:768px){
+  .nav{padding:8px 12px;gap:4px}
+  .nav a{font-size:.75em;padding:4px 8px}
+  .hero{padding:30px 16px 20px}
+  .hero h1{font-size:1.5em}
+  .stats{flex-direction:column;gap:12px}
+  .stat .num{font-size:1.8em}
+  .container{padding:16px 12px}
+  .search-box input{padding:12px 16px 12px 36px;font-size:.95em}
+  .filters{flex-direction:column}
+  .filters .fgroup{width:100%}
+  .filters select,.filters input{width:100%}
+  .result{padding:12px}
+  .result .stmt{font-size:.82em}
+  .settings{padding:14px}
+  .row{flex-direction:column;gap:6px}
+  .row label{min-width:auto}
+  .question-card{padding:16px}
+  .option{padding:10px 12px;font-size:.85em}
+  .calc{max-width:100%;gap:4px}
+  .calc-display{padding:12px}
+  .calc-display .result{font-size:1.4em}
+  .btn{padding:10px;font-size:.9em}
+  .formula-grid{grid-template-columns:1fr}
+  .const-grid{grid-template-columns:1fr}
+  .formula-card,.const-card{padding:10px}
+  .tabs{justify-content:center}
+  .tab{font-size:.8em;padding:6px 12px}
+  .card-front,.card-back{padding:16px}
+  .card-title{font-size:.9em}
+  .footer{font-size:.75em;padding:16px}
+  .area{margin-bottom:20px}
+  .area h2{font-size:1.1em}
+  .grid{grid-template-columns:1fr !important;gap:8px}
+  .tools{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tool{padding:12px}
+  .tool .icon{font-size:1.5em}
+  .tool .name{font-size:.8em}
+  .tool .desc{font-size:.65em}
+  .stat-section{padding:12px}
+  .stat-input{padding:8px;font-size:.85em}
+}
+</style>
+</head>
+<body>
+
+<nav style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 20px;background:#1e293b;border-bottom:1px solid #334155">
+<a href="index.html" style="padding:6px 12px;border-radius:6px;color:#e2e8f0;font-size:.82em;background:#0f172a;border:1px solid #334155;text-decoration:none">Home</a>
+<a href="search.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Search</a>
+<a href="catalog.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Catalog</a>
+<a href="analytics.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Analytics</a>
+<a href="quiz.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Quiz</a>
+<a href="flashcards.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Flashcards</a>
+<a href="calculator.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Calculator</a>
+</nav>
+<div class="header">
+  <h1>Theorem Search Engine</h1>
+  <p>864 theorems across 9 science areas — full text, formulas, authors</p>
+  <div class="search-box">
+    <input type="text" id="q" aria-label="Search theorems" placeholder="Search: Lagrange, |H| divides, Galois, Cauchy integral, F=ma..." autofocus>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="fgroup"><label>Area:</label><select id="fArea"><option value="">All</option><option value="Astronomy">Astronomy</option><option value="Biology">Biology</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Earth Sciences">Earth Sciences</option><option value="Engineering">Engineering</option><option value="Mathematics">Mathematics</option><option value="Physics">Physics</option><option value="Statistics">Statistics</option></select></div>
+  <div class="fgroup"><label>Type:</label><select id="fType"><option value="">All</option><option value="THEOREM">Theorem</option><option value="EMPIRICAL_LAW">Empirical Law</option></select></div>
+  <div class="fgroup"><label>Difficulty:</label><select id="fDiff"><option value="">All</option><option value="Elementary">Elementary</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></div>
+  <div class="fgroup"><label>Min steps:</label><input type="number" id="fSteps" min="0" max="10" value="0" style="width:60px"></div>
+  <div class="fgroup"><label>Author:</label><input type="text" id="fAuthor" aria-label="Filter by author" placeholder="e.g. Gauss" style="width:120px"></div>
+</div>
+
+<div class="stats">
+  <span id="count">Loading index...</span>
+  <span id="timer"></span>
+</div>
+
+<div class="results" id="results">
+  <div class="loading">Loading search index...</div>
+</div>
+
+<script>
+var DATA=[];
+var loaded=false;
+
+async function loadData(){
+  try{
+    var r=await fetch("search_index.json");
+    DATA=await r.json();
+    loaded=true;
+    document.getElementById("count").textContent=DATA.length+" theorems indexed";
+    if(document.getElementById("q").value) doSearch();
+  }catch(e){
+    document.getElementById("results").innerHTML="<div class='empty'>Failed to load search index</div>";
+  }
+}
+
+function highlight(text,query){
+  if(!query) return escHtml(text);
+  var words=query.split(/\s+/).filter(w=>w.length>1);
+  var h=escHtml(text);
+  words.forEach(w=>{
+    var re=new RegExp("("+escRegex(w)+")","gi");
+    h=h.replace(re,"<mark>$1</mark>");
+  });
+  return h;
+}
+
+function escHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function escRegex(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
+
+function doSearch(){
+  if(!loaded) return;
+  var t0=performance.now();
+  var q=document.getElementById("q").value.toLowerCase().trim();
+  var fArea=document.getElementById("fArea").value;
+  var fType=document.getElementById("fType").value;
+  var fDiff=document.getElementById("fDiff").value;
+  var fSteps=parseInt(document.getElementById("fSteps").value)||0;
+  var fAuthor=document.getElementById("fAuthor").value.toLowerCase().trim();
+
+  var words=q?q.split(/\s+/).filter(w=>w.length>0):[];
+
+  var results=[];
+  for(var i=0;i<DATA.length;i++){
+    var t=DATA[i];
+    if(fArea && t.area!==fArea) continue;
+    if(fType && t.type!==fType) continue;
+    if(fDiff && t.diff!==fDiff) continue;
+    if(fSteps && t.steps_n<fSteps) continue;
+    if(fAuthor){
+      var authMatch=false;
+      for(var j=0;j<t.authors.length;j++){
+        if(t.authors[j].toLowerCase().includes(fAuthor)){authMatch=true;break;}
+      }
+      if(!authMatch && !t.src.toLowerCase().includes(fAuthor)) continue;
+    }
+
+    if(words.length===0){
+      results.push({t:t,score:0});
+      continue;
+    }
+
+    var score=0;
+    var hl=text=>{
+      var s=0;
+      words.forEach(w=>{
+        if(text.toLowerCase().includes(w)){
+          s+=1;
+          if(text.toLowerCase().startsWith(w)) s+=2;
+          if(text.toLowerCase().includes(" "+w)) s+=1;
+        }
+      });
+      return s;
+    };
+
+    score+=hl(t.h3)*5;
+    score+=hl(t.stmt)*4;
+    score+=hl(t.hyps)*2;
+    score+=hl(t.conc)*2;
+    score+=hl(t.steps)*1;
+    score+=hl(t.src)*3;
+    score+=hl(t.defs)*1;
+    if(t.authors){
+      t.authors.forEach(a=>{words.forEach(w=>{if(a.toLowerCase().includes(w)) score+=6;})});
+    }
+
+    if(score>0) results.push({t:t,score:score});
+  }
+
+  results.sort((a,b)=>b.score-a.score);
+
+  var dt=Math.round(performance.now()-t0);
+  document.getElementById("count").textContent=results.length+" results"+(q?" for ""+escHtml(q)+""":"");
+  document.getElementById("timer").textContent=dt+"ms";
+
+  var el=document.getElementById("results");
+  if(results.length===0){
+    el.innerHTML="<div class='empty'>"+(q?"No results found":"Enter a search query")+"</div>";
+    return;
+  }
+
+  var html="";
+  var show=results.slice(0,100);
+  show.forEach(r=>{
+    var t=r.t;
+    var link=t.ch+"/"+t.file+"#"+t.anc;
+    var authHtml="";
+    if(t.authors && t.authors.length){
+      authHtml=t.authors.map(a=>"<span class='author-tag'>"+escHtml(a)+"</span>").join(" ");
+    }
+    html+='<div class="result">';
+    html+='<div class="meta">';
+    html+='<span class="badge badge-type-'+t.type+'">'+escHtml(t.type)+'</span>';
+    html+='<span class="badge" style="background:'+areaColor(t.area)+'">'+escHtml(t.area)+'</span>';
+    html+='<span class="badge badge-diff-'+t.diff+'">'+escHtml(t.diff)+'</span>';
+    html+='<span style="color:#64748b;font-size:.75em">'+t.steps_n+' steps</span>';
+    html+=authHtml;
+    html+='</div>';
+    html+='<h3><a >'+highlight(t.h3,q)+'</a></h3>';
+    html+='<div class="stmt">'+highlight(t.stmt.substring(0,300),q)+'</div>';
+    if(t.src) html+='<div class="src">Source: '+highlight(t.src,q)+'</div>';
+    html+='</div>';
+  });
+
+  if(results.length>100) html+='<div style="text-align:center;color:#64748b;padding:20px">Showing 100 of '+results.length+' results</div>';
+  el.innerHTML=html;
+}
+
+function areaColor(a){
+  var c={"Mathematics":"#2563eb","Physics":"#dc2626","Chemistry":"#059669","Biology":"#d97706","Astronomy":"#7c3aed","Computer Science":"#0891b2","Statistics":"#be185d","Earth Sciences":"#65a30d","Engineering":"#ea580c"};
+  return c[a]||"#666";
+}
+
+document.getElementById("q").addEventListener("input",doSearch);
+document.getElementById("fArea").addEventListener("change",doSearch);
+document.getElementById("fType").addEventListener("change",doSearch);
+document.getElementById("fDiff").addEventListener("change",doSearch);
+document.getElementById("fSteps").addEventListener("input",doSearch);
+document.getElementById("fAuthor").addEventListener("input",doSearch);
+
+loadData();
+</script>
+<div style="text-align:center;padding:20px;color:#475569;font-size:.75em;border-top:1px solid #334155;margin-top:30px">
+<p><a href="index.html" style="color:#60a5fa">Archive</a> · <a href="search.html" style="color:#60a5fa">Search</a> · <a href="catalog.html" style="color:#60a5fa">Catalog</a> · <a href="analytics.html" style="color:#60a5fa">Analytics</a> · <a href="quiz.html" style="color:#60a5fa">Quiz</a> · <a href="flashcards.html" style="color:#60a5fa">Flashcards</a> · <a href="README.md" style="color:#60a5fa">Docs</a></p>
+<p style="margin-top:6px">1001 Proofs — CC-BY-4.0 · arXiv 2608.07961 · DOI 10.5281/zenodo.21288911</p>
+</div>
+<button id="themeToggle" onclick="toggleTheme()" style="position:fixed;bottom:20px;right:20px;z-index:9999;width:44px;height:44px;border-radius:50%;border:2px solid #334155;background:#1e293b;color:#e2e8f0;font-size:1.2em;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s" title="Toggle theme">&#127769;</button>
+<script>
+(function(){
+  var s=localStorage.getItem("theme");
+  if(s==="light") document.documentElement.classList.add("light");
+  window.toggleTheme=function(){
+    document.documentElement.classList.toggle("light");
+    var l=document.documentElement.classList.contains("light");
+    localStorage.setItem("theme",l?"light":"dark");
+    var b=document.getElementById("themeToggle");
+    if(b) b.textContent=l?"&#9728;&#65039;":"&#127769;";
+  };
+  var b=document.getElementById("themeToggle");
+  if(b && document.documentElement.classList.contains("light")) b.textContent="&#9728;&#65039;";
+})();
+</script>
+<div class="footer">
+<p><a href="index.html">Archive</a> · <a href="search.html">Search</a> · <a href="catalog.html">Catalog</a> · <a href="analytics.html">Analytics</a> · <a href="quiz.html">Quiz</a> · <a href="flashcards.html">Flashcards</a> · <a href="calculator.html">Calculator</a> · <a href="README.md">Docs</a></p>
+<p>1001 Proofs — Clean Archive | <a href="https://yury197812.github.io/science-books-1001-proofs/">Full Project</a></p>
+<p>arXiv: <a href="https://arxiv.org/abs/2608.07961">2608.07961</a> · DOI: <a href="https://doi.org/10.5281/zenodo.21288911">10.5281/zenodo.21288911</a> · OSF: <a href="https://osf.io/hn236/">osf.io/hn236</a></p>
+<p>License: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
+</div>
+</body>
+</html>

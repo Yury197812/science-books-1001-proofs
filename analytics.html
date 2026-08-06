@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Interactive analytics dashboard with charts showing theorem distribution across 9 science areas, difficulty levels, and proof complexity.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive Analytics — 864 Theorems</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
+h1{text-align:center;font-size:1.8em;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:30px;font-size:.9em}
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:30px;max-width:1000px;margin-left:auto;margin-right:auto}
+.stat-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;text-align:center}
+.stat-num{font-size:1.8em;font-weight:800;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{color:#94a3b8;font-size:.75em;text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px;max-width:1200px;margin:0 auto 20px}
+.chart-box{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:20px}
+.chart-box h2{font-size:1em;color:#94a3b8;margin-bottom:12px;font-weight:600}
+.chart-box canvas{max-height:300px}
+.full-width{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #334155}
+th{color:#94a3b8;font-weight:600;font-size:.8em;text-transform:uppercase}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:600;color:white}
+.footer{text-align:center;color:#64748b;padding:30px;font-size:.8em;border-top:1px solid #334155;margin-top:30px}
+@media(max-width:768px){.stats-row{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+</style>
+
+<style>
+html.light{--ink:#f8fafc;--paper:#1e293b;--accent:#2563eb;--green:#16a34a;--muted:#64748b;--border:#e2e8f0;--card:#ffffff;--card2:#f1f5f9}
+html.light body{background:var(--ink);color:var(--paper)}
+html.light .nav{background:#ffffff;border-color:#e2e8f0}
+html.light .nav a{color:#2563eb}
+html.light .hero{background:linear-gradient(170deg,#f8fafc 0%,#ffffff 40%,#f1f5f9 70%,#ffffff 100%)}
+html.light .hero h1{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .hero .sub{color:#64748b}
+html.light .stats{background:#ffffff;border-color:#e2e8f0}
+html.light .stat .num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat .lbl{color:#64748b}
+html.light .card{background:#ffffff;border-color:#e2e8f0}
+html.light .card:hover{border-color:#2563eb;background:#f8fafc}
+html.light .card a{color:#2563eb}
+html.light .card .count{color:#64748b}
+html.light .section{background:#ffffff;border-color:#e2e8f0}
+html.light .section h2{color:#1e293b}
+html.light a{color:#2563eb}
+html.light a:hover{color:#7c3aed}
+html.light .area-link{color:#1e293b}
+html.light .area-link:hover{background:#f1f5f9}
+html.light .area h2{color:#1e293b;border-color:#e2e8f0}
+html.light .badge-ok{background:rgba(22,163,74,.1);color:#16a34a}
+html.light .search input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .search input::placeholder{color:#94a3b8}
+html.light .footer{color:#64748b;border-color:#e2e8f0}
+html.light .nav{background:#ffffff}
+html.light #themeToggle{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+
+/* Tool cards */
+html.light .tool{background:#ffffff;border-color:#e2e8f0}
+html.light .tool:hover{border-color:#2563eb}
+html.light .tool .name{color:#1e293b}
+html.light .tool .desc{color:#64748b}
+
+/* Nav bar */
+html.light .nav a{background:transparent;border-color:#e2e8f0;color:#1e293b}
+html.light .nav a:hover{border-color:#2563eb;background:#f1f5f9}
+
+/* Search page */
+html.light .search-box input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .filters select,.html.light .filters input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .result{background:#ffffff;border-color:#e2e8f0}
+html.light .result:hover{border-color:#2563eb}
+html.light .result h3 a{color:#2563eb}
+html.light .result .stmt{color:#475569}
+html.light .result .src{color:#94a3b8}
+html.light .result .steps-preview{color:#64748b}
+html.light .stats span{color:#64748b}
+
+/* Catalog */
+html.light #catalogTable th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light #catalogTable td{border-color:#f1f5f9;color:#1e293b}
+html.light #catalogTable tr:hover{background:#f8fafc}
+
+/* Analytics */
+html.light .chart-box{background:#ffffff;border-color:#e2e8f0}
+html.light .chart-box h2{color:#475569}
+html.light .stats-row .stat-card{background:#ffffff;border-color:#e2e8f0}
+html.light .stat-card .stat-num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat-card .stat-label{color:#64748b}
+html.light table{border-color:#e2e8f0}
+html.light th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light td{border-color:#f1f5f9;color:#1e293b}
+
+/* Quiz */
+html.light .settings{background:#ffffff;border-color:#e2e8f0}
+html.light .settings h2{color:#475569}
+html.light .settings select,.html.light .settings input{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .question-card{background:#ffffff;border-color:#e2e8f0}
+html.light .q-text{color:#1e293b}
+html.light .option{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .option:hover{border-color:#2563eb;background:#eff6ff}
+html.light .explanation{background:#eff6ff;color:#1e40af}
+html.light .score-panel{background:#ffffff;border-color:#e2e8f0}
+html.light .progress-bar{background:#e2e8f0}
+html.light .progress-fill{background:linear-gradient(90deg,#2563eb,#16a34a)}
+
+/* Flashcards */
+html.light .card-front{background:linear-gradient(135deg,#ffffff,#f8fafc);border-color:#e2e8f0}
+html.light .card-back{background:linear-gradient(135deg,#eff6ff,#ffffff);border-color:#2563eb}
+html.light .card-title{color:#1e293b}
+html-light .card-stmt{color:#475569}
+html.light .card-hint{color:#94a3b8}
+html.light .card-section h4{color:#2563eb}
+html.light .card-section p,.html.light .card-section li{color:#475569}
+html.light .card-meta{color:#94a3b8;border-color:#e2e8f0}
+html.light .s-stat{background:#ffffff;border-color:#e2e8f0}
+html.light .s-stat .l{color:#64748b}
+html.light .counter{color:#64748b}
+html.light .interval{color:#94a3b8}
+html.light .btn-again{background:#ef4444}.html.light .btn-hard{background:#f59e0b}
+html.light .btn-good{background:#2563eb}.html.light .btn-easy{background:#16a34a}
+html.light .done-panel{color:#1e293b}
+html.light .done-panel h2{color:#16a34a}
+html.light .done-panel p{color:#64748b}
+</style>
+<link rel="canonical" href="https://yury197812.github.io/science-books-1001-proofs/analytics.html">
+<meta property="og:title" content="Archive Analytics — 864 Theorems">
+<meta property="og:description" content="Interactive analytics dashboard with charts showing theorem distribution across 9 science areas, difficulty levels, and proof complexity.">
+<meta property="og:url" content="https://yury197812.github.io/science-books-1001-proofs/analytics.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Archive Analytics — 864 Theorems">
+<meta name="twitter:description" content="Interactive analytics dashboard with charts showing theorem distribution across 9 science areas, difficulty levels, and proof complexity.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "1001 Proofs — Clean Archive",
+  "description": "Interactive analytics dashboard with charts showing theorem distribution across 9 science areas, difficulty levels, and proof complexity.",
+  "url": "https://yury197812.github.io/science-books-1001-proofs/analytics.html",
+  "author": {"@type": "Person", "name": "Yuriy Aronov"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-08-06"
+}
+</script>
+
+<style>
+/* Focus styles for keyboard navigation */
+*:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+/* Skip to main content */
+.skip-nav{position:absolute;top:-100px;left:0;padding:10px 20px;background:#2563eb;color:white;z-index:10000;font-size:.9em;text-decoration:none;border-radius:0 0 8px 0}
+.skip-nav:focus{top:0}
+/* Calculator tab keyboard support */
+.tab{cursor:pointer}
+.tab:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.formula-card:focus-visible,.const-card:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+</style>
+</head>
+<body>
+<nav style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 20px;background:#1e293b;border-bottom:1px solid #334155">
+<a href="index.html" style="padding:6px 12px;border-radius:6px;color:#e2e8f0;font-size:.82em;background:#0f172a;border:1px solid #334155;text-decoration:none">Home</a>
+<a href="search.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Search</a>
+<a href="catalog.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Catalog</a>
+<a href="analytics.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Analytics</a>
+<a href="quiz.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Quiz</a>
+<a href="flashcards.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Flashcards</a>
+<a href="calculator.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Calculator</a>
+</nav>
+
+<h1>Archive Analytics</h1>
+<p class="subtitle">864 theorems across 430 chapters and 9 science areas</p>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-num">864</div><div class="stat-label">Total Theorems</div></div>
+  <div class="stat-card"><div class="stat-num">430</div><div class="stat-label">Chapters</div></div>
+  <div class="stat-card"><div class="stat-num">596</div><div class="stat-label">Theorems</div></div>
+  <div class="stat-card"><div class="stat-num">268</div><div class="stat-label">Empirical Laws</div></div>
+  <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Science Areas</div></div>
+</div>
+
+<div class="grid">
+
+<div class="chart-box">
+  <h2>Theorems by Science Area</h2>
+  <canvas id="chartArea"></canvas>
+</div>
+
+<div class="chart-box">
+  <h2>Entry Type Distribution</h2>
+  <canvas id="chartType"></canvas>
+</div>
+
+<div class="chart-box">
+  <h2>Difficulty Distribution</h2>
+  <canvas id="chartDiff"></canvas>
+</div>
+
+<div class="chart-box">
+  <h2>Proof Steps Distribution</h2>
+  <canvas id="chartSteps"></canvas>
+</div>
+
+<div class="chart-box full-width">
+  <h2>Area x Difficulty Matrix</h2>
+  <canvas id="chartStacked"></canvas>
+</div>
+
+<div class="chart-box">
+  <h2>Source Coverage by Area</h2>
+  <canvas id="chartSrc"></canvas>
+</div>
+
+<div class="chart-box">
+  <h2>Top Authors Referenced</h2>
+  <canvas id="chartAuthors"></canvas>
+</div>
+
+<div class="chart-box full-width">
+  <h2>Top 20 Chapters by Theorem Count</h2>
+  <canvas id="chartChapters"></canvas>
+</div>
+
+<div class="chart-box full-width">
+  <h2>Cross-Tabulation: Area x Entry Type</h2>
+  <table>
+    <tr><th>Area</th><th>Theorems</th><th>Empirical Laws</th><th>Total</th><th>% Theorems</th></tr>
+    <tr><td><span class="badge" style="background:#2563eb">Mathematics</span></td><td>436</td><td>0</td><td>436</td><td>100%</td></tr><tr><td><span class="badge" style="background:#2563eb">Physics</span></td><td>17</td><td>100</td><td>117</td><td>14%</td></tr><tr><td><span class="badge" style="background:#dc2626">Chemistry</span></td><td>0</td><td>48</td><td>48</td><td>0%</td></tr><tr><td><span class="badge" style="background:#dc2626">Biology</span></td><td>0</td><td>50</td><td>50</td><td>0%</td></tr><tr><td><span class="badge" style="background:#dc2626">Astronomy</span></td><td>0</td><td>26</td><td>26</td><td>0%</td></tr><tr><td><span class="badge" style="background:#2563eb">Computer Science</span></td><td>75</td><td>0</td><td>75</td><td>100%</td></tr><tr><td><span class="badge" style="background:#2563eb">Statistics</span></td><td>44</td><td>0</td><td>44</td><td>100%</td></tr><tr><td><span class="badge" style="background:#2563eb">Earth Sciences</span></td><td>24</td><td>17</td><td>41</td><td>58%</td></tr><tr><td><span class="badge" style="background:#dc2626">Engineering</span></td><td>0</td><td>27</td><td>27</td><td>0%</td></tr>
+    <tr style="font-weight:700;border-top:2px solid #475569"><td>TOTAL</td><td>596</td><td>268</td><td>864</td><td>68%</td></tr>
+  </table>
+</div>
+
+<div class="chart-box full-width">
+  <h2>Proof Length Statistics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Average proof steps</td><td>4.8</td></tr>
+    <tr><td>Max proof steps</td><td>13</td></tr>
+    <tr><td>Min proof steps</td><td>0</td></tr>
+    <tr><td>Avg statement length (words)</td><td>13</td></tr>
+    <tr><td>Avg hypotheses length (words)</td><td>5</td></tr>
+    <tr><td>Avg conclusion length (words)</td><td>5</td></tr>
+    <tr><td>Theorems with real sources</td><td>115 (13%)</td></tr>
+  </table>
+</div>
+
+</div>
+
+
+
+<script>
+Chart.defaults.color="#94a3b8";
+Chart.defaults.borderColor="#334155";
+
+new Chart(document.getElementById("chartArea"),{
+  type:"bar",
+  data:{
+    labels:["Mathematics", "Physics", "Chemistry", "Biology", "Astronomy", "Computer Science", "Statistics", "Earth Sciences", "Engineering"],
+    datasets:[{
+      label:"Theorems",
+      data:[436, 17, 0, 0, 0, 75, 44, 24, 0],
+      backgroundColor:"#2563eb"
+    },{
+      label:"Empirical Laws",
+      data:[0, 100, 48, 50, 26, 0, 0, 17, 27],
+      backgroundColor:"#dc2626"
+    }]
+  },
+  options:{responsive:true,plugins:{legend:{position:"bottom"}},scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}
+});
+
+new Chart(document.getElementById("chartType"),{
+  type:"doughnut",
+  data:{
+    labels:["Theorems","Empirical Laws"],
+    datasets:[{data:[596,268],backgroundColor:["#2563eb","#dc2626"]}]
+  },
+  options:{responsive:true,plugins:{legend:{position:"bottom"}}}
+});
+
+new Chart(document.getElementById("chartDiff"),{
+  type:"doughnut",
+  data:{
+    labels:["Elementary", "Intermediate", "Advanced"],
+    datasets:[{data:[72, 778, 14],backgroundColor:["#059669", "#d97706", "#dc2626"]}]
+  },
+  options:{responsive:true,plugins:{legend:{position:"bottom"}}}
+});
+
+new Chart(document.getElementById("chartSteps"),{
+  type:"bar",
+  data:{
+    labels:[0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13],
+    datasets:[{label:"Theorems",data:[1, 11, 60, 225, 458, 73, 19, 6, 1, 8, 1, 1],backgroundColor:"#60a5fa"}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById("chartStacked"),{
+  type:"bar",
+  data:{
+    labels:["Mathematics", "Physics", "Chemistry", "Biology", "Astronomy", "Computer Science", "Statistics", "Earth Sciences", "Engineering"],
+    datasets:[
+      {label:"Elementary",data:[67, 1, 0, 0, 1, 2, 1, 0, 0],backgroundColor:"#059669"},
+      {label:"Intermediate",data:[358, 114, 48, 50, 25, 73, 43, 40, 27],backgroundColor:"#d97706"},
+      {label:"Advanced",data:[11, 2, 0, 0, 0, 0, 0, 1, 0],backgroundColor:"#dc2626"}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:"bottom"}},scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}
+});
+
+new Chart(document.getElementById("chartSrc"),{
+  type:"bar",
+  data:{
+    labels:["Mathematics", "Physics", "Chemistry", "Biology", "Astronomy", "Computer Science", "Statistics", "Earth Sciences", "Engineering"],
+    datasets:[
+      {label:"With source",data:[46, 0, 0, 0, 0, 49, 0, 20, 0],backgroundColor:"#059669"},
+      {label:"Without source",data:[390, 117, 48, 50, 26, 26, 44, 21, 27],backgroundColor:"#475569"}
+    ]
+  },
+  options:{responsive:true,indexAxis:"y",plugins:{legend:{position:"bottom"}},scales:{x:{stacked:true},y:{stacked:true}}}
+});
+
+new Chart(document.getElementById("chartAuthors"),{
+  type:"bar",
+  data:{
+    labels:["Ith", "Newton", "Ite", "Iti", "Mendel", "Ity", "Kepler", "Euclid", "It ", "Gauss", "Noether", "Hilbert", "Cauchy", "Lagrange", "Euler"],
+    datasets:[{label:"References",data:[92, 84, 67, 49, 48, 46, 26, 16, 12, 10, 9, 9, 7, 7, 7],backgroundColor:"#a78bfa"}]
+  },
+  options:{responsive:true,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById("chartChapters"),{
+  type:"bar",
+  data:{
+    labels:["001_Algebra", "018_Probability", "024_Number_Theory", "308_Algorithms", "006_Geometry", "054_Diff_Geom", "010_Topology", "356_Mathematical_Sta", "099_Classical_Mechan", "381_Geology", "002_Groups", "036_Math_Logic", "012_Analysis", "003_Rings", "015_Complex", "041_Combinatorial", "046_Coding", "055_Riemannian", "009_Differential", "004_Modules"],
+    datasets:[{label:"Theorems",data:[104, 62, 29, 28, 26, 25, 20, 20, 18, 17, 16, 11, 10, 7, 7, 5, 5, 5, 4, 3],backgroundColor:"#60a5fa"}]
+  },
+  options:{responsive:true,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}
+});
+</script>
+<div style="text-align:center;padding:20px;color:#475569;font-size:.75em;border-top:1px solid #334155;margin-top:30px">
+<p><a href="index.html" style="color:#60a5fa">Archive</a> · <a href="search.html" style="color:#60a5fa">Search</a> · <a href="catalog.html" style="color:#60a5fa">Catalog</a> · <a href="analytics.html" style="color:#60a5fa">Analytics</a> · <a href="quiz.html" style="color:#60a5fa">Quiz</a> · <a href="flashcards.html" style="color:#60a5fa">Flashcards</a> · <a href="README.md" style="color:#60a5fa">Docs</a></p>
+<p style="margin-top:6px">1001 Proofs — CC-BY-4.0 · arXiv 2608.07961 · DOI 10.5281/zenodo.21288911</p>
+</div>
+<button id="themeToggle" onclick="toggleTheme()" style="position:fixed;bottom:20px;right:20px;z-index:9999;width:44px;height:44px;border-radius:50%;border:2px solid #334155;background:#1e293b;color:#e2e8f0;font-size:1.2em;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s" title="Toggle theme">&#127769;</button>
+<script>
+(function(){
+  var s=localStorage.getItem("theme");
+  if(s==="light") document.documentElement.classList.add("light");
+  window.toggleTheme=function(){
+    document.documentElement.classList.toggle("light");
+    var l=document.documentElement.classList.contains("light");
+    localStorage.setItem("theme",l?"light":"dark");
+    var b=document.getElementById("themeToggle");
+    if(b) b.textContent=l?"&#9728;&#65039;":"&#127769;";
+  };
+  var b=document.getElementById("themeToggle");
+  if(b && document.documentElement.classList.contains("light")) b.textContent="&#9728;&#65039;";
+})();
+</script>
+<div class="footer">
+<p><a href="index.html">Archive</a> · <a href="search.html">Search</a> · <a href="catalog.html">Catalog</a> · <a href="analytics.html">Analytics</a> · <a href="quiz.html">Quiz</a> · <a href="flashcards.html">Flashcards</a> · <a href="calculator.html">Calculator</a> · <a href="README.md">Docs</a></p>
+<p>1001 Proofs — Clean Archive | <a href="https://yury197812.github.io/science-books-1001-proofs/">Full Project</a></p>
+<p>arXiv: <a href="https://arxiv.org/abs/2608.07961">2608.07961</a> · DOI: <a href="https://doi.org/10.5281/zenodo.21288911">10.5281/zenodo.21288911</a> · OSF: <a href="https://osf.io/hn236/">osf.io/hn236</a></p>
+<p>License: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
+</div>
+</body>
+</html>

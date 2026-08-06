@@ -1,0 +1,9 @@
+{
+  "chapters": 430,
+  "cards": 433267,
+  "duplicates": 430141,
+  "placeholders": 295,
+  "unique": 864,
+  "retained": 864,
+  "explanation": "433267 original records -> 430141 cross-chapter duplicates removed -> 295 placeholders removed -> 864 unique theorem packages retained (2831 intermediate, but 1967 of those are statement-duplicates within same chapter)"
+}

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Spaced repetition flashcard system (SM-2 algorithm) for memorizing 864 theorems across 9 science areas with difficulty filtering.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theorem Flashcards — Spaced Repetition</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{text-align:center;padding:24px 20px 16px;background:linear-gradient(135deg,#0f172a,#1e293b);border-bottom:1px solid #334155}
+.header h1{font-size:1.6em;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#94a3b8;font-size:.85em;margin-top:4px}
+.container{max-width:700px;margin:0 auto;padding:20px}
+.stats-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.s-stat{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.s-stat .n{font-size:1.3em;font-weight:700}
+.s-stat .l{font-size:.7em;color:#94a3b8;text-transform:uppercase}
+.s-new .n{color:#60a5fa}.s-learn .n{color:#fbbf24}.s-review .n{color:#34d399}.s-done .n{color:#94a3b8}
+.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.filters select{padding:6px 10px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#e2e8f0;font-size:.8em}
+.btn{padding:10px 24px;border:none;border-radius:8px;font-size:.9em;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-start{background:linear-gradient(135deg,#f59e0b,#d97706);color:#0f172a}
+.btn-start:hover{transform:translateY(-1px)}
+.btn-sm{padding:6px 14px;font-size:.8em;border-radius:6px}
+
+.card-container{perspective:1200px;margin:20px 0;height:400px;cursor:pointer}
+.card{width:100%;height:100%;position:relative;transition:transform .5s;transform-style:preserve-3d}
+.card.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;padding:24px;overflow-y:auto}
+.card-front{background:linear-gradient(135deg,#1e293b,#0f172a);border:2px solid #334155}
+.card-back{background:linear-gradient(135deg,#172554,#1e293b);border:2px solid #2563eb;transform:rotateY(180deg)}
+.card-type{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.7em;font-weight:600;color:white;margin-bottom:10px}
+.card-area{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.7em;font-weight:600;color:white;margin-left:6px}
+.card-title{font-size:1.05em;font-weight:700;margin-bottom:12px;color:#e2e8f0;line-height:1.4}
+.card-stmt{color:#cbd5e1;line-height:1.6;font-size:.92em}
+.card-hint{color:#64748b;font-size:.78em;text-align:center;margin-top:12px}
+.card-section{margin-bottom:10px}
+.card-section h4{color:#60a5fa;font-size:.8em;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.card-section p,.card-section li{color:#cbd5e1;font-size:.88em;line-height:1.5}
+.card-section ul{padding-left:16px}
+.card-section li{margin-bottom:3px}
+.card-steps{padding-left:16px}
+.card-steps li{color:#93c5fd;font-size:.85em;margin-bottom:4px}
+.card-meta{color:#64748b;font-size:.72em;margin-top:12px;border-top:1px solid #334155;padding-top:8px}
+
+.rating{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.rating .btn{min-width:100px}
+.btn-again{background:#dc2626;color:white}.btn-hard{background:#d97706;color:white}
+.btn-good{background:#2563eb;color:white}.btn-easy{background:#059669;color:white}
+.btn-again:hover{background:#ef4444}.btn-hard:hover{background:#eab308}
+.btn-good:hover{background:#3b82f6}.btn-easy:hover{background:#10b981}
+
+.counter{color:#94a3b8;font-size:.8em;text-align:center;margin-top:8px}
+.interval{color:#64748b;font-size:.72em;text-align:center;margin-top:4px}
+
+.done-panel{text-align:center;padding:40px 20px}
+.done-panel h2{font-size:1.5em;color:#34d399;margin-bottom:10px}
+.done-panel p{color:#94a3b8;margin-bottom:20px}
+
+.progress-ring{display:flex;justify-content:center;gap:20px;margin:20px 0}
+.ring{text-align:center}
+.ring canvas{width:60px;height:60px}
+.ring .label{font-size:.7em;color:#94a3b8;margin-top:4px}
+
+.hidden{display:none}
+.footer{text-align:center;padding:20px;color:#475569;font-size:.75em}
+</style>
+
+<style>
+html.light{--ink:#f8fafc;--paper:#1e293b;--accent:#2563eb;--green:#16a34a;--muted:#64748b;--border:#e2e8f0;--card:#ffffff;--card2:#f1f5f9}
+html.light body{background:var(--ink);color:var(--paper)}
+html.light .nav{background:#ffffff;border-color:#e2e8f0}
+html.light .nav a{color:#2563eb}
+html.light .hero{background:linear-gradient(170deg,#f8fafc 0%,#ffffff 40%,#f1f5f9 70%,#ffffff 100%)}
+html.light .hero h1{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .hero .sub{color:#64748b}
+html.light .stats{background:#ffffff;border-color:#e2e8f0}
+html.light .stat .num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat .lbl{color:#64748b}
+html.light .card{background:#ffffff;border-color:#e2e8f0}
+html.light .card:hover{border-color:#2563eb;background:#f8fafc}
+html.light .card a{color:#2563eb}
+html.light .card .count{color:#64748b}
+html.light .section{background:#ffffff;border-color:#e2e8f0}
+html.light .section h2{color:#1e293b}
+html.light a{color:#2563eb}
+html.light a:hover{color:#7c3aed}
+html.light .area-link{color:#1e293b}
+html.light .area-link:hover{background:#f1f5f9}
+html.light .area h2{color:#1e293b;border-color:#e2e8f0}
+html.light .badge-ok{background:rgba(22,163,74,.1);color:#16a34a}
+html.light .search input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .search input::placeholder{color:#94a3b8}
+html.light .footer{color:#64748b;border-color:#e2e8f0}
+html.light .nav{background:#ffffff}
+html.light #themeToggle{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+
+/* Tool cards */
+html.light .tool{background:#ffffff;border-color:#e2e8f0}
+html.light .tool:hover{border-color:#2563eb}
+html.light .tool .name{color:#1e293b}
+html.light .tool .desc{color:#64748b}
+
+/* Nav bar */
+html.light .nav a{background:transparent;border-color:#e2e8f0;color:#1e293b}
+html.light .nav a:hover{border-color:#2563eb;background:#f1f5f9}
+
+/* Search page */
+html.light .search-box input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .filters select,.html.light .filters input{background:#ffffff;border-color:#e2e8f0;color:#1e293b}
+html.light .result{background:#ffffff;border-color:#e2e8f0}
+html.light .result:hover{border-color:#2563eb}
+html.light .result h3 a{color:#2563eb}
+html.light .result .stmt{color:#475569}
+html.light .result .src{color:#94a3b8}
+html.light .result .steps-preview{color:#64748b}
+html.light .stats span{color:#64748b}
+
+/* Catalog */
+html.light #catalogTable th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light #catalogTable td{border-color:#f1f5f9;color:#1e293b}
+html.light #catalogTable tr:hover{background:#f8fafc}
+
+/* Analytics */
+html.light .chart-box{background:#ffffff;border-color:#e2e8f0}
+html.light .chart-box h2{color:#475569}
+html.light .stats-row .stat-card{background:#ffffff;border-color:#e2e8f0}
+html.light .stat-card .stat-num{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+html.light .stat-card .stat-label{color:#64748b}
+html.light table{border-color:#e2e8f0}
+html.light th{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+html.light td{border-color:#f1f5f9;color:#1e293b}
+
+/* Quiz */
+html.light .settings{background:#ffffff;border-color:#e2e8f0}
+html.light .settings h2{color:#475569}
+html.light .settings select,.html.light .settings input{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .question-card{background:#ffffff;border-color:#e2e8f0}
+html.light .q-text{color:#1e293b}
+html.light .option{background:#f8fafc;border-color:#e2e8f0;color:#1e293b}
+html.light .option:hover{border-color:#2563eb;background:#eff6ff}
+html.light .explanation{background:#eff6ff;color:#1e40af}
+html.light .score-panel{background:#ffffff;border-color:#e2e8f0}
+html.light .progress-bar{background:#e2e8f0}
+html.light .progress-fill{background:linear-gradient(90deg,#2563eb,#16a34a)}
+
+/* Flashcards */
+html.light .card-front{background:linear-gradient(135deg,#ffffff,#f8fafc);border-color:#e2e8f0}
+html.light .card-back{background:linear-gradient(135deg,#eff6ff,#ffffff);border-color:#2563eb}
+html.light .card-title{color:#1e293b}
+html-light .card-stmt{color:#475569}
+html.light .card-hint{color:#94a3b8}
+html.light .card-section h4{color:#2563eb}
+html.light .card-section p,.html.light .card-section li{color:#475569}
+html.light .card-meta{color:#94a3b8;border-color:#e2e8f0}
+html.light .s-stat{background:#ffffff;border-color:#e2e8f0}
+html.light .s-stat .l{color:#64748b}
+html.light .counter{color:#64748b}
+html.light .interval{color:#94a3b8}
+html.light .btn-again{background:#ef4444}.html.light .btn-hard{background:#f59e0b}
+html.light .btn-good{background:#2563eb}.html.light .btn-easy{background:#16a34a}
+html.light .done-panel{color:#1e293b}
+html.light .done-panel h2{color:#16a34a}
+html.light .done-panel p{color:#64748b}
+</style>
+<link rel="canonical" href="https://yury197812.github.io/science-books-1001-proofs/flashcards.html">
+<meta property="og:title" content="Theorem Flashcards — Spaced Repetition">
+<meta property="og:description" content="Spaced repetition flashcard system (SM-2 algorithm) for memorizing 864 theorems across 9 science areas with difficulty filtering.">
+<meta property="og:url" content="https://yury197812.github.io/science-books-1001-proofs/flashcards.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Theorem Flashcards — Spaced Repetition">
+<meta name="twitter:description" content="Spaced repetition flashcard system (SM-2 algorithm) for memorizing 864 theorems across 9 science areas with difficulty filtering.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "1001 Proofs — Clean Archive",
+  "description": "Spaced repetition flashcard system (SM-2 algorithm) for memorizing 864 theorems across 9 science areas with difficulty filtering.",
+  "url": "https://yury197812.github.io/science-books-1001-proofs/flashcards.html",
+  "author": {"@type": "Person", "name": "Yuriy Aronov"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-08-06"
+}
+</script>
+
+<style>
+/* Focus styles for keyboard navigation */
+*:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+/* Skip to main content */
+.skip-nav{position:absolute;top:-100px;left:0;padding:10px 20px;background:#2563eb;color:white;z-index:10000;font-size:.9em;text-decoration:none;border-radius:0 0 8px 0}
+.skip-nav:focus{top:0}
+/* Calculator tab keyboard support */
+.tab{cursor:pointer}
+.tab:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.formula-card:focus-visible,.const-card:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+</style>
+
+<style>
+@media(max-width:768px){
+  .nav{padding:8px 12px;gap:4px}
+  .nav a{font-size:.75em;padding:4px 8px}
+  .hero{padding:30px 16px 20px}
+  .hero h1{font-size:1.5em}
+  .stats{flex-direction:column;gap:12px}
+  .stat .num{font-size:1.8em}
+  .container{padding:16px 12px}
+  .search-box input{padding:12px 16px 12px 36px;font-size:.95em}
+  .filters{flex-direction:column}
+  .filters .fgroup{width:100%}
+  .filters select,.filters input{width:100%}
+  .result{padding:12px}
+  .result .stmt{font-size:.82em}
+  .settings{padding:14px}
+  .row{flex-direction:column;gap:6px}
+  .row label{min-width:auto}
+  .question-card{padding:16px}
+  .option{padding:10px 12px;font-size:.85em}
+  .calc{max-width:100%;gap:4px}
+  .calc-display{padding:12px}
+  .calc-display .result{font-size:1.4em}
+  .btn{padding:10px;font-size:.9em}
+  .formula-grid{grid-template-columns:1fr}
+  .const-grid{grid-template-columns:1fr}
+  .formula-card,.const-card{padding:10px}
+  .tabs{justify-content:center}
+  .tab{font-size:.8em;padding:6px 12px}
+  .card-front,.card-back{padding:16px}
+  .card-title{font-size:.9em}
+  .footer{font-size:.75em;padding:16px}
+  .area{margin-bottom:20px}
+  .area h2{font-size:1.1em}
+  .grid{grid-template-columns:1fr !important;gap:8px}
+  .tools{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tool{padding:12px}
+  .tool .icon{font-size:1.5em}
+  .tool .name{font-size:.8em}
+  .tool .desc{font-size:.65em}
+  .stat-section{padding:12px}
+  .stat-input{padding:8px;font-size:.85em}
+}
+</style>
+</head>
+<body>
+
+<nav style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 20px;background:#1e293b;border-bottom:1px solid #334155">
+<a href="index.html" style="padding:6px 12px;border-radius:6px;color:#e2e8f0;font-size:.82em;background:#0f172a;border:1px solid #334155;text-decoration:none">Home</a>
+<a href="search.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Search</a>
+<a href="catalog.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Catalog</a>
+<a href="analytics.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Analytics</a>
+<a href="quiz.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Quiz</a>
+<a href="flashcards.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Flashcards</a>
+<a href="calculator.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Calculator</a>
+</nav>
+<div class="header">
+  <h1>Theorem Flashcards</h1>
+  <p>Spaced repetition (SM-2) for 864 theorems</p>
+</div>
+
+<div class="container" id="main-content">
+  <div class="stats-row" id="statsRow">
+    <div class="s-stat s-new"><div class="n" id="sNew">0</div><div class="l">New</div></div>
+    <div class="s-stat s-learn"><div class="n" id="sLearn">0</div><div class="l">Learning</div></div>
+    <div class="s-stat s-review"><div class="n" id="sReview">0</div><div class="l">Review</div></div>
+    <div class="s-stat s-done"><div class="n" id="sDone">0</div><div class="l">Mastered</div></div>
+  </div>
+
+  <div class="filters" id="filtersArea">
+    <select id="fArea"><option value="">All Areas</option></select>
+    <select id="fDiff"><option value="">All Difficulty</option><option value="Elementary">Elementary</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select>
+    <select id="fType"><option value="">All Types</option><option value="THEOREM">Theorem</option><option value="EMPIRICAL_LAW">Empirical Law</option></select>
+    <button class="btn btn-start" onclick="startSession()">Study Now</button>
+  </div>
+
+  <div id="studyArea" class="hidden">
+    <div class="card-container" onclick="flipCard()">
+      <div class="card" id="card">
+        <div class="card-face card-front" id="cardFront"></div>
+        <div class="card-face card-back" id="cardBack"></div>
+      </div>
+    </div>
+    <div class="counter" id="counter"></div>
+    <div class="interval" id="intervalInfo"></div>
+    <div class="rating hidden" id="rating">
+      <button class="btn btn-sm btn-again" onclick="rate(0)">Again (1m)</button>
+      <button class="btn btn-sm btn-hard" onclick="rate(1)">Hard</button>
+      <button class="btn btn-sm btn-good" onclick="rate(2)">Good</button>
+      <button class="btn btn-sm btn-easy" onclick="rate(3)">Easy</button>
+    </div>
+  </div>
+
+  <div id="donePanel" class="done-panel hidden">
+    <h2>Session Complete!</h2>
+    <p id="doneMsg"></p>
+    <div class="progress-ring" id="progressRings"></div>
+    <button class="btn btn-start" onclick="resetView()">Back to Dashboard</button>
+  </div>
+</div>
+
+
+
+<script>
+var ALL_CARDS=[];
+var deck=[];
+var currentIdx=0;
+var flipped=false;
+var sessionStats={new:0,learning:0,review:0,hard:0,good:0,easy:0};
+
+function loadData(){return fetch("cards.json").then(r=>r.json()).then(d=>{ALL_CARDS=d;updateStats()})}
+
+function getState(){
+  try{return JSON.parse(localStorage.getItem("theoremFlashcards")||"{}")}catch(e){return{}}
+}
+function saveState(s){localStorage.setItem("theoremFlashcards",JSON.stringify(s))}
+
+function getCardState(id){
+  var s=getState();
+  return s[id]||{interval:0,ease:2.5,reps:0,due:0,status:"new"};
+}
+
+function setCardState(id,st){
+  var s=getState();s[id]=st;saveState(s);
+}
+
+// SM-2 algorithm
+function sm2(state,quality){
+  // quality: 0=again, 1=hard, 2=good, 3=easy
+  var st=Object.assign({},state);
+  var q=quality>=2?quality:quality===1?1:0;
+
+  if(q&lt;2){
+    // Failed
+    st.reps=0;
+    st.interval=1; // 1 minute
+    st.status="learning";
+  } else {
+    st.reps+=1;
+    if(st.reps===1) st.interval=1; // 1 day
+    else if(st.reps===2) st.interval=6; // 6 days
+    else st.interval=Math.round(st.interval*st.ease);
+
+    if(quality===3) st.interval=Math.round(st.interval*1.3);
+    if(quality===1) st.interval=Math.max(1,Math.round(st.interval*0.7));
+
+    st.ease=st.ease+(0.1-(3-q)*(0.08+(3-q)*0.02));
+    if(st.ease&lt;1.3) st.ease=1.3;
+
+    st.status=st.reps>=3?"mastered":st.reps>=1?"review":"learning";
+  }
+
+  st.due=Date.now()+st.interval*60*1000; // interval in minutes for session
+  return st;
+}
+
+function updateStats(){
+  var state=getState();
+  var counts={new:0,learning:0,review:0,mastered:0};
+  var now=Date.now();
+  ALL_CARDS.forEach(function(c){
+    var st=getCardState(c.id);
+    if(st.status==="new") counts.new++;
+    else if(st.status==="learning") counts.learning++;
+    else if(st.status==="mastered") counts.mastered++;
+    else counts.review++;
+  });
+  document.getElementById("sNew").textContent=counts.new;
+  document.getElementById("sLearn").textContent=counts.learning;
+  document.getElementById("sReview").textContent=counts.review;
+  document.getElementById("sDone").textContent=counts.mastered;
+}
+
+function getDueCards(){
+  var area=document.getElementById("fArea").value;
+  var diff=document.getElementById("fDiff").value;
+  var type=document.getElementById("fType").value;
+  var now=Date.now();
+
+  return ALL_CARDS.filter(function(c){
+    if(area && c.area!==area) return false;
+    if(diff && c.diff!==diff) return false;
+    if(type && c.type!==type) return false;
+    var st=getCardState(c.id);
+    if(st.status==="new") return true;
+    if(st.due&lt;=now) return true;
+    return false;
+  });
+}
+
+function startSession(){
+  deck=getDueCards();
+  if(deck.length===0){alert("No cards due! All caught up for current filters.");return;}
+  deck=shuffle(deck).slice(0,Math.min(50,deck.length));
+  currentIdx=0;flipped=false;
+  sessionStats={new:0,learning:0,review:0,hard:0,good:0,easy:0};
+  document.getElementById("studyArea").classList.remove("hidden");
+  document.getElementById("donePanel").classList.add("hidden");
+  document.getElementById("filtersArea").classList.add("hidden");
+  showCard();
+}
+
+function showCard(){
+  if(currentIdx>=deck.length){showDone();return;}
+  var c=deck[currentIdx];
+  var st=getCardState(c.id);
+
+  var areaColors={"Mathematics":"#2563eb","Physics":"#dc2626","Chemistry":"#059669","Biology":"#d97706","Astronomy":"#7c3aed","Computer Science":"#0891b2","Statistics":"#be185d","Earth Sciences":"#65a30d","Engineering":"#ea580c"};
+
+  // Front: title + statement
+  var front='<span class="card-type">'+esc(c.type)+'</span>';
+  front+='<span class="card-area" style="background:'+(areaColors[c.area]||"#666")+'">'+esc(c.area)+'</span>';
+  front+='<div class="card-title">'+esc(c.h3)+'</div>';
+  front+='<div class="card-stmt">'+esc(c.stmt)+'</div>';
+  front+='<div class="card-hint">Tap to reveal proof</div>';
+  document.getElementById("cardFront").innerHTML=front;
+
+  // Back: hypotheses, conclusion, proof steps
+  var back='<div class="card-title" style="font-size:.95em;margin-bottom:10px">'+esc(c.h3)+'</div>';
+  if(c.hyps) back+='<div class="card-section"><h4>Hypotheses</h4><p>'+esc(c.hyps)+'</p></div>';
+  if(c.conc) back+='<div class="card-section"><h4>Conclusion</h4><p>'+esc(c.conc)+'</p></div>';
+  if(c.defs) back+='<div class="card-section"><h4>Definitions</h4><p>'+esc(c.defs)+'</p></div>';
+  if(c.steps && c.steps.length){
+    back+='<div class="card-section"><h4>Proof Sketch</h4><ol class="card-steps">';
+    c.steps.forEach(function(s){back+='<li>'+esc(s)+'</li>'});
+    back+='</ol></div>';
+  }
+  if(c.src) back+='<div class="card-meta">Source: '+esc(c.src)+'</div>';
+  document.getElementById("cardBack").innerHTML=back;
+
+  // Reset flip
+  document.getElementById("card").classList.remove("flipped");
+  document.getElementById("rating").classList.add("hidden");
+  flipped=false;
+
+  // Counter
+  document.getElementById("counter").textContent=(currentIdx+1)+" / "+deck.length;
+
+  // Interval info
+  var intvText="";
+  if(st.status!=="new") intvText="Current interval: "+formatInterval(st.interval);
+  document.getElementById("intervalInfo").textContent=intvText;
+}
+
+function flipCard(){
+  if(flipped) return;
+  flipped=true;
+  document.getElementById("card").classList.add("flipped");
+  document.getElementById("rating").classList.remove("hidden");
+}
+
+function rate(quality){
+  var c=deck[currentIdx];
+  var st=getCardState(c.id);
+  var newSt=sm2(st,quality);
+  setCardState(c.id,newSt);
+
+  if(quality===0) sessionStats.again=(sessionStats.again||0)+1;
+  else if(quality===1) sessionStats.hard++;
+  else if(quality===2) sessionStats.good++;
+  else sessionStats.easy++;
+
+  if(st.status==="new") sessionStats.new++;
+  else sessionStats.learning++;
+
+  currentIdx++;
+  updateStats();
+  showCard();
+}
+
+function showDone(){
+  document.getElementById("studyArea").classList.add("hidden");
+  document.getElementById("donePanel").classList.remove("hidden");
+  var total=sessionStats.new+sessionStats.hard+sessionStats.good+sessionStats.easy+(sessionStats.again||0);
+  var pct=Math.round((sessionStats.good+sessionStats.easy)/Math.max(total,1)*100);
+  document.getElementById("doneMsg").textContent=
+    "Reviewed "+total+" cards | "+pct+" retention | "+
+    sessionStats.new+" new, "+sessionStats.good+" good, "+sessionStats.easy+" easy, "+(sessionStats.hard||0)+" hard, "+(sessionStats.again||0)+" again";
+}
+
+function resetView(){
+  document.getElementById("studyArea").classList.add("hidden");
+  document.getElementById("donePanel").classList.add("hidden");
+  document.getElementById("filtersArea").classList.remove("hidden");
+  updateStats();
+}
+
+function formatInterval(m){
+  if(m&lt;60) return m+" min";
+  if(m&lt;1440) return Math.round(m/60)+" hours";
+  return Math.round(m/1440)+" days";
+}
+
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+// Populate area filter
+loadData().then(function(){
+  var areas=[...new Set(ALL_CARDS.map(c=>c.area))].sort();
+  var sel=document.getElementById("fArea");
+  areas.forEach(function(a){var o=document.createElement("option");o.value=a;o.textContent=a;sel.appendChild(o)});
+});
+</script>
+<div style="text-align:center;padding:20px;color:#475569;font-size:.75em;border-top:1px solid #334155;margin-top:30px">
+<p><a href="index.html" style="color:#60a5fa">Archive</a> · <a href="search.html" style="color:#60a5fa">Search</a> · <a href="catalog.html" style="color:#60a5fa">Catalog</a> · <a href="analytics.html" style="color:#60a5fa">Analytics</a> · <a href="quiz.html" style="color:#60a5fa">Quiz</a> · <a href="flashcards.html" style="color:#60a5fa">Flashcards</a> · <a href="README.md" style="color:#60a5fa">Docs</a></p>
+<p style="margin-top:6px">1001 Proofs — CC-BY-4.0 · arXiv 2608.07961 · DOI 10.5281/zenodo.21288911</p>
+</div>
+<button id="themeToggle" onclick="toggleTheme()" style="position:fixed;bottom:20px;right:20px;z-index:9999;width:44px;height:44px;border-radius:50%;border:2px solid #334155;background:#1e293b;color:#e2e8f0;font-size:1.2em;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s" title="Toggle theme">&#127769;</button>
+<script>
+(function(){
+  var s=localStorage.getItem("theme");
+  if(s==="light") document.documentElement.classList.add("light");
+  window.toggleTheme=function(){
+    document.documentElement.classList.toggle("light");
+    var l=document.documentElement.classList.contains("light");
+    localStorage.setItem("theme",l?"light":"dark");
+    var b=document.getElementById("themeToggle");
+    if(b) b.textContent=l?"&#9728;&#65039;":"&#127769;";
+  };
+  var b=document.getElementById("themeToggle");
+  if(b && document.documentElement.classList.contains("light")) b.textContent="&#9728;&#65039;";
+})();
+</script>
+<div class="footer">
+<p><a href="index.html">Archive</a> · <a href="search.html">Search</a> · <a href="catalog.html">Catalog</a> · <a href="analytics.html">Analytics</a> · <a href="quiz.html">Quiz</a> · <a href="flashcards.html">Flashcards</a> · <a href="calculator.html">Calculator</a> · <a href="README.md">Docs</a></p>
+<p>1001 Proofs — Clean Archive | <a href="https://yury197812.github.io/science-books-1001-proofs/">Full Project</a></p>
+<p>arXiv: <a href="https://arxiv.org/abs/2608.07961">2608.07961</a> · DOI: <a href="https://doi.org/10.5281/zenodo.21288911">10.5281/zenodo.21288911</a> · OSF: <a href="https://osf.io/hn236/">osf.io/hn236</a></p>
+<p>License: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Scientific calculator with 20 theorem formulas, 16 physical constants, and statistical distribution calculators (binomial, normal).">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator — 1001 Proofs</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{text-align:center;padding:24px 20px 16px;background:linear-gradient(135deg,#0f172a,#1e293b);border-bottom:1px solid #334155}
+.header h1{font-size:1.6em;background:linear-gradient(135deg,#34d399,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#94a3b8;font-size:.85em;margin-top:4px}
+.container{max-width:800px;margin:0 auto;padding:20px}
+.tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 16px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#94a3b8;font-size:.85em;cursor:pointer;transition:all .15s}
+.tab:hover{border-color:#60a5fa;color:#e2e8f0}
+.tab.active{background:#172554;border-color:#60a5fa;color:#60a5fa}
+.panel{display:none}.panel.active{display:block}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:400px;margin:0 auto}
+.calc-display{grid-column:1/-1;background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;text-align:right;margin-bottom:8px}
+.calc-display .expr{color:#94a3b8;font-size:.85em;min-height:1.2em;word-break:break-all}
+.calc-display .result{color:#e2e8f0;font-size:1.8em;font-weight:700;word-break:break-all}
+.btn{padding:14px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:1em;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn:hover{background:#2d3748;border-color:#60a5fa}
+.btn-op{color:#60a5fa;font-weight:600}
+.btn-eq{background:#2563eb;border-color:#2563eb;color:white;font-weight:700}
+.btn-eq:hover{background:#3b82f6}
+.btn-clr{color:#f87171}
+.btn-fn{color:#a78bfa;font-size:.85em}
+.btn-wide{grid-column:span 2}
+
+/* Formula panel */
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.formula-card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px;cursor:pointer;transition:all .15s}
+.formula-card:hover{border-color:#60a5fa;background:#172554}
+.formula-card .name{font-weight:600;font-size:.85em;color:#60a5fa;margin-bottom:4px}
+.formula-card .formula{font-family:'Courier New',monospace;color:#e2e8f0;font-size:.9em;margin-bottom:4px}
+.formula-card .area{color:#94a3b8;font-size:.7em}
+
+/* Constants panel */
+.const-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.const-card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:10px}
+.const-card .name{font-weight:600;font-size:.8em;color:#34d399}
+.const-card .val{font-family:'Courier New',monospace;color:#e2e8f0;font-size:.95em;margin:4px 0}
+.const-card .unit{color:#94a3b8;font-size:.75em}
+
+/* Stat panel */
+.stat-section{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;margin-bottom:12px}
+.stat-section h3{color:#94a3b8;font-size:.85em;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.stat-input{width:100%;padding:10px;background:#0f172a;border:1px solid #334155;border-radius:6px;color:#e2e8f0;font-size:.9em;margin-bottom:8px;font-family:inherit}
+.stat-input:focus{outline:none;border-color:#60a5fa}
+.stat-btn{padding:8px 16px;background:#2563eb;border:none;border-radius:6px;color:white;font-weight:600;cursor:pointer;font-size:.85em}
+.stat-btn:hover{background:#3b82f6}
+.stat-result{margin-top:10px;padding:10px;background:#0f172a;border-radius:6px;font-size:.9em;color:#34d399;white-space:pre-line;min-height:40px}
+.footer{text-align:center;padding:20px;color:#475569;font-size:.75em;border-top:1px solid #334155;margin-top:30px}
+</style>
+<style>html.light{background:#f8fafc;color:#1e293b}html.light .calc-display{background:#fff;border-color:#e2e8f0}html.light .calc-display .result{color:#1e293b}html.light .btn{background:#fff;border-color:#e2e8f0;color:#1e293b}html.light .tabs .tab{background:#fff;border-color:#e2e8f0;color:#1e293b}html.light .tabs .tab.active{border-color:#2563eb;color:#2563eb}</style>
+<link rel="canonical" href="https://yury197812.github.io/science-books-1001-proofs/calculator.html">
+<meta property="og:title" content="Calculator — 1001 Proofs">
+<meta property="og:description" content="Scientific calculator with 20 theorem formulas, 16 physical constants, and statistical distribution calculators (binomial, normal).">
+<meta property="og:url" content="https://yury197812.github.io/science-books-1001-proofs/calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculator — 1001 Proofs">
+<meta name="twitter:description" content="Scientific calculator with 20 theorem formulas, 16 physical constants, and statistical distribution calculators (binomial, normal).">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "1001 Proofs — Clean Archive",
+  "description": "Scientific calculator with 20 theorem formulas, 16 physical constants, and statistical distribution calculators (binomial, normal).",
+  "url": "https://yury197812.github.io/science-books-1001-proofs/calculator.html",
+  "author": {"@type": "Person", "name": "Yuriy Aronov"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-08-06"
+}
+</script>
+
+<style>
+/* Focus styles for keyboard navigation */
+*:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+/* Skip to main content */
+.skip-nav{position:absolute;top:-100px;left:0;padding:10px 20px;background:#2563eb;color:white;z-index:10000;font-size:.9em;text-decoration:none;border-radius:0 0 8px 0}
+.skip-nav:focus{top:0}
+/* Calculator tab keyboard support */
+.tab{cursor:pointer}
+.tab:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.formula-card:focus-visible,.const-card:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+</style>
+
+<style>
+@media(max-width:768px){
+  .nav{padding:8px 12px;gap:4px}
+  .nav a{font-size:.75em;padding:4px 8px}
+  .hero{padding:30px 16px 20px}
+  .hero h1{font-size:1.5em}
+  .stats{flex-direction:column;gap:12px}
+  .stat .num{font-size:1.8em}
+  .container{padding:16px 12px}
+  .search-box input{padding:12px 16px 12px 36px;font-size:.95em}
+  .filters{flex-direction:column}
+  .filters .fgroup{width:100%}
+  .filters select,.filters input{width:100%}
+  .result{padding:12px}
+  .result .stmt{font-size:.82em}
+  .settings{padding:14px}
+  .row{flex-direction:column;gap:6px}
+  .row label{min-width:auto}
+  .question-card{padding:16px}
+  .option{padding:10px 12px;font-size:.85em}
+  .calc{max-width:100%;gap:4px}
+  .calc-display{padding:12px}
+  .calc-display .result{font-size:1.4em}
+  .btn{padding:10px;font-size:.9em}
+  .formula-grid{grid-template-columns:1fr}
+  .const-grid{grid-template-columns:1fr}
+  .formula-card,.const-card{padding:10px}
+  .tabs{justify-content:center}
+  .tab{font-size:.8em;padding:6px 12px}
+  .card-front,.card-back{padding:16px}
+  .card-title{font-size:.9em}
+  .footer{font-size:.75em;padding:16px}
+  .area{margin-bottom:20px}
+  .area h2{font-size:1.1em}
+  .grid{grid-template-columns:1fr !important;gap:8px}
+  .tools{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tool{padding:12px}
+  .tool .icon{font-size:1.5em}
+  .tool .name{font-size:.8em}
+  .tool .desc{font-size:.65em}
+  .stat-section{padding:12px}
+  .stat-input{padding:8px;font-size:.85em}
+}
+</style>
+</head>
+<body>
+
+<nav style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 20px;background:#1e293b;border-bottom:1px solid #334155">
+<a href="index.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Home</a>
+<a href="search.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Search</a>
+<a href="catalog.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Catalog</a>
+<a href="analytics.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Analytics</a>
+<a href="quiz.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Quiz</a>
+<a href="flashcards.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none">Flashcards</a>
+<a href="calculator.html" style="padding:6px 12px;border-radius:6px;color:#e28f0b;font-size:.82em;text-decoration:none;font-weight:700">Calculator</a>
+</nav>
+<div class="header">
+  <h1>Calculator</h1>
+  <p>Scientific calculator, formulas from 864 theorems, physical constants</p>
+</div>
+
+<div class="container" id="main-content">
+
+<div class="tabs">
+  <div class="tab active" tabindex="0" role="tab" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTab('calc')">Calculator</div>
+  <div class="tab" tabindex="0" role="tab" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTab('formulas')">Formulas</div>
+  <div class="tab" tabindex="0" role="tab" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTab('constants')">Constants</div>
+  <div class="tab" tabindex="0" role="tab" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTab('stats')">Statistics</div>
+</div>
+
+<!-- CALCULATOR PANEL -->
+<div class="panel active" id="panel-calc">
+<div class="calc">
+  <div class="calc-display">
+    <div class="expr" id="calcExpr">&nbsp;</div>
+    <div class="result" id="calcResult">0</div>
+  </div>
+  <button class="btn btn-fn" onclick="calcFn('sin')">sin</button>
+  <button class="btn btn-fn" onclick="calcFn('cos')">cos</button>
+  <button class="btn btn-fn" onclick="calcFn('tan')">tan</button>
+  <button class="btn btn-clr" onclick="calcClear()">AC</button>
+  <button class="btn btn-fn" onclick="calcFn('log')">log</button>
+  <button class="btn btn-fn" onclick="calcFn('ln')">ln</button>
+  <button class="btn btn-fn" onclick="calcFn('sqrt')">sqrt</button>
+  <button class="btn btn-op" onclick="calcOp('/')">&divide;</button>
+  <button class="btn btn-fn" onclick="calcFn('asin')">asin</button>
+  <button class="btn btn-fn" onclick="calcFn('acos')">acos</button>
+  <button class="btn btn-fn" onclick="calcFn('atan')">atan</button>
+  <button class="btn btn-op" onclick="calcOp('*')">&times;</button>
+  <button class="btn btn-fn" onclick="calcFn('abs')">|x|</button>
+  <button class="btn btn-fn" onclick="calcFn('exp')">e^x</button>
+  <button class="btn btn-fn" onclick="calcFn('pow10')">10^x</button>
+  <button class="btn btn-op" onclick="calcOp('-')">&minus;</button>
+  <button class="btn btn-fn" onclick="calcFn('pi')">&pi;</button>
+  <button class="btn btn-fn" onclick="calcFn('e')">e</button>
+  <button class="btn btn-fn" onclick="calcFn('fact')">n!</button>
+  <button class="btn btn-op" onclick="calcOp('+')">+</button>
+  <button class="btn btn-fn" onclick="calcParen('(')">(</button>
+  <button class="btn btn-fn" onclick="calcParen(')')">)</button>
+  <button class="btn btn-fn" onclick="calcFn('pow2')">x^2</button>
+  <button class="btn btn-eq" onclick="calcEquals()">=</button>
+  <button class="btn" onclick="calcNum('7')">7</button>
+  <button class="btn" onclick="calcNum('8')">8</button>
+  <button class="btn" onclick="calcNum('9')">9</button>
+  <button class="btn btn-fn" onclick="calcBackspace()">&#9003;</button>
+  <button class="btn" onclick="calcNum('4')">4</button>
+  <button class="btn" onclick="calcNum('5')">5</button>
+  <button class="btn" onclick="calcNum('6')">6</button>
+  <button class="btn" onclick="calcNum('.')">.</button>
+  <button class="btn" onclick="calcNum('1')">1</button>
+  <button class="btn" onclick="calcNum('2')">2</button>
+  <button class="btn" onclick="calcNum('3')">3</button>
+  <button class="btn" onclick="calcNum('0')">0</button>
+</div>
+</div>
+
+<!-- FORMULAS PANEL -->
+<div class="panel" id="panel-formulas">
+<h3 style="color:#94a3b8;margin-bottom:12px">Click a formula to load into calculator</h3>
+<div class="formula-grid">
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('(f(b)-f(a))/(b-a)')"><div class="name">Mean Value Theorem</div><div class="formula">f'(c) = (f(b)-f(a))/(b-a)</div><div class="area">Mathematics - Analysis</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('a^(p-1)%1')"><div class="name">Fermat's Little Theorem</div><div class="formula">a^(p-1) = 1 mod p</div><div class="area">Mathematics - Number Theory</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('e^(i*pi)+1')"><div class="name">Euler's Identity</div><div class="formula">e^(i*pi) + 1 = 0</div><div class="area">Mathematics - Complex Analysis</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('sqrt((-b+sqrt(b*b-4*a*c))/(2*a))')"><div class="name">Quadratic Formula</div><div class="formula">x = (-b +/- sqrt(b^2-4ac))/(2a)</div><div class="area">Mathematics - Algebra</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('2*pi*r')"><div class="name">Circle Circumference</div><div class="formula">C = 2*pi*r</div><div class="area">Mathematics - Geometry</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('pi*r*r')"><div class="name">Circle Area</div><div class="formula">A = pi*r^2</div><div class="area">Mathematics - Geometry</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('4/3*pi*r^3')"><div class="name">Sphere Volume</div><div class="formula">V = (4/3)*pi*r^3</div><div class="area">Mathematics - Geometry</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('n*(n+1)/2')"><div class="name">Sum of First n Integers</div><div class="formula">S = n(n+1)/2</div><div class="area">Mathematics - Combinatorics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('(1-sqrt(5))/2')"><div class="name">Golden Ratio (conjugate)</div><div class="formula">phi = (1+sqrt(5))/2</div><div class="area">Mathematics - Number Theory</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('m*a')"><div class="name">Newton's Second Law</div><div class="formula">F = ma</div><div class="area">Physics - Mechanics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('G*m1*m2/(r*r)')"><div class="name">Gravitational Force</div><div class="formula">F = G*m1*m2/r^2</div><div class="area">Physics - Gravity</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('m*c*c')"><div class="name">Mass-Energy Equivalence</div><div class="formula">E = mc^2</div><div class="area">Physics - Relativity</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('1/2*m*v*v')"><div class="name">Kinetic Energy</div><div class="formula">KE = (1/2)mv^2</div><div class="area">Physics - Mechanics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('m*g*h')"><div class="name">Potential Energy</div><div class="formula">PE = mgh</div><div class="area">Physics - Mechanics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('V*I')"><div class="name">Electrical Power</div><div class="formula">P = VI</div><div class="area">Physics - Electromagnetism</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('n*R*T/V')"><div class="name">Ideal Gas Law</div><div class="formula">PV = nRT</div><div class="area">Chemistry - Thermodynamics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('-log10(H)')"><div class="name">pH Formula</div><div class="formula">pH = -log[H+]</div><div class="area">Chemistry - Acid-Base</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('1/2*m*v*v+m*g*h')"><div class="name">Conservation of Energy</div><div class="formula">E = (1/2)mv^2 + mgh</div><div class="area">Physics - Mechanics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('sigma*T^4')"><div class="name">Stefan-Boltzmann Law</div><div class="formula">j = sigma*T^4</div><div class="area">Physics - Thermodynamics</div></div>
+  <div class="formula-card" tabindex="0" role="button" onclick="loadFormula('sqrt(2*K*T/m)')"><div class="name">RMS Speed</div><div class="formula">v_rms = sqrt(2kT/m)</div><div class="area">Physics - Statistical</div></div>
+</div>
+</div>
+
+<!-- CONSTANTS PANEL -->
+<div class="panel" id="panel-constants">
+<h3 style="color:#94a3b8;margin-bottom:12px">Physical Constants</h3>
+<div class="const-grid">
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(299792458)"><div class="name">Speed of Light</div><div class="val">2.998e8</div><div class="unit">m/s</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(6.674e-11)"><div class="name">Gravitational Constant</div><div class="val">6.674e-11</div><div class="unit">N*m^2/kg^2</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(6.626e-34)"><div class="name">Planck Constant</div><div class="val">6.626e-34</div><div class="unit">J*s</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(1.381e-23)"><div class="name">Boltzmann Constant</div><div class="val">1.381e-23</div><div class="unit">J/K</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(1.602e-19)"><div class="name">Elementary Charge</div><div class="val">1.602e-19</div><div class="unit">C</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(9.109e-31)"><div class="name">Electron Mass</div><div class="val">9.109e-31</div><div class="unit">kg</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(6.022e23)"><div class="name">Avogadro Number</div><div class="val">6.022e23</div><div class="unit">mol^-1</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(8.314)"><div class="name">Gas Constant</div><div class="val">8.314</div><div class="unit">J/(mol*K)</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(5.670e-8)"><div class="name">Stefan-Boltzmann</div><div class="val">5.670e-8</div><div class="unit">W/(m^2*K^4)</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(9.80665)"><div class="name">Standard Gravity</div><div class="val">9.807</div><div class="unit">m/s^2</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(1.055e-34)"><div class="name">Reduced Planck</div><div class="val">1.055e-34</div><div class="unit">J*s</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(8.854e-12)"><div class="name">Vacuum Permittivity</div><div class="val">8.854e-12</div><div class="unit">F/m</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(1.672e-27)"><div class="name">Proton Mass</div><div class="val">1.672e-27</div><div class="unit">kg</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(4.136e-15)"><div class="name">Planck-eV</div><div class="val">4.136e-15</div><div class="unit">eV*s</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(3.14159265358979)"><div class="name">Pi</div><div class="val">3.14159265...</div><div class="unit">dimensionless</div></div>
+  <div class="const-card" tabindex="0" role="button" onclick="loadConst(2.71828182845905)"><div class="name">Euler's Number</div><div class="val">2.71828182...</div><div class="unit">dimensionless</div></div>
+</div>
+</div>
+
+<!-- STATISTICS PANEL -->
+<div class="panel" id="panel-stats">
+<div class="stat-section">
+  <h3>Enter Numbers (comma-separated)</h3>
+  <input class="stat-input" id="statInput" placeholder="e.g. 2, 4, 6, 8, 10, 12, 14, 16, 18, 20" value="2, 4, 6, 8, 10, 12, 14, 16, 18, 20">
+  <button class="stat-btn" onclick="calcStats()">Calculate Statistics</button>
+  <div class="stat-result" id="statResult">Click Calculate to see results</div>
+</div>
+<div class="stat-section">
+  <h3>Quick Probability</h3>
+  <input class="stat-input" id="probK" placeholder="k (successes)" type="number" value="3">
+  <input class="stat-input" id="probN" placeholder="n (trials)" type="number" value="10">
+  <input class="stat-input" id="probP" placeholder="p (probability)" type="number" step="0.01" value="0.5">
+  <button class="stat-btn" onclick="calcBinomial()">Binomial P(X=k)</button>
+  <div class="stat-result" id="probResult">Click Calculate</div>
+</div>
+<div class="stat-section">
+  <h3>Normal Distribution</h3>
+  <input class="stat-input" id="normX" placeholder="x value" type="number" value="1.96">
+  <input class="stat-input" id="normMu" placeholder="mu (mean)" type="number" value="0">
+  <input class="stat-input" id="normSig" placeholder="sigma (std dev)" type="number" value="1">
+  <button class="stat-btn" onclick="calcNormal()">CDF and PDF</button>
+  <div class="stat-result" id="normResult">Click Calculate</div>
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+// Tab switching
+function showTab(name){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+  event.target.classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+// Calculator state
+var calcExpr='';
+var calcVal='0';
+var calcNew=true;
+var calcHistory='';
+
+function updateDisplay(){
+  document.getElementById('calcExpr').textContent=calcHistory||' ';
+  document.getElementById('calcResult').textContent=calcVal;
+}
+
+function calcNum(n){
+  if(calcNew){calcVal=n;calcNew=false}
+  else{calcVal=calcVal==='0'?n:calcVal+n}
+  updateDisplay();
+}
+
+function calcOp(op){
+  calcHistory=calcVal+' '+op+' ';
+  calcExpr=calcVal+op;
+  calcNew=true;
+}
+
+function calcParen(p){
+  if(p==='('){calcHistory+='(';calcExpr+='(';calcNew=true}
+  else{calcHistory+=calcVal+')';calcVal=')';calcNew=true}
+}
+
+function calcFn(fn){
+  var v=parseFloat(calcVal);
+  var r;
+  switch(fn){
+    case 'sin':r=Math.sin(v*Math.PI/180);break;
+    case 'cos':r=Math.cos(v*Math.PI/180);break;
+    case 'tan':r=Math.tan(v*Math.PI/180);break;
+    case 'asin':r=Math.asin(v)*180/Math.PI;break;
+    case 'acos':r=Math.acos(v)*180/Math.PI;break;
+    case 'atan':r=Math.atan(v)*180/Math.PI;break;
+    case 'log':r=Math.log10(v);break;
+    case 'ln':r=Math.log(v);break;
+    case 'sqrt':r=Math.sqrt(v);break;
+    case 'abs':r=Math.abs(v);break;
+    case 'exp':r=Math.exp(v);break;
+    case 'pow10':r=Math.pow(10,v);break;
+    case 'pow2':r=v*v;break;
+    case 'pi':r=Math.PI;break;
+    case 'e':r=Math.E;break;
+    case 'fact':r=factorial(v);break;
+    default:return;
+  }
+  calcHistory=fn+'('+calcVal+')';
+  calcVal=String(r);
+  calcNew=true;
+  updateDisplay();
+}
+
+function factorial(n){
+  if(n<0)return NaN;if(n===0||n===1)return 1;if(n>170)return Infinity;
+  var r=1;for(var i=2;i<=n;i++)r*=i;return r;
+}
+
+function calcClear(){calcVal='0';calcExpr='';calcHistory='';calcNew=true;updateDisplay()}
+function calcBackspace(){calcVal=calcVal.length>1?calcVal.slice(0,-1):'0';updateDisplay()}
+
+function calcEquals(){
+  try{
+    calcHistory=calcVal+' =';
+    var expr=calcVal.replace(/\^/g,'**');
+    var r=Function('"use strict";return('+expr+')')();
+    calcVal=String(Math.round(r*1e12)/1e12);
+    calcNew=true;
+  }catch(e){calcVal='Error'}
+  updateDisplay();
+}
+
+function loadFormula(f){
+  calcVal=f;calcNew=false;calcHistory='Formula:';updateDisplay();
+  document.querySelectorAll('.tab')[0].click();
+}
+function loadConst(v){
+  calcVal=String(v);calcNew=false;calcHistory='Constant:';updateDisplay();
+  document.querySelectorAll('.tab')[0].click();
+}
+
+// Statistics
+function calcStats(){
+  var nums=document.getElementById('statInput').value.split(',').map(function(s){return parseFloat(s.trim())}).filter(function(n){return!isNaN(n)});
+  if(nums.length===0){document.getElementById('statResult').textContent='No valid numbers';return}
+  nums.sort(function(a,b){return a-b});
+  var n=nums.length;
+  var sum=nums.reduce(function(a,b){return a+b},0);
+  var mean=sum/n;
+  var variance=nums.reduce(function(a,b){return a+(b-mean)*(b-mean)},0)/n;
+  var stddev=Math.sqrt(variance);
+  var median=n%2===0?(nums[n/2-1]+nums[n/2])/2:nums[Math.floor(n/2)];
+  var min=nums[0],max=nums[n-1];
+  var range=max-min;
+  var q1=percentile(nums,25),q3=percentile(nums,75);
+  var iqr=q3-q1;
+  document.getElementById('statResult').textContent=
+    'Count: '+n+
+    '\nSum: '+Math.round(sum*1e6)/1e6+
+    '\nMean: '+Math.round(mean*1e6)/1e6+
+    '\nMedian: '+median+
+    '\nStd Dev (pop): '+Math.round(stddev*1e6)/1e6+
+    '\nVariance (pop): '+Math.round(variance*1e6)/1e6+
+    '\nMin: '+min+' | Max: '+max+' | Range: '+range+
+    '\nQ1: '+q1+' | Q3: '+q3+' | IQR: '+iqr;
+}
+
+function percentile(sorted,p){
+  var idx=(p/100)*(sorted.length-1);
+  var lo=Math.floor(idx),hi=Math.ceil(idx);
+  return sorted[lo]+(sorted[hi]-sorted[lo])*(idx-lo);
+}
+
+function calcBinomial(){
+  var k=parseInt(document.getElementById('probK').value);
+  var n=parseInt(document.getElementById('probN').value);
+  var p=parseFloat(document.getElementById('probP').value);
+  if(isNaN(k)||isNaN(n)||isNaN(p)||p<0||p>1||k<0||k>n){
+    document.getElementById('probResult').textContent='Invalid input';return;
+  }
+  var coeff=binomCoeff(n,k);
+  var prob=coeff*Math.pow(p,k)*Math.pow(1-p,n-k);
+  document.getElementById('probResult').textContent=
+    'C('+n+','+k+') = '+coeff+
+    '\nP(X='+k+') = '+prob.toExponential(6)+
+    '\n% = '+(prob*100).toFixed(4)+'%';
+}
+
+function binomCoeff(n,k){
+  if(k>n)return 0;if(k===0||k===n)return 1;
+  if(k>n-k)k=n-k;
+  var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return Math.round(r);
+}
+
+function calcNormal(){
+  var x=parseFloat(document.getElementById('normX').value);
+  var mu=parseFloat(document.getElementById('normMu').value);
+  var sig=parseFloat(document.getElementById('normSig').value);
+  if(isNaN(x)||isNaN(mu)||isNaN(sig)||sig<=0){
+    document.getElementById('normResult').textContent='Invalid input';return;
+  }
+  var z=(x-mu)/sig;
+  var pdf=Math.exp(-0.5*z*z)/(sig*Math.sqrt(2*Math.PI));
+  var cdf=0.5*(1+erf(z/Math.sqrt(2)));
+  document.getElementById('normResult').textContent=
+    'z = '+Math.round(z*1e6)/1e6+
+    '\nPDF(x) = '+pdf.toExponential(6)+
+    '\nCDF(x) = '+cdf.toFixed(6)+
+    '\nP(X < '+x+') = '+(cdf*100).toFixed(2)+'%'+
+    '\nP(X > '+x+') = '+((1-cdf)*100).toFixed(2)+'%';
+}
+
+function erf(x){
+  var a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;
+  var sign=x>=0?1:-1;x=Math.abs(x);
+  var t=1/(1+p*x);
+  var y=1-((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t*Math.exp(-x*x);
+  return sign*y;
+}
+</script>
+<button id="themeToggle" onclick="toggleTheme()" style="position:fixed;bottom:20px;right:20px;z-index:9999;width:44px;height:44px;border-radius:50%;border:2px solid #334155;background:#1e293b;color:#e2e8f0;font-size:1.2em;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)" title="Toggle theme">&#127769;</button>
+<script>(function(){var s=localStorage.getItem("theme");if(s==="light")document.documentElement.classList.add("light");window.toggleTheme=function(){document.documentElement.classList.toggle("light");var l=document.documentElement.classList.contains("light");localStorage.setItem("theme",l?"light":"dark");var b=document.getElementById("themeToggle");if(b)b.textContent=l?"&#9728;&#65039;":"&#127769;"};var b=document.getElementById("themeToggle");if(b&&document.documentElement.classList.contains("light"))b.textContent="&#9728;&#65039;"})();</script>
+<div class="footer">
+<p><a href="index.html">Archive</a> · <a href="search.html">Search</a> · <a href="catalog.html">Catalog</a> · <a href="analytics.html">Analytics</a> · <a href="quiz.html">Quiz</a> · <a href="flashcards.html">Flashcards</a> · <a href="calculator.html">Calculator</a> · <a href="README.md">Docs</a></p>
+<p>1001 Proofs — Clean Archive | <a href="https://yury197812.github.io/science-books-1001-proofs/">Full Project</a></p>
+<p>arXiv: <a href="https://arxiv.org/abs/2608.07961">2608.07961</a> · DOI: <a href="https://doi.org/10.5281/zenodo.21288911">10.5281/zenodo.21288911</a> · OSF: <a href="https://osf.io/hn236/">osf.io/hn236</a></p>
+<p>License: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
+</div>
+</body>
+</html>
