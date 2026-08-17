@@ -1,0 +1,387 @@
+
+<!--
+Platform: Habr
+Title: chapter_36
+Tags: 1001-proofs, probability, stochastic-processes, markov-chains, kolmogorov, central-limit-theorem
+Published: 2026-08-16T18:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 36: Вероятность и случайные процессы</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Вероятность и случайные процессы">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_36.html" class="active">36. Вероятность</a>
+    </nav>
+
+    <h1>Глава 36: Вероятность и случайные процессы</h1>
+
+    <!-- ============================================ -->
+    <h2>1. Элементарная теория вероятностей</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Аksiомы Колмогорова</h3>
+        <p>Современная теория вероятностей основана на трёх аксиомах А. Н. Колмогорова (1933). Пусть $\Omega$ — пространство элементарных исходов, $\mathcal{F}$ — $\sigma$-алгебра событий, $P$ — вероятностная мера.</p>
+
+        <div class="skill-card">
+            <p><strong>Аксиома 1 (неотрицательность):</strong> Для любого события $A \in \mathcal{F}$:</p>
+            <div class="formula">$$P(A) \geq 0$$</div>
+        </div>
+
+        <div class="skill-card">
+            <p><strong>Аксиома 2 (нормированность):</strong></p>
+            <div class="formula">$$P(\Omega) = 1$$</div>
+        </div>
+
+        <div class="skill-card">
+            <p><strong>Аксиома 3 (счётная аддитивность):</strong> Для попарно несовместных событий $A_1, A_2, \ldots$:</p>
+            <div class="formula">$$P\!\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$</div>
+        </div>
+
+        <p>Из этих трёх аксиом следуют все свойства вероятности: аддитивность, вероятность дополнения, формула включений-исключений и другие.</p>
+    </div>
+
+    <div class="section">
+        <h3>Условная вероятность</h3>
+        <p>Условная вероятность события $A$ при наступлении события $B$ (при $P(B) > 0$):</p>
+        <div class="formula">$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$</div>
+
+        <p><strong>Формула Байеса</strong> — следствие определения условной вероятности:</p>
+        <div class="formula">$$P(A_i \mid B) = \frac{P(B \mid A_i)\, P(A_i)}{\sum_{j=1}^{n} P(B \mid A_j)\, P(A_j)}$$</div>
+
+        <p><strong>Независимость:</strong> События $A$ и $B$ независимы тогда и только тогда, когда $P(A \cap B) = P(A)\,P(B)$, что эквивалентно $P(A \mid B) = P(A)$.</p>
+
+        <p><strong>Формула полной вероятности:</strong> Если $B_1, \ldots, B_n$ — полная группа событий, то:</p>
+        <div class="formula">$$P(A) = \sum_{i=1}^{n} P(A \mid B_i)\, P(B_i)$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Случайные величины</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Распределения вероятностей</h3>
+        <p>Случайная величина $X$ — это функция $X: \Omega \to \mathbb{R}$, измеримая относительно $\mathcal{F}$. Она полностью определяется своим распределением.</p>
+
+        <p><strong>Дискретные распределения:</strong></p>
+        <table>
+            <tr><th>Распределение</th><th>Формула $P(X = k)$</th><th>Матожидание</th><th>Дисперсия</th></tr>
+            <tr><td>Бернулли</td><td>$p^k (1-p)^{1-k}$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+            <tr><td>Биномиальное $B(n,p)$</td><td>$\binom{n}{k} p^k (1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+            <tr><td>Пуассона $\mathrm{Po}(\lambda)$</td><td>$\dfrac{\lambda^k e^{-\lambda}}{k!}$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+            <tr><td>Геометрическое</td><td>$(1-p)^{k-1} p$</td><td>$1/p$</td><td>$(1-p)/p^2$</td></tr>
+        </table>
+
+        <p><strong>Непрерывные распределения:</strong></p>
+        <table>
+            <tr><th>Распределение</th><th>Плотность $f(x)$</th><th>Матожидание</th><th>Дисперсия</th></tr>
+            <tr><td>Равномерное $U(a,b)$</td><td>$\dfrac{1}{b-a}$</td><td>$\dfrac{a+b}{2}$</td><td>$\dfrac{(b-a)^2}{12}$</td></tr>
+            <tr><td>Нормальное $\mathcal{N}(\mu,\sigma^2)$</td><td>$\dfrac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+            <tr><td>Экспоненциальное $\mathrm{Exp}(\lambda)$</td><td>$\lambda e^{-\lambda x}$</td><td>$1/\lambda$</td><td>$1/\lambda^2$</td></tr>
+            <tr><td>Гамма $\Gamma(\alpha, \beta)$</td><td>$\dfrac{\beta^\alpha x^{\alpha-1} e^{-\beta x}}{\Gamma(\alpha)}$</td><td>$\alpha/\beta$</td><td>$\alpha/\beta^2$</td></tr>
+            <tr><td>Бета $\mathrm{Be}(\alpha,\beta)$</td><td>$\dfrac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}$</td><td>$\dfrac{\alpha}{\alpha+\beta}$</td><td>$\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Математическое ожидание и дисперсия</h3>
+        <p><strong>Математическое ожидание</strong> дискретной случайной величины:</p>
+        <div class="formula">$$\mathbb{E}[X] = \sum_{k} x_k\, P(X = x_k)$$</div>
+
+        <p>Для непрерывной случайной величины:</p>
+        <div class="formula">$$\mathbb{E}[X] = \int_{-\infty}^{\infty} x\, f(x)\, dx$$</div>
+
+        <p><strong>Дисперсия</strong> — мера разброса:</p>
+        <div class="formula">$$\mathrm{Var}(X) = \mathbb{E}\!\left[(X - \mathbb{E}[X])^2\right] = \mathbb{E}[X^2] - \left(\mathbb{E}[X]\right)^2$$</div>
+
+        <p><strong>Свойства:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Линейность: $\mathbb{E}[aX + b] = a\,\mathbb{E}[X] + b$</li>
+            <li>$\mathrm{Var}(aX + b) = a^2\,\mathrm{Var}(X)$</li>
+            <li>Для независимых $X, Y$: $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)$</li>
+        </ul>
+
+        <p><strong>Ковариация и корреляция:</strong></p>
+        <div class="formula">$$\mathrm{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\,\mathbb{E}[Y], \quad \rho(X,Y) = \frac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Предельные теоремы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Центральная предельная теорема (ЦПТ)</h3>
+        <p><strong>Теорема Ляпунова / Леви-Линденберга.</strong> Пусть $X_1, X_2, \ldots$ — независимые одинаково распределённые случайные величины с $\mathbb{E}[X_i] = \mu$, $\mathrm{Var}(X_i) = \sigma^2 < \infty$. Тогда:</p>
+        <div class="formula">$$\frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1) \quad (n \to \infty)$$</div>
+
+        <p><strong>Интегральная форма ЦПТ:</strong> Пусть $F_n(x)$ — функция распределения стандартизированной суммы. Тогда при $n \to \infty$:</p>
+        <div class="formula">$$F_n(x) \to \Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-t^2/2}\, dt$$</div>
+
+        <p><strong>Форма Линденберга (без предположения об одинаковом распределении):</strong> Пусть $X_1, X_2, \ldots$ — независимые, $S_n^2 = \sum_{i=1}^n \mathrm{Var}(X_i)$, и для всех $\varepsilon > 0$:</p>
+        <div class="formula">$$\frac{1}{S_n^2} \sum_{i=1}^{n} \mathbb{E}\!\left[X_i^2 \cdot \mathbf{1}_{|X_i| > \varepsilon S_n}\right] \to 0$$</div>
+        <p>Тогда $\dfrac{\sum X_i - \mathbb{E}[\sum X_i]}{S_n} \xrightarrow{d} \mathcal{N}(0,1)$.</p>
+    </div>
+
+    <div class="section">
+        <h3>Закон больших чисел (ЗБЧ)</h3>
+        <p><strong>Слабый закон (Бернулли — Хинчин):</strong> Пусть $X_1, X_2, \ldots$ — iid с $\mathbb{E}[X_i] = \mu$. Тогда среднее сходится по вероятности:</p>
+        <div class="formula">$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{P} \mu$$</div>
+        <p>Более точно, для любого $\varepsilon > 0$: $P(|\bar{X}_n - \mu| > \varepsilon) \to 0$.</p>
+
+        <p><strong>Сильный закон (Колмогоров):</strong> При тех же условиях:</p>
+        <div class="formula">$$P\!\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1$$</div>
+        <p>То есть $\bar{X}_n \to \mu$ Almost Surely (p.s.).</p>
+
+        <p><strong>Неравенство Чернова:</strong> Верхняя оценка отклонений:</p>
+        <div class="formula">$$P\!\left(\bar{X}_n - \mu \geq t\right) \leq e^{-2nt^2/\sigma^2}$$</div>
+
+        <p><strong>Применение:</strong> ЗБЧ обосновывает статистическое оценивание — среднее наблюдений сходится к математическому ожиданию при большом числе испытаний. Это фундамент всей статистики и теории вероятностей.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Марковские цепи</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Матрица переходов</h3>
+        <p><strong>Марковская цепь</strong> — дискретный стохастический процесс $\{X_n\}_{n \geq 0}$ с конечным или счётным числом состояний, удовлетворяющий свойству Маркова:</p>
+        <div class="formula">$$P(X_{n+1} = j \mid X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = P(X_{n+1} = j \mid X_n = i) = p_{ij}$$</div>
+
+        <p><strong>Матрица переходов</strong> $P = (p_{ij})$ удовлетворяет условиям:</p>
+        <ul style="margin-left: 20px;">
+            <li>Неотрицательность: $p_{ij} \geq 0$ для всех $i, j$</li>
+            <li>Строчная нормировка: $\sum_{j} p_{ij} = 1$ для всех $i$</li>
+        </ul>
+
+        <p><strong>$n$-шаговая матрица:</strong> Вероятность перехода за $n$ шагов:</p>
+        <div class="formula">$$P^{(n)}_{ij} = P(X_{n} = j \mid X_0 = i)$$</div>
+        <p>Комбинаторно: $P^{(n)} = P^n$ (матричная степень). Доказывается индукцией по уравнению Чепмена-Колмогорова:</p>
+        <div class="formula">$$p_{ij}^{(m+n)} = \sum_{k} p_{ik}^{(m)}\, p_{kj}^{(n)}$$</div>
+    </div>
+
+    <div class="section">
+        <h3>Стационарное распределение</h3>
+        <p><strong>Стационарное распределение</strong> — строковый вектор $\pi = (\pi_1, \ldots, \pi_N)$, такой что:</p>
+        <div class="formula">$$\pi P = \pi, \quad \sum_{i} \pi_i = 1, \quad \pi_i \geq 0$$</div>
+
+        <p><strong>Теорема о существовании (неприводимые и апериодичные цепи):</strong> Если марковская цепь на конечном множестве состояний неприводима и апериодична, то существует единственное стационарное распределение, и из любого начального распределения цепь сходится к нему:</p>
+        <div class="formula">$$\lim_{n \to \infty} P(X_n = j \mid X_0 = i) = \pi_j \quad \forall\, i, j$$</div>
+
+        <p><strong>Пример ( случайное блуждание на графе):</strong></p>
+        <p>Пусть граф $G = (V, E)$ связан. Случайное блуждование — цепь с $p_{ij} = 1/\deg(i)$ при $(i,j) \in E$. Тогда стационарное распределение:</p>
+        <div class="formula">$$\pi_i = \frac{\deg(i)}{2|E|}$$</div>
+
+        <p><strong>Разбиение состояний:</strong></p>
+        <table>
+            <tr><th>Свойство</th><th>Определение</th></tr>
+            <tr><td>Связность</td><td>Из каждого состояния достижимо любое другое</td></tr>
+            <tr><td>Апериодичность</td><td>НОД всех циклов $= 1$</td></tr>
+            <tr><td>Возвратность</td><td>$P(\text{возврат в } i \mid X_0 = i) = 1$</td></tr>
+            <tr><td>Эргодичность</td><td>Неприводима + апериодична + на конечном множестве</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Стохастические процессы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Броуновское движение</h3>
+        <p><strong>Винеровский процесс</strong> $(W_t)_{t \geq 0}$ — непрерывный стохастический процесс с свойствами:</p>
+        <ol style="margin-left: 20px;">
+            <li>$W_0 = 0$</li>
+            <li>Слабые приращения: $W_t - W_s \sim \mathcal{N}(0, t - s)$ для $0 \leq s < t$</li>
+            <li>Независимость приращений: приращения на непересекающихся интервалах независимы</li>
+            <li>Непрерывность траекторий: $t \mapsto W_t$ — непрерывная функция p.s.</li>
+        </ol>
+
+        <p><strong>Свойства броуновского движения:</strong></p>
+        <div class="formula">$$\mathbb{E}[W_t] = 0, \quad \mathrm{Var}(W_t) = t, \quad \mathbb{E}[|W_t|] = \sqrt{2t/\pi}$$</div>
+
+        <p><strong>Самоподобие:</strong> $W_{ct} \stackrel{d}{=} \sqrt{c}\, W_t$ для любого $c > 0$. Фрактальная размерность траектории $= 3/2$ (по豪斯дорфу).</p>
+
+        <p><strong>Связь с диффузией:</strong> Если частица движется по закону броуновского движения, её плотность $p(x,t)$ удовлетворяет <strong>уравнению теплопроводности</strong> (уравнение Фокка-Планка для диффузии):</p>
+        <div class="formula">$$\frac{\partial p}{\partial t} = \frac{1}{2} \frac{\partial^2 p}{\partial x^2}$$</div>
+    </div>
+
+    <div class="section">
+        <h3>Диффузионные процессы</h3>
+        <p><strong>Общее диффузионное уравнение</strong> (уравнение Фокка-Планка) для процесса с дрифтом $a(x,t)$ и диффузией $\sigma(x,t)$:</p>
+        <div class="formula">$$\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}\!\left[a(x,t)\, p\right] + \frac{1}{2}\frac{\partial^2}{\partial x^2}\!\left[\sigma^2(x,t)\, p\right]$$</div>
+
+        <p><strong>Стохастическое дифференциальное уравнение (СДУ):</strong> Процесс $X_t$, удовлетворяющий:</p>
+        <div class="formula">$$dX_t = a(X_t, t)\, dt + \sigma(X_t, t)\, dW_t$$</div>
+
+        <p><strong>Формула Ито:</strong> Если $f(t,x)$ — дважды дифференцируемая, то:</p>
+        <div class="formula">$$df(t, X_t) = \left(\frac{\partial f}{\partial t} + a \frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2}\right) dt + \sigma \frac{\partial f}{\partial x}\, dW_t$$</div>
+
+        <p><strong>Модель Блэка-Шоулза:</strong> Цена акции $S_t$:</p>
+        <div class="formula">$$dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$$</div>
+        <p>Решение: $S_t = S_0 \exp\!\left((\mu - \sigma^2/2)\,t + \sigma W_t\right)$ — геометрическое броуновское движение.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с физикой и информатикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Статистическая физика</h3>
+        <p>Вероятностный подход — фундамент статистической физики. Микросостояние системы описывается распределением Гиббса:</p>
+        <div class="formula">$$P(E_i) = \frac{e^{-E_i / k_B T}}{Z}, \quad Z = \sum_i e^{-E_i / k_B T}$$</div>
+
+        <p><strong>Связи:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Закон Больцмана:</strong> Энтропия $S = k_B \ln \Omega$ — количество микросостояний. Связь с теорией информации: $H = -\sum p_i \log p_i$.</li>
+            <li><strong>Эргодическая гипотеза:</strong> Среднее по ансамблю $=$ среднее по времени. Связь с ЗБЧ: время усреднения $\leftrightarrow$ ансамблевое усреднение.</li>
+            <li><strong>Броуновское движение:</strong> Эйнштейн (1905) показал $\langle x^2 \rangle = 2Dt$, связав微观运动 с макроскопической диффузией.</li>
+            <li><strong>Переходная теорема (Onsager):</strong> Возвращение к равновесию описывается марковскими процессами.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Информатика и генерация случайных чисел</h3>
+        <p>Случайные числа критически важны для:</p>
+
+        <table>
+            <tr><th>Область</th><th>Применение</th><th>Тип случайности</th></tr>
+            <tr><td>Криптография</td><td>Генерация ключей, nonces</td><td>True random (TRNG)</td></tr>
+            <tr><td>Монте-Карло</td><td>Интегрирование, симуляция</td><td>Pseudo-random (PRNG)</td></tr>
+            <tr><td>Машинное обучение</td><td>Инициализация весов, Dropout</td><td>PRNG (Seeded)</td></tr>
+            <tr><td>Алгоритмы</td><td>Рандомизированные алгоритмы</td><td>PRNG</td></tr>
+            <tr><td>Марковские цепи</td><td>MCMC, сэмплирование Гиббса</td><td>PRNG</td></tr>
+        </table>
+
+        <p><strong>Проблема:</strong> Существуют ли «настоящие» случайные числа? Квантовые генераторы (на основе фотонного испускания) считаются принципиально некоррелированными — но это философский вопрос.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс: турбулентность как стохастический процесс</h3>
+        <p>Задача Навье-Стокса — одна из семи задач тысячелетия Clay Mathematics Institute. Уравнения:</p>
+        <div class="formula">$$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} = -\frac{1}{\rho}\nabla p + \nu \nabla^2 \mathbf{u} + \mathbf{f}$$</div>
+
+        <p><strong>Проблема:</strong> Существуют ли гладкие решения для 3D-случая? Что происходит при больших числах Рейнольдса $\mathrm{Re} = UL/\nu$?</p>
+
+        <p><strong>Турбулентность и стохастические процессы:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>При $\mathrm{Re} \gg 1$ вязкостное трение слабо, и вихревая структура становится хаотичной.</li>
+            <li><strong>Модель Ричардсона:</strong> Каскад энергии: крупные вихри分解为 мелкие, $\varepsilon \sim u^3/\ell$ — каскад по размерам.</li>
+            <li><strong>Колмогорова 41/5/3 (K41) теория:</strong> Статистика турбулентности описывается функцией распределения приращений скорости: $P(\delta u) \sim (\delta u / \ell)^{-4/3}$ (степенной закон).</li>
+            <li><strong>Уравнение Орн-Зенбека:</strong> Модель лагранговой траектории в турбулентности:</li>
+        </ul>
+        <div class="formula">$$dV_t = -\gamma V_t\, dt + \sigma\, dW_t$$</div>
+        <p>Решение: процесс Орн-Зенбека — марковский, стационарный с распределением $\mathcal{N}(0, \sigma^2/(2\gamma))$.</p>
+
+        <p><strong>Гипотеза (NS и случайность):</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Если уравнения Навье-Стокса имеют единственное решение — оно должно быть гладким (и тогда турбулентность не возникает).</li>
+            <li>Если решение неединственно — может ли стохастическое уравнение Навье-Стокса (SNSE) дать физически осмысленную модель турбулентности?</li>
+            <li><strong>Засосин (2015–2016):</strong> Показалexistence of weak solutions SNSE, но гладкость остаётся открытой.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Другие задачи тысячелетия</h3>
+        <table>
+            <tr><th>Задача</th><th>Роль вероятности</th></tr>
+            <tr><td>P vs NP</td><td>Рандомизированные алгоритмы (BPP vs P), вероятностные доказательства (PCP)</td></tr>
+            <tr><td>Гипотеза Римана</td><td>Связь с распределением простых чисел, случайные матрицы Гинибра-Меера</td></tr>
+            <tr><td>Бёрхфорд</td><td>Калейский $\overline{\partial}$-уравнение и вероятностные методы в кватернионных алгебрах</td></tr>
+            <tr><td>Глазкоу</td><td>Стохастические геометрии, спектральная теория случайных матриц</td></tr>
+            <tr><td>Янга-Миллса</td><td>Квантовая статистическая физика: partition function $Z = \int \mathcal{D}A\, e^{-S[A]/\hbar}$</td></tr>
+        </table>
+    </div>
+
+    <div class="optimization">
+        <h3>Итог: роль вероятности в точных науках</h3>
+        <p><strong>Математика:</strong> Теория меры (Колмогоров), предельные теоремы, стохастический анализ.</p>
+        <p><strong>Физика:</strong> Статистическая физика, квантовая теория поля (Path Integral), турбулентность.</p>
+        <p><strong>Информатика:</strong> Рандомизированные алгоритмы, криптография, машинное обучение.</p>
+        <p><strong>Задачи тысячелетия:</strong> Навье-Стокс (турбулентность), Голдбах и Риман (случайные матрицы), Янга-Миллса (Path Integral).</p>
+        <div class="formula">$$\text{Вероятность} = \text{язык описания неопределённости} \to \text{все задачи тысячелетия}$$</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
