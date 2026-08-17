@@ -1,0 +1,358 @@
+<!--
+Platform: Habr
+Title: chapter_26
+Tags: 1001-proofs, biology, cell, genetics, evolution, ecology
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 26: Биология — от клетки до экосистемы</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Биология: от клетки до экосистемы">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_26.html" class="active">26. Биология</a>
+    </nav>
+
+    <h1>Глава 26: Биология — от клетки до экосистемы</h1>
+
+    <div class="section">
+        <p><strong>Биология</strong> — наука о живых организмах, их структуре, функциях, развитии, эволюции и взаимодействии с окружающей средой. В серии «1001 Proof» биология представлена 11 томами, охватывающими клеточную биологию, генетику, экологию, эволюцию, микробиологию, зоологию, ботанику, физиологию, геномику, протеомику и биоинформатику.</p>
+        <p><strong>Автор:</strong> Yuriy Aronov (Independent Researcher)<br>
+        <strong>Репозиторий:</strong> <code>github.com/aibornstore/science-books-1001-proofs</code></p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Клеточная биология — органеллы, мембраны, деление клетки</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Структура эукариотической клетки</h3>
+        <p>Клетка — основная структурная и функциональная единица живых организмов. Эукариотическая клетка содержит ядро и мембранные органеллы:</p>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Ядро</h4>
+                <p>Содержит генетический материал (ДНК). Ядерная оболочка с порами регулирует транспорт молекул. Хроматин condenses в хромосомы при делении.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Митохондрии</h4>
+                <p>Центры клеточного дыхания. Производят АТФ через окислительное фосфорилирование. Собственная ДНК (матрилиневая).</p>
+            </div>
+            <div class="grid-item">
+                <h4>Эндоплазматический ретикулум</h4>
+                <p>Гладкий ЭПР — синтез липидов, детоксикация. Шероховатый ЭПР — синтез белков с рибосомами.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Аппарат Гольджи</h4>
+                <p>Модификация, сортировка и упаковка белков и липидов для секреции или доставки в другие органеллы.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Клеточная мембрана — жидкостно-мозаичная модель</h3>
+        <p>Мембрана состоит из фосфолипидного бислоя с интегральными и периферическими белками:</p>
+        <div class="formula">$$\text{Проницаемость} = P \cdot \frac{A \cdot \Delta C}{d}$$</div>
+        <p>где $P$ — коэффициент проницаемости, $A$ — площадь мембраны, $\Delta C$ — градиент концентрации, $d$ — толщина мембраны.</p>
+        <p><strong>Транспорт через мембрану:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Пассивный:</strong> диффузия, осмос (без затрат энергии)</li>
+            <li><strong>Активный:</strong> Na⁺/K⁺-насос, эндоцитоз, экзоцитоз (с затратами АТФ)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Деление клетки</h3>
+        <p><strong>Митоз:</strong> деление соматических клеток (2n → 2n). Фазы: прометафаза → метафаза → анафаза → телофаза.</p>
+        <p><strong>Мейоз:</strong> деление зародышевых клеток (2n → n). Два последовательных деления, кроссинговер, независимая сортировка хромосом.</p>
+        <div class="formula">$$\text{Кроссинговер: } \text{Частота重组} = \frac{\text{Число рекомбинантных потомков}}{\text{Общее число потомков}} \times 100\%$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Молекулярная биология — ДНК, РНК, транскрипция, трансляция</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Центральная догма молекулярной биологии</h3>
+        <p>Поток генетической информации:</p>
+        <div class="formula">$$\text{ДНК} \xrightarrow{\text{транскрипция}} \text{мРНК} \xrightarrow{\text{трансляция}} \text{белок}$$</div>
+        <p><strong>Исключения:</strong> обратная транскриптаза (РНК → ДНК), репликация РНК (РНК → РНК).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Структура ДНК</h3>
+        <p>Двуцепочечная спираль (Watson-Crick). Базы: аденин (A) — тимин (T), гуанин (G) — цитозин (C).</p>
+        <div class="formula">$$\text{Длина витка} = 3.4 \text{ нм} \approx 10 \text{ пар оснований}$$</div>
+        <p><strong>Правило Чаргаффа:</strong></p>
+        <div class="formula">$$[\text{A}] = [\text{T}], \quad [\text{G}] = [\text{C}]$$</div>
+        <p><strong>Репликация ДНК:</strong> полуконсервативный механизм. ДНК-полимераза III синтезирует 5'→3', скорость ~1000 нуклеотидов/сек.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Транскрипция</h3>
+        <p>Синтез мРНК на матрице ДНК (РНК-полимераза):</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Прокариоты:</strong> одна РНК-полимераза, опероны (лактозный оперон)</li>
+            <li><strong>Эукариоты:</strong> три РНК-полимеразы (I, II, III), интроны/экзоны, сплайсинг</li>
+        </ul>
+        <div class="formula">$$\text{Кодон} = 3 \text{ нуклеотида} \Rightarrow 4^3 = 64 \text{ кодона} \Rightarrow 20 \text{ аминокислот} + \text{стоп}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Трансляция</h3>
+        <p>Синтез полипептидной цепи на рибосоме:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Инициация:</strong> мРНК + метионин-тРНК + мелкая субъединица (30S/40S)</li>
+            <li><strong>Элонгация:</strong> транслокация, пептидилтрансфераза</li>
+            <li><strong>Терминация:</strong> стоп-кодоны (UAA, UAG, UGA)</li>
+        </ul>
+        <p>Скорость трансляции: ~20 аминокислот/сек (прокариоты), ~6 аминокислот/сек (эукариоты).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Генетика — законы Менделя, сцепленное наследование, мутации</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Законы Менделя (1865)</h3>
+        <p><strong>1. Закон расщепления:</strong> при скрещивании гетерозиготных особей потомство расщепляется в соотношении 3:1.</p>
+        <div class="formula">$$\text{F}_1: \text{Aa} \times \text{Aa} \to 1\text{AA} : 2\text{Aa} : 1\text{aa} \to 3:1 \text{ (фенотип)}$$</div>
+        <p><strong>2. Закон независимого расщепления:</strong> аллели разных генов наследуются независимо.</p>
+        <div class="formula">$$\text{AaBb} \times \text{AaBb} \to 9:3:3:1$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Сцепленное наследование и кроссинговер</h3>
+        <p>Гены位于 одной хромосоме наследуются сцепленно. Расстояние между генами (м.о.):</p>
+        <div class="formula">$$\text{Расстояние (м.о.)} = \frac{\text{Число重组}}{\text{Общее число потомков}} \times 100$$</div>
+        <p><strong>Карта генов:</strong> Морган (1911) построил первую генетическую карту хромосомы Drosophila melanogaster.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Типы мутаций</h3>
+        <table>
+            <tr><th>Тип</th><th>Описание</th><th>Эффект</th></tr>
+            <tr><td>Точечные</td><td>Замена одного нуклеотида</td><td>Синонимичные / миссенс / нонсенс</td></tr>
+            <tr><td>Вставки/делеции</td><td>Добавление/удаление оснований</td><td>Сдвиг рамки чтения</td></tr>
+            <tr><td>Хромосомные</td><td>Делеции, дупликации, инверсии, транслокации</td><td>Анеуплоидия, рак</td></tr>
+            <tr><td>Полиморфизмы</td><td>SNP, STR</td><td>Генетическое разнообразие</td></tr>
+        </table>
+        <p><strong>Скорость мутаций:</strong> $\mu \approx 10^{-8}$ мутаций/нуклеотид/поколение (человек).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Эволюция — естественный отбор, дрейф, видообразование</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Естественный отбор (Darwin, 1859)</h3>
+        <p>Механизм адаптации: выживают и оставляют потомство наиболее приспособленные особи.</p>
+        <div class="formula">$$\Delta p = \frac{p \cdot q \cdot [p(w_{11} - w_{12}) + q(w_{12} - w_{22})]}{\bar{w}}$$</div>
+        <p>где $p$, $q$ — частоты аллелей, $w_{ij}$ — приспособленность генотипов, $\bar{w}$ — средняя приспособленность.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Генетический дрейф</h3>
+        <p>Случайные изменения частот аллелей в малых популяциях:</p>
+        <div class="formula">$$\sigma_p = \sqrt{\frac{p \cdot q}{2N_e}}$$</div>
+        <p>где $N_e$ — эффективный размер популяции. Эффект основателя, узкое горлышко бутылки.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Видообразование</h3>
+        <p><strong>Аллопатрическое:</strong> географическая изоляция → дивергенция.</p>
+        <p><strong>Симпатрическое:</strong> полиплоидия, экологическая дифференциация в одном ареале.</p>
+        <div class="formula">$$\text{Индекс разнообразия Шеннона: } H = -\sum_{i=1}^{S} p_i \ln p_i$$</div>
+        <p>где $S$ — число видов, $p_i$ — доля вида $i$ в сообществе.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Экология — трофические уровни, биогеоценозы, биоразнообразие</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Трофические уровни</h3>
+        <p>Пищевые цепи и сети в экосистеме:</p>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Продуценты</h4>
+                <p>Автотрофы (растения, цианобактерии). Фиксируют $1-2\%$ солнечной энергии. Первичная продукция: $P = \text{GPP} - R_a$.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Консументы</h4>
+                <p>Гетеротрофы: травоядные (I порядок), хищники (II, III...). Эффективность переноса энергии: $10-20\%$.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Редуценты</h4>
+                <p>Микроорганизмы, разлагающие мёртвую органику. Замыкают циклы углерода, азота, фосфора.</p>
+            </div>
+        </div>
+        <div class="formula">$$E_{n+1} = E_n \times 0.1 \Rightarrow \text{Пирамида энергии}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биогеоценозы (Сукачёв, 1940)</h3>
+        <p>Совокупность организмов и неживой среды на единой территории:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Биоценоз:</strong> сообщество организмов (растения, животные, грибы, микробы)</li>
+            <li><strong>Биотоп:</strong> совокупность абиотических факторов (климат, почва, рельеф)</li>
+            <li><strong>Биогеоценоз:</strong> биоценоз + биотоп (экосистема)</li>
+        </ul>
+        <p><strong>Закон гомеостаза:</strong> устойчивость экосистемы $\propto$ разнообразию видов.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биоразнообразие</h3>
+        <p>Три уровня: генетическое, видовое, экосистемное.</p>
+        <div class="formula">$$\text{Индекс Симпсона: } D = 1 - \sum_{i=1}^{S} p_i^2$$</div>
+        <p><strong>Угрозы:</strong> изменение климата, фрагментация мест обитания, инвазивные виды, загрязнение.</p>
+        <p><strong>Красная книга:</strong> >44 000 видов под угрозой исчезновения (IUCN, 2024).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с химией (биохимия) и математикой (популяционная генетика)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Биохимия: молекулярный язык жизни</h3>
+        <p><strong>Белки:</strong> полимеры аминокислот. Структуры: первичная (последовательность), вторичная (α-спираль, β-лист), третичная (3D), четвертичная (олигомеры).</p>
+        <div class="formula">$$\Delta G = \Delta H - T \Delta S < 0 \Rightarrow \text{спонтанность сворачивания}$$</div>
+        <p><strong>Ферменты:</strong> биокатализаторы. Михаэлис-Ментен:</p>
+        <div class="formula">$$v = \frac{V_{\max} [S]}{K_M + [S]}$$</div>
+        <p><strong>Метаболизм:</strong> гликолиз (10 реакций, $\Delta G = -85$ кДж/моль), цикл Кребса, дыхательная цепь.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Популяционная генетика: математическая основа эволюции</h3>
+        <p><strong>Закон Харди-Вайнберга:</strong> в отсутствие эволюционных сил частоты аллелей постоянны:</p>
+        <div class="formula">$$p^2 + 2pq + q^2 = 1 \quad (p + q = 1)$$</div>
+        <p><strong>Селективная модель:</strong> изменение частоты аллели под действием отбора:</p>
+        <div class="formula">$$p' = \frac{p^2 w_{AA} + pq w_{Aa}}{\bar{w}}, \quad \bar{w} = p^2 w_{AA} + 2pq w_{Aa} + q^2 w_{aa}$$</div>
+        <p><strong>Нейтральная теория (Kimura, 1968):</strong> большинство молекулярных изменений нейтральны. Скорость фиксации $\approx 2N_e \mu$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (Навье-Стокс в биомеханике, термодинамика жизни)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс в биомеханике</h3>
+        <p>Уравнения Навье-Стокса описывают движение крови, лимфы и других биологических жидкостей:</p>
+        <div class="formula">$$\rho\left(\frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v}\right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \mathbf{f}$$</div>
+        <p><strong>Гемодинамика:</strong> кровоток в сосудах (law of Poiseuille):</p>
+        <div class="formula">$$Q = \frac{\pi r^4 \Delta P}{8 \mu L}$$</div>
+        <p>где $r$ — радиус сосуда, $\Delta P$ — перепад давления, $\mu$ — вязкость, $L$ — длина.</p>
+        <p><strong>Связь сзадачей тысячелетия:</strong> существование и гладкость решений Навье-Стокса — одна из 7 задач тысячелетия (Clay Millennium Prize). В биомеханике это напрямую связано с предсказанием кровотока, турбулентности в сердце, и механизмов атеросклероза.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Термодинамика жизни</h3>
+        <p><strong>Второй закон термодинамики:</strong> жизнь поддерживает низкий уровень энтропии за счёт увеличения энтропии окружающей среды:</p>
+        <div class="formula">$$\Delta S_{\text{универсум}} = \Delta S_{\text{организм}} + \Delta S_{\text{среда}} \geq 0$$</div>
+        <p><strong>Связь с задачей тысячелетия:</strong> Навье-Стокс + термодинамика生命:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Биомеханика:</strong> моделирование кровотока, дыхания, движения мышц</li>
+            <li><strong>Биофизика белков:</strong> сворачивание белков (проблема тысячелетия для вычислительных методов)</li>
+            <li><strong>Клеточные процессы:</strong> транспорт через мембраны (диффузия, осмос)</li>
+            <li><strong>Эволюция:</strong> диссипативные структуры (Пригожин) — жизнь как неравновесная термодинамическая система</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Междисциплинарные связи</h3>
+        <table>
+            <tr><th>Биология</th><th>Химия</th><th>Математика</th><th>Физика</th></tr>
+            <tr><td>Клеточная биология</td><td>Биохимия мембран</td><td>Топология мембран</td><td>Биофизика</td></tr>
+            <tr><td>Генетика</td><td>Молекулярная генетика</td><td>Популяционная генетика</td><td>Биоинформатика</td></tr>
+            <tr><td>Эволюция</td><td>Биогеохимия</td><td>Теория вероятностей</td><td>Термодинамика</td></tr>
+            <tr><td>Экология</td><td>Биогеохимические циклы</td><td>Модели роста populations</td><td>Гидродинамика</td></tr>
+        </table>
+    </div>
+
+    <div class="optimization">
+        <h3>OCULUS-оптимизации для биологии</h3>
+        <p><strong>Ускорение x10:</strong> Пакетная генерация упражнений по биологии (аналогия с физикой/химией).</p>
+        <p><strong>Ускорение x100:</strong> Автоматическая проверка через базы данных (UniProt, PDB, NCBI).</p>
+        <p><strong>Ускорение x1000:</strong> Интеграция с биоинформатическими пайплайнами (.alignment, assembly).</p>
+        <p><strong>Ключевой инсайт:</strong> Биология — экспериментальная наука, но математические модели (популяционная генетика, экологическое моделирование) позволяют формализовать 1001 доказательство.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
