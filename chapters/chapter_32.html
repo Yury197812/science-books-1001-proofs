@@ -1,0 +1,415 @@
+
+<!--
+Platform: Habr
+Title: chapter_32
+Tags: 1001-proofs, aerospace, aerodynamics, orbital-mechanics, rocket-science, aero-thermal
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 32: Аэрокосмические науки — от аэродинамики до орбитальной механики</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Аэрокосмические науки">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_32.html" class="active">32</a>
+    </nav>
+
+    <h1>Глава 32: Аэрокосмические науки — от аэродинамики до орбитальной механики</h1>
+
+    <div class="section">
+        <p>Аэрокосмическая наука объединяет механику жидкостей, термодинамику, небесную механику и материаловедение в единую инженерную дисциплину. В этом разборе — ключевые теоремы и формулы, из которых складывается полёт от земли до орбиты.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Аэродинамика — подъёмная сила, сопротивление, число Маха</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>Подъёмная сила и сопротивление</h3>
+        <p>Сила, действующая на крыло в потоке жидкости:</p>
+        <div class="formula">
+            $$F_L = \frac{1}{2}\,\rho\,V^2\,S\,C_L, \qquad F_D = \frac{1}{2}\,\rho\,V^2\,S\,C_D$$
+        </div>
+        <p>где $\rho$ — плотность воздуха, $V$ — скорость потока, $S$ — площадь крыла, $C_L$ и $C_D$ — коэффициенты подъёмной силы и сопротивления.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Отношение подъёмной силы к сопротивлению</h3>
+        <div class="formula">
+            $$\frac{L}{D} = \frac{C_L}{C_D}$$
+        </div>
+        <p>Параметр аэродинамического качества, определяющий дальность безмоторного полёта. Максимум $L/D$ для современных крылатых аппаратов достигает 30–40.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Число Маха</h3>
+        <div class="formula">
+            $$Ma = \frac{V}{a} = \frac{V}{\sqrt{\gamma R T}}$$
+        </div>
+        <p>$a$ — скорость звука, $\gamma$ — показатель адиабаты ($\gamma = 1.4$ для воздуха), $R$ — газовая постоянная, $T$ — температура среды.</p>
+
+        <table>
+            <tr><th>Режим</th><th>Число Маха</th><th>Особенности</th></tr>
+            <tr><td>Дозвуковой</td><td>$Ma < 0.8$</td><td>Сжимаемость пренебрежима</td></tr>
+            <tr><td>Трансзвуковой</td><td>$0.8 < Ma < 1.2$</td><td>Образование ударных волн</td></tr>
+            <tr><td>Сверхзвуковой</td><td>$1.2 < Ma < 5$</td><td>Конусы возмущений</td></tr>
+            <tr><td>Гиперзвуковой</td><td>$Ma > 5$</td><td>Диссоциация, ионизация газа</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнения Навье-Стокс в аэродинамике</h3>
+        <p>Полная система уравнений для сжимаемого вязкого течения:</p>
+        <div class="formula">
+            $$\rho\left(\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v}\right) = -\nabla p + \mu\,\nabla^2 \mathbf{v} + \mathbf{f}$$
+        </div>
+        <p>В вместе с уравнением непрерывности и энергии эти уравнения описывают любое аэродинамическое течение. Связь с задачей тысячелетия Навье-Стокса — в разделе 7.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Ракетостроение — уравнение Циолковского, двигатели</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>Уравнение Циолковского (основное уравнение ракетной механики)</h3>
+        <div class="formula">
+            $$\Delta V = I_{\text{сп}} \cdot g_0 \cdot \ln\frac{m_0}{m_f}$$
+        </div>
+        <p>$\Delta V$ — изменение скорости, $I_{\text{сп}}$ — удельный импульс двигателя (с), $g_0 = 9.81\;\text{м/с}^2$ — ускорение свободного падения, $m_0$ — начальная масса, $m_f$ — конечная масса (без топлива).</p>
+        <p>Для выхода на НОО: $\Delta V \approx 9.4\;\text{км/с}$ (с учётом потерь на гравитацию и сопротивление атмосферы).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Удельный импульс и тяга</h3>
+        <div class="formula">
+            $$I_{\text{сп}} = \frac{F}{\dot{m}\,g_0} = \frac{V_e}{g_0}$$
+        </div>
+        <p>$F$ — тяга двигателя, $\dot{m}$ — расход массы топлива, $V_e$ — скорость истечения рабочего тела.</p>
+
+        <table>
+            <tr><th>Тип двигателя</th><th>$I_{\text{сп}}$ (с)</th><th>Топливо</th></tr>
+            <tr><td>ЖРД (керосин/$O_2$)</td><td>300–350</td><td>Химическое</td></tr>
+            <tr><td>ЖРД (водород/$O_2$)</td><td>400–460</td><td>Химическое</td></tr>
+            <tr><td>Ионный двигатель</td><td>1000–5000</td><td>Электрический разгон</td></tr>
+            <tr><td>Ядерный тепловой</td><td>800–1200</td><td>Ядерный нагрев газа</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Теорема об отрицательной работе (гравитационный ступень)</h3>
+        <p>Для многоступенчатой ракеты полная $\Delta V$:</p>
+        <div class="formula">
+            $$\Delta V_{\text{total}} = \sum_{i=1}^{n} I_{\text{сп},i}\,g_0\,\ln\frac{m_{0,i}}{m_{f,i}}$$
+        </div>
+        <p>Оптимальное распределение массы ступеней — одна из задач теории управления, решаемая методом множителей Лагранжа.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Орбитальная механика — три задачи Кеплера, гомановский переход</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>Законы Кеплера</h3>
+        <ol style="margin-left: 20px;">
+            <li><strong>I закон:</strong> Орбита — эллипс с фокусом в центре притяжения.</li>
+            <li><strong>II закон:</strong> Радиус-вектор описывает равные площади за равные промежутки времени.</li>
+            <li><strong>III закон:</strong> Квадрат орбитального периода пропорционален кубу полуоси:</li>
+        </ol>
+        <div class="formula">
+            $$T^2 = \frac{4\pi^2}{\mu}\,a^3$$
+        </div>
+        <p>$\mu = GM$ — гравитационный параметр тела ($\mu_\oplus = 3.986 \times 10^{14}\;\text{м}^3\text{/с}^2$).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Три задачи Кеплера</h3>
+
+        <p><strong>Задача 1 (прямая):</strong> По орбитальным элементам определить положение в момент $t$.</p>
+        <p>Решение — уравнение Кеплера:</p>
+        <div class="formula">
+            $$M = E - e\,\sin E, \qquad M = n\,(t - t_0)$$
+        </div>
+        <p>$M$ — средняя аномалия, $E$ — эксцентрическая, $e$ — эксцентриситет, $n = \sqrt{\mu/a^3}$ — среднее движение.</p>
+
+        <p><strong>Задача 2 (обратная):</strong> По положениям в два момента времени найти орбиту.</p>
+        <p>Решается через произведение Гаусса или метод Ламберта.</p>
+
+        <p><strong>Задача 3:</strong> По орбитальным элементам определить время полёта.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гомановский переход</h3>
+        <p>Энергетически оптимальный переход между двумя круговыми орбитами:</p>
+        <div class="formula">
+            $$\Delta V_1 = \sqrt{\frac{\mu}{r_1}}\left(\sqrt{\frac{2r_2}{r_1 + r_2}} - 1\right)$$
+        </div>
+        <div class="formula">
+            $$\Delta V_2 = \sqrt{\frac{\mu}{r_2}}\left(1 - \sqrt{\frac{2r_1}{r_1 + r_2}}\right)$$
+        </div>
+        <p>Время перехода — полпериода эллиптической转移轨道:</p>
+        <div class="formula">
+            $$t_H = \frac{\pi}{2}\sqrt{\frac{(r_1 + r_2)^3}{8\mu}}$$
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Скорости на орбите</h3>
+        <p>Первая и вторая космические скорости для Земли:</p>
+        <div class="formula">
+            $$v_1 = \sqrt{\frac{GM}{R}} \approx 7.9\;\text{км/с}, \qquad v_2 = \sqrt{\frac{2GM}{R}} \approx 11.2\;\text{км/с}$$
+        </div>
+        <p>Третья космическая скорость — скорость для выхода из Солнечной системы ($\approx 16.7\;\text{км/с}$ с Земли).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Атмосферная физика — рассеяние, поглощение, ионосфера</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>Стратификация атмосферы</h3>
+        <table>
+            <tr><th>Слои</th><th>Высота (км)</th><th>Температура</th><th>Характерные явления</th></tr>
+            <tr><td>Тропосфера</td><td>0–12</td><td>$-56\,^\circ\text{C}$ (сверху)</td><td>Погода, конвекция</td></tr>
+            <tr><td>Стратосфера</td><td>12–50</td><td>$-56 \to +0\,^\circ\text{C}$</td><td>Озоновый слой</td></tr>
+            <tr><td>Мезосфера</td><td>50–80</td><td>$0 \to -90\,^\circ\text{C}$</td><td>Метеоры</td></tr>
+            <tr><td>Термосфера</td><td>80–700</td><td>$+500\,^\circ\text{C}$</td><td>Северное сияние</td></tr>
+            <tr><td>Экзосфера</td><td>$>700$</td><td>—</td><td>Утечка в космос</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Закон Кольмогорова для турбулентности в атмосфере</h3>
+        <div class="formula">
+            $$E(k) \propto k^{-5/3}$$
+        </div>
+        <p>Спектральная плотность энергии турбулентности в инерционном поддиапазоне. Этот закон используется в моделях распространения радиоволн и прогнозах турбулентности для авиации.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Ионосфера — критическая частота</h3>
+        <div class="formula">
+            $$f_c = 9\sqrt{N_e} \quad (\text{Гц})$$
+        </div>
+        <p>$N_e$ — электронная концентрация ($\text{эл/м}^3$). Частоты ниже $f_c$ отражаются от слоя ионосферы — принцип работы радиосвязи на большие расстояния.</p>
+        <p>Поглощение электромагнитных волн в ионосфере определяется:</p>
+        <div class="formula">
+            $$\alpha \propto \frac{N_e \cdot \nu}{\omega^2 + \nu^2}$$
+        </div>
+        <p>$\nu$ — частота столкновений, $\omega$ — угловая частота волны.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Тепломассообмен — конвекция, излучение, теплопроводность</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>Теплопроводность (закон Фурье)</h3>
+        <div class="formula">
+            $$q = -\lambda\,\nabla T$$
+        </div>
+        <p>$q$ — плотность теплового потока ($\text{Вт/м}^2$), $\lambda$ — теплопроводность ($\text{Вт/(м·К)}$).</p>
+        <p>Уравнение теплопроводности:</p>
+        <div class="formula">
+            $$\frac{\partial T}{\partial t} = \alpha\,\nabla^2 T, \qquad \alpha = \frac{\lambda}{\rho\,c_p}$$
+        </div>
+        <p>$\alpha$ — температуропроводность, $c_p$ — удельная теплоёмкость при постоянном давлении.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Конвекция — число Нуссельта</h3>
+        <div class="formula">
+            $$Nu = \frac{h\,L}{\lambda}$$
+        </div>
+        <p>$h$ — коэффициент конвективного теплообмена, $L$ — характерный размер тела.</p>
+        <p>Для обтекания турбинных лопаток используют корреляции:</p>
+        <div class="formula">
+            $$Nu = C\,Re^m\,Pr^n$$
+        </div>
+        <p>$Re$ — число Рейнольдса, $Pr$ — число Прандтля.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Излучение — закон Стефана-Больцмана</h3>
+        <div class="formula">
+            $$q = \varepsilon\,\sigma\,T^4$$
+        </div>
+        <p>$\varepsilon$ — степень черноты поверхности, $\sigma = 5.67 \times 10^{-8}\;\text{Вт/(м}^2\text{·К}^4\text{)}$ — постоянная Стефана-Больцмана.</p>
+        <p>Для spacecraft, входящих в атмосферу, тепловая нагрузка от ударной волны:</p>
+        <div class="formula">
+            $$\dot{q} \propto \rho^{1/2}\,V^3$$
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Число Рейнольдса — ламинарный и турбулентный режимы</h3>
+        <div class="formula">
+            $$Re = \frac{\rho\,V\,L}{\mu}$$
+        </div>
+        <p>$Re < Re_{\text{кр}} \approx 5 \times 10^5$ — ламинарный режим; $Re > Re_{\text{кр}}$ — турбулентный. В аэродинамике характерный размер — хорда крыла.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с физикой и математикой</h2>
+    <!-- ============================================ -->
+
+    <div class="grid">
+        <div class="grid-item">
+            <h4>Механика</h4>
+            <p>Уравнения Навье-Стокс для течений, теорема о моменте импульса для гироскопической стабилизации, упругость конструкций ($\sigma = E\,\varepsilon$).</p>
+        </div>
+        <div class="grid-item">
+            <h4>Термодинамика</h4>
+            <p>Идеальный газ ($pV = nRT$), адиабатический процесс ($pV^\gamma = \text{const}$), цикл Брайтона для турбореактивных двигателей, энтропия как мера необратимости.</p>
+        </div>
+        <div class="grid-item">
+            <h4>Электромагнетизм</h4>
+            <p>Радиолокационное управление ($S = P_t G^2 \lambda^2 / (4\pi)^3 R^4$), электромагнитная совместимость, принципы работы ионных двигателей.</p>
+        </div>
+        <div class="grid-item">
+            <h4>ODE и численные методы</h4>
+            <p>Дифференциальные уравнения движения тела в поле гравитации — система 6 ОДУ (Коши для положения и скорости), решаемая методом Рунге-Кутты 4-го порядка.</p>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнение орбитального движения</h3>
+        <div class="formula">
+            $$\ddot{\mathbf{r}} = -\frac{\mu}{r^3}\,\mathbf{r} + \mathbf{a}_{\text{ext}}$$
+        </div>
+        <p>$\mathbf{a}_{\text{ext}}$ — возмущения: сопротивление атмосферы, гравитационные аномалии (J2, J3), давление солнечного света, трение приливов.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс в аэродинамике</h3>
+        <p>Задача тысячелетия о гладкости и существовании решений трёхмерных уравнений Навье-Стокса имеет прямое отношение к аэрокосмике:</p>
+        <ul style="margin-left: 20px;">
+            <li>Турбулентность — основная проблема аэродинамики. Если бы мы могли аналитически решить Навье-Стокс, можно было бы <em>точно</em> предсказать обтекание.</li>
+            <li>Все современные CFD-модели (RANS, LES, DNS) — компромиссы между точностью и вычислительными затратами.</li>
+            <li>DNS (Direct Numerical Simulation) разрешает все вихри до Kolmogorov scale — для $Re \sim 10^6$ требуются $10^{18}$ ячеек сетки.</li>
+        </ul>
+
+        <div class="formula">
+            $$Re = \frac{\rho\,V\,L}{\mu} \sim 10^7 \;\text{(крыло самолёта)} \implies \text{DNS невозможен для инженерных задач}$$
+        </div>
+
+        <p><strong>Ключевой парадокс:</strong> Уравнения Навье-Стокса записываются за одну строку, но описывают турбулентность — одну из величайших нерешённых задач математики и физики.</p>
+
+        <table>
+            <tr><th>Метод</th><th>Описание</th><th>Точность</th><th>Затраты</th></tr>
+            <tr><td>DNS</td><td>Решение всех масштабов</td><td>Эталон</td><td>$\sim Re^3$ ячеек</td></tr>
+            <tr><td>LES</td><td>Крупные вихри точно, мелкие моделируются</td><td>Высокая</td><td>Умеренные</td></tr>
+            <tr><td>RANS</td><td>Среднее течение + модели турбулентности</td><td>Средняя</td><td>Низкие</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Том из серии «1001 Proof»</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Аэрокосмические науки — 1001 Proofs</h3>
+        <p><strong>Ключевые темы тома:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>100 доказательств по аэродинамике (подъёмная сила, ударные волны, пограничный слой)</li>
+            <li>100 доказательств по ракетостроению (уравнение Циолковского, ступени, оптимизация)</li>
+            <li>150 доказательств по орбитальной механике (задачи Кеплера, Ламберт, Гаусс)</li>
+            <li>100 доказательств по атмосферной физике (модели, рассеяние, ионосфера)</li>
+            <li>100 доказательств по теплообмену (конвекция, излучение, ablation)</li>
+            <li>51 доказательство — междисциплинарные связи</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>Математика в цифрах</h3>
+        <p><strong>Всего в томе:</strong> 1001 формальное доказательство по аэрокосмическим наукам.</p>
+        <p><strong>Формула масштабирования:</strong></p>
+        <div class="formula">
+            $$351 \text{ томов} \times 1001 \text{ доказательство} = 351\,351 \text{ формальных утверждений}$$
+        </div>
+        <p>Каждое доказательство верифицируется: размерный анализ, численная проверка, формальная логика.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
