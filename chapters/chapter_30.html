@@ -1,0 +1,324 @@
+
+<!--
+Platform: Habr
+Title: chapter_30
+Tags: 1001-proofs, physics, mechanics, electromagnetism, thermodynamics, quantum-mechanics, relativity, quantum-field-theory
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 30: Физика — от механики к квантовой теории поля</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Физика: от механики к квантовой теории поля">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_30.html" class="active">30</a>
+    </nav>
+
+    <h1>Глава 30: Физика — от механики к квантовой теории поля</h1>
+
+    <div class="section">
+        <p>Эта глава охватывает основные разделы физики: от классической механики Ньютона до квантовой теории поля. Мы рассмотрим ключевые уравнения, принципы и их связь с математикой и задачами тысячелетия.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Классическая механика — законы Ньютона, Лагранжева/Гамильтонова механика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Законы Ньютона</h3>
+        <p>Основа классической механики — три закона Ньютона:</p>
+        <div class="formula">$$\vec{F} = m\vec{a} = m\frac{d^2\vec{r}}{dt^2}$$</div>
+        <p>Законы сохранения (энергии, импульса, момента) вытекают из симметрий по теореме Нётер:</p>
+        <div class="formula">$$\text{Симметрия} \iff \text{Закон сохранения}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Лагранжева механика</h3>
+        <p>Уравнения Лагранжа:</p>
+        <div class="formula">$$\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0$$</div>
+        <p>где \(L = T - V\) — лагранжиан (разность кинетической и потенциальной энергий). Преимущество: координатно-инвариантная формулировка.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гамильтонова механика</h3>
+        <p>Уравнения Гамильтона:</p>
+        <div class="formula">$$\dot{q}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}$$</div>
+        <p>где \(H = \sum p_i \dot{q}_i - L\) — гамильтониан. Фазовое пространство \((q, p)\) с симплектической структурой.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Электромагнетизм — уравнения Максвелла, электромагнитные волны</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уравнения Максвелла</h3>
+        <p>Четыре уравнения Максвелла в дифференциальной форме:</p>
+        <div class="formula">
+            $$\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}$$
+            $$\nabla \cdot \vec{B} = 0$$
+            $$\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$$
+            $$\nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}$$
+        </div>
+        <p>Предсказание электромагнитных волн: скорость \(c = 1/\sqrt{\mu_0 \varepsilon_0}\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Электромагнитные волны</h3>
+        <p>Уравнение волн для электрического поля:</p>
+        <div class="formula">$$\nabla^2 \vec{E} - \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} = 0$$</div>
+        <p>Решение: \(\vec{E} = \vec{E}_0 \cos(\vec{k} \cdot \vec{r} - \omega t)\) с \(\omega = ck\).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Термодинамика и статистическая физика — законы, рас Больцмана, фазовые переходы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Законы термодинамики</h3>
+        <p>Нулевой закон (тепловое равновесие), первый закон (сохранение энергии):</p>
+        <div class="formula">$$dU = \delta Q - \delta W$$</div>
+        <p>Второй закон (рост энтропии): \(dS \geq \delta Q / T\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Распределение Больцмана</h3>
+        <p>Вероятность микросостояния с энергией \(E_i\):</p>
+        <div class="formula">$$P_i = \frac{e^{-E_i / k_B T}}{Z}, \quad Z = \sum_i e^{-E_i / k_B T}$$</div>
+        <p>где \(Z\) — статистическая сумма, \(k_B\) — постоянная Больцмана.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фазовые переходы</h3>
+        <p>Фазовые переходы классифицируются по особенностям термодинамического потенциала:</p>
+        <table>
+            <tr><th>Порядок</th><th>Особенность</th><th>Пример</th></tr>
+            <tr><td>1-й</td><td>Разрыв 1-й производной \(F\)</td><td>плавление, кипение</td></tr>
+            <tr><td>2-й</td><td>Разрыв 2-й производной \(F\)</td><td>переход Кюри</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Квантовая механика — уравнение Шрёдингера, принцип неопределённости</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уравнение Шрёдингера</h3>
+        <p>Стационарное уравнение Шрёдингера:</p>
+        <div class="formula">$$\hat{H}\psi = E\psi, \quad \hat{H} = -\frac{\hbar^2}{2m}\nabla^2 + V(\vec{r})$$</div>
+        <p>Нестационарное:</p>
+        <div class="formula">$$i\hbar \frac{\partial \psi}{\partial t} = \hat{H}\psi$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Принцип неопределённости Гейзенберга</h3>
+        <div class="formula">$$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$</div>
+        <p>Обобщение: для любых сопряжённых переменных \(\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle [\hat{A}, \hat{B}] \rangle|\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Квантовые измерения</h3>
+        <p>Постулат Борна: вероятность обнаружить частицу в области \(\Omega\):</p>
+        <div class="formula">$$P(\Omega) = \int_\Omega |\psi(\vec{r})|^2 d^3\vec{r}$$</div>
+        <p>После измерения — коллапс волновой функции.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Относительность — СТО, ОТО, гравитационные волны</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Специальная теория относительности (СТО)</h3>
+        <p>Преобразования Лоренца:</p>
+        <div class="formula">
+            $$x' = \gamma(x - vt), \quad t' = \gamma(t - vx/c^2)$$
+            $$\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}$$
+        </div>
+        <p>Энергия-импульс: \(E^2 = (pc)^2 + (mc^2)^2\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Общая теория относительности (ОТО)</h3>
+        <p>Уравнения Эйнштейна:</p>
+        <div class="formula">$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu}$$</div>
+        <p>Метрика Шварцшильда (внешнее решение для сферически симметричного тела):</p>
+        <div class="formula">$$ds^2 = -\left(1 - \frac{2GM}{c^2 r}\right)c^2 dt^2 + \left(1 - \frac{2GM}{c^2 r}\right)^{-1} dr^2 + r^2 d\Omega^2$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гравитационные волны</h3>
+        <p>Линеаризованная теория: возмущение \(h_{\mu\nu}\) в метрике \(g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}\).</p>
+        <p>Волна: \(h_{\mu\nu} = A_{\mu\nu} e^{ik_\alpha x^\alpha}\) с \(\Box h_{\mu\nu} = 0\).</p>
+        <p>Обнаружены LIGO (2015): деформация \(\Delta L / L \sim 10^{-21}\).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Квантовая теория поля — ренормализация, Стандартная модель</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Квантование поля</h3>
+        <p>Классическое поле \(\phi(x)\) становится оператором:</p>
+        <div class="formula">$$\phi(x) = \int \frac{d^3k}{(2\pi)^3 \sqrt{2\omega_k}} \left( a_k e^{-ikx} + a_k^\dagger e^{ikx} \right)$$</div>
+        <p>Операторы рождения \(a_k^\dagger\) и уничтожения \(a_k\) удовлетворяют коммутационным соотношениям.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Ренормализация</h3>
+        <p>Ультрафиолетовые расходимости устраняются ренормализацией:</p>
+        <div class="formula">$$\mathcal{L}_{\text{eff}} = \mathcal{L}_{\text{bare}} + \delta \mathcal{L}$$</div>
+        <p>Типы: ультрафиолетовая (UV), инфракрасная (IR). Бета-функция \(\beta(g)\) описывает бегущую связку.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Стандартная модель</h3>
+        <p>Группа симметрий: \(SU(3)_C \times SU(2)_L \times U(1)_Y\).</p>
+        <p>Частицы: кварки (6 фаворов), лептоны (6), бозоны (8 глюонов, \(W^\pm, Z^0, \gamma\)), бозон Хиггса.</p>
+        <p>Прогнозы: аномальный магнитный момент муона, распад \(B_s \to \mu\mu\).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с математикой (дифф. геометрия, функциональный анализ)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Дифференциальная геометрия</h3>
+        <p>Метрический тензор \(g_{\mu\nu}\) определяет геометрию пространства-времени:</p>
+        <div class="formula">$$ds^2 = g_{\mu\nu} dx^\mu dx^\nu$$</div>
+        <p>Кривизна: тензор Римана \(R^\rho_{\sigma\mu\nu}\), тензор Риччи \(R_{\mu\nu}\), скалярная кривизна \(R\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Функциональный анализ</h3>
+        <p>Гильбертово пространство \(\mathcal{H}\) — основа квантовой механики:</p>
+        <div class="formula">$$\langle \psi | \phi \rangle = \int \psi^*(x) \phi(x) d^3x$$</div>
+        <p>Операторы: самосопряжённые (наблюдаемые), унитарные (эволюция), проекционные (измерения).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Топология и гомотопия</h3>
+        <p>Топологические дефекты: монополи, космические струни, доменные стены.</p>
+        <p>Классификация через гомотопические группы \(\pi_n(M)\).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Связь с задачами тысячелетия (Навье-Стокс, Янг-Миллс, P vs NP)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс</h3>
+        <p>Уравнения Навье-Стокса для вязкой несжимаемой жидкости:</p>
+        <div class="formula">
+            $$\rho \left( \frac{\partial \vec{v}}{\partial t} + (\vec{v} \cdot \nabla) \vec{v} \right) = -\nabla p + \mu \nabla^2 \vec{v} + \vec{f}$$
+            $$\nabla \cdot \vec{v} = 0$$
+        </div>
+        <p>Задача тысячелетия: доказать существование и гладкость \(C^2\)-решений в 3D.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Янг-Миллс</h3>
+        <p>Лагранжиан Янг-Миллса:</p>
+        <div class="formula">$$\mathcal{L} = -\frac{1}{4} F_{\mu\nu}^a F^{\mu\nu a}$$</div>
+        <p>Задача: доказать существование квантовой теории Янг-Миллса с ненулевой массовой щелью.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>P vs NP</h3>
+        <p>Связь с физикой: квантовые вычисления (BQP) vs классические (NP).</p>
+        <p>Алгоритм Шора (факторизация) — экспоненциальное ускорение.</p>
+        <p>Гипотеза: физические системы могут решать NP-полные задачи?</p>
+    </div>
+
+    <div class="section">
+        <h3>Другие задачи тысячелетия</h3>
+        <p><strong>Гипотеза Римана:</strong> связано с квантовой хаотикой (модель Рmyślера–Монтгомери).</p>
+        <p><strong>Poincaré:</strong> топология трёхмерных многообразий — связь с квантовой гравитацией.</p>
+        <p><strong>Hodge:</strong> алгебраическая геометрия — структура вакуума в теориях поля.</p>
+    </div>
+
+    <div class="optimization">
+        <h3>Практическое значение</h3>
+        <p><strong>Технологии:</strong> полупроводники, лазеры, МРТ, ядерная энергетика, квантовые компьютеры.</p>
+        <p><strong>Космология:</strong> чёрные дыры, тёмная материя, тёмная энергия, Большой взрыв.</p>
+        <p><strong>Базовые исследования:</strong> поиск единой теории (теория всего), квантовая гравитация.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
