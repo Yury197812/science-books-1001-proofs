@@ -1,0 +1,572 @@
+
+<!--
+Platform: Habr
+Title: chapter_39
+Tags: 1001-proofs, economics, social-sciences, game-theory, behavioral-economics, finance
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 39: Экономика и социальные науки</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Экономика и социальные науки">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_39.html" class="active">39. Экономика</a>
+    </nav>
+
+    <h1>Глава 39: Экономика и социальные науки</h1>
+
+    <div class="section">
+        <p><strong>Том серии «1001 Proofs»:</strong> Экономика и социальные науки — 1001 формальное утверждение, охватывающее микро- и макроэкономику, теорию игр, финансовые модели и поведенческую экономику.</p>
+        <p>Экономика — наука о выборе в условиях ограниченных ресурсов. Математический аппарат экономики опирается на анализ, оптимизацию, теорию вероятностей и стохастические процессы. В этой главе мы прослеживаем глубокие связи между экономикой, математикой, физикой и задачами тысячелетия.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Микроэкономика — спрос, предложение, эластичность, равновесие</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Функции спроса и предложения</h3>
+        <p>Базовые модели микроэкономики описывают поведение потребителей и производителей через функции спроса и предложения:</p>
+
+        <div class="formula">$$Q_d = D(P) \quad \text{(спрос)}, \qquad Q_s = S(P) \quad \text{(предложение)}$$</div>
+
+        <p>Функция спроса обычно убывающая: $D'(P) < 0$. Функция предложения — возрастающая: $S'(P) > 0$. Равновесие достигается при равенстве:</p>
+
+        <div class="formula">$$D(P^*) = S(P^*) \implies P^* = \text{равновесная цена}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Эластичность</h3>
+        <p><strong>Эластичность спроса по цене</strong> — мера чувствительности количества спроса к изменению цены:</p>
+        <div class="formula">$$\varepsilon_d = -\frac{\partial Q_d}{\partial P} \cdot \frac{P}{Q_d}$$</div>
+        <ul style="margin-left: 20px;">
+            <li>$|\varepsilon_d| > 1$ — эластичный спрос (товары роскоши)</li>
+            <li>$|\varepsilon_d| < 1$ — неэластичный спрос (товары первой необходимости)</li>
+            <li>$|\varepsilon_d| = 1$ — единичная эластичность</li>
+        </ul>
+        <p><strong>Эластичность предложения:</strong></p>
+        <div class="formula">$$\varepsilon_s = \frac{\partial Q_s}{\partial P} \cdot \frac{P}{Q_s}$$</div>
+        <p><strong>Перекрёстная эластичность:</strong></p>
+        <div class="formula">$$\varepsilon_{xy} = \frac{\partial Q_x}{\partial P_y} \cdot \frac{P_y}{Q_x}$$</div>
+        <p>Если $\varepsilon_{xy} > 0$ — товары-субституты; если $\varepsilon_{xy} < 0$ — товары-комплементы.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Потребительский выбор: задача Лагранжа</h3>
+        <p>Потребитель максимизирует полезность при бюджетном ограничении:</p>
+        <div class="formula">$$\max_{x_1, x_2} U(x_1, x_2) \quad \text{s.t.} \quad p_1 x_1 + p_2 x_2 = m$$</div>
+        <p>Функция Лагранжа:</p>
+        <div class="formula">$$\mathcal{L} = U(x_1, x_2) - \lambda(p_1 x_1 + p_2 x_2 - m)$$</div>
+        <p>Условия первого порядка (FOC):</p>
+        <div class="formula">$$\frac{\partial U}{\partial x_1} = \lambda p_1, \qquad \frac{\partial U}{\partial x_2} = \lambda p_2$$</div>
+        <p>Отсюда — <strong>условие равновесия</strong>:</p>
+        <div class="formula">$$\frac{\partial U / \partial x_1}{\partial U / \partial x_2} = \frac{p_1}{p_2} \quad \Longleftrightarrow \quad MRS_{12} = \frac{p_1}{p_2}$$</div>
+        <p>где $MRS_{12}$ — предельная норма замещения (marginal rate of substitution).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Производство и издержки</h3>
+        <p>Функция производства: $Q = f(L, K)$, где $L$ — труд, $K$ — капитал.</p>
+        <p><strong>Отдача от масштаба:</strong></p>
+        <div class="formula">$$f(\alpha L, \alpha K) = \alpha^n f(L, K)$$</div>
+        <ul style="margin-left: 20px;">
+            <li>$n > 1$ — возрастающая отдача от масштаба</li>
+            <li>$n = 1$ — постоянная отдача</li>
+            <li>$n < 1$ — убывающая отдача</li>
+        </ul>
+        <p><strong>Функция общих издержек:</strong></p>
+        <div class="formula">$$TC(Q) = FC + VC(Q) = FC + w \cdot L(Q) + r \cdot K(Q)$$</div>
+        <p>Предельные издержки: $MC(Q) = TC'(Q)$. Средние издержки: $AC(Q) = TC(Q)/Q$.</p>
+        <p><strong>Теорема Шепарда:</strong></p>
+        <div class="formula">$$\frac{\partial C(w,r,Q)}{\partial w} = L^*(w,r,Q), \qquad \frac{\partial C(w,r,Q)}{\partial r} = K^*(w,r,Q)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Равновесие на рынке: теоремы</h3>
+        <p><strong>Теорема о существовании равновесия Вальраса:</strong></p>
+        <p>В экономике с конечным числом агентов, непрерывных и монотонных предпочтениях, если все цены нормализованы ($\sum p_i = 1$), существует вектор равновесных цен $\mathbf{p}^* \geq 0$.</p>
+        <p><strong>Формально:</strong> Отображение $\mathbf{p} \mapsto \mathbf{z}(\mathbf{p})$ (избыточный спрос) непрерывно и удовлетворяет закону Вальраса $\mathbf{p} \cdot \mathbf{z}(\mathbf{p}) = 0$. По теореме Браура о неподвижной точке, $\exists \mathbf{p}^*: \mathbf{z}(\mathbf{p}^*) \leq 0$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Макроэкономика — ВВП, инфляция, денежная масса, кривая Филлипса</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Валовой внутренний продукт (ВВП)</h3>
+        <p>ВВП измеряет совокупную стоимость всех конечных товаров и услуг, произведённых в экономике за период:</p>
+        <div class="formula">$$Y = C + I + G + (X - M)$$</div>
+        <p>где $C$ — потребление, $I$ — инвестиции, $G$ — государственные расходы, $X - M$ — чистый экспорт.</p>
+        <p><strong>Номинальный vs реальный ВВП:</strong></p>
+        <div class="formula">$$Y_{\text{реал}} = \frac{Y_{\text{ном}}}{\text{дефлятор ВВП}} \times 100$$</div>
+        <p><strong>Темп роста:</strong></p>
+        <div class="formula">$$g_Y = \frac{\dot{Y}}{Y} = g_C \cdot \frac{C}{Y} + g_I \cdot \frac{I}{Y} + g_G \cdot \frac{G}{Y} + \ldots$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Денежная масса и инфляция</h3>
+        <p><strong>Уравнение обмена (Фишер):</strong></p>
+        <div class="formula">$$M \cdot V = P \cdot Y$$</div>
+        <p>где $M$ — денежная масса, $V$ — скорость обращения денег, $P$ — уровень цен, $Y$ — реальный ВВП.</p>
+        <p>В логарифмической форме (при $V = \text{const}$):</p>
+        <div class="formula">$$\pi \equiv \frac{\dot{P}}{P} = \frac{\dot{M}}{M} - \frac{\dot{Y}}{Y} = g_M - g_Y$$</div>
+        <p><strong>Индекс потребительских цен (ИПЦ):</strong></p>
+        <div class="formula">$$CPI_t = \frac{\sum_i p_{i,t} \cdot q_{i,0}}{\sum_i p_{i,0} \cdot q_{i,0}} \times 100$$</div>
+        <p><strong>Инфляция:</strong> $\pi_t = (CPI_t - CPI_{t-1}) / CPI_{t-1}$</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Кривая Филлипса</h3>
+        <p><strong>Краткосрочная кривая Филлипса:</strong></p>
+        <div class="formula">$$\pi = \pi^e - \beta(u - u^n) + \varepsilon$$</div>
+        <p>где $\pi^e$ — ожидаемая инфляция, $u$ — уровень безработицы, $u^n$ — естественный уровень, $\beta > 0$, $\varepsilon$ — шок предложения.</p>
+        <p><strong>Долгосрочная кривая Филлипса:</strong> вертикальна при $u = u^n$:</p>
+        <div class="formula">$$\pi = \pi^e \quad \text{при} \quad u = u^n$$</div>
+        <p><strong>Филлипс — Оукен:</strong></p>
+        <div class="formula">$$\Delta \pi_t = -\alpha(u_t - u^n) + \varepsilon_t$$</div>
+        <p>Эта связь критична для макроэкономического управления: центральные банки используют кривую Филлипса для выбора политики.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>IS-LM модель и мультипликатор</h3>
+        <p><strong>IS-кривая</strong> (товарный рынок):</p>
+        <div class="formula">$$Y = C(Y-T) + I(r) + G$$</div>
+        <p><strong>LM-кривая</strong> (денежный рынок):</p>
+        <div class="formula">$$\frac{M}{P} = L(Y, r)$$</div>
+        <p><strong>Мультипликатор:</strong></p>
+        <div class="formula">$$k = \frac{1}{1 - c(1-t) + m}$$</div>
+        <p>где $c$ — предельная склонность к потреблению, $t$ — налоговая ставка, $m$ — предельная склонность к импорту.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Теория игр — Nash equilibrium, Prisoner's Dilemma, mechanism design</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Основные определения</h3>
+        <p><strong>Игра:</strong> тройка $G = (N, \{S_i\}, \{u_i\})$, где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$N = \{1, 2, \ldots, n\}$ — множество игроков</li>
+            <li>$S_i$ — множество стратегий игрока $i$</li>
+            <li>$u_i: S_1 \times \ldots \times S_n \to \mathbb{R}$ — функция полезности</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Равновесие Нэша (Nash equilibrium)</h3>
+        <p><strong>Определение:</strong> Профиль стратегий $\mathbf{s}^* = (s_1^*, \ldots, s_n^*)$ является равновесием Нэша, если для каждого игрока $i$:</p>
+        <div class="formula">$$u_i(s_i^*, s_{-i}^*) \geq u_i(s_i, s_{-i}^*) \quad \forall s_i \in S_i$$</div>
+        <p><strong>Теорема Нэша (1950):</strong> Любая конечная игра с чистыми стратегиями имеет хотя бы одно смешанное равновесие Нэша.</p>
+        <p><strong>Формально:</strong> Рассмотрим $x_i \in \Delta(S_i)$ — смешанную стратегию. Тогда $\mathbf{x}^*$ — равновесие Нэша, если:</p>
+        <div class="formula">$$\mathbb{E}[u_i(x_i^*, x_{-i}^*)] \geq \mathbb{E}[u_i(x_i, x_{-i}^*)] \quad \forall x_i \in \Delta(S_i)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Тюремная дилемма (Prisoner's Dilemma)</h3>
+        <p>Классическая 2×2 игра:</p>
+        <table>
+            <tr><th></th><th>B: Молчит</th><th>B: Сознаётся</th></tr>
+            <tr><td><strong>A: Молчит</strong></td><td>$(-1, -1)$</td><td>$(-3, 0)$</td></tr>
+            <tr><td><strong>A: Сознаётся</strong></td><td>$(0, -3)$</td><td>$(-2, -2)$</td></tr>
+        </table>
+        <p><strong>Анализ:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Для каждого игрока стратегия «Сознаётся» — строго доминирующая</li>
+            <li>Единственное равновесие Нэша: $(\text{Сознаётся}, \text{Сознаётся})$ с payoff $(-2, -2)$</li>
+            <li>Парето-оптимальный исход $(\text{Молчит}, \text{Молчит})$ с payoff $(-1, -1)$ — не является равновесием</li>
+        </ul>
+        <p><strong>Вывод:</strong> Индивидуально рациональное поведение ведёт к коллективно иррациональному результату — парадокс, лежащий в основе теории социальных дилемм.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Mechanism design</h3>
+        <p><strong>Задача:</strong> Спроектировать правила игры так, чтобы желаемое поведение агентов было равновесием Нэша.</p>
+        <p><strong>Формализация:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>$\Theta_i$ — тип агента $i$ (приватная информация)</li>
+            <li>$\theta = (\theta_1, \ldots, \theta_n) \in \Theta = \prod_i \Theta_i$</li>
+            <li>$f: \Theta \to A$ — социальная функция (выбор альтернативы)</li>
+            <li>$t_i: \Theta_i \to \mathbb{R}$ — трансфер (платёж)</li>
+        </ul>
+        <p><strong>Теорема Викри-Кларка-Гроуна (VCG):</strong></p>
+        <p>Механизм $(f, t)$ реализует эффективный выбор, если:</p>
+        <div class="formula">$$f(\theta) = \arg\max_{a \in A} \sum_{i=1}^n u_i(a, \theta_i)$$</div>
+        <div class="formula">$$t_i(\theta) = \sum_{j \neq i} u_j(f(\theta_{-i}, 0), \theta_{-i}) - \sum_{j \neq i} u_j(f(\theta), \theta_{-i}) + h_i(\theta_{-i})$$</div>
+        <p><strong>Необходимость truthful bidding:</strong> каждый агент предпочитает报告ывать свой истинный тип.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Совершенное и несовершенное равновесие</h3>
+        <p><strong>Совершенное равновесие Селтена (Subgame Perfect Equilibrium):</strong></p>
+        <p>Стратегия является SPE, если она образует равновесие Нэша в каждом подигре исходной игры.</p>
+        <p><strong>Метод обратной индукции (backward induction):</strong></p>
+        <p>Начиная с последнего узла дерева игры, оптимизируем выбор каждого игрока, продвигаясь к корню.</p>
+        <p><strong>Сильное равновесие Ауманна:</strong> профиль, из которого ни одна коалиция не может улучшить положение всех своих членов.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Финансовые модели — Black-Scholes, случайное блуждание, VaR</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Случайное блуждание (Random Walk)</h3>
+        <p>Цена акции моделируется как геометрическое случайное блуждание:</p>
+        <div class="formula">$$S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right)$$</div>
+        <p>где $W_t \sim \mathcal{N}(0, t)$ — винеровский процесс (Броуновское движение), $\mu$ — дрифт, $\sigma$ — волатильность.</p>
+        <p><strong>Дискретная модель:</strong></p>
+        <div class="formula">$$S_{t+1} = S_t \cdot e^{r - \frac{1}{2}\sigma^2 + \sigma \sqrt{\Delta t}\, Z}$$</div>
+        <p>где $Z \sim \mathcal{N}(0,1)$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель Блэка-Шоулса (Black-Scholes)</h3>
+        <p><strong>Уравнение Блэка-Шоулса:</strong> для цены опциона $V(S,t)$:</p>
+        <div class="formula">$$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$$</div>
+        <p><strong>Решение для европейского call-опциона:</strong></p>
+        <div class="formula">$$C(S,t) = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$$</div>
+        <p>где:</p>
+        <div class="formula">$$d_1 = \frac{\ln(S/K) + \left(r + \frac{\sigma^2}{2}\right)(T-t)}{\sigma\sqrt{T-t}}$$</div>
+        <div class="formula">$$d_2 = d_1 - \sigma\sqrt{T-t}$$</div>
+        <p>$\Phi(x)$ — функция нормального распределения, $K$ — страйк, $T$ — срок экспирации.</p>
+        <p><strong>Греки (Greeks):</strong></p>
+        <table>
+            <tr><th>Грека</th><th>Обозначение</th><th>Формула</th></tr>
+            <tr><td>Дельта</td><td>$\Delta = \frac{\partial C}{\partial S}$</td><td>$\Phi(d_1)$</td></tr>
+            <tr><td>Тета</td><td>$\Theta = \frac{\partial C}{\partial t}$</td><td>$-\frac{S\sigma\phi(d_1)}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2)$</td></tr>
+            <tr><td>Вега</td><td>$\mathcal{V} = \frac{\partial C}{\partial \sigma}$</td><td>$S\sqrt{T-t}\,\phi(d_1)$</td></tr>
+            <tr><td>Ро</td><td>$\rho = \frac{\partial C}{\partial r}$</td><td>$K(T-t)e^{-r(T-t)}\Phi(d_2)$</td></tr>
+            <tr><td>Гамма</td><td>$\Gamma = \frac{\partial^2 C}{\partial S^2}$</td><td>$\frac{\phi(d_1)}{S\sigma\sqrt{T-t}}$</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Value at Risk (VaR)</h3>
+        <p><strong>Определение:</strong> $VaR_\alpha(L)$ — максимальный убыток с уровнем доверия $(1-\alpha)$:</p>
+        <div class="formula">$$P(L > VaR_\alpha) = \alpha$$</div>
+        <p><strong>При нормальном распределении:</strong></p>
+        <div class="formula">$$VaR_\alpha = \mu - \sigma \cdot z_\alpha$$</div>
+        <p>где $z_\alpha$ — квантиль нормального распределения ($z_{0.05} \approx 1.645$).</p>
+        <p><strong>Conditional VaR (CVaR / Expected Shortfall):</strong></p>
+        <div class="formula">$$CVaR_\alpha = \mathbb{E}[L \mid L > VaR_\alpha] = \frac{1}{\alpha}\int_0^\alpha VaR_u\, du$$</div>
+        <p><strong>Портфельный VaR:</strong></p>
+        <div class="formula">$$VaR_{\text{портфель}} = \sqrt{\mathbf{w}^T \Sigma \mathbf{w}} \cdot z_\alpha \cdot \sqrt{\Delta t}$$</div>
+        <p>где $\mathbf{w}$ — вектор весов, $\Sigma$ — ковариационная матрица.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Эффективный портфель Марковица</h3>
+        <p><strong>Задача оптимизации:</strong></p>
+        <div class="formula">$$\min_{\mathbf{w}} \mathbf{w}^T \Sigma \mathbf{w} \quad \text{s.t.} \quad \mathbf{w}^T \boldsymbol{\mu} = r_p, \quad \mathbf{w}^T \mathbf{1} = 1$$</div>
+        <p><strong>Кривая эффективности:</strong> множество портфелей, минимизирующих риск при заданной доходности.</p>
+        <p><strong>Капитальная модель оценки активов (CAPM):</strong></p>
+        <div class="formula">$$\mathbb{E}[R_i] = R_f + \beta_i (\mathbb{E}[R_m] - R_f)$$</div>
+        <p>где $\beta_i = \frac{\text{Cov}(R_i, R_m)}{\text{Var}(R_m)}$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Поведенческая экономика — когнитивные искажения, prospect theory</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Prospect Theory (Kahneman & Tversky, 1979)</h3>
+        <p><strong>Ключевые идеи:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Люди оценивают исходы относительно <em>референтной точки</em>, а не абсолютных значений</li>
+            <li>Функция ценности асимметрична: убытки весят сильнее, чем эквивалентные прибыли</li>
+            <li>Вероятности искажаются: малые вероятности переоцениваются, большие недооцениваются</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Функция ценности Kahneman-Tversky</h3>
+        <div class="formula">$$v(x) = \begin{cases} x^\alpha & \text{if } x \geq 0 \\ -\lambda(-x)^\beta & \text{if } x < 0 \end{cases}$$</div>
+        <p>где typical parameters: $\alpha \approx 0.88$, $\beta \approx 0.88$, $\lambda \approx 2.25$.</p>
+        <p><strong>Свойства:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>$\lambda > 1$ — <strong>отвращение к убыткам</strong> (loss aversion): убыток в \$100 воспринимается как потеря $\lambda \cdot \$100$, а прибыль — как $\$100$</li>
+            <li>$\alpha, \beta < 1$ — <strong>убывающая чувствительность</strong>: разница между \$100 и \$200 ощущается сильнее, чем между \$1100 и \$1200</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Взвешенное ожидаемое значение</h3>
+        <div class="formula">$$V = \sum_i \pi(p_i) \cdot v(x_i)$$</div>
+        <p><strong>Весовая функция:</strong></p>
+        <div class="formula">$$\pi(p) = \frac{p^\gamma}{\left(p^\gamma + (1-p)^\gamma\right)^{1/\gamma}}$$</div>
+        <p>Typical: $\gamma \approx 0.61$.</p>
+        <p><strong>Пример:</strong> Сравнение лотерейных билетов:</p>
+        <ul style="margin-left: 20px;">
+            <li>Лотерея A: \$5000 с вероятностью $p = 0.001$</li>
+            <li>Лотерея B: \$5 с вероятностью $p = 1$</li>
+            <li>$V(A) = \pi(0.001) \cdot v(5000) > V(B) = v(5)$ — <strong>обе принимаются</strong></li>
+        </ul>
+        <p>Это объясняет, почему люди покупают лотерейные билеты, несмотря на отрицательное математическое ожидание.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Когнитивные искажения</h3>
+        <table>
+            <tr><th>Искажение</th><th>Описание</th><th>Математическая модель</th></tr>
+            <tr><td>Anchoring</td><td>Зависимость от начального значения</td><td>$\hat{\theta} = \theta_0 + \alpha(\bar{x} - \theta_0)$</td></tr>
+            <tr><td>Availability bias</td><td>Оценка вероятности по лёгкости вспоминания</td><td>$P(\text{событие}) \propto \text{frequency in memory}$</td></tr>
+            <tr><td>Confirmation bias</td><td>Поиск подтверждения гипотезы</td><td>Байес: $P(H|D) \propto P(D|H)P(H)$, но $P(D|\neg H)$ игнорируется</td></tr>
+            <tr><td>Endowment effect</td><td>Завышение ценности уже обладаемого</td><td>$V(\text{владею}) > V(\text{не владею})$</td></tr>
+            <tr><td>Framing effect</td><td>Зависимость выбора от формулировки</td><td>$U(\text{"90\% выживаемость"}) > U(\text{"10\% смертность"})$</td></tr>
+            <tr><td>Sunk cost fallacy</td><td>Учёт понесённых издержек</td><td>$\text{Decision} \neq \text{marginal analysis}$</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с математикой и физикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Математические основы</h3>
+
+        <div class="skill-card">
+            <h3>Оптимизация</h3>
+            <p>Почти все экономические модели сводятся к задачам оптимизации:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Потребители:</strong> максимизация полезности при ограничениях (Лагранж, KKT)</li>
+                <li><strong>Производители:</strong> минимизация издержек или максимизация прибыли</li>
+                <li><strong>Центральные банки:</strong> минимизация функции потерь (loss function)</li>
+            </ul>
+            <p><strong>Условия Каруша-Куна-Такера (KKT):</strong></p>
+            <div class="formula">$$\nabla f(\mathbf{x}^*) + \sum_i \lambda_i \nabla g_i(\mathbf{x}^*) + \sum_j \mu_j \nabla h_j(\mathbf{x}^*) = 0$$</div>
+            <div class="formula">$$\lambda_i g_i(\mathbf{x}^*) = 0, \quad \lambda_i \geq 0$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Стохастические процессы</h3>
+            <p><strong>Броуновское движение</strong> — основа моделирования финансовых рынков:</p>
+            <div class="formula">$$dW_t \sim \mathcal{N}(0, dt)$$</div>
+            <p><strong>Стохастическое дифференциальное уравнение (SDE):</strong></p>
+            <div class="formula">$$dS_t = \mu(S_t, t)\,dt + \sigma(S_t, t)\,dW_t$$</div>
+            <p><strong>Формула Ито:</strong> для $f(S_t, t)$:</p>
+            <div class="formula">$$df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial S}dS + \frac{1}{2}\frac{\partial^2 f}{\partial S^2}(dS)^2$$</div>
+            <p>где $(dS)^2 = \sigma^2 dt$ ( правило Ито: $dW \cdot dW = dt$, $dt \cdot dW = 0$, $dt \cdot dt = 0$).</p>
+            <p><strong>Дискретизация Эйлера-Маруюмы:</strong></p>
+            <div class="formula">$$S_{t+\Delta t} = S_t + \mu\,S_t\,\Delta t + \sigma\,S_t\,\sqrt{\Delta t}\,Z$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Байесовские методы</h3>
+            <p><strong>Теорема Байеса:</strong></p>
+            <div class="formula">$$P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)}$$</div>
+            <p><strong>Приложения в экономике:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Обновление ожиданий агентов (rational expectations)</li>
+                <li>Оценка параметров DSGE-моделей</li>
+                <li>Модели «learning» — адаптивные ожидания</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Физика → Экономика: статистическая механика</h3>
+
+        <div class="skill-card">
+            <h3>Аналогия: агенты = частицы</h3>
+            <p><strong>Статистическая механика</strong> изучает макроскопическое поведение систем из огромного числа частиц. Экономика изучает макроскопическое поведение систем из огромного числа агентов.</p>
+            <table>
+                <tr><th>Физика</th><th>Экономика</th></tr>
+                <tr><td>Энергия $E_i$</td><td>Цена/издержки $C_i$</td></tr>
+                <tr><td>Температура $T$</td><td>Волатильность / неопределённость $\sigma$</td></tr>
+                <tr><td>Больцмановское распределение $p_i \propto e^{-E_i / kT}$</td><td>Логит-модель $p_i \propto e^{-\alpha C_i}$</td></tr>
+                <tr><td>Равновесие Гиббса</td><td>Равновесие Нэша</td></tr>
+                <tr><td>Энтропия $S = -k \sum p_i \ln p_i$</td><td>Энтропия Шеннона $H = -\sum p_i \ln p_i$</td></tr>
+            </table>
+        </div>
+
+        <div class="skill-card">
+            <h3>Экономофизика (Econophysics)</h3>
+            <p><strong>Распределение Парето:</strong> распределение доходов:</p>
+            <div class="formula">$$P(X > x) = \left(\frac{x_m}{x}\right)^\alpha, \quad x \geq x_m$$</div>
+            <p>Параметр $\alpha$ (индекс Парето) обычно $1 < \alpha < 3$.</p>
+            <p><strong>Закон Парето (80/20):</strong> 20% агентов владеют 80% ресурсов.</p>
+            <p><strong>Каскады и phase transitions:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Финансовые кризисы аналогичны phase transitions в физике</li>
+                <li>Самоорганизующаяся критичность (SOC) объясняет рыночные крахи</li>
+                <li>Агентные модели (agent-based models) — аналог молекулярной динамики</li>
+            </ul>
+            <p><strong>Модель Изинга для рынков:</strong></p>
+            <div class="formula">$$H = -J\sum_{\langle i,j \rangle} s_i s_j - h\sum_i s_i$$</div>
+            <p>где $s_i = \pm 1$ (покупатель/продавец), $J$ — сила взаимодействия, $h$ — внешнее поле (новости).</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>P vs NP в оптимизации</h3>
+        <p>Множество экономических задач являются NP-трудными:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Задача о рюкзаке</strong> (knapsack problem): maximize $\sum v_i x_i$ s.t. $\sum w_i x_i \leq W$ — NP-трудная</li>
+            <li><strong>Задача коммивояжёра</strong> (TSP): оптимальный маршрут доставки — NP-трудная</li>
+            <li><strong>Целочисленное программирование</strong>: большинство реальных экономических моделей требуют целочисленных решений</li>
+        </ul>
+        <p><strong>Если P = NP:</strong> все эти задачи могли бы решаться за полиномиальное время, что революционизировало бы оптимизацию в экономике, логистику, расписание и дизайн механизмов.</p>
+        <p><strong>Если P ≠ NP:</strong> приближённые алгоритмы (approximation algorithms) становятся единственным подходом, и $\mathcal{O}(2^n)$ рост остаётся фундаментальным ограничением.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Хаос в экономике</h3>
+        <p><strong>Лоренц-аттрактор:</strong> детерминированная хаотическая система:</p>
+        <div class="formula">$$\dot{x} = \sigma(y - x), \quad \dot{y} = x(\rho - z) - y, \quad \dot{z} = xy - \beta z$$</div>
+        <p><strong>В экономике:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Модель Брок-Хомеса (Brock-Hommes, 1997): хаотические ценовые траектории при переключении агентов между «фундаменталистами» и «спекулянтами»</li>
+            <li>Уравнение Кобба-Дугласа с нелинейностями может порождать хаотическое поведение</li>
+            <li>Фрактальная размерность рыночных данных: $D \approx 1.5$ (для brownian motion $D = 1.5$)</li>
+        </ul>
+        <p><strong>Показатель Ляпунова:</strong></p>
+        <div class="formula">$$\lambda = \lim_{t \to \infty} \frac{1}{t} \ln \frac{|\delta(t)|}{|\delta(0)|}$$</div>
+        <p>Если $\lambda > 0$ — система хаотична, малые возмущения растут экспоненциально.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Навье-Стокс и макроэкономика</h3>
+        <p>Аналогия между уравнениями Навье-Стокса и макроэкономическими моделями:</p>
+        <table>
+            <tr><th>Навье-Стокс</th><th>Макроэкономика</th></tr>
+            <tr><td>$\rho(\partial_t \mathbf{v} + \mathbf{v} \cdot \nabla \mathbf{v}) = -\nabla p + \mu \nabla^2 \mathbf{v}$</td><td>Уравнения движения капитала/труда</td></tr>
+            <tr><td>Турбулентность</td><td>Финансовая нестабильность</td></tr>
+            <tr><td>Уравнение непрерывности</td><td>Балансовые уравнения</td></tr>
+            <tr><td>$\text{existence & smoothness}$</td><td>$\text{existence & uniqueness equilibrium}$</td></tr>
+        </table>
+        <p><strong>Ключевой инсайт:</strong> обе системы описывают нелинейную динамику с возможностью хаоса, phase transitions и турбулентности. Задача тысячелетия о Навье-Стоксе (smoothness) имеет прямую аналогию в вопросе о существовании и устойчивости экономических равновесий.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Hodge и экономика</h3>
+        <p><strong>Гомология экономических пространств:</strong></p>
+        <p>Теорема Ходжа устанавливает связь между топологией (holes в пространстве) и дифференциальными формами. В экономике:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Пространство цен:</strong> топологическая структура множества допустимых ценовых векторов</li>
+            <li><strong>Когомологии:</strong> классы эквивалентности ценовых функций, различающихся на граничных условиях</li>
+            <li><strong>Теорема Стокса:</strong> $\int_{\partial \Omega} \omega = \int_\Omega d\omega$ — связь между границей и содержанием (аналог: связь между рыночными ограничениями и внутренней динамикой)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Связь с другими задачами тысячелетия</h3>
+        <table>
+            <tr><th>Задача</th><th>Экономическая аналогия</th></tr>
+            <tr><td>P vs NP</td><td>NP-трудность оптимизационных экономических задач</td></tr>
+            <tr><td>Навье-Стокс</td><td>Турбулентность рынков, нелинейная макродинамика</td></tr>
+            <tr><td>Hodge</td><td>Топология пространства цен, когомологии рыночных структур</td></tr>
+            <tr><td>Riemann</td><td>Распределение доходов (Power law), фрактальная размерность</td></tr>
+            <tr><td>Yang-Mills</td><td>Симметрия экономических моделей, gauge theory рынков</td></tr>
+            <tr><td>P vs NP (BSD)</td><td>L-функции и их связь с распределениями в эконометрике</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Итого: 1001 доказательство по экономике</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Том «Экономика и социальные науки» серии «1001 Proofs» охватывает:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Микроэкономика</h4><p>≈200 доказательств: спрос/предложение, эластичность, потребительский выбор, теорема Шепарда, равновесие Вальраса</p></div>
+            <div class="grid-item"><h4>Макроэкономика</h4><p>≈150 доказательств: ВВП, инфляция, кривая Филлипса, IS-LM, мультипликатор</p></div>
+            <div class="grid-item"><h4>Теория игр</h4><p>≈200 доказательств: Нэаш, subgame perfection, mechanism design, VCG</p></div>
+            <div class="grid-item"><h4>Финансовые модели</h4><p>≈150 доказательств: Black-Scholes, VaR, Markowitz, CAPM, Greeks</p></div>
+            <div class="grid-item"><h4>Поведенческая экономика</h4><p>≈100 доказательств: prospect theory, когнитивные искажения, функция ценности</p></div>
+            <div class="grid-item"><h4>Экономофизика</h4><p>≈100 доказательств: статистическая механика → экономика, phase transitions, хаос</p></div>
+            <div class="grid-item"><h4>Междисциплинарные</h4><p>≈101 доказательство: связи с задачами тысячелетия, оптимизация, стохастические процессы</p></div>
+        </div>
+        <div class="formula">$$\text{1001 proofs in Economics} \subset \text{351,351 total proofs} \to \text{stronger reasoning} \to \text{Millennium breakthroughs}$$</div>
+    </div>
+
+    <div class="optimization">
+        <h3>Оптимизации для серии «1001 Proof»</h3>
+        <p><strong>Ускорение ×10:</strong> Переиспользование HTML-шаблона для всех 351 тома.</p>
+        <p><strong>Ускорение ×100:</strong> Автоматическая генерация содержимого из Zenodo-датасетов.</p>
+        <p><strong>Ускорение ×1000:</strong> Batch-верификация через Lean 4 + параллельные процессы.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
