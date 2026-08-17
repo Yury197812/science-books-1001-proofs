@@ -1,0 +1,560 @@
+
+<!--
+Platform: Habr
+Title: chapter_37
+Tags: 1001-proofs, medicine, pharmacology, epidemiology, molecular-medicine, ADME, SIR-model, KaTeX
+Published: 2026-08-16T16:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 37: Медицина и фармакология</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Медицина и фармакология">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_37.html" class="active">37. Медицина</a>
+    </nav>
+
+    <h1>Глава 37: Медицина и фармакология</h1>
+
+    <p>Медицина и фармакология — это области, где математика спасает жизни. Фармакокинетика описывает движение лекарства по телу системой ОДУ, фармакодинамика связывает дозу с эффектом через кривые доза-ответ, клинические испытания опираются на строгую статистику, а эпидемиология моделирует распространение болезней динамическими системами. В этой главе мы разберём все ключевые модели, формулы и связи с математикой и биологией.</p>
+
+    <!-- ============================================ -->
+    <h2>1. Фармакокинетика — ADME</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Фармакокинетика</strong> (от греч. <em>pharmakon</em> — лекарство + <em>kinesis</em> — движение) изучает, что организм делает с лекарством. Четыре ключевых процесса объединяются в аббревиатуру <strong>ADME</strong>:</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>A — Absorption (Абсорбция)</h4>
+                <p>Поступление лекарства из места введения в кровоток. Зависит от: растворимости, площади поверхности, pH среды, липофильности (LogP).</p>
+            </div>
+            <div class="grid-item">
+                <h4>D — Distribution (Распределение)</h4>
+                <p>Перенос лекарства кровью к тканям и органам. Ключевые параметры: объём распределения \(V_d\), связывание с белками плазмы, прохождение через ГЭБ.</p>
+            </div>
+            <div class="grid-item">
+                <h4>M — Metabolism (Метаболизм)</h4>
+                <p>Биотрансформация лекарства, преимущественно в печени (цитохром P450). Метаболиты могут быть активными или неактивными.</p>
+            </div>
+            <div class="grid-item">
+                <h4>E — Excretion (Элиминация)</h4>
+                <p>Выведение лекарства/метаболитов из организма (почки, желчь, лёгкие). Ключевой параметр — клиренс \(\mathrm{Cl}\).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Однокамерная модель (One-compartment)</h3>
+        <p>Простейшая фармакокинетическая модель: организм — один однородный «отсек». После быстрой инъекции (bolus) концентрация подчиняется экспоненциальному распаду:</p>
+        <div class="formula">$$C(t) = C_0 \, e^{-k_e t}$$</div>
+        <p>где \(C_0 = D/V_d\) — начальная концентрация, \(k_e\) — константа элиминации, связанная с периодом полувыведения:</p>
+        <div class="formula">$$t_{1/2} = \frac{\ln 2}{k_e} = \frac{0.693}{k_e}$$</div>
+
+        <p><strong>Для регулярного приёма</strong> (каждые \(\tau\) часов, доза \(D\)): после \(n\)-й дозы:</p>
+        <div class="formula">$$C_{ss} = \frac{D}{V_d \cdot k_e \cdot \tau} = \frac{F \cdot D}{\mathrm{Cl} \cdot \tau}$$</div>
+        <p>где \(F\) — биодоступность, \(\mathrm{Cl} = k_e \cdot V_d\) — клиренс. Время достижения стационарного уровня \(\approx 4\text{--}5 \cdot t_{1/2}\).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Двухкамерная модель (Two-compartment)</h3>
+        <p>Организм делится на центральный отсек (кровь, быстро perfузируемые органы) и периферический (ткань, медленная диффузия):</p>
+        <div class="formula">$$C(t) = A \, e^{-\alpha t} + B \, e^{-\beta t}$$</div>
+        <p>Фаза распределения (быстрая, \(\alpha\)) сменяется фазой элиминации (медленная, \(\beta\)). ОДУ системы:</p>
+        <div class="formula">$$\frac{dX_c}{dt} = -k_{12} X_c + k_{21} X_p - k_e X_c$$
+$$\frac{dX_p}{dt} = k_{12} X_c - k_{21} X_p$$</div>
+        <p>где \(X_c\) — количество в центральном отсеке, \(X_p\) — в периферическом.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биодоступность</h3>
+        <p><strong>Биодоступность</strong> \(F\) — доля дозы, достигшая системного кровотока:</p>
+        <div class="formula">$$F = \frac{\text{AUC}_{\text{oral}}}{\text{AUC}_{\text{iv}}} \times \frac{D_{\text{iv}}}{D_{\text{oral}}}$$</div>
+        <p>где AUC — площадь под кривой «концентрация–время». \(F = 1\) для внутривенного введения, \(F < 1\) для перорального (эффект «первого прохода» через печень).</p>
+        <table>
+            <tr><th>Путь введения</th><th>Типичное \(F\)</th><th>Примеры</th></tr>
+            <tr><td>Внутривенно</td><td>1.00</td><td>Антибиотики в стационаре</td></tr>
+            <tr><td>Внутримышечно</td><td>0.80–0.95</td><td>Некоторые вакцины</td></tr>
+            <tr><td>Перорально</td><td>0.05–0.90</td><td>Ибупрофен (~0.80), морфин (~0.25)</td></tr>
+            <tr><td>Сублингвально</td><td>0.50–0.80</td><td>Нитроглицерин</td></tr>
+            <tr><td>Через кожу</td><td>0.10–0.50</td><td>Фентанил-пластырь</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Фармакодинамика — доза-эффект</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Фармакодинамика</strong> изучает, что лекарство делает с организмом. Ключевая задача — связать концентрацию лекарства с биологическим эффектом.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Кривая доза-ответ (Emax-модель)</h3>
+        <p>Наиболее общая модель — уравнение Хилла (Hill equation):</p>
+        <div class="formula">$$E = E_0 + \frac{E_{\max} \cdot C^n}{\text{EC}_{50}^n + C^n}$$</div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>\(E_0\) — базальный эффект (без лекарства)</li>
+            <li>\(E_{\max}\) — максимальный эффект</li>
+            <li>\(\text{EC}_{50}\) — концентрация, дающая 50% максимального эффекта</li>
+            <li>\(n\) — коэффициент Хилла (кооперативность; \(n = 1\) — стандартный случай)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Ключевые параметры</h3>
+        <table>
+            <tr><th>Параметр</th><th>Определение</th><th>Значение</th></tr>
+            <tr><td>\(\text{EC}_{50}\)</td><td>Концентрация для 50% эффекта</td><td>Чем ниже — тем потенция лекарства выше</td></tr>
+            <tr><td>\(\text{IC}_{50}\)</td><td>Концентрация для 50% ингибирования</td><td>Ключевой параметр для ингибиторов</td></tr>
+            <tr><td>\(K_d\)</td><td>Константа диссоциации лиганда</td><td>Мера аффинности рецептора к лекарству</td></tr>
+            <tr><td>\(E_{\max}\)</td><td>Максимальный фармакологический эффект</td><td>Зависит от числа рецепторов</td></tr>
+        </table>
+        <p>Связь \(K_d\) и \(k_{\text{off}}\):</p>
+        <div class="formula">$$K_d = \frac{k_{\text{off}}}{k_{\text{on}}}$$</div>
+        <p>где \(k_{\text{on}}\) — скорость связывания, \(k_{\text{off}}\) — скорость диссоциации.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>IC₅₀ и ингибирование ферментов</h3>
+        <p>Для обратимого конкурентного ингибирования:</p>
+        <div class="formula">$$v = \frac{V_{\max} \cdot [S]}{K_m \left(1 + \frac{[I]}{K_i}\right) + [S]}$$</div>
+        <p>где \([I]\) — концентрация ингибитора, \(K_i\) — константа ингибирования. Связь \(K_i\) и \(\text{IC}_{50}\) (уравнение Чу — Cheng-Prusoff):</p>
+        <div class="formula">$$\text{IC}_{50} = K_i \left(1 + \frac{[S]}{K_m}\right)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Терапевтическое окно</h3>
+        <p><strong>Терапевтическое окно</strong> (therapeutic window) — диапазон концентраций между минимальной эффективной (MEC) и минимальной токсической (MTC) дозами:</p>
+        <div class="formula">$$\text{Therapeutic Index} = \frac{\text{TD}_{50}}{\text{ED}_{50}}$$</div>
+        <p>где \(\text{TD}_{50}\) — доза, вызывающая токсический эффект у 50% пациентов, \(\text{ED}_{50}\) — доза, дающая терапевтический эффект у 50%.</p>
+        <div class="formula">$$\text{Margin of Safety} = \frac{\text{LD}_{1}}{\text{ED}_{99}}$$</div>
+        <p>График:</p>
+        <div class="formula">$$\text{Эффект} \uparrow \quad \underbrace{\text{______________}}_{\text{терапевтическое окно}} \quad \text{Токсичность} \rightarrow$$</div>
+        <p><strong>Пример:</strong> варфарин — узкое терапевтическое окно (INR 2.0–3.0), требует регулярного мониторинга. Парацетамол — широкое окно, но критическая доза ~150 мг/кг.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фармакодинамические модели рецепторов</h3>
+        <p><strong>Связывание лиганда с рецептором:</strong></p>
+        <div class="formula">$$R + L \underset{k_{\text{off}}}{\overset{k_{\text{on}}}{\rightleftharpoons}} RL$$</div>
+        <p>В стационарном состоянии:</p>
+        <div class="formula">$$\text{Занятость рецепторов} = \frac{[L]}{K_d + [L]}$$</div>
+        <p>Модель <strong>агониста</strong> (частичного/полного) учитывает интринсическую активность \(\alpha\):</p>
+        <div class="formula">$$E = \frac{\alpha \cdot [L]}{K_d + [L]} \cdot E_{\max}$$</div>
+        <p>где \(\alpha = 1\) — полный агонист, \(0 < \alpha < 1\) — частичный агонист, \(\alpha = 0\) — антагонист.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Клинические испытания — phases I–IV</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Клинические испытания — математический фильтр между лабораторией и пациентом. Каждая фаза опирается на строгую статистику.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фазы клинических испытаний</h3>
+        <table>
+            <tr><th>Фаза</th><th>Цель</th><th>Участники</th><th>Длительность</th><th>Статистика</th></tr>
+            <tr><td>0</td><td>Фармакокинетика и фармакодинамика</td><td>10–15</td><td>Месяцы</td><td>PK-моделирование, нелинейная регрессия</td></tr>
+            <tr><td>I</td><td>Безопасность, дозирование</td><td>20–100</td><td>Месяцы</td><td> escalating dose, MTD, дозолимитные токсичности</td></tr>
+            <tr><td>II</td><td>Эффективность, побочные эффекты</td><td>100–300</td><td>Месяцы–годы</td><td>RCT, power analysis, \(\alpha = 0.05\), \(\beta = 0.20\)</td></tr>
+            <tr><td>III</td><td>Подтверждение эффективности</td><td>300–3000</td><td>1–4 года</td><td>Большие RCT, выживаемость, мультицентровые</td></tr>
+            <tr><td>IV</td><td>Постмаркетинговый надзор</td><td>Тысячи–миллионы</td><td>Бессрочно</td><td>Фармаконадзор, сигнальные алгоритмы, данные EHR</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Рандомизация и слепой метод</h3>
+        <p><strong>Рандомизация</strong> — случайное распределение участников в группы (лечение vs плацебо). Цели: устранение систематической ошибки отбора.</p>
+        <p><strong>Простая рандомизация:</strong> подбрасывание монеты — \(P(\text{группа A}) = 0.5\)</p>
+        <p><strong>Стратифицированная:</strong> по полу, возрасту, тяжести заболевания — сохраняет баланс по смешанным факторам.</p>
+        <p><strong>Блок-рандомизация:</strong> фиксированные блоки (например, блоки по 4: AABB, ABAB, ABBA) — гарантирует равенство размеров групп.</p>
+
+        <p><strong>Слепой метод:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Одинарный слепой:</strong> пациент не знает группу</li>
+            <li><strong>Двойной слепой:</strong> ни пациент, ни врач</li>
+            <li><strong>Тройной слепой:</strong> + статистик, анализирующий данные</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Статистика клинических испытаний</h3>
+        <p><strong>Размер выборки</strong> (power analysis):</p>
+        <div class="formula">$$n = \frac{2(Z_{\alpha/2} + Z_{\beta})^2 \cdot \sigma^2}{\delta^2}$$</div>
+        <p>где \(\alpha\) — уровень значимости (typically 0.05), \(\beta = 1 - \text{power}\) (typically 0.20), \(\sigma\) — стандартное отклонение, \(\delta\) — ожидаемый эффект.</p>
+
+        <p><strong>Критерий лог-ранг</strong> (log-rank test) для выживаемости:</p>
+        <div class="formula">$$\chi^2 = \frac{\left(\sum_j (O_{1j} - E_{1j})\right)^2}{\sum_j V_j}$$</div>
+        <p>где \(O_{1j}\) — число событий, \(E_{1j}\) — ожидаемое число в группе 1, \(V_j\) — дисперсия.</p>
+
+        <p><strong>Относительный риск (RR):</strong></p>
+        <div class="formula">$$\text{RR} = \frac{P(\text{событие}|\text{лечение})}{P(\text{событие}|\text{плацебо})}$$</div>
+        <p><strong>Число, необходимое для лечения (NNT):</strong></p>
+        <div class="formula">$$\text{NNT} = \frac{1}{\text{ARR}} = \frac{1}{|P_{\text{контроль}} - P_{\text{лечение}}|}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Коррекция Мультипlicity</h3>
+        <p>При множественных сравнениях растёт вероятность ложноположительного результата. Коррекции:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Бонферрони:</strong> \(\alpha_{\text{adjusted}} = \alpha / m\), где \(m\) — число сравнений</li>
+            <li><strong>Холма:</strong> итеративная коррекция, менее консервативна</li>
+            <li><strong>Бенджамини-Хохберг:</strong> контроль FDR, максимальная мощность</li>
+        </ul>
+        <div class="formula">$$\text{FDR} = E\left[\frac{V}{R}\right] \quad \text{(False Discovery Rate)}$$</div>
+        <p>где \(V\) — число ложных открытий, \(R\) — общее число открытий.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Эпидемиология — SIR-модель, R₀</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Эпидемиология</strong> — наука о распространении болезней в популяции. Математические модели эпидемий помогают предсказывать вспышки, оценивать эффективность мер контроля.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>SIR-модель</h3>
+        <p>Базовая компартментальная модель. Популяция делится на три группы:</p>
+        <ul style="margin-left: 20px;">
+            <li>\(S(t)\) — восприимчивые (Susceptible)</li>
+            <li>\(I(t)\) — инфицированные (Infectious)</li>
+            <li>\(R(t)\) — выздоровевшие/умершие (Recovered)</li>
+        </ul>
+        <div class="formula">$$\frac{dS}{dt} = -\beta \frac{S \cdot I}{N}$$
+$$\frac{dI}{dt} = \beta \frac{S \cdot I}{N} - \gamma I$$
+$$\frac{dR}{dt} = \gamma I$$</div>
+        <p>где \(\beta\) — коэффициент передачи, \(\gamma = 1/t_{\text{infectious}}\) — скорость выздоровления, \(N = S + I + R\) — общая популяция.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Базовое воспроизводящее число R₀</h3>
+        <div class="formula">$$R_0 = \frac{\beta}{\gamma}$$</div>
+        <p><strong>Смысл:</strong> среднее число вторичных заражений от одного инфицированного в полностью восприимчивой популяции.</p>
+        <table>
+            <tr><th>Заболевание</th><th>\(R_0\)</th><th>\(t_{\text{infectious}}\)</th></tr>
+            <tr><td>Корь</td><td>12–18</td><td>~12 дней</td></tr>
+            <tr><td>Коклюш</td><td>12–17</td><td>~21 день</td></tr>
+            <tr><td>COVID-19 (Delta)</td><td>5–8</td><td>~10 дней</td></tr>
+            <tr><td>COVID-19 (Omicron)</td><td>8–15</td><td>~7 дней</td></tr>
+            <tr><td>Грипп</td><td>1.5–2.5</td><td>~5 дней</td></tr>
+            <tr><td>Эбола</td><td>1.5–2.5</td><td>~14 дней</td></tr>
+            <tr><td>СПИД</td><td>2–5</td><td>~10 лет</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Порог критической вакцинации</h3>
+        <p>Для остановки эпидемии необходимо, чтобы Effective Reproduction Number \(R_e < 1\):</p>
+        <div class="formula">$$R_e = R_0 \cdot (1 - p) < 1 \implies p > 1 - \frac{1}{R_0} = p_c$$</div>
+        <p>где \(p\) — доля вакцинированных, \(p_c\) — критический порог вакцинации.</p>
+        <div class="formula">$$p_c = 1 - \frac{1}{R_0}$$</div>
+        <table>
+            <tr><th>Заболевание</th><th>\(R_0\)</th><th>\(p_c\) (порог)</th></tr>
+            <tr><td>Корь</td><td>15</td><td>93.3%</td></tr>
+            <tr><td>Коклюш</td><td>15</td><td>93.3%</td></tr>
+            <tr><td>COVID-19 (Delta)</td><td>6</td><td>83.3%</td></tr>
+            <tr><td>Грипп</td><td>2</td><td>50.0%</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Эффективность вакцины и карантин</h3>
+        <p><strong>Эффективность вакцины (VE):</strong></p>
+        <div class="formula">$$\text{VE} = \left(1 - \frac{\text{ attack rate}_{\text{вакцина}}}{\text{attack rate}_{\text{плацебо}}}\right) \times 100\%$$</div>
+        <p><strong>Карантин (隔离)</strong> снижает \(\beta\). Если карантин охватывает долю \(q\) населения:</p>
+        <div class="formula">$$\beta_{\text{effective}} = \beta \cdot (1 - q)$$</div>
+        <p><strong>Герметичность (herd immunity) при комбинации:</strong></p>
+        <div class="formula">$$p_{\text{вакцинация}} \cdot \text{VE} + q > 1 - \frac{1}{R_0}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>SIR-модель с рождением/смертью (endemic equilibrium)</h3>
+        <p>С учётом рождаемости \(\mu N\) и естественной смертности \(\mu S, \mu I, \mu R\):</p>
+        <div class="formula">$$\frac{dS}{dt} = \mu N - \beta \frac{S \cdot I}{N} - \mu S$$
+$$\frac{dI}{dt} = \beta \frac{S \cdot I}{N} - \gamma I - \mu I$$
+$$\frac{dR}{dt} = \gamma I - \mu R$$</div>
+        <p><strong>Эндемическое равновесие:</strong></p>
+        <div class="formula">$$I^* = \frac{\mu N}{\beta} \left(\frac{\beta}{\gamma + \mu} - 1\right) = \frac{\mu N}{\gamma} \left(\frac{R_0 - 1}{R_0}\right)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель SIRD (с летальностью)</h3>
+        <div class="formula">$$\frac{dS}{dt} = -\beta \frac{S \cdot I}{N}$$
+$$\frac{dI}{dt} = \beta \frac{S \cdot I}{N} - \gamma I - \delta I$$
+$$\frac{dR}{dt} = \gamma I$$
+$$\frac{dD}{dt} = \delta I$$</div>
+        <p>где \(\delta\) — коэффициент летальности (CFR: \(\text{CFR} = \delta / (\gamma + \delta)\)).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Молекулярная медицина — персонализированная терапия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Молекулярная медицина</strong> использует информацию о генах и белках пациента для подбора индивидуального лечения. Фармакогеномика — ключевой раздел.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фармакогеномика</h3>
+        <p>Изучение влияния генотипа на ответ на лекарство. Ключевые концепции:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Полиморфизмы</strong> (SNP) — однонуклеотидные замены, влияющие на метаболизм</li>
+            <li><strong>Фенотипы метаболизма:</strong> ультрабыстрый, быстрый, промежуточный, медленный</li>
+            <li><strong>Ферменты системы CYP450:</strong> CYP2D6, CYP2C19, CYP3A4 — метаболизируют ~75% всех лекарств</li>
+        </ul>
+        <table>
+            <tr><th>Фермент</th><th>Субстраты</th><th>Влияние полиморфизма</th></tr>
+            <tr><td>CYP2D6</td><td>Тамоксифен, кодеин, декстрометорфан</td><td>Ультрабыстрые: токсичность кодеина; Медленные: неэффективность тамоксифена</td></tr>
+            <tr><td>CYP2C19</td><td>Клопидогрел, омепразол</td><td>Медленные: неактивация клопидогрела → тромбоз</td></tr>
+            <tr><td>CYP3A4</td><td>Статины, иммуносупрессоры</td><td>Ингибиторы → передозировка</td></tr>
+            <tr><td>DPYD</td><td>5-фторурацил</td><td>Дефицит → фатальная токсичность</td></tr>
+            <tr><td>TPMT</td><td>Азатиоприн</td><td>Дефицит → миелосупрессия</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Персонализированная терапия — математическая модель</h3>
+        <p>Интеграция генотипа в фармакокинетическую модель:</p>
+        <div class="formula">$$\mathrm{Cl}_{\text{ind}} = \mathrm{Cl}_{\text{base}} \cdot \prod_{i=1}^{n} \text{RF}_i(\text{SNP}_i)$$</div>
+        <p>где \(\text{RF}_i\) — коэффициент коррекции для \(i\)-го SNP. Например, для CYP2D6:</p>
+        <div class="formula">$$\text{RF}(\text{CYP2D6}) = \begin{cases} 2.0 & \text{ultrarapid} \\ 1.0 & \text{normal} \\ 0.5 & \text{intermediate} \\ 0.1 & \text{poor} \end{cases}$$</div>
+        <p>Доза корректируется:</p>
+        <div class="formula">$$D_{\text{personalized}} = D_{\text{standard}} \cdot \frac{\mathrm{Cl}_{\text{ind}}}{\mathrm{Cl}_{\text{population}}}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фармакокинетика для особых групп</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Дети</h4>
+                <p>Изменённые \(V_d\), \(\mathrm{Cl}\),成熟的 ферменты. Поправки: \(D_{\text{child}} = D_{\text{adult}} \cdot \left(\frac{\text{mass}_{\text{child}}}{70}\right)^{0.75}\) (.scaling по body surface area).</p>
+            </div>
+            <div class="grid-item">
+                <h4>Пожилые (>65 лет)</h4>
+                <p>Снижение почечного клиренса: \(\mathrm{CrCl} = \frac{(140 - \text{age}) \cdot \text{weight}}{72 \cdot \text{serum\_creatinine}}\) (мл/мин, для мужчин). Дозы снижают на 25–50%.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Беременные</h4>
+                <p>Увеличение \(V_d\) на 40–50%, изменение \(\mathrm{Cl}\) (Glomerular filtration ↑ на 50%). Категории FDA: A, B, C, D, X.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Почечная недостаточность</h4>
+                <p>Коррекция по клиренсу креатинина. Для нефротоксических антибиотиков: гентамицин, ванкомицин — TDM (терапевтический мониторинг).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с математикой и биологией</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Медицина и фармакология пронизаны математикой и биологией. Вот ключевые связи:</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Обыкновенные дифференциальные уравнения (ОДУ)</h3>
+        <p>Все компартментальные модели (однокамерная, двухкамерная, SIR) — системы ОДУ:</p>
+        <div class="formula">$$\frac{d\mathbf{x}}{dt} = \mathbf{f}(\mathbf{x}, t, \boldsymbol{\theta})$$</div>
+        <p>где \(\mathbf{x}\) — вектор состояний (концентрации, числа individuals), \(\boldsymbol{\theta}\) — параметры (скорости, коэффициенты).</p>
+
+        <p><strong>Методы решения:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Аналитические:</strong> разделение переменных (экспоненциальный распад), преобразование Лапласа</li>
+            <li><strong>Численные:</strong> метод Эйлера, Рунге-Кутты 4-го порядка, автоматический выбор шага (ode45 в MATLAB, solve_ivp в scipy)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Статистика</h3>
+        <p><strong>Байесовский подход:</strong> апостериорная вероятность эффективности лекарства:</p>
+        <div class="formula">$$P(\theta | \text{data}) = \frac{P(\text{data} | \theta) \cdot P(\theta)}{P(\text{data})}$$</div>
+        <p>где \(\theta\) — параметр (например, доля излечившихся), \(P(\theta)\) — априорная вероятность.</p>
+        <p><strong>Выживаемость (Kaplan-Meier):</strong></p>
+        <div class="formula">$$\hat{S}(t) = \prod_{t_i \leq t} \left(1 - \frac{d_i}{n_i}\right)$$</div>
+        <p>где \(d_i\) — число событий в момент \(t_i\), \(n_i\) — число под угрозой.</p>
+        <p><strong>Cox proportional hazards:</strong></p>
+        <div class="formula">$$h(t) = h_0(t) \cdot \exp(\beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биология — клетки и гены</h3>
+        <p><strong>Клеточный цикл:</strong> регуляция — система ОДУ с тремя клеточными состояниями (G1, S, G2/M):</p>
+        <div class="formula">$$\frac{d\text{G1}}{dt} = r_3 \cdot \text{G2M} - r_1 \cdot \text{G1}$$
+$$\frac{d\text{S}}{dt} = r_1 \cdot \text{G1} - r_2 \cdot \text{S}$$
+$$\frac{d\text{G2M}}{dt} = r_2 \cdot \text{S} - r_3 \cdot \text{G2M}$$</div>
+        <p><strong>Протеомика:</strong> уравнения Михаэлиса-Ментен для ферментативных реакций:</p>
+        <div class="formula">$$v = \frac{V_{\max} \cdot [S]}{K_m + [S]}$$</div>
+        <p><strong>Генетика:</strong> популяционная генетика (уравнение Харди-Вайнберга):</p>
+        <div class="formula">$$p^2 + 2pq + q^2 = 1, \quad p + q = 1$$</div>
+        <p>где \(p\) и \(q\) — частоты аллелей. Нарушение равновесия указывает на эволюционные силы (естественный отбор, дрейф, миграция).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Медицина и фармакология связаны с задачами тысячелетия через:</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнения Навье-Стокса в кровотоке</h3>
+        <p>Гемодинамика — прикладная Навье-Стокс. Кровь — ньютоновская (приблизительно) жидкость:</p>
+        <div class="formula">$$\rho\left(\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v}\right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \mathbf{f}$$</div>
+        <p>где \(\rho\) — плотность крови (~1060 кг/м³), \(\mu\) — вязкость (~3.5 мПа·с), \(\mathbf{f}\) — внешние силы (гравитация, сердечное сокращение).</p>
+        <p><strong>Закон Пуазейля</strong> (ламинарный ток в сосуде):</p>
+        <div class="formula">$$Q = \frac{\pi r^4 \Delta p}{8 \mu L}$$</div>
+        <p>где \(r\) — радиус сосуда, \(\Delta p\) — перепад давления, \(L\) — длина. Зависимость от \(r^4\) объясняет, почему атеросклероз (сужение) на 50% снижает кровоток в \(2^4 = 16\) раз.</p>
+        <p><strong>Число Рейнольдса</strong> для кровотока:</p>
+        <div class="formula">$$\text{Re} = \frac{\rho v d}{\mu}$$</div>
+        <p>При \(\text{Re} > 2000\) в сосуде возникает турбулентность — ключевой фактор для формирования тромбов.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Оптимизация доз — задача минимизации</h3>
+        <p>Формулировка задачи оптимального дозирования как вариационная задача:</p>
+        <div class="formula">$$\min_{D(t)} \; J = \int_0^T \left[ w_1 \cdot (E(t) - E_{\text{target}})^2 + w_2 \cdot C(t)^2 \cdot \mathbb{1}_{C(t) > \text{MTC}} \right] dt$$</div>
+        <p>где \(E(t)\) — текущий эффект, \(E_{\text{target}}\) — целевой эффект, \(w_1, w_2\) — веса, \(\mathbb{1}\) — индикатор токсичности.</p>
+        <p>Связь с <strong>P vs NP:</strong> задача поиска оптимального режима дозирования в общем случае экспоненциально сложна — NP-трудна для дискретных расписаний.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Задача Римана и медицина</h3>
+        <p>Непрямая, но глубокая связь: распределение простых чисел \(\pi(x) \sim \text{Li}(x)\) аналогично распределению мутаций в геноме — оба подчиняются «справедливости» распределений с отклонениями, связанными с нулями дзета-функции. Анализ распределения SNP в геномных данных использует теорию вероятностей, стоящую за гипотезой Римана.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гипотеза Бёрча и Свиннертон-Дайвера (BSD) и биосистемы</h3>
+        <p>Задача BSD — о ранге椭圆ических кривых — имеет косвенное отношение к моделированию биологических сетей. Эллиптические кривые используются в криптографии (ECC), которая защищает данные медицинских записей (EHR), genomic databases и телемедицины. Проблема BSD для кривых, описывающих биологические осцилляторы (белковые циклы), определяет структуру стационарных состояний.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Задача Халлоча и оптимальные расписания</h3>
+        <p>Задача Холлоча (Hodge conjecture) связывает алгебраическую геометрию с топологией. В контексте медицины: дизайн молекул (QSAR — Quantitative Structure-Activity Relationship) использует химическое пространство, описываемое многообразиями. Понимание топологии этих многообразий (когомологические классы) помогает предсказывать активность новых лекарств.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Задача Пуанкаре и топология белков</h3>
+        <p><strong>Задача Пуанкаре:</strong> каждый односвязный замкнутый 3-многообразие гомеоморфен 3-сфере. В структурной биологии: топология белковых свёрток определяет функцию. Слоение (fibration) белковых структур соответствует слоениям в общей топологии.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Сводная таблица</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <table>
+            <tr><th>Раздел</th><th>Математика</th><th>Биология</th><th>Задача тысячелетия</th></tr>
+            <tr><td>Фармакокинетика</td><td>ОДУ, экспоненты</td><td>Метаболизм, ферменты</td><td>Навье-Стокс (кровоток)</td></tr>
+            <tr><td>Фармакодинамика</td><td>Кривые доза-ответ, гипербола</td><td>Рецепторы, агонисты</td><td>Оптимизация доз (NP)</td></tr>
+            <tr><td>Клинические испытания</td><td>Теория вероятностей, гипотезы</td><td>Эффективность, безопасность</td><td>Статистика → гипотеза Римана</td></tr>
+            <tr><td>Эпидемиология</td><td>ОДУ, динамические системы</td><td>Заражение, иммунитет</td><td>Навье-Стокс (турбулентность)</td></tr>
+            <tr><td>Молекулярная медицина</td><td>Вероятность, генетика</td><td>Гены, SNP, белки</td><td>BSD, Пуанкаре (топология)</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>9. Резюме главы</h2>
+    <!-- ============================================ -->
+
+    <div class="optimization">
+        <h3>Ключевые выводы</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Фармакокинетика</strong> описывает движение лекарства через ADME с помощью ОДУ и экспоненциальных моделей</li>
+            <li><strong>Фармакодинамика</strong> связывает дозу и эффект через кривую Хилла, EC₅₀, IC₅₀ и терапевтическое окно</li>
+            <li><strong>Клинические испытания</strong> (фазы I–IV) опираются на рандомизацию, статистику и мультипличность</li>
+            <li><strong>SIR-модель</strong> и R₀ — основа эпидемиологии, вакцинации и карантинных мер</li>
+            <li><strong>Фармакогеномика</strong> персонализирует терапию через генотип-корректированные модели</li>
+            <li><strong>Связи с математикой:</strong> ОДУ (связь с Навье-Стокс), статистика (гипотеза Римана), оптимизация (NP)</li>
+            <li><strong>Связи с биологией:</strong> клеточный цикл, протеомика, популяционная генетика</li>
+        </ul>
+        <div class="formula">$$\text{Медицина} = \text{Фармакокинетика} \cap \text{Фармакодинамика} \cap \text{Эпидемиология} \cap \text{Молекулярная биология}$$</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
