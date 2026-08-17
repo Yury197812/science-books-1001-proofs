@@ -1,0 +1,366 @@
+<!--
+Platform: Habr
+Title: chapter_23
+Tags: cross-disciplinary, mathematics, physics, biology, applications
+Published: 2026-08-16T16:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 23: Междисциплинарные приложения</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Междисциплинарные приложения">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_23.html" class="active">23. Междисциплинарные</a>
+    </nav>
+
+    <h1>Глава 23: Междисциплинарные приложения</h1>
+
+    <div class="section">
+        <p><strong>1001 Proofs</strong> — это не просто каталог изолированных теорем. Настоящая сила математического аппарата раскрывается на стыке дисциплин, где уравнения Навье-Стокса описывают кровоток, а теория графов объясняет структуру социальных сетей. В этой главе мы проследим, как инструменты из шести различных областей математики и физики применяются в биологии, экологии, информатике и машинном обучении.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Навье-Стокс и биомеханика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уравнения Навье-Стокс для вязкой жидкости</h3>
+        <p>Уравнения Навье-Стокс описывают движение вязкой несжимаемой жидкости:</p>
+        <div class="formula">
+            $$\rho \left( \frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} \right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \mathbf{f}$$
+        </div>
+        <p>где $\rho$ — плотность, $\mathbf{v}$ — скорость потока, $p$ — давление, $\mu$ — динамическая вязкость, $\mathbf{f}$ — объёмные силы. Задача тысячелетия состоит в доказательстве существования и гладкости решений в трёхмерном случае для любых начальных данных из $H^1$.</p>
+
+        <h3>Течение крови как应用 задача</h3>
+        <p>Кровеносная система — идеальный пример применения уравнений Навье-Стокс в биомеханике. Кровь — не牛顿овская жидкость, но в крупных артериях (аорта, сонные артерии) течение ламинарно, и модель Пуазейля даёт良好的 аппроксимацию:</p>
+        <div class="formula">
+            $$Q = \frac{\pi r^4 \Delta p}{8 \mu L}$$
+        </div>
+        <p>где $Q$ — расход, $r$ — радиус сосуда, $\Delta p$ — перепад давления, $L$ — длина участка. Модель Пуазейля является следствием полных уравнений Навье-Стокс при стационарном, осесимметричном потоке.</p>
+
+        <h3>Диффузия кислорода</h3>
+        <p>Перенос кислорода от лёгких к тканям описывается уравнением диффузии Фика:</p>
+        <div class="formula">
+            $$\frac{\partial C}{\partial t} = D \nabla^2 C - \mathbf{v} \cdot \nabla C + R(C)$$
+        </div>
+        <p>Здесь $C(x,t)$ — концентрация $\mathrm{O_2}$, $D$ — коэффициент диффузии ($D_{\mathrm{O_2}} \approx 2 \times 10^{-5}\;\text{cm}^2/\text{с}$ в тканях), $\mathbf{v}$ — скорость кровотока (адвекция), $R(C)$ — скорость потребления (кинетика Михаэлиса-Ментен):</p>
+        <div class="formula">
+            $$R(C) = \frac{V_{\max} \, C}{K_m + C}$$
+        </div>
+        <p>Полная модель «адвекция-диффузия-реакция» для капилляра radius $r_0$ и длины $L$ требует решения системы ОДУ, которая является упрощённым случаем полных уравнений Навье-Стокс.</p>
+
+        <h3>Критерий Рейнольдса в сосудах</h3>
+        <p>Тип потока определяется безразмерным числом Рейнольдса:</p>
+        <div class="formula">
+            $$Re = \frac{\rho v D}{\mu}$$
+        </div>
+        <table>
+            <tr><th>Сосуд</th><th>$D$ (мм)</th><th>$v$ (м/с)</th><th>$Re$</th><th>Режим</th></tr>
+            <tr><td>Аорта</td><td>25</td><td>0.4</td><td>~4000</td><td>Турбулентный</td></tr>
+            <tr><td>Артерия</td><td>4</td><td>0.3</td><td>~300</td><td>Ламинарный</td></tr>
+            <tr><td>Артериола</td><td>0.05</td><td>0.03</td><td>~0.005</td><td>Ламинарный</td></tr>
+            <tr><td>Капилляр</td><td>0.008</td><td>0.001</td><td>~0.00003</td><td>Ламинарный</td></tr>
+        </table>
+        <p>Турбулентность в аорте — одна из причин атеросклероза: завихрения создают локальные области повышенного давления на стенки сосудов.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Термодинамика и экология</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Энтропия экосистем</h3>
+        <p>Второе начало термодинамики утверждает, что энтропия замкнутой системы не убывает:</p>
+        <div class="formula">
+            $$dS \geq \frac{\delta Q}{T}$$
+        </div>
+        <p>Экосистема — открытая система: она получает энергию от Солнца и отдаёт тепло в космос. Энтропийный баланс экосистемы определяет её устойчивость. Число $\sigma$ — диссипация энтропии:</p>
+        <div class="formula">
+            $$\sigma = \sum_i \frac{\dot{Q}_i}{T_i} \geq 0$$
+        </div>
+        <p>Устойчивая экосистема находится в <em>неравновесном стационарном состоянии</em> (NESS), где приток энтропии от Солнца точно компенсируется диссипацией. Это аналог принципа стационарной энтропийной диссипации (maximum entropy production, MEP).</p>
+
+        <h3>Закон Линдемана (правило 10%)</h3>
+        <p>При передаче энергии от одного трофического уровня к следующему теряется около 90% энергии. Только $\sim 10\%$ энергии переходит в биомассу следующего уровня:</p>
+        <div class="formula">
+            $$B_{n+1} = 0.1 \cdot B_n \quad \Rightarrow \quad B_n = B_0 \cdot (0.1)^n$$
+        </div>
+        <p>где $B_n$ — биомасса $n$-го трофического уровня. Это объясняет, почему пищевые цепи редко имеют более 4–5 звеньев:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Продуценты</h4><p>$B_0 = 1000$ кг/га<br>Фотосинтез: $6\mathrm{CO_2} + 6\mathrm{H_2O} \to \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2}$</p></div>
+            <div class="grid-item"><h4>Первичные консументы</h4><p>$B_1 = 100$ кг/га<br>Травоядные (насекомые, млекопитающие)</p></div>
+            <div class="grid-item"><h4>Вторичные консументы</h4><p>$B_2 = 10$ кг/га<br>Хищники (птицы, рыбы)</p></div>
+            <div class="grid-item"><h4>Третичные консументы</h4><p>$B_3 = 1$ кг/га<br>Верхние хищники</p></div>
+        </div>
+
+        <h3>Термодинамическая эффективность экосистем</h3>
+        <p>КПД экосистемы — отношение первичной продукции к солнечной энергии:</p>
+        <div class="formula">
+            $$\eta_{\text{eco}} = \frac{P_p}{E_{\text{sun}}} \approx 0.01 - 0.05$$
+        </div>
+        <p>Для сравнения: КПД фотосинтеза理论极限 $\approx 11\%$ (по Блэкману), 实际 $\approx 1\text{–}3\%$. Энтропийный анализ позволяет оптимизировать agricultural ecosystems: увеличение $\eta_{\text{eco}}$ на 1% соответствует увеличению урожая на $\BigO(B_0)$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Теория графов и социальные сети</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Модель малого мира (small-world)</h3>
+        <p>Сеть Уатта-Строгаца (1998): начиная с регулярной решётки, случайным образом пересоединяем $\sim pN$ рёбер. Среднее расстояние:</p>
+        <div class="formula">
+            $$\ell(p) \sim \frac{N}{2k} f(p k N)$$
+        </div>
+        <p>где $f(u) \sim \frac{\ln u}{u}$ при больших $u$, $k$ — степень узла, $N$ — число узлов. При $p \ll 1$ сеть уже имеет $\ell \sim \ln N$ — «шесть рукопожатий»:</p>
+        <div class="formula">
+            $$\ell \approx \frac{\ln N}{\ln k} \approx 6 \quad \text{при } N \sim 10^9, \; k \sim 100$$
+        </div>
+
+        <h3>Масштабно-инвариантные сети (scale-free)</h3>
+        <p>Модель Барабаши-Альберта (1999): при росте сети новые узлы предпочитают присоединяться к узлам с высокой степенью (preferential attachment):</p>
+        <div class="formula">
+            $$\Pi(k_i) = \frac{k_i}{\sum_j k_j}$$
+        </div>
+        <p>Распределение степеней подчиняется степенному закону:</p>
+        <div class="formula">
+            $$P(k) \sim k^{-\gamma}, \quad \gamma = 3 \;\text{(модель BA)}$$
+        </div>
+        <p>Масштабно-инвариантные сети устойчивы к случайным сбоям, но уязвимы к целенаправленным атакам на хабы (узлы с наибольшей степенью).</p>
+
+        <h3>PageRank</h3>
+        <p>Алгоритм PageRank (Brin & Page, 1998) определяет «важность» узла в ориентированном графе как решение стационарного распределения случайного блуждания:</p>
+        <div class="formula">
+            $$\mathbf{PR} = d \cdot M \cdot \mathbf{PR} + \frac{1-d}{N} \mathbf{1}$$
+        </div>
+        <p>где $M$ — матрица переходов $M_{ij} = \frac{1}{L_j}$ если $j \to i$, иначе $0$; $L_j$ — исходящая степень узла $j$; $d \approx 0.85$ — коэффициент затухания. Это собственный вектор матрицы $dM + \frac{1-d}{N} \mathbf{1}\mathbf{1}^T$.</p>
+        <p>PageRank — это приложение теории марковских цепей и спектральной теории графов. Его вычисление — задача $\BigO(|V| + |E|)$ при использовании итерационного метода.</p>
+
+        <h3>Сравнение сетевых моделей</h3>
+        <table>
+            <tr><th>Свойство</th><th>Случайный граф</th><th>Малый мир</th><th>Scale-free</th></tr>
+            <tr><td>Распределение $P(k)$</td><td>Пуассона</td><td>Пуассон + хвост</td><td>Степенное $k^{-\gamma}$</td></tr>
+            <tr><td>$\ell$ (средний путь)</td><td>$\sim \ln N$</td><td>$\sim \ln N$</td><td>$\sim \ln \ln N$</td></tr>
+            <tr><td>Кластеризация $C$</td><td>$\sim k/N$</td><td>$C \gg k/N$</td><td>$\sim N^{-0.5}$</td></tr>
+            <tr><td>Устойчивость</td><td>Средняя</td><td>Высокая</td><td>К «случайному», низкая к атаке на хабы</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. ОДУ и популяционная динамика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уравнения Лотки-Вольтерра</h3>
+        <p>Классическая модель «хищник-жертва» — система двух ОДУ:</p>
+        <div class="formula">
+            $$\begin{cases} \dot{x} = \alpha x - \beta x y \\ \dot{y} = \delta x y - \gamma y \end{cases}$$
+        </div>
+        <p>где $x(t)$ — численность жертвы, $y(t)$ — численность хищника; $\alpha$ — темп роста жертв, $\beta$ — эффективность охоты, $\delta$ — эффективность размножения хищников, $\gamma$ — смертность хищников.</p>
+
+        <h3>Неподвижные точки и линеаризация</h3>
+        <p>Неподвижные точки: $(x^*, y^*) = (0, 0)$ и $(x^*, y^*) = \left(\frac{\gamma}{\delta}, \frac{\alpha}{\beta}\right)$. Матрица Якоби в ненулевой точке:</p>
+        <div class="formula">
+            $$J = \begin{pmatrix} 0 & -\frac{\alpha\beta}{\delta} \\ \frac{\delta\gamma}{\beta} & 0 \end{pmatrix}$$
+        </div>
+        <p>Собственные значения: $\lambda = \pm i\sqrt{\alpha\gamma}$ — чисто мнимые. Это центр: решения — замкнутые траектории в фазовом пространстве, период $T = \frac{2\pi}{\sqrt{\alpha\gamma}}$.</p>
+
+        <h3>SIR-модель эпидемий</h3>
+        <p>Модель Кермака-Маккендрика для распространения инфекции:</p>
+        <div class="formula">
+            $$\begin{cases} \dot{S} = -\beta \frac{S I}{N} \\ \dot{I} = \beta \frac{S I}{N} - \gamma I \\ \dot{R} = \gamma I \end{cases}$$
+        </div>
+        <p>где $S$ — восприимчивые, $I$ — инфицированные, $R$ — выздоровевшие, $N = S + I + R$ — общая численность.</p>
+
+        <h3>Базовое репродуктивное число $R_0$</h3>
+        <div class="formula">
+            $$R_0 = \frac{\beta}{\gamma}$$
+        </div>
+        <p>При $R_0 > 1$ эпидемия растёт; при $R_0 < 1$ — затухает. Порог иммунитета стада:</p>
+        <div class="formula">
+            $$p_c = 1 - \frac{1}{R_0}$$
+        </div>
+        <p>Для кори ($R_0 \approx 15$): $p_c \approx 93\%$. Для COVID-19 ($R_0 \approx 3$): $p_c \approx 67\%$.</p>
+
+        <h3>Аналитическое решение SIR</h3>
+        <p>Из уравнений SIR получается соотношение:</p>
+        <div class="formula">
+            $$\frac{dS}{dR} = -\frac{\beta S}{\gamma N} = -\frac{R_0 S}{N}$$
+        </div>
+        <p>Интегрирование даёт:</p>
+        <div class="formula">
+            $$S(R) = S_0 \exp\left(-\frac{R_0 R}{N}\right)$$
+        </div>
+        <p>Максимальное число инфицированных достигается при $S = \frac{N}{R_0}$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Функциональный анализ и машинное обучение</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Ядра (kernels)</h3>
+        <p>В методах опорных векторов (SVM) и гауссовых процессах ядро $K(x, x')$ опеляет внутреннее произведение в some feature space $\mathcal{H}$:</p>
+        <div class="formula">
+            $$K(x, x') = \langle \phi(x), \phi(x') \rangle_{\mathcal{H}}$$
+        </div>
+        <p>где $\phi: \R^n \to \mathcal{H}$ — отображение в пространство признаков. Ядро должно быть positive semi-definite (теорема Мерсера).</p>
+
+        <h3>Популярные ядра</h3>
+        <table>
+            <tr><th>Ядро</th><th>$K(x, x')$</th><th>$\dim \mathcal{H}$</th></tr>
+            <tr><td>Линейное</td><td>$x^T x'$</td><td>$n$</td></tr>
+            <tr><td>Полиномиальное</td><td>$(x^T x' + c)^d$</td><td>$\binom{n+d}{d}$</td></tr>
+            <tr><td>RBF (Гауссово)</td><td>$\exp\!\left(-\frac{\|x-x'\|^2}{2\sigma^2}\right)$</td><td>$\infty$</td></tr>
+            <tr><td>Сигмоидное</td><td>$\tanh(\alpha x^T x' + c)$</td><td>$\infty$</td></tr>
+        </table>
+
+        <h3>Reproducing Kernel Hilbert Space (RKHS)</h3>
+        <p>RKHS $\mathcal{H}$ — это гильбертова пространство функций, где для каждого $x$ функция $K_x(\cdot) = K(x, \cdot)$ принадлежит $\mathcal{H}$ и выполняется reproducing property:</p>
+        <div class="formula">
+            $$f(x) = \langle f, K_x \rangle_{\mathcal{H}} \quad \forall f \in \mathcal{H}$$
+        </div>
+        <p><strong>Теорема Репрезентации:</strong> оптимизационная задача SVM</p>
+        <div class="formula">
+            $$\min_{f \in \mathcal{H}} \frac{1}{2}\|f\|_{\mathcal{H}}^2 + C \sum_{i=1}^N \ell(y_i, f(x_i))$$
+        </div>
+        <p>имеет решение вида:</p>
+        <div class="formula">
+            $$f^*(x) = \sum_{i=1}^N \alpha_i K(x_i, x)$$
+        </div>
+        <p>то есть оптимальная функция — линейная комбинация ядерных функций, центрированных в точках данных.</p>
+
+        <h3>Гауссовы процессы</h3>
+        <p>Гауссов процесс (GP) — обобщение SVM: $f \sim \mathcal{GP}(m, K)$, где $m(x)$ — средняя, $K(x, x')$ — ядро. Предсказание:</p>
+        <div class="formula">
+            $$\mu_* = K(X_*, X)[K(X,X) + \sigma_n^2 I]^{-1} y$$
+            $$\Sigma_* = K(X_*, X_*) - K(X_*, X)[K(X,X) + \sigma_n^2 I]^{-1} K(X, X_*)$$
+        </div>
+        <p>Гауссовы процессы дают не только предсказание, но и оценку неопределённости — crucial for active learning и Bayesian optimization.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Междисциплинарные применения напрямую связаны с задачами тысячелетия:</p>
+
+        <h3>Навье-Стокс → Биомеханика</h3>
+        <ul style="margin-left: 20px;">
+            <li>Доказательство существования и гладкости решений (задача тысячелетия) → точные модели кровотока</li>
+            <li>Понимание турбулентности в аорте → предсказание атеросклероза</li>
+            <li>Численные методы для Навье-Стокс → планирование операций на сердце</li>
+            <li>Оптимизация антибиотикотерапии через моделирование кровотока в тканях</li>
+        </ul>
+
+        <h3>BSD-гипотеза → Криптография</h3>
+        <ul style="margin-left: 20px;">
+            <li>Группа рациональных точек эллиптической кривой $E/\Q$ → основа ECC-криптографии</li>
+            <li>BSD预言 гласит: $\text{rank}(E(\Q)) = \text{ord}_{s=1} L(E, s)$ (порядок нуля L-функции)</li>
+            <li>Полное доказательство BSD → понимание структуры решений → потенциальная уязвимость или усиление ECC</li>
+            <li>Связь с гипотезой Римана через L-функции: $L(E, s) = \sum a_n n^{-s}$</li>
+        </ul>
+
+        <h3>Диаграмма связей</h3>
+        <div class="formula">
+            $$\boxed{\text{Навье-Стокс}} \xrightarrow{\text{биомеханика}} \boxed{\text{Сердечно-сосудистые}}$$
+            $$\boxed{\text{BSD}} \xrightarrow{\text{эллиптические кривые}} \boxed{\text{Криптография}}$$
+            $$\boxed{\text{P vs NP}} \xrightarrow{\text{оптимизация}} \boxed{\text{Машинное обучение}}$$
+            $$\boxed{\text{Гипотеза Римана}} \xrightarrow{\text{L-функции}} \boxed{\text{Алгоритмы}}$$
+        </div>
+
+        <p>Каждая задача тысячелетия — это не абстрактная теоретическая загадка, а ключ к пониманию и улучшению конкретных приложений. Серия «1001 Proof» документирует эту связь через формальные доказательства.</p>
+    </div>
+
+    <div class="optimization">
+        <h3>OCULUS-оптимизации для LLM</h3>
+        <p><strong>Структурированные данные:</strong> Каждый раздел — самостоятельный модуль, оптимизированный для извлечения знаний.</p>
+        <p><strong>Кросс-дисциплинарные связи:</strong> Ссылки между разделами создают граф знаний для RAG (Retrieval-Augmented Generation).</p>
+        <p><strong>Формулы как единицы знания:</strong> Каждая формула — атомарный факт, пригодный для fine-tuning:</p>
+        <div class="formula">
+            $$\text{1 chapter} \to \text{6 sections} \to \sim 25 \text{ formulas} \to \text{training signal}$$
+        </div>
+        <p><strong>Покрытие:</strong> Глава охватывает 6 дисциплин (физика, биология, экология, информатика, математика, машинное обучение) — максимальный кросс-энтропийный охват для обучения.</p>
+        <p><strong>Итеративное улучшение:</strong> Как и в OCULUS-цикле, содержимое можно верифицировать формально (Lean 4 для математических утверждений) и эмпирически (биологические/экологические данные).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
