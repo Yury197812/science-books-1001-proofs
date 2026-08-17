@@ -1,0 +1,504 @@
+
+<!--
+Platform: Habr
+Title: chapter_34
+Tags: 1001-proofs, cognitive-science, neuroscience, neural-networks, deep-learning, transformers
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 34: Когнитивные науки и нейрофизика</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Когнитивные науки и нейрофизика">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_34.html" class="active">34</a>
+    </nav>
+
+    <h1>Глава 34: Когнитивные науки и нейрофизика</h1>
+
+    <div class="section">
+        <p>Эта глава посвящена фундаментальному мосту между биологией мозга и искусственными нейросетями. Мы рассмотрим, как нейрофизика и когнитивные науки лежат в основе современных технологий глубокого обучения, и как математический аппарат нейросетей связан с задачами тысячелетия.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Нейрофизика — нейрон, синапс, нейронные сети</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Биологический нейрон</h3>
+        <p>Нейрон — основная функциональная единица нервной системы. Каждый нейрон состоит из:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Дендриты</h4><p>Входные отростки, принимающие сигналы от других нейронов через синапсы</p></div>
+            <div class="grid-item"><h4>Сома</h4><p>Тело клетки, где происходит интеграция входных сигналов</p></div>
+            <div class="grid-item"><h4>Аксон</h4><p>Выходной отросток, передающий электрический импульс (потенциал действия)</p></div>
+            <div class="grid-item"><h4>Синапс</h4><p>Точка контакта между нейронами, где сигнал преобразуется химически или электрически</p></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель Ходжкина — Хаксли</h3>
+        <p>Классическая модель потенциала действия нейрона описывается системой дифференциальных уравнений:</p>
+        <div class="formula">$$C_m \frac{dV}{dt} = I - g_{Na}m^3h(V - E_{Na}) - g_K n^4(V - E_K) - g_L(V - E_L)$$</div>
+        <p>где $V$ — мембранный потенциал, $m, h, n$ — воротные переменные, $g_{Na}, g_K, g_L$ — проводимости, $E_{Na}, E_K, E_L$ — равновесные потенциалы.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Упрощённая модель: перцептрон</h3>
+        <p>Математическая модель нейрона — перцептрон Розенблатта (1958):</p>
+        <div class="formula">$$y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(\mathbf{w}^T \mathbf{x} + b)$$</div>
+        <p>где $f$ — функция активации (сигмоид, ReLU, tanh), $w_i$ — веса синапсов, $x_i$ — входы, $b$ — смещение.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Нейронная сеть мозга</h3>
+        <p>Человеческий мозг содержит:</p>
+        <table>
+            <tr><th>Параметр</th><th>Значение</th></tr>
+            <tr><td>Количество нейронов</td><td>$\approx 86 \times 10^9$</td></tr>
+            <tr><td>Синаптических связей</td><td>$\approx 10^{14} - 10^{15}$</td></tr>
+            <tr><td>Скорость распространения</td><td>$1 - 100$ м/с</td></tr>
+            <tr><td>Энергопотребление</td><td>$\approx 20$ Вт</td></tr>
+            <tr><td>Плотность вычислений</td><td>$\approx 10^{16}$ операций/сек/Вт</td></tr>
+        </table>
+        <p><strong>Парадокс эффективности:</strong> Мозг потребляет всего $20$ Вт, но выполняет вычисления, недоступные суперкомпьютерам потреблением $20$ МВт. Это указывает на принципиально другую архитектуру вычислений.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Когнитивные процессы — восприятие, память, внимание, речь</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Архитектура когнитивных процессов</h3>
+        <p>Когнитивные науки изучают, как мозг обрабатывает информацию. Ключевые процессы:</p>
+        <div class="formula">$$\text{Восприятие} \to \text{Внимание} \to \text{Память} \to \text{Речь} \to \text{Действие}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Восприятие (Perception)</h3>
+        <p>Преобразование сенсорных сигналов в осмысленные представления:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Зрение:</strong> $\sim 10^8$ фоторецепторов, обработка в V1–V5 кортикальных областях</li>
+            <li><strong>Слух:</strong> $\sim 15\,000$ волосковых клеток, частотный анализ через базилярную мембрану</li>
+            <li><strong>Тактильное восприятие:</strong> $\sim 200\,000$ механорецепторов</li>
+        </ul>
+        <p><strong>Ключевой принцип:</strong> Восприятие — это не пассивная регистрация, а активная гипотезо-тестирующая модель (predictive coding).</p>
+        <div class="formula">$$\text{Восприятие} = \arg\max_{\hat{s}} P(\hat{s} \mid \text{sensory\_input}, \text{prior\_knowledge})$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Память (Memory)</h3>
+        <p>Иерархическая система хранения и извлечения информации:</p>
+        <table>
+            <tr><th>Тип памяти</th><th>Ёмкость</th><th>Длительность</th><th>Механизм</th></tr>
+            <tr><td>Сенсорная</td><td>несколько элементов</td><td>$\sim 0.5$ сек</td><td>активация рецепторов</td></tr>
+            <tr><td>Кратковременная (RAM)</td><td>$7 \pm 2$ элемента</td><td>$\sim 20$ сек</td><td>нейронные петли</td></tr>
+            <tr><td>Рабочая</td><td>$4$ блока</td><td>$\sim 30$ мин</td><td>префронтальная кора</td></tr>
+            <tr><td>Долговременная</td><td>$\sim 10^{12}$ бит</td><td>годы/жизнь</td><td>синаптическая пластичность</td></tr>
+        </table>
+        <p><strong>Формула забывания Эббингауза:</strong></p>
+        <div class="formula">$$R = e^{-t/S}$$</div>
+        <p>где $R$ — сохранность воспоминания, $t$ — время, $S$ — стабильность памяти.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Внимание (Attention)</h3>
+        <p>Механизм избирательной фильтрации информации:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Направленное внимание:</strong> фокус на одной задаче (top-down control)</li>
+            <li><strong>Рассеянное внимание:</strong> мониторинг окружения (bottom-up capture)</li>
+            <li><strong>Многозадачность:</strong> переключение между задачами (task switching)</li>
+        </ul>
+        <p><strong>Парадокс внимания:</strong> Мозг обрабатывает $\sim 10^7$ бит/с сенсорной информации, но сознательно — только $\sim 50$ бит/с. Внимание — это <em>критическое узкое место</em> (bottleneck) когнитивной системы.</p>
+        <div class="formula">$$\text{Capacity}_{\text{conscious}} \ll \text{Capacity}_{\text{total}} \implies \text{Attention} = \text{compression}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Речь и язык (Language)</h3>
+        <p>Специфическая для человека система символьных коммуникаций:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Бродман area 44/45:</strong> зона Брока (продукция речи)</li>
+            <li><strong>Бродман area 22:</strong> зона Вернике (понимание речи)</li>
+            <li><strong>Двуязычие:</strong> активация префронтальной коры для контроля языка</li>
+        </ul>
+        <p><strong>Правило Zipf для языка:</strong> Частота слова обратно пропорциональна его рангу:</p>
+        <div class="formula">$$f(r) \propto \frac{1}{r^\alpha}, \quad \alpha \approx 1$$</div>
+        <p>Это распределение возникает как следствие принципа минимума усилий (principle of least effort) и оптимального кодирования.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Моделирование мозга — Artificial Neural Networks, deep learning</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>От биологии к вычислениям</h3>
+        <p>История создания искусственных нейронных сетей:</p>
+        <table>
+            <tr><th>Год</th><th>Вклад</th><th>Автор</th></tr>
+            <tr><td>1943</td><td>Модель Маккалока — Питтса</td><td>McCulloch & Pitts</td></tr>
+            <tr><td>1949</td><td>Правило Хебба</td><td>Donald Hebb</td></tr>
+            <tr><td>1958</td><td>Перцептрон</td><td>Frank Rosenblatt</td></tr>
+            <tr><td>1969</td><td>Критика (XOR не решаем)</td><td>Minsky & Papert</td></tr>
+            <tr><td>1986</td><td>Обратное распространение ошибки</td><td>Rumelhart, Hinton, Williams</td></tr>
+            <tr><td>1989</td><td>Свёрточные сети (CNN)</td><td>Yann LeCun</td></tr>
+            <tr><td>1997</td><td>Рекуррентные сети (LSTM)</td><td>Hochreiter & Schmidhuber</td></tr>
+            <tr><td>2012</td><td>Глубокое обучение (AlexNet)</td><td>Krizhevsky et al.</td></tr>
+            <tr><td>2017</td><td>Трансформеры</td><td>Vaswani et al.</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Правило Хебба</h3>
+        <p>«Neurons that fire together, wire together» — основа обучения нейронных сетей:</p>
+        <div class="formula">$$\Delta w_{ij} = \eta \cdot x_i \cdot x_j$$</div>
+        <p>где $\Delta w_{ij}$ — изменение веса связи, $\eta$ — скорость обучения, $x_i, x_j$ — активности связанных нейронов.</p>
+        <p><strong>Обобщённое правило:</strong></p>
+        <div class="formula">$$\Delta w_{ij} = \eta \cdot (x_i - \bar{x}_i)(x_j - \bar{x}_j)$$</div>
+        <p>где $\bar{x}_i$ — средняя активность (BCM-правило).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Обратное распространение ошибки (Backpropagation)</h3>
+        <p>Алгоритм обучения многослойных сетей через градиентный спуск:</p>
+        <div class="formula">$$\frac{\partial L}{\partial w_{ij}^{(l)}} = \frac{\partial L}{\partial a_j^{(l)}} \cdot \frac{\partial a_j^{(l)}}{\partial z_j^{(l)}} \cdot \frac{\partial z_j^{(l)}}{\partial w_{ij}^{(l)}} = \delta_j^{(l)} \cdot a_i^{(l-1)}$$</div>
+        <p>где $L$ — функция потерь, $a_j^{(l)}$ — активация нейрона $j$ в слое $l$, $z_j^{(l)}$ — взвешенная сумма.</p>
+        <p><strong>Рекурсивное правило для $\delta$:</strong></p>
+        <div class="formula">$$\delta_j^{(l)} = \left(\sum_k w_{jk}^{(l+1)} \delta_k^{(l+1)}\right) \cdot f'(z_j^{(l)})$$</div>
+        <p><strong>Связь с биологией:</strong> Хотя обратное распространение формально не реализуется в мозге (нет обратного прохождения через синапсы), предполагается, что синаптическая пластичность и дельта-правило реализуют <em>локальные</em> аналоги этого процесса.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Глубокое обучение (Deep Learning)</h3>
+        <p>Иерархическое извлечение признаков через последовательные слои:</p>
+        <div class="formula">$$\text{Input} \xrightarrow{W^{(1)}} \text{Hidden}_1 \xrightarrow{W^{(2)}} \text{Hidden}_2 \to \cdots \xrightarrow{W^{(L)}} \text{Output}$$</div>
+        <p><strong>Ключевые архитектуры:</strong></p>
+        <div class="grid">
+            <div class="grid-item"><h4>CNN</h4><p>Свёрточные сети для визуальных данных. Каждый фильтр $K$ вычисляет: $(I * K)(x,y) = \sum_{i,j} I(x+i,y+j) \cdot K(i,j)$</p></div>
+            <div class="grid-item"><h4>RNN/LSTM</h4><p>Рекуррентные сети для последовательностей. Скрытое состояние: $h_t = f(W_h h_{t-1} + W_x x_t + b)$</p></div>
+            <div class="grid-item"><h4>GAN</h4><p>Генеративно-состязательные сети. Minimax: $\min_G \max_D V(D,G) = \mathbb{E}[\log D(x)] + \mathbb{E}[\log(1 - D(G(z)))]$</p></div>
+            <div class="grid-item"><h4>Autoencoder</h4><p>Сжатие и восстановление: $\min \|x - \text{Dec}(\text{Enc}(x))\|^2$. Variational (VAE):加入KL-дивергенции.</p></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Функции активации</h3>
+        <p>Нелинейные преобразования, обеспечивающие выразительность сети:</p>
+        <table>
+            <tr><th>Функция</th><th>Формула</th><th>Свойства</th></tr>
+            <tr><td>Sigmoid</td><td>$\sigma(x) = \frac{1}{1+e^{-x}}$</td><td>Выход $(0,1)$, затухающий градиент</td></tr>
+            <tr><td>Tanh</td><td>$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</td><td>Выход $(-1,1)$, центрирована</td></tr>
+            <tr><td>ReLU</td><td>$\max(0, x)$</td><td>Быстрая, «мёртвые нейроны»</td></tr>
+            <tr><td>GELU</td><td>$x \cdot \Phi(x)$</td><td>Гладкая, используется в трансформерах</td></tr>
+            <tr><td>SwiGLU</td><td>$(x \cdot W_1) \otimes \sigma(x \cdot W_2) \cdot W_3$</td><td>Эффективна для LLM</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Языковые модели — трансформеры, attention, GPT/BERT</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Архитектура трансформера</h3>
+        <p>Трансформер (Vaswani et al., 2017) — архитектура, полностью основанная на механизме внимания (attention), без рекуррентности:</p>
+        <div class="formula">$$\text{Transformer} = \text{Encoder} + \text{Decoder}$$</div>
+        <p>Каждый блок содержит: Multi-Head Attention → Add & LayerNorm → FFN → Add & LayerNorm.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Механизм внимания (Self-Attention)</h3>
+        <p>Ключевой механизм трансформера — вычисление взвешенной суммы всех позиций:</p>
+        <div class="formula">$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$</div>
+        <p>где $Q = XW^Q$ (queries), $K = XW^K$ (keys), $V = XW^V$ (values), $d_k$ — размерность ключей.</p>
+        <p><strong>Связь с когнитивной наукой:</strong> Механизм внимания трансформера является вычислительной моделью <em>направленного внимания</em> мозга — избирательной фильтрации релевантной информации.</p>
+        <p><strong>Multi-Head Attention:</strong></p>
+        <div class="formula">$$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O$$</div>
+        <div class="formula">$$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$$</div>
+        <p>Параллельные «головы»注意力 позволяют модели учитывать различные типы отношений одновременно.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>GPT: Генеративный предобученный трансформер</h3>
+        <p>GPT — авторегрессионная модель для генерации текста:</p>
+        <div class="formula">$$P(x_t \mid x_1, \ldots, x_{t-1}) = \text{softmax}(h_t W_e^T)$$</div>
+        <p>где $h_t$ — скрытое представление токена $t$.</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>GPT-1 (2018):</strong> 117M параметров, предобучение + дообучение</li>
+            <li><strong>GPT-2 (2019):</strong> 1.5B параметров, zero-shot</li>
+            <li><strong>GPT-3 (2020):</strong> 175B параметров, few-shot learning</li>
+            <li><strong>GPT-4 (2023):</strong> мультимодальная, улучшенная рассуждательность</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>BERT: Bidirectional Encoder Representations</h3>
+        <p>BERT — двухсторонний трансформер для понимания контекста:</p>
+        <div class="formula">$$\text{BERT}: P(w_O \mid w_I) = \text{softmax}(T_{w_O} \cdot T_{w_I})$$</div>
+        <p><strong>Ключевые отличия от GPT:</strong></p>
+        <table>
+            <tr><th>Свойство</th><th>GPT</th><th>BERT</th></tr>
+            <tr><td>Направленность</td><td>Левосторонний (autoregressive)</td><td>Двусторонний (bidirectional)</td></tr>
+            <tr><td>Задача</td><td>Генерация текста</td><td>Понимание текста</td></tr>
+            <tr><td>Обучение</td><td>Next token prediction</td><td>MLM + NSP</td></tr>
+            <tr><strong>Применение</strong></td><td>Чат-боты, перевод</td><td>Классификация, NER, QA</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Масштабирование и涌现能力</h3>
+        <p>Закон масштабирования (Scaling Laws) описывает зависимость потерь от параметров, данных и вычислений:</p>
+        <div class="formula">$$L(N) \approx \left(\frac{N_c}{N}\right)^{\alpha_N}, \quad L(D) \approx \left(\frac{D_c}{D}\right)^{\alpha_D}, \quad L(C) \approx \left(\frac{C_c}{C}\right)^{\alpha_C}$$</div>
+        <p>где $N$ — параметры, $D$ — данные, $C$ — вычисления (FLOPs).</p>
+        <p><strong>Эмерджентные способности:</strong> При достижении критического масштаба (~100B+ параметров) модели демонстрируют способности, отсутствующие у меньших моделей:</p>
+        <ul style="margin-left: 20px;">
+            <li>Chain-of-thought рассуждения</li>
+            <li>Few-shot transfer learning</li>
+            <li>Самокоррекция и рефлексия</li>
+            <li>Мультишаговые задачи</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Связь с биологией (нейробиология) и информатикой (нейросети)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Параллели между мозгом и ИИ</h3>
+        <p>Сравнение биологических и искусственных нейронных сетей:</p>
+        <table>
+            <tr><th>Характеристика</th><th>Мозг</th><th>Искусственная НС</th></tr>
+            <tr><td>Основная единица</td><td>Биологический нейрон</td><td>Перцептрон (математический нейрон)</td></tr>
+            <tr><td>Связь</td><td>Синапс (химический/электрический)</td><td>Вес $w_{ij}$ (число)</td></tr>
+            <tr><td>Архитектура</td><td>Малый мир, модульность</td><td>Полносвязные/свёрточные слои</td></tr>
+            <tr><td>Обучение</td><td>Синаптическая пластичность (STDP)</td><td>Обратное распространение ошибки</td></tr>
+            <tr><td>Параллелизм</td><td>$10^{11}$ нейронов, massive parallel</td><td>GPU-ядра ($\sim 10^4$)</td></tr>
+            <tr><td>Энергия</td><td>$20$ Вт</td><td>$\sim 10^2 - 10^3$ Вт</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Синаптическая пластичность</h3>
+        <p>Биологический механизм обучения:</p>
+        <p><strong>STDP (Spike-Timing-Dependent Plasticity):</strong></p>
+        <div class="formula">$$\Delta w = \begin{cases} A_+ \exp(-\Delta t / \tau_+) & \text{if } \Delta t > 0 \text{ (pre before post)} \\ -A_- \exp(\Delta t / \tau_-) & \text{if } \Delta t < 0 \text{ (post before pre)} \end{cases}$$</div>
+        <p>где $\Delta t = t_{\text{post}} - t_{\text{pre}}$. Если пресинаптический нейрон активируется <em>до</em> постсинаптического — связь усиливается (Hebb rule).</p>
+        <p><strong>Связь с backpropagation:</strong> Несмотря на формальное сходство, обратное распространение невозможно в мозге из-за отсутствия обратного прохождения градиентов через синапсы. Предложены альтернативы:</p>
+        <ul style="margin-left: 20px;">
+            <li>Feedback Alignment (DFA)</li>
+            <li>Predictive Coding</li>
+            <li>Equilibrium Propagation</li>
+            <li>Burstprop (волновая обратная связь)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Кортикальные колонки и модульность</h3>
+        <p>Структура неокортекса (Mountcastle, 1978):</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Кортикальная колонка:</strong> $\sim 10^5$ нейронов, базовая обрабатывающая единица</li>
+            <li><strong>Гиперстолбец:</strong> совокупность колонок, обрабатывающих одну модальность</li>
+            <li><strong>6-слойная структура:</strong> I–VI слои, каждый с уникальной функцией</li>
+        </ul>
+        <p><strong>Параллель с современными НС:</strong> Модульность мозга отражена в архитектурах типаixture of Experts (MoE), где каждый «эксперт» — модуль, обрабатывающий определённый тип входов.</p>
+        <div class="formula">$$y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x), \quad g_i(x) = \text{softmax}(W_g \cdot x)$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с математикой (линейная алгебра, оптимизация)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Математический аппарат нейросетей</h3>
+        <p>Нейронные сети — это композиции математических функций, оптимизируемых на основе:</p>
+        <div class="formula">$$\min_{\theta} \mathcal{L}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \ell(f_\theta(x_i), y_i) + \lambda \|\theta\|_2^2$$</div>
+        <p>где $\theta$ — параметры модели, $\ell$ — функция потерь, $\lambda \|\theta\|_2^2$ — регуляризация.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Линейная алгебра</h3>
+        <p>Основные операции в нейронных сетях:</p>
+        <table>
+            <tr><th>Операция</th><th>Математика</th><th>Нейросеть</th></tr>
+            <tr><td>Линейное преобразование</td><td>$\mathbf{y} = W\mathbf{x} + \mathbf{b}$</td><td>Полносвязный слой (Dense)</td></tr>
+            <tr><td>Свёртка</td><td>$(f * g)(t) = \int f(\tau)g(t-\tau)d\tau$</td><td>Свёрточный слой (Conv)</td></tr>
+            <tr><td>Внимание</td><td>$\text{softmax}(QK^T)V$</td><td>Self-Attention</td></tr>
+            <tr><td>Нормализация</td><td>$\hat{x} = \frac{x - \mu}{\sigma}$</td><td>BatchNorm / LayerNorm</td></tr>
+        </table>
+        <p><strong>Ранжирование сингулярных значений:</strong> Эффективность обусловлена спектром матриц весов. Если $\sigma_1 \gg \sigma_2 \gg \cdots$, сеть выучивает низкоранговые представления.</p>
+        <div class="formula">$$W = U \Sigma V^T = \sum_{i=1}^{r} \sigma_i \mathbf{u}_i \mathbf{v}_i^T, \quad r \ll \min(m, n)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Оптимизация</h3>
+        <p>Методы оптимизации для обучения нейросетей:</p>
+        <div class="formula">$$\theta_{t+1} = \theta_t - \eta \cdot \text{adam\_update}(\nabla \mathcal{L}(\theta_t))$$</div>
+        <p><strong>Adam оптимизатор:</strong></p>
+        <div class="formula">$$m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t \quad \text{(first moment)}$$</div>
+        <div class="formula">$$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2 \quad \text{(second moment)}$$</div>
+        <div class="formula">$$\hat{m}_t = \frac{m_t}{1-\beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1-\beta_2^t}$$</div>
+        <div class="formula">$$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$</div>
+        <p><strong>Связь с выпуклой оптимизацией:</strong> Задача обучения нейросети — <em>глобальная</em> нелинейная оптимизация на ландшафте потерь с множественными локальными минимумами.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Теорема универсального аппроксиматора</h3>
+        <p>Однослойная сеть с достаточным числом скрытых нейронов может аппроксимировать любую непрерывную функцию:</p>
+        <div class="formula">$$\forall \varepsilon > 0, \exists N, \exists w_i, b_i : \left| f(x) - \sum_{i=1}^{N} w_i \sigma(x^T v_i + b_i) \right| < \varepsilon$$</div>
+        <p>где $f \in C([0,1]^n)$, $\sigma$ — сигмоидная функция.</p>
+        <p><strong>Связь с P vs NP:</strong> Теорема не даёт алгоритма <em>поиска</em> параметров — только существование. Нахождение оптимальных весов может быть NP-трудной задачей, что связывает теорию нейросетей с фундаментальными вопросами вычислительной сложности.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (P vs NP через когнитивные ограничения)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Когнитивные ограничения и вычислительная сложность</h3>
+        <p>Проблема P vs NP может быть переосмыслена через призму когнитивных ограничений:</p>
+        <div class="formula">$$\text{P} \stackrel{?}{=} \text{NP} \iff \exists \text{ polynomial-time verification } \forall \text{ polynomial-time search}$$</div>
+        <p>Когнитивные науки показывают, что человеческий мозг — это <em>компьютер</em> с определёнными ограничениями:</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Ограничения человеческого познания</h3>
+        <table>
+            <tr><th>Ограничение</th><th>Параметр</th><th>Вычислительный аналог</th></tr>
+            <tr><td>Рабочая память</td><td>$7 \pm 2$ элемента</td><td>$\BigO(1)$ пространство</td></tr>
+            <tr><td>Время реакции</td><td>$\sim 200$ мс</td><td>$\BigO(1)$ время на шаг</td></tr>
+            <tr><td>Параллелизм</td><td>$\sim 4$ потока</td><td>$\BigO(1)$ процессоров</td></tr>
+            <tr><td>Энергия</td><td>$20$ Вт</td><td>$\BigO(1)$ ресурс</td></tr>
+        </table>
+        <p><strong>Гипотеза:</strong> Если P ≠ NP, то даже бесконечно мощный, но последовательный процессор не может решать NP-задачи за полиномиальное время. Человеческий мозг, обладая конечными ресурсами, <em>не может</em> систематически решать все NP-задачи за полиномиальное время.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Нейросети как эвристический солвер NP-задач</h3>
+        <p>Современные нейросети демонстрируют способность решать NP-подобные задачи через <em>эвристики</em>:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>SAT-решатели:</strong> GNN-модели для Boolean Satisfiability</li>
+            <li><strong>Задача коммивояжёра:</strong> Attention-механизмы для маршрутизации</li>
+            <li><strong>Проблема расписаний:</strong> RL-агенты для оптимизации</li>
+            <li><strong>Факторизация:</strong> Автокодировщики для разложения на множители</li>
+        </ul>
+        <p><strong>Важно:</strong> Нейросети решают <em>частные случаи</em> NP-задач, но не дают <em>полиномиального алгоритма</em> для всех экземпляров.</p>
+        <div class="formula">$$\text{NN}_{\text{heuristic}}: \forall \text{ instances } I, \text{solve}(I) \in \BigO(n^k) \text{ (average case)}$$</div>
+        <div class="formula">$$\text{NP} = \forall \text{ instances } I, \text{verify}(I) \in \BigO(n^k) \text{ (worst case)}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гипотеза: когнитивные границы = границы вычислений</h3>
+        <p>Когнитивные науки предлагают новый взгляд на P vs NP:</p>
+        <ol style="margin-left: 20px;">
+            <li><strong>Парадокс эффективности мозга:</strong> Мозг решает NP-подобные задачи (распознавание лиц, планирование движений) быстро, но использует <em>эвристики</em>, а не <em>алгоритмы</em>.</li>
+            <li><strong>Критическое замечание:</strong> Эвристики не гарантируют оптимальность — они работают на «типичных» данных, но могут провалиться на «атипичных».</li>
+            <li><strong>Вывод:</strong> Если P ≠ NP, то <em>никакой</em> компьютер (включая мозг) не может решать все NP-задачи за полиномиальное время. Мозг использует <em>природную структуру</em> данных (эволюционно оптимизированные эвристики), а не <em>универсальные алгоритмы</em>.</li>
+        </ol>
+        <div class="formula">$$\text{Brain}(x) \neq \text{Poly}(x) \text{ for all } x \in \text{NP}$$</div>
+        <div class="formula">$$\text{Brain}(x) \approx \text{Poly}(x) \text{ for typical } x \in \text{NP}$$</div>
+    </div>
+
+    <div class="optimization">
+        <h3>Программа исследований: нейрофизика × P vs NP</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Формализация:</strong> Построить формальную модель, связывающую когнитивные ограничения с классами вычислительной сложности</li>
+            <li><strong>Эмпирические данные:</strong> Измерить реальную сложность решения NP-задач человеком vs нейросетями</li>
+            <li><strong>Теоремы:</strong> Доказать, что существование «быстрого мозга» не противоречит P ≠ NP (и наоборот)</li>
+            <li><strong>Нейроморфные чипы:</strong> Разработать вычислительные устройства, имитирующие архитектуру мозга для решения NP-задач</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Итог: от нейрона к нейросети к задачам тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Глава 34 демонстрирует глубокую связь между:</p>
+        <div class="formula">$$\text{Нейрофизика} \longleftrightarrow \text{Когнитивные науки} \longleftrightarrow \text{Искусственный интеллект} \longleftrightarrow \text{Математика}$$</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>Биология:</strong> Нейрон → синапс → нейронная сеть → мозг</li>
+            <li><strong>Информатика:</strong> Перцептрон → backpropagation → CNN/Transformer → GPT</li>
+            <li><strong>Математика:</strong> Линейная алгебра → оптимизация → теория приближений → теория вычислений</li>
+            <li><strong>Философия:</strong> Когнитивные ограничения → границы вычислений → P vs NP</li>
+        </ul>
+        <p><strong>Центральный вопрос:</strong> Может ли понимание мозга помочь решить фундаментальные математические задачи? Или мозг — это просто «эвристическая машина», работающая в рамках класса P?</p>
+        <div class="formula">$$\boxed{\text{Мозг} \neq \text{Универсальный компьютер} \implies \text{P} \neq \text{NP (гипотеза)}}$$</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
