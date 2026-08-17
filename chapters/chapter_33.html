@@ -1,0 +1,234 @@
+
+<!--
+Platform: Habr
+Title: chapter_33
+Tags: 1001-proofs, information-theory, coding, compression, error-correcting-codes
+Published: 2026-08-16T15:30:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 33: Теория информации и кодирование</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Теория информации и кодирование">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_33.html" class="active">33. Теория информации</a>
+    </nav>
+
+    <h1>Глава 33: Теория информации и кодирование</h1>
+
+    <div class="section">
+        <h2>Оглавление</h2>
+        <p>Теория информации — математическая теория количества, хранения и передачи информации. Основана Клодом Шенноном в 1948 году. Связывает математику, физику, информатику и криптографию.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Энтропия Шеннона</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Определение</h3>
+        <p><strong>Энтропия</strong> дискретного случайного величины $X$ с распределением $\{p_1, \ldots, p_n\}$:</p>
+        <div class="formula">$$H(X) = -\sum_{i=1}^{n} p_i \log_2 p_i \quad \text{[бит]}$$</div>
+
+        <h3>Свойства</h3>
+        <ul style="margin-left: 20px;">
+            <li>$H(X) \geq 0$; равенство только для детерминированных величин ($p_k = 1$)</li>
+            <li>$H(X) \leq \log_2 n$; максимум при равномерном распределении ($p_i = 1/n$)</li>
+            <li><strong>Условная энтропия:</strong> $H(X|Y) = H(X,Y) - H(Y)$</li>
+            <li><strong>Взаимная информация:</strong> $I(X;Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$</li>
+        </ul>
+
+        <h3>Пример</h3>
+        <p>Монета с $P(\text{орёл}) = 0.7$:</p>
+        <div class="formula">$$H = -0.7 \log_2 0.7 - 0.3 \log_2 0.3 \approx 0.881 \text{ бит}$$</div>
+        <p>Честная монета ($p = 0.5$): $H = 1$ бит (максимум для бинарного источника).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Кодирование</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Код Хаффмана</h3>
+        <p>Оптимальный префиксный код: более вероятные символы кодируются короче.</p>
+        <table>
+            <tr><th>Символ</th><th>Вероятность</th><th>Код Хаффмана</th><th>Длина</th></tr>
+            <tr><td>A</td><td>0.40</td><td><code>0</code></td><td>1</td></tr>
+            <tr><td>B</td><td>0.25</td><td><code>10</code></td><td>2</td></tr>
+            <tr><td>C</td><td>0.20</td><td><code>110</code></td><td>3</td></tr>
+            <tr><td>D</td><td>0.15</td><td><code>111</code></td><td>3</td></tr>
+        </table>
+        <p><strong>Средняя длина:</strong> $L = 0.4 \times 1 + 0.25 \times 2 + 0.2 \times 3 + 0.15 \times 3 = 1.95$ бит/символ.</p>
+        <p><strong>Энтропия:</strong> $H \approx 1.846$ бит/символ. $L \geq H$ (неравенство Шеннона).</p>
+
+        <h3>Арифметическое кодирование</h3>
+        <p>Целая последовательность кодируется как число в $[0, 1)$. Эффективнее Хаффмана для больших алфавитов.</p>
+        <div class="formula">$$\text{Длина} \approx H(X) \text{ бит/символ (при } n \to \infty\text{)}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Канальная теория</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Канал Шеннона</h3>
+        <p>Бинарный канал с помехами (BSC): $P(Y \neq X) = p$ (вероятность ошибки).</p>
+        <div class="formula">$$C = 1 - H(p) = 1 + p\log_2 p + (1-p)\log_2(1-p) \text{ [бит/символ]}$$</div>
+
+        <h3>Теорема Шеннона-Хартли</h3>
+        <p>Пропускная способность аналогового канала с шумом:</p>
+        <div class="formula">$$C = B \log_2\left(1 + \frac{S}{N}\right) \text{ [бит/сек]}$$</div>
+        <p>где $B$ — полоса пропускания [Гц], $S/N$ — отношение сигнал/шум.</p>
+
+        <h3>Пример</h3>
+        <p>Wi-Fi: $B = 20$ МГц, $S/N = 100$ (20 дБ):</p>
+        <div class="formula">$$C = 20 \times 10^6 \times \log_2(101) \approx 133 \text{ Мбит/с}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Сжатие данных</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <table>
+            <tr><th>Формат</th><th>Тип</th><th>Алгоритм</th><th>Сжатие</th></tr>
+            <tr><td>ZIP/GZIP</td><td>Lossless</td><td>DEFLATE (LZ77 + Хаффман)</td><td>~60–80%</td></tr>
+            <tr><td>JPEG</td><td>Lossy</td><td>DCT + квантование + Хаффман</td><td>~90–95%</td></tr>
+            <tr><td>MP3</td><td>Lossy</td><td>MDCT + психоакустическая модель</td><td>~90%</td></tr>
+            <tr><td>PNG</td><td>Lossless</td><td>DEFLATE + фильтры</td><td>~50–70%</td></tr>
+            <tr><td>H.264/AVC</td><td>Lossy</td><td>_motion + DCT + entropy coding</td><td>~95%</td></tr>
+            <tr><td>LZMA</td><td>Lossless</td><td>LZ77 + диапазонное кодирование</td><td>~70–90%</td></tr>
+        </table>
+
+        <h3>Предел сжатия</h3>
+        <p>Lossless сжатие не может превысить энтропию:</p>
+        <div class="formula">$$L_{\text{min}} = H(X) \leq L_{\text{any lossless code}}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Теория ошибкоустойчивого кодирования</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Коды Рида-Соломона</h3>
+        <p>Блочные коды над конечными полями $GF(2^m)$. Исправляют до $t$ ошибок при размерности $n = 2^m - 1$, $k = n - 2t$.</p>
+        <div class="formula">$$t = \frac{n - k}{2}$$</div>
+        <p>Применение: CD/DVD, QR-коды, космические связи (Voyager).</p>
+
+        <h3>LDPC-коды</h3>
+        <p>Коды с низкой плотностью проверок на четность. Близки к пределу Шеннона:</p>
+        <div class="formula">$$d \approx C \cdot n \quad (n \to \infty)$$</div>
+        <p>Применение: Wi-Fi (802.11n/ac/ax), DVB-S2, 5G NR.</p>
+
+        <h3>Сравнение</h3>
+        <table>
+            <tr><th>Код</th><th>Тип</th><th>Исправления</th><th>Сложность декодирования</th></tr>
+            <tr><td>Рида-Соломона</td><td>Блочный</td><td>$t$ ошибок</td><td>$O(n \log^2 n)$</td></tr>
+            <tr><td>LDPC</td><td>Блочный</td><td>$\approx n(1-H^{-1}(d/n))$</td><td>$O(n)$ (belief propagation)</td></tr>
+            <tr><td>Турбо-коды</td><td>Скремблированные</td><td>ближе к пределу Шеннона</td><td>$O(n \log n)$</td></tr>
+            <tr><td>Polar</td><td>Блочный</td><td> capacity-achieving</td><td>$O(n \log n)$</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с математикой и физикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Математика:</strong> Теория информации основана на теории вероятностей (энтропия — функция распределения), линейной алгебре (коды — линейные подпространства) и теории графов (LDPC-коды — графы проверок).</p>
+        <p><strong>Физика:</strong> Связь с термодинамикой — энтропия Шеннона совпадает с термодинамической энтропией (Больцман: $S = k_B \ln W$). Maxwell's demon разрешается через информационную энтропию (Landauer's principle: $E_{\min} = k_B T \ln 2$ на стирание бита).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>P vs NP:</strong> Сжатие данных — классическая NP-задача. Минимальная длина кода для заданного распределения — NP-трудная задача (показано для общего случая). Теория информации даёт нижние оценки на сложность.</p>
+        <p><strong>Риман:</strong> Энтропия распределения простых чисел связана с поведением $\zeta(s)$. Формула подсчёта простых (через $\zeta$) — фундаментальный результат теории информации.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <div class="optimization">
+        <h3>Оптимизация для LLM</h3>
+        <p><strong>Кэширование:</strong> Формулы энтропии, кодов, канальной ёмкости — переиспользовать для генерации упражнений.</p>
+        <p><strong>Экстраполяция:</strong> Знание основ теории информации позволяет решать задачи по сжатию, передаче данных, криптографии.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
