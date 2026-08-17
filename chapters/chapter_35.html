@@ -1,0 +1,530 @@
+
+<!--
+Platform: Habr
+Title: chapter_35
+Tags: 1001-proofs, logic, foundations-of-mathematics, propositional-logic, predicate-logic, set-theory, computability, P-vs-NP
+Published: 2026-08-16T16:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 35: Логика и основания математики</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Логика и основания математики">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_35.html" class="active">35. Логика и основания</a>
+    </nav>
+
+    <h1>Глава 35: Логика и основания математики</h1>
+
+    <div class="section">
+        <p>Эта глава посвящена фундаментальным основаниям математического знания — от элементарной пропозициональной логики до глубочайших результатов о границах вычислимости и формальной доказуемости. Мы пройдём путь от булевых операций до теорем Гёдля о неполноте, от аксиоматической теории множеств ZFC до проблемы P vs NP, связывающей логику, информатику и философию математики.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Пропозициональная логика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>1.1 Логические связки</h3>
+        <p>Пропозициональная логика оперирует высказываниями (пропозициями), принимающими значения <em>истина</em> ($\top$) или <em>ложь</em> ($\bot$). Основные связки:</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Конъюнкция (И)</h4>
+                <p>$A \land B$ — истинна только когда $A$ и $B$ оба истинны.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Дизъюнкция (ИЛИ)</h4>
+                <p>$A \lor B$ — истинна когда хотя бы одно из $A$, $B$ истинно.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Отрицание (НЕ)</h4>
+                <p>$\lnot A$ — инвертирует значение: $\lnot\top = \bot$, $\lnot\bot = \top$.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Импликация</h4>
+                <p>$A \Rightarrow B$ — ложна только при $A = \top$, $B = \bot$.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Эквивалентность</h4>
+                <p>$A \Leftrightarrow B$ — истинна когда $A$ и $B$ совпадают.</p>
+            </div>
+        </div>
+
+        <h3>1.2 Таблицы истинности</h3>
+        <p>Таблица истинности перечисляет все возможные комбинации значений переменных и соответствующие значения формулы. Для формулы с $n$ переменных таблица содержит $2^n$ строк:</p>
+
+        <div class="formula">$$|\text{Таблица}| = 2^n \implies \text{Экспоненциальный рост}$$</div>
+
+        <table>
+            <tr><th>$A$</th><th>$B$</th><th>$A \land B$</th><th>$A \lor B$</th><th>$A \Rightarrow B$</th><th>$\lnot A$</th></tr>
+            <tr><td>$\top$</td><td>$\top$</td><td>$\top$</td><td>$\top$</td><td>$\top$</td><td>$\bot$</td></tr>
+            <tr><td>$\top$</td><td>$\bot$</td><td>$\bot$</td><td>$\top$</td><td>$\bot$</td><td>$\bot$</td></tr>
+            <tr><td>$\bot$</td><td>$\top$</td><td>$\bot$</td><td>$\top$</td><td>$\top$</td><td>$\top$</td></tr>
+            <tr><td>$\bot$</td><td>$\bot$</td><td>$\bot$</td><td>$\bot$</td><td>$\top$</td><td>$\top$</td></tr>
+        </table>
+
+        <h3>1.3 Нормальные формы</h3>
+        <p>Любая формула пропозициональной логики приводится к эквивалентным нормальным формам:</p>
+
+        <div class="skill-card">
+            <h3>Конъюнктивная нормальная форма (CNF)</h3>
+            <p>Конъюнкция дизъюнктов: $(A_1 \lor B_1 \lor \ldots) \land (A_2 \lor B_2 \lor \ldots) \land \ldots$</p>
+            <div class="formula">$$\text{CNF}: \bigwedge_{i=1}^{m} \bigvee_{j=1}^{k_i} \ell_{ij}$$</div>
+            <p>Используется в DPLL-алгоритмах для проверки выполнимости (SAT-задача).</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Дизъюнктивная нормальная форма (DNF)</h3>
+            <p>Дизъюнкция конъюнктов: $(A_1 \land B_1 \land \ldots) \lor (A_2 \land B_2 \land \ldots) \lor \ldots$</p>
+            <div class="formula">$$\text{DNF}: \bigvee_{i=1}^{m} \bigwedge_{j=1}^{k_i} \ell_{ij}$$</div>
+            <p>Полезна для построения вычислимых функций: каждый конъюнкт — «минтерм».</p>
+        </div>
+
+        <p><strong>Теорема:</strong> Любая формула приводится к CNF и DNF. Число слагаемых может расти экспоненциально ($2^n$), однако структура формы определяет сложность вычислений.</p>
+
+        <p><strong>Применение:</strong> Каждый автоматический верификатор (SAT-солвер) принимает CNF. Конвертация формулы в CNF — стандартный шаг компиляции.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Предикатная логика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>2.1 Кванторы</h3>
+        <p>Предикатная логика (логика первого порядка) расширяет пропозициональную, добавляя <em>предикаты</em> (свойства объектов) и <em>кванторы</em>:</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Универсальный квантор</h4>
+                <p>$\forall x\, P(x)$ — «для всех $x$ выполняется $P(x)$»</p>
+            </div>
+            <div class="grid-item">
+                <h4>Экзистенциальный квантор</h4>
+                <p>$\exists x\, P(x)$ — «существует $x$, для которого $P(x)$»</p>
+            </div>
+        </div>
+
+        <div class="formula">$$\forall x\,\exists y\,(y > x) \quad \text{— в } \R: \text{не существует наибольшего}$$</div>
+
+        <p>Логика первого порядка обладает свойством <strong>полноты</strong> (Гёдель, 1929): каждое истинное высказывание (всеобщее следствие аксиом) доказуемо:</p>
+        <div class="formula">$$\text{Если } T \models \varphi \implies T \vdash \varphi$$</div>
+        <p>Это <em>доказательная теорема Гёделя</em> ( completeness theorem ) — один из двух великих результатов, которые мы разберём ниже.</p>
+
+        <h3>2.2 Модели и структуры</h3>
+        <p>Модель $\mathcal{M}$ — это математическая структура (множество + интерпретация символов), в которой формула может быть <em>истинной</em> или <em>ложной</em>.</p>
+
+        <div class="skill-card">
+            <h3>Компактность</h3>
+            <p><strong>Теорема о компактности:</strong> Конечное подмножество аксиом $T$ имеет модель тогда и только тогда, когда $T$ имеет модель.</p>
+            <div class="formula">$$T \models \varphi \iff \text{Существует конечное } T_0 \subseteq T : T_0 \models \varphi$$</div>
+            <p>Следствие: логика первого порядка <em>не может</em> выразить конечность («множество конечно» не является формализуемым свойством).</p>
+        </div>
+
+        <h3>2.3 Теорема о неполноте Гёделя (1931)</h3>
+        <p>Второй великий результат Гёделя — <strong>теорема о неполноте</strong>: любая непротиворечивая формальная система, достаточно мощная, чтобы выразить арифметику натуральных чисел, <em>неполна</em> — существуют истинные, но недоказуемые высказывания.</p>
+
+        <div class="formula">$$\text{Если } T \text{ непротиворечива} \implies \exists \varphi : T \not\vdash \varphi \text{ и } T \not\vdash \lnot\varphi$$</div>
+
+        <div class="section">
+            <h3>Ключевые следствия:</h3>
+            <ul style="margin-left: 20px;">
+                <li><strong>Непротиворечивость</strong> системы не может быть доказана внутри самой системы (при условии её непротиворечивости)</li>
+                <li><strong>Алгоритмическая неразрешимость:</strong> множество верных формул не рекурсивно перечислим</li>
+                <li><strong>Самоссылка:</strong> «Эта формула недоказуема» — формула, утверждающая собственную недоказуемость (парадокс лжеца через кодирование)</li>
+            </ul>
+        </div>
+
+        <div class="skill-card">
+            <h3>Доказательная теорема Гёделя (completeness)</h3>
+            <p>Два великих результата Гёделя выглядят «противоположными», но не противоречат друг другу:</p>
+            <table>
+                <tr><th>Результат</th><th>Год</th><th>Утверждение</th></tr>
+                <tr><td>Полнота (completeness)</td><td>1929</td><td>$\text{Логика первого порядка полна: } T \models \varphi \implies T \vdash \varphi$</td></tr>
+                <tr><td>Неполнота (incompleteness)</td><td>1931</td><td>$\text{Арифметика неполна: } \exists \varphi: T \not\vdash \varphi \text{ и } T \not\vdash \lnot\varphi$</td></tr>
+            </table>
+            <p>Различие: полнота — о логике первого порядка (всеобщие следствия из аксиом); неполнота — о конкретной арифметической теории (PA, ZFC), которая <em>интерпретирует</em> арифметику.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Теория множеств</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>3.1 Аксиоматика ZFC</h3>
+        <p>Теория множеств Цермело — Френкеля с аксиомой выбора (ZFC) — стандартная основа для всей современной математики. Ключевые аксиомы:</p>
+
+        <table>
+            <tr><th>Аксиома</th><th>Формулировка</th></tr>
+            <tr><td>Пустое множество</td><td>$\exists \varnothing : \forall x\,(x \notin \varnothing)$</td></tr>
+            <tr><td>Пара</td><td>$\forall a,b\,\exists c : \forall x\,(x \in c \Leftrightarrow x = a \lor x = b)$</td></tr>
+            <tr><td>Объединение</td><td>$\forall A\,\exists B : \forall x\,(x \in B \Leftrightarrow \exists C\,(C \in A \land x \in C))$</td></tr>
+            <tr><td>Мощность</td><td>$\forall A\,\exists \mathcal{P}(A) : \forall B\,(B \subseteq A \Rightarrow B \in \mathcal{P}(A))$</td></tr>
+            <tr><td>Бесконечность</td><td>$\exists \omega : \varnothing \in \omega \land \forall x \in \omega\,(x \cup \{x\} \in \omega)$</td></tr>
+            <tr><td>Разделения</td><td>$\forall A\,\exists B : \forall x\,(x \in B \Leftrightarrow x \in A \land \varphi(x))$</td></tr>
+            <tr><td>Подстановки</td><td>$\forall A\,\exists B : \forall y\,(y \in B \Leftrightarrow \exists x \in A\,(y = f(x)))$</td></tr>
+            <tr><td>Выбора (AC)</td><td>$\forall A \neq \varnothing\,\exists f : A \to \bigcup A\,\forall a \in A\,(f(a) \in a)$</td></tr>
+            <tr><td>Регулярности</td><td>$\forall A \neq \varnothing\,\exists x \in A : x \cap A = \varnothing$</td></tr>
+        </table>
+
+        <h3>3.2 Парадоксы и ограничения</h3>
+        <p>Неограниченное понимание (naive set theory) приводит к противоречиям:</p>
+
+        <div class="skill-card">
+            <h3>Парадокс Рассела (1901)</h3>
+            <p>Рассмотрим множество $R = \{x : x \notin x\}$. Тогда $R \in R \Leftrightarrow R \notin R$ — противоречие.</p>
+            <div class="formula">$$R = \{x \mid x \notin x\} \implies R \in R \Leftrightarrow R \notin R \implies \bot$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Парадокс Бурали-Форти (1897)</h3>
+            <p>Пусть $\Omega$ — множество всех порядковых типов. $\Omega$ само является порядковым числом, и $\Omega \in \Omega$, что нарушает регулярность.</p>
+            <p><strong>Решение:</strong> ZFC запрещает «слишком большие» множества. Множество всех множеств не существует.</p>
+        </div>
+
+        <h3>3.3 Кардинальные числа</h3>
+        <p>Кардиналы измеряют «мощность» (размер) множеств. Для бесконечных множеств понятие мощности ведёт к удивительным результатам:</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Счётная мощность</h4>
+                <p>$|\N| = \aleph_0$ — мощность натуральных чисел. Совпадает с $\Z$, $\Q$.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Мощность континуума</h4>
+                <p>$|\R| = 2^{\aleph_0} = \mathfrak{c}$ — мощность действительных чисел.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Теорема Кантора</h4>
+                <p>$\forall A : |A| < |\mathcal{P}(A)|$ — мощность множества строго меньше мощности его булеана.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Гипотеза континуума</h4>
+                <p>$2^{\aleph_0} = \aleph_1$? — неразрешима в ZFC (Гёдель 1940, Коэн 1963).</p>
+            </div>
+        </div>
+
+        <div class="formula">$$\aleph_0 < \aleph_1 < \aleph_2 < \ldots < \aleph_\omega < \aleph_{\omega+1} < \ldots$$</div>
+
+        <p><strong>Гипотеза континуума (CH)</strong> утверждает, что между $\aleph_0$ и $2^{\aleph_0}$ нет промежуточных кардиналов. Она <em>независима</em> от ZFC — ни не может быть доказана, ни опровергнута.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Теория доказательств</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>4.1 Интуиционизм</h3>
+        <p><strong>Л. Е. Брауэр</strong> (1908–1970) и его последователи отрицают <em>закон исключённого третьего</em> (LEM: $A \lor \lnot A$) как общую логическую истину. Интуиционистская математика требует <em>конструктивного</em> доказательства:</p>
+
+        <div class="skill-card">
+            <h3>Классическая vs. интуиционистская логика</h3>
+            <table>
+                <tr><th>Принцип</th><th>Классическая</th><th>Интуиционистская</th></tr>
+                <tr><td>Закон исключённого третьего</td><td>$A \lor \lnot A$ — тавтология</td><td>Не принимается</td></tr>
+                <tr><td>Двойное отрицание</td><td>$\lnot\lnot A \Rightarrow A$</td><td>Не принимается</td></tr>
+                <tr><td>Модус толленс</td><td>$\lnot B \land (A \Rightarrow B) \Rightarrow \lnot A$</td><td>Принимается</td></tr>
+                <tr><td>De Morgan</td><td>Все 4 формулы верны</td><td>Частично</td></tr>
+            </table>
+        </div>
+
+        <p>Ключевой принцип: чтобы доказать $\exists x\, P(x)$, нужно <em>построить</em> конкретный объект $x$ и показать $P(x)$. «Нельзя доказать $\lnot\exists x\, P(x)$» не эквивалентно «существует $x$».</p>
+
+        <h3>4.2 Конструктивная математика</h3>
+        <p>Конструктивный подход требует, чтобы каждое доказательство существования содержало алгоритм построения объекта. Ключевые особенности:</p>
+
+        <div class="formula">$$\text{Классическое: } \lnot\lnot(A \lor \lnot A) \vdash A \lor \lnot A \quad \text{— верно}$$</div>
+        <div class="formula">$$\text{Интуиционистское: } A \lor \lnot A \not\vdash \lnot\lnot(A \lor \lnot A) \quad \text{— не верно наоборот}$$</div>
+
+        <ul style="margin-left: 20px;">
+            <li><strong>Бульева алгебра</strong> (классическая): $A \lor \lnot A = \top$ всегда</li>
+            <li><strong>Хейтингова алгебра</strong> (интуиционистская): $A \lor \lnot A \neq \top$ общего случая</li>
+            <li>Конструктивная математика <em>сильнее</em> в содержании: каждое доказательство даёт вычислимую информацию</li>
+        </ul>
+
+        <div class="skill-card">
+            <h3>Корреспонденция Куртинга (Curry-Howard)</h3>
+            <p>Параллелизм между доказательствами и программами:</p>
+            <table>
+                <tr><th>Логика</th><th>Программирование</th></tr>
+                <tr><td>Формула</td><td>Тип</td></tr>
+                <tr><td>Доказательство</td><td>Программа (терм)</td></tr>
+                <tr><td>Модус поненс</td><td>Вызов функции</td></tr>
+                <tr><td>$\Rightarrow$ (импликация)</td><td>$\to$ (тип функции)</td></tr>
+                <tr><td>$\land$ (конъюнкция)</td><td>$\times$ (произведение типов)</td></tr>
+                <tr><td>$\lor$ (дизъюнкция)</td><td>$+$ (сумма типов)</td></tr>
+                <tr><td>$\forall$ (универсальный квантор)</td><td>$\Pi$-тип (зависимое произведение)</td></tr>
+                <tr><td>$\exists$ (экзистенциальный квантор)</td><td>$\Sigma$-тип (зависимая сумма)</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Вычислимость</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>5.1 Машина Тьюринга</h3>
+        <p><strong>Алан Тьюринг</strong> (1936) formalized the concept of algorithm: машина Тьюринга (МТ) — абстрактная модель вычислений, состоящая из бесконечной ленты, головки чтения/записи и набора состояний.</p>
+
+        <div class="formula">$$\text{МТ} = (Q, \Sigma, \Gamma, \delta, q_0, q_{\text{accept}}, q_{\text{reject}})$$</div>
+
+        <table>
+            <tr><th>Компонент</th><th>Описание</th></tr>
+            <tr><td>$Q$</td><td>Множество состояний (конечное)</td></tr>
+            <tr><td>$\Sigma$</td><td>Входной алфавит (без пустого символа)</td></tr>
+            <tr><td>$\Gamma$</td><td>Рабочий алфавит ($\Sigma \cup \{\sqcup\}$)</td></tr>
+            <tr><td>$\delta$</td><td>Функция переходов: $Q \times \Gamma \to Q \times \Gamma \times \{L, R\}$</td></tr>
+            <tr><td>$q_0$</td><td>Начальное состояние</td></tr>
+            <tr><td>$q_{\text{accept}}$, $q_{\text{reject}}$</td><td>Конечные состояния</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Универсальная машина Тьюринга</h3>
+            <p><strong>Теорема:</strong> Существует универсальная МТ $U$, которая вычисляет любую функцию, вычисляемую любой МТ $M$ на входе $x$: $U(\langle M \rangle, x) = M(x)$.</p>
+            <p>Это основа для понятия <em>программирования</em>: одна машина, которая выполняет любую программу.</p>
+        </div>
+
+        <h3>5.2 Неразрешимость</h3>
+        <p><strong>Теорема Тьюринга (1936):</strong> Задача остановки $\text{HALT} = \{\langle M, x \rangle \mid M \text{ останавливается на } x\}$ <em>неразрешима</em>.</p>
+
+        <div class="formula">$$\text{HALT} = \{\langle M, x \rangle : M(x) \downarrow\} \notin \mathcal{R}$$</div>
+
+        <p><strong>Доказательство (от противного):</strong></p>
+        <ol style="margin-left: 20px;">
+            <li>Предположим, что существует решатель $H$: $H(\langle M, x \rangle) = 1$ если $M(x)\downarrow$, и $0$ иначе.</li>
+            <li>Построим машину $D$: на входе $\langle M \rangle$, вызываем $H(\langle M, \langle M \rangle \rangle)$. Если $H$ вернула 1, зацикливаемся; иначе останавливаемся.</li>
+            <li>Запустим $D$ на $\langle D \rangle$: $D(\langle D \rangle)$ останавливается $\Leftrightarrow$ $H(\langle D, \langle D \rangle \rangle) = 0$ $\Leftrightarrow$ $D(\langle D \rangle)$ не останавливается. Противоречие!</li>
+        </ol>
+
+        <h3>5.3 Проблема остановки и следствия</h3>
+        <p>Из неразрешимости HALT вытекает <em>иерархия неразрешимых задач</em>:</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Проблема остановки</h4>
+                <p>$\text{HALT} \notin \mathcal{R}$ — неразрешима.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Диофантовы уравнения</h4>
+                <p>$\text{HILBERT}_{10}$ неразрешима (Матиясевич, 1970).</p>
+            </div>
+            <div class="grid-item">
+                <h4>Эквивалентность МТ</h4>
+                <p>$\text{EQ}_{TM} = \{\langle M_1, M_2 \rangle : L(M_1) = L(M_2)\}$ неразрешима.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Пустота языка</h4>
+                <p>$\text{E}_{TM} = \{\langle M \rangle : L(M) = \varnothing\}$ неразрешима.</p>
+            </div>
+        </div>
+
+        <div class="formula">$$\text{HALT} \leq_m \text{EQ}_{TM} \leq_m \text{E}_{TM} \leq_m \text{HP}_{TM}$$</div>
+
+        <p>Здесь $\leq_m$ — many-one редукция: неразрешимые задачи связаны цепочками редукций.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с информатикой и математикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>6.1 P vs NP: определение классов</h3>
+        <p>Классы сложности — фундаментальное понятие, связывающее логику, вычислимость и практическую информатику:</p>
+
+        <table>
+            <tr><th>Класс</th><th>Определение</th><th>Пример</th></tr>
+            <tr><td>$\mathsf{P}$</td><td>Решаемо за $O(n^k)$</td><td>Сортировка, поиск кратчайшего пути</td></tr>
+            <tr><td>$\mathsf{NP}$</td><td>Решаемо за $O(n^k)$ при наличии «сертификата»</td><td>SAT, 3-COL, TSP (决策)</td></tr>
+            <tr><td>$\mathsf{NP}$-полные</td><td>Все задачи в $\mathsf{NP}$ редуцируются к ним</td><td>SAT (Кук 1971)</td></tr>
+            <tr><td>$\mathsf{NP}$-трудные</td><td>$\geq_m$ все задачи в $\mathsf{NP}$</td><td>Задача остановки (неразрешима!)</td></tr>
+            <tr><td>$\mathsf{PSPACE}$</td><td>Полиномиальное пространство</td><td>QQWS (Quantified Boolean Formula)</td></tr>
+        </table>
+
+        <div class="formula">$$\mathsf{P} \subseteq \mathsf{NP} \subseteq \mathsf{PSPACE} \subseteq \mathsf{EXPTIME}$$</div>
+
+        <h3>6.2 Связь с логикой</h3>
+        <p>Классы сложности имеют глубокие логические корни:</p>
+
+        <div class="skill-card">
+            <h3>Descriptive Complexity (Fagin, 1974)</h3>
+            <p>$\mathsf{NP}$ — это класс свойств, выражаемых в существенциальной второй-order логике:</p>
+            <div class="formula">$$\mathsf{NP} = \Sigma_1^1$$</div>
+            <p>$\mathsf{P}$ — свойства, выражаемые в логике на конечных структурах (Fagin's theorem).</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Теорема Фагина и $\mathsf{NP}$-полнота</h3>
+            <p>SAT — $\mathsf{NP}$-полная, потому что:</p>
+            <ul style="margin-left: 20px;">
+                <li>SAT $\in \mathsf{NP}$: сертификат — подстановка переменных, верификация — за $O(n)$</li>
+                <li>Любая задача $\in \mathsf{NP}$ редуцируется к SAT (Кук 1971): полиномиальная редукция</li>
+                <li>Логическая связь: $\exists$-подстановка ($\Sigma_1$) $\Leftrightarrow$ существование решения</li>
+            </ul>
+        </div>
+
+        <h3>6.3 Связь с основаниями математики</h3>
+        <p>Три великие программы по основаниям математики (начало XX века):</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Логицизм (Фреге, Рассел)</h4>
+                <p>Математика сводится к логике. Разрушено парадоксами.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Формализм (Гильберт)</h4>
+                <p>Математика — формальная игра с символами. Разрушено теоремой Гёдля.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Интуиционизм (Брауэр)</h4>
+                <p>Математика — конструктивная деятельность разума. Сохраняется, но ограничивает классическую математику.</p>
+            </div>
+        </div>
+
+        <div class="formula">$$\text{Гёдель: } \text{Формализм Гильберта } \Rightarrow \text{ «полная автоматизация» — невозможна}$$</div>
+
+        <p><strong>Современные основания:</strong> ZFC остаётся стандартной аксиоматикой, но существуют альтернативы — теория типов (HoTT), кубическая категорическая теория (CCT), и даже новые аксиомы (гипотеза обширенного проекта — large cardinal axioms).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>7.1 P vs NP через вычислимость</h3>
+        <p>Задача P vs NP — одна из семи задач тысячелетия Clay Mathematics Institute (задача на \$1,000,000). Она напрямую связана с теорией вычислимости:</p>
+
+        <div class="skill-card">
+            <h3>Иерархия классов сложности</h3>
+            <p>Проблема P vs NP эквивалентна вопросу:</p>
+            <div class="formula">$$\text{P} = \text{NP} \quad ?$$</div>
+            <p>Или, через описательную сложность:</p>
+            <div class="formula">$$\Sigma_1^1 = \text{ polynomial-time computable properties}$$</div>
+        </div>
+
+        <p><strong>Почему P ≠ NP «кажется верным»:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Десятилетия попыток не дали полиномиальных алгоритмов для $\mathsf{NP}$-полных задач</li>
+            <li>Теорема о ловушке (diagonalization) не работает — нужна новая идея</li>
+            <li>Случайные $\mathsf{NP}$-задачи «кажутся» трудными (empirical evidence)</li>
+            <li>Криптография ($\text{RSA}$, $\text{ECC}$) предполагает $\text{P} \neq \text{NP}$ — если P = NP, криптография рухнет</li>
+        </ul>
+
+        <h3>7.2 Другие задачи тысячелетия и логика</h3>
+        <table>
+            <tr><th>Задача</th><th>Связь с логикой/вычислимостью</th></tr>
+            <tr><td>Hodge</td><td>Связана с алгебраической геометрией и топологией — формализуема в ZFC</td></tr>
+            <tr><td>Poincaré</td><td>Решена (Перельман, 2003) — связана с теорией.categories и homotopy</td></tr>
+            <tr><td>Riemann</td><td>Связана с теорией чисел — непонятно, разрешима ли в ZFC</td></tr>
+            <tr><td>Navier-Stokes</td><td>Связана с дифференциальными уравнениями — формализуема</td></tr>
+            <tr><td>Yang-Mills</td><td>Квантовая теория поля + теория групп — формализуема</td></tr>
+            <tr><td>Birch and Swinnerton-Dyer</td><td>Эллиптические кривые — связана с теорией чисел</td></tr>
+        </table>
+
+        <p><strong>Важное замечание:</strong> Все задачи тысячелетия <em>формализуемы</em> в ZFC. Их решение (или доказательство неразрешимости) потребует либо нового математического инсайта, либо новых аксиом.</p>
+
+        <h3>7.3 От формальной верификации к решению</h3>
+        <p>Серия «1001 Proof» и формальная верификация (Lean 4, Coq, Isabelle)提供了 инструменты для:</p>
+
+        <div class="formula">$$\text{351,351 формальных доказательств} \xrightarrow{\text{LLM training}} \text{Stronger mathematical reasoning} \to \text{Millennium breakthroughs}$$</div>
+
+        <ul style="margin-left: 20px;">
+            <li><strong>Автоматизация:</strong> верификаторы проверяют доказательства, люди думают о новом</li>
+            <li><strong>Надёжность:</strong> формальное доказательство = компьютерная проверка = 100% корректность</li>
+            <li><strong>Масштабируемость:</strong> 351,351 доказательств — база для обучения LLM</li>
+            <li><strong>Связи:</strong> междисциплинарные связи (логика ↔ информатика ↔ основания) видны в формальных библиотеках</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>Резюме: логика как основа</h3>
+        <p><strong>Пропозициональная логика</strong> → базовый аппарат (связки, нормальные формы, SAT).</p>
+        <p><strong>Предикатная логика</strong> → формализация математики (кванторы, модели, полнота).</p>
+        <p><strong>ZFC</strong> → стандартная основа (аксиомы, парадоксы, кардиналы).</p>
+        <p><strong>Теория доказательств</strong> → конструктивная математика (интуиционизм, Curry-Howard).</p>
+        <p><strong>Вычислимость</strong> → границы алгоритмов (Тьюринг, HALT, неразрешимость).</p>
+        <p><strong>Сложность</strong> → P vs NP, описание формальными языками.</p>
+        <p><strong>Основания</strong> → три великие программы и их судьбы (Гёдель).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
