@@ -1,0 +1,326 @@
+<!--
+Platform: Habr
+Title: chapter_21
+Tags: biology, bioinformatics, genomics, proteomics
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 21: Биоинформатика и геномика</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Биоинформатика и геномика">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_21.html" class="active">21. Биоинформатика</a>
+    </nav>
+
+    <h1>Глава 21: Биоинформатика и геномика</h1>
+
+    <!-- ============================================ -->
+    <h2>1. Секвенсирование ДНК</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Методы секвенсирования</h3>
+        <p><strong>Секвенсирование</strong> — определение нуклеотидной последовательности ДНК. Современные методы делятся на три поколения:</p>
+        
+        <div class="grid">
+            <div class="grid-item">
+                <h4>1-е поколение: Sanger</h4>
+                <p>Классический метод终止子ного секвенсирования. Использует дидеоксинуклеотиды (ddNTPs) для обрыва цепи. Точность $&gt;99.99\%$, но низкая пропускная способность ($\sim 900$ нуклеотидов за чтение).</p>
+                <div class="formula">$$\text{Длина чтения} \sim 900\text{ bp}, \quad \text{Стоимость} \sim \$0.001/\text{bp}$$</div>
+            </div>
+            <div class="grid-item">
+                <h4>2-е поколение: NGS</h4>
+                <p>Параллельное секвенсирование (Illumina, Ion Torrent). Считывает миллионы фрагментов одновременно. Высокая пропускная способность, но короткие чтения ($150-300$ bp).</p>
+                <div class="formula">$$\text{Пропускная способность} \sim 10^9\text{ reads/run}, \quad \text{Стоимость} \sim \$0.000001/\text{bp}$$</div>
+            </div>
+            <div class="grid-item">
+                <h4>3-е поколение: Long-read</h4>
+                <p>PacBio (SMRT) и Nanopore (Oxford). Длинные чтения ($10-100$ kbp), но выше ошибки ($\sim 10\%$ для Nanopore). Позволяют определять метилирование и структурные вариации.</p>
+                <div class="formula">$$\text{Длина чтения} \sim 10-100\text{ kbp}, \quad \text{Ошибка} \sim 10^{-1}$$</div>
+            </div>
+        </div>
+
+        <h3>Математика секвенсирования</h3>
+        <p>Покрытие генома определяется формулой:</p>
+        <div class="formula">$$C = \frac{N \cdot L}{G}$$</div>
+        <p>где $C$ — покрытие, $N$ — количество чтений, $L$ — длина чтения, $G$ — размер генома. Для надёжной сборки требуется $C \geq 30$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Alignment и assembly</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Выравнивание последовательностей</h3>
+        <p><strong>Alignment</strong> — поиск оптимального выравнивания двух последовательностей для определения гомологии.</p>
+        
+        <div class="skill-card">
+            <h3>BLAST (Basic Local Alignment Search Tool)</h3>
+            <p>Эвристический алгоритм для быстрого поиска сходства. Состоит из трёх этапов:</p>
+            <ol style="margin-left: 20px;">
+                <li>Создание таблицы слов (word list) из запроса</li>
+                <li>Расширение точных совпадений (seeding)</li>
+                <li>Оценка статистической значимости ($E$-value)</li>
+            </ol>
+            <p>$E$-value = $K \cdot m \cdot n \cdot e^{-\lambda S}$, где $m, n$ — длины последовательностей, $S$ — Score.</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Needleman-Wunsch (глобальное выравнивание)</h3>
+            <p>Динамическое программирование для глобального выравнивания. Рекуррентное соотношение:</p>
+            <div class="formula">$$F(i,j) = \max\begin{cases}
+            F(i-1,j-1) + s(x_i, y_j) \\
+            F(i-1,j) + \delta \\
+            F(i,j-1) + \delta
+            \end{cases}$$</div>
+            <p>где $s(x_i, y_j)$ — матрица подстановки, $\delta$ — штраф за разрыв (gap penalty). Сложность: $\BigO(mn)$.</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Smith-Waterman (локальное выравнивание)</h3>
+            <p>Аналог Needleman-Wunsch, но с обнулением отрицательных значений для поиска локальных регионов сходства:</p>
+            <div class="formula">$$F(i,j) = \max\begin{cases}
+            0 \\
+            F(i-1,j-1) + s(x_i, y_j) \\
+            F(i-1,j) + \delta \\
+            F(i,j-1) + \delta
+            \end{cases}$$</div>
+        </div>
+
+        <h3>Сборка генома (Assembly)</h3>
+        <p>Восстановление полной последовательности генома из коротких чтений. Два основных подхода:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>De novo assembly</strong> — без референсного генома (de Bruijn графы, overlap graphs)</li>
+            <li><strong>Reference-based assembly</strong> — выравнивание на референс (BWA, Bowtie)</li>
+        </ul>
+        <p>Сложность de novo assembly: $\BigO(N \log N)$ для de Bruijn графа с $N$ Reads.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Филогенетика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Построение деревьев эволюции</h3>
+        <p><strong>Филогенетика</strong> — реконструкция эволюционных взаимоотношений между организмами на основе молекулярных данных.</p>
+        
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Distance-based methods</h4>
+                <p><strong>Neighbor-Joining:</strong> Агломеративный метод, минимизирующий общую длину дерева. Использует матрицу попарных дистанций $d_{ij}$.</p>
+                <div class="formula">$$\text{Цель: } \min \sum_{i&lt;j} d_{ij} \cdot \ell_{ij}$$</div>
+            </div>
+            <div class="grid-item">
+                <h4>Maximum Parsimony</h4>
+                <p>Минимизирует количество мутаций (различий) вдоль ветвей дерева. Ищет дерево с минимальным Score.</p>
+                <div class="formula">$$\text{Score}(T) = \sum_{\text{vertices}} \text{parsimony steps}$$</div>
+            </div>
+            <div class="grid-item">
+                <h4>Maximum Likelihood</h4>
+                <p>Находит дерево $T$, максимизирующее правдоподобие данных при заданной эволюционной модели $M$:</p>
+                <div class="formula">$$\hat{T} = \arg\max_T P(\text{Data} \mid T, M)$$</div>
+            </div>
+            <div class="grid-item">
+                <h4>Bayesian Inference</h4>
+                <p>Вычисляет апостериорное распределение деревьев:</p>
+                <div class="formula">$$P(T \mid \text{Data}) \propto P(\text{Data} \mid T) \cdot P(T)$$</div>
+            </div>
+        </div>
+
+        <h3>Молекулярные часы</h3>
+        <p>Гипотеза о постоянстве эволюционных изменений во времени. Скорость замен $\mu$:</p>
+        <div class="formula">$$d = 2\mu t$$</div>
+        <p>где $d$ — генетическое расстояние, $t$ — время дивергенции. Для нейтральных замен $\mu \approx 10^{-9}$ замен/нуклеотид/год.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Структура белков</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Предсказание трёхмерной структуры</h3>
+        <p><strong>Проблема фолдинга:</strong> предсказание 3D-структуры белка по аминокислотной последовательности. Одна из ключевых задач биоинформатики.</p>
+
+        <div class="skill-card">
+            <h3>AlphaFold (DeepMind)</h3>
+            <p>Нейросеть, использующая attention-механизмы для предсказания межостатковых расстояний. Точность $&gt;90\%$ (GDT-TS score).</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Вход:</strong> аминокислотная последовательность + MSA (multiple sequence alignment)</li>
+                <li><strong>Выход:</strong> координаты C$\alpha$ атомов + confidence scores (pLDDT)</li>
+            </ul>
+            <div class="formula">$$\text{pLDDT} = \frac{1}{N} \sum_{i=1}^N \text{LDDT}_i$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Свободная энергия фолдинга</h3>
+            <p>Термодинамическая стабильность белка определяется изменением свободной энергии Гиббса:</p>
+            <div class="formula">$$\Delta G_{\text{fold}} = \Delta H - T \Delta S$$</div>
+            <p>Где $\Delta H$ — энтальпия (водородные связи, ван-дер-ваальсовы силы), $T$ — температура, $\Delta S$ — энтропия (конформационная энтропия, гидрофобный эффект).</p>
+            <p>Стабильные белки имеют $\Delta G_{\text{fold}} \approx -20$ до $-60$ кДж/моль.</p>
+        </div>
+
+        <h3>Уровни структуры белка</h3>
+        <table>
+            <tr><th>Уровень</th><th>Описание</th><th>Масштаб</th></tr>
+            <tr><td>Первичная</td><td>Последовательность аминокислот</td><td>$\sim 1$ нм</td></tr>
+            <tr><td>Вторичная</td><td>$\alpha$-спирали, $\beta$-листы</td><td>$\sim 1-2$ нм</td></tr>
+            <tr><td>Третичная</td><td>3D-упаковка домена</td><td>$\sim 2-5$ нм</td></tr>
+            <tr><td>Четвертичная</td><td>Ассоциация нескольких субъединиц</td><td>$&gt;5$ нм</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Связь с химией и физикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Ферменты и метаболизм</h3>
+        <p><strong>Ферменты</strong> — белки-катализаторы, ускоряющие биохимические реакции. Кинетика Михаэлиса-Ментен:</p>
+        <div class="formula">$$v = \frac{V_{\max} [S]}{K_m + [S]}$$</div>
+        <p>где $v$ — скорость реакции, $V_{\max}$ — максимальная скорость, $[S]$ — концентрация субстрата, $K_m$ — константа Михаэлиса.</p>
+        
+        <p><strong>Метаболические пути</strong> — сети ферментативных реакций. Анализ потока (flux balance analysis):</p>
+        <div class="formula">$$\mathbf{S} \cdot \mathbf{v} = 0$$</div>
+        <p>где $\mathbf{S}$ — стехиометрическая матрица, $\mathbf{v}$ — вектор скоростей реакций.</p>
+
+        <h3>Термодинамика белков</h3>
+        <p>Взаимодействия белков с лиандами описываются константами диссоциации:</p>
+        <div class="formula">$$K_d = \frac{[P][L]}{[PL]} = e^{\Delta G^\circ / RT}$$</div>
+        <p>где $\Delta G^\circ$ — стандартная энергия Гиббса, $R = 8.314$ Дж/(моль·К), $T$ — температура.</p>
+        
+        <p><strong>Гидрофобный эффект</strong> — основная движущая сила фолдинга:</p>
+        <div class="formula">$$\Delta G_{\text{hydro}} = \Delta H_{\text{hydro}} - T \Delta S_{\text{hydro}}$$</div>
+        <p>При $T = 310$ К (37°C) $\Delta G_{\text{hydro}} \approx -25$ Дж/моль на гидрофобный атом.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Задача Бёрча и Свиннертон-Дайера (BSD)</strong> — одна из задач тысячелетия, связанная с эллиптическими кривыми над $\Q$:</p>
+        <div class="formula">$$E: y^2 = x^3 + ax + b, \quad a, b \in \Q$$</div>
+        <p>Гипотеза BSD утверждает, что ранг $r$ группы рациональных точек $E(\Q)$ равен порядку нуля $L(E, s)$ в $s = 1$.</p>
+
+        <h3>Эллиптические кривые в криптографии ДНК</h3>
+        <p><strong>ДНК-криптография</strong> использует свойства ДНК для шифрования данных. Сочетание с эллиптическими кривыми даёт гибридную систему:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Кодирование:</strong> Преобразование ДНК в точки эллиптической кривой: $A \to (x_1, y_1)$, $T \to (x_2, y_2)$, $G \to (x_3, y_3)$, $C \to (x_4, y_4)$</li>
+            <li><strong>Шифрование:</strong> Умножение точки на скаляр (ECC): $Q = k \cdot P$, где $k$ — секретный ключ</li>
+            <li><strong>Стойкость:</strong> Проблема дискретного логарифмирования на эллиптических кривых (ECDLP)</li>
+        </ul>
+
+        <div class="formula">$$\text{Безопасность} \sim 2^{128} \text{ операций (при } n = 256\text{ бит)}$$</div>
+
+        <p><strong>Связь с геномикой:</strong> Хранение данных в синтетической ДНК требует эффективного кодирования и纠错. Коды Рида-Соломона, используемые в ECC, применяются и для纠错 ДНК-данных.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Оптимизация для LLM</h2>
+    <!-- ============================================ -->
+
+    <div class="optimization">
+        <h3>Структура данных для обучения</h3>
+        <p>Каждый факт биоинформатики формализуется как:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Определение:</strong> Термин + контекст</li>
+            <li><strong>Формула:</strong> Математическая запись с объяснением переменных</li>
+            <li><strong>Пример:</strong> Конкретный случай (organism, gene, mutation)</li>
+            <li><strong>Связи:</strong> Ссылки на другие главы (химия, физика, информатика)</li>
+        </ul>
+        
+        <h3>Параллельная генерация</h3>
+        <pre># Паттерн генерации биоинформатических фактов
+for topic in ['sequencing', 'alignment', 'phylogenetics', 'proteomics']:
+    for subtopic in topic.subtopics:
+        fact = generate_fact(subtopic)
+        verify(fact)  # проверка биологической корректности
+        if passed: save(fact)
+        else: refine(fact) → retry(up_to=3)</pre>
+        
+        <h3>Метрики качества</h3>
+        <div class="formula">$$\text{Accuracy} = \frac{\text{биологически корректных утверждений}}{\text{всего утверждений}} \times 100\%$$</div>
+        <p>Целевой показатель: $&gt;95\%$ точности для учебных материалов.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
