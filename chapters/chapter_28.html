@@ -1,0 +1,377 @@
+
+<!--
+Platform: Habr
+Title: chapter_28
+Tags: 1001-proofs, geology, geoscience, climate, oceanography, earth-sciences
+Published: 2026-08-16T16:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 28: Науки о Земле — от минералов до климата</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Науки о Земле">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_28.html" class="active">28. Науки о Земле</a>
+    </nav>
+
+    <h1>Глава 28: Науки о Земле — от минералов до климата</h1>
+
+    <div class="section">
+        <p><strong>Науки о Земле</strong> (Earth Sciences) объединяют комплекс дисциплин, изучающих строение, состав и динамику планеты: от атомарных структур минералов до глобальных климатических систем. В этом разделе мы проследим, как фундаментальные законы физики и химии проявляются в геологических процессах и почему задачи тысячелетия напрямую связаны с пониманием Земли.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Минералогия — кристаллические структуры и классификация</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Кристаллическая решётка</h3>
+        <p>Каждый минерал определяется своей кристаллической структурой — периодическим расположением атомов в пространстве. Симметрия решётки описывается <strong>230 пространственными группами</strong> — это точное математическое следствие комбинации 14 бракеевских решёток и 32 точечных групп симметрии.</p>
+        <div class="formula">$$\text{Бракеевские решётки} = 7\;\text{систем} \times \text{центрирования} \to 14\;\text{решёток}$$</div>
+        <p>Закон Брэга определяет условия дифракции рентгеновских лучей на кристалле:</p>
+        <div class="formula">$$n\lambda = 2d\sin\theta$$</div>
+        <p>где $n$ — порядок дифракции, $\lambda$ — длина волны, $d$ — межплоскостное расстояние, $\theta$ — угол Брэга. Это прямое следствие волновой природы света и периодичности решётки.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Классификация минералов</h3>
+        <p>Основные классы по химическому составу:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Силикаты</h4><p>$[\ce{SiO4}]^{4-}$ — тетраэдр. 92% земной коры. Оливин, полевые шпаты, слюды, амфиболы.</p></div>
+            <div class="grid-item"><h4>Оксиды</h4><p>$\ce{Fe2O3}$, $\ce{TiO2}$, $\ce{Al2O3}$. Магнетит, гематит, рутил, корунд.</p></div>
+            <div class="grid-item"><h4>Сульфиды</h4><p>$\ce{FeS2}$ (пирит), $\ce{CuFeS2}$ (халькопирит). Руды цветных металлов.</p></div>
+            <div class="grid-item"><h4>Карбонаты</h4><p>$[\ce{CO3}]^{2-}$. Кальцит $\ce{CaCO3}$, доломит $\ce{CaMg(CO3)2}$.</p></div>
+            <div class="grid-item"><h4>Фосфаты</h4><p>$[\ce{PO4}]^{3-}$. Апатит $\ce{Ca5(PO4)3(OH,F,Cl)}$ — основа костей и зубов.</p></div>
+            <div class="grid-item"><h4>Самородные элементы</h4><p>$\ce{Au}$, $\ce{Ag}$, $\ce{Cu}$, $\ce{S}$, $\ce{C}$ (алмаз, графит).</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Твёрдость по Моосу</h3>
+        <p>Шкала твёрдости Мооса — ранжированная, не абсолютная. Твёрдость алмаза в абсолютных единицах (ickers):</p>
+        <div class="formula">$$H_{\text{алмаз}} \approx 10\,000\;\text{HV} \gg H_{\text{корунд}} \approx 2\,000\;\text{HV}$$</div>
+        <p>Разница в 100 раз между смежными значениями 9 и 10 — шкала логарифмическая по сути.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Геология — тектоника, вулканизм, сейсмология, стратиграфия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Тектоника литосферных плит</h3>
+        <p>Земная кора разделена на <strong>15 основных литосферных плит</strong>, движущихся со скоростями $1\text{–}15\;\text{см/год}$ на подстилающей астеносфере. Движение описывается параметрами срединно-океанических хребтов и зон субдукции.</p>
+        <div class="formula">$$\vec{v}_{\text{плита}} = \vec{v}_{\text{спрединг}} + \vec{v}_{\text{субдукция}} + \vec{v}_{\text{мантийный_поток}}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Скорости тектонических процессов</h3>
+        <table>
+            <tr><th>Процесс</th><th>Скорость</th><th>Пример</th></tr>
+            <tr><td>Спрединг</td><td>2–15 см/год</td><td>Атлантический хребет: 2.5 см/год</td></tr>
+            <tr><td>Субдукция</td><td>2–10 см/год</td><td>Тихий океан под Южную Америку</td></tr>
+            <tr><td>Коллизия</td><td>1–5 см/год</td><td>Индия → Евразия: 5 см/год</td></tr>
+            <tr><td>Поднятие Гималаев</td><td>5 мм/год</td><td>Эрозия vs поднятие</td></tr>
+            <tr><td>Эрозия</td><td>0.01–1 мм/год</td><td>Реки, ледники</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Сейсмология — волны и очаги землетрясений</h3>
+        <p>Энергия землетрясения измеряется шкалой магнитуд:</p>
+        <div class="formula">$$\log_{10} E_{\text{дж}} = 1.5\,M_w + 4.8$$</div>
+        <p>Разница в 1 единице магнитуды — это разница в энергии в $\approx 31.6$ раз. Землетрясение магнитуды 9释放яет энергию, эквивалентную $\approx 1.4 \times 10^{17}\;\text{Дж}$ — это $\sim 10\,000$ ядерных боеприпасов.</p>
+        <p><strong>Типы сейсмических волн:</strong></p>
+        <table>
+            <tr><th>Тип</th><th>Обозначение</th><th>Скорость</th><th>Среда</th></tr>
+            <tr><td>Продольная (P)</td><td>$v_P = \sqrt{(K + \frac{4}{3}\mu)/\rho}$</td><td>5–13 км/с</td><td>твёрдая + жидкость</td></tr>
+            <tr><td>Поперечная (S)</td><td>$v_S = \sqrt{\mu/\rho}$</td><td>3–7 км/с</td><td>только твёрдая</td></tr>
+            <tr><td>Поверхностная (Rayleigh)</td><td>$v_R \approx 0.92\,v_S$</td><td>2–5 км/с</td><td>поверхность</td></tr>
+            <tr><td>Поверхностная (Love)</td><td>$v_L = \sqrt{\mu/\rho}$</td><td>2–5 км/с</td><td>поверхность</td></tr>
+        </table>
+        <p>$K$ — модуль объёмного сжатия, $\mu$ — модуль сдвига, $\rho$ — плотность.</p>
+    </div>
+
+    <div class="section">
+        <h3>Стратиграфия — запись времени в породах</h3>
+        <p>Принцип суперпозиции: в не нарушённой толще отложений более древние слои лежат ниже年轻ых. Геохронологическая шкала:</p>
+        <table>
+            <tr><th>Эон</th><th>Эра</th><th>Период</th><th>Возраст (млн лет)</th></tr>
+            <tr><td rowspan="1">Архей</td><td>Нижний</td><td>Эоархей</td><td>4000–3600</td></tr>
+            <tr><td rowspan="2">Протерозой</td><td>Мезо- / Палео-</td><td>Различные</td><td>2500–541</td></tr>
+            <tr><td>Нео-</td><td>Эдикарий</td><td>635–541</td></tr>
+            <tr><td rowspan="3">Фанерозой</td><td>Палеозой</td><td>Кембрий–Пермь</td><td>541–252</td></tr>
+            <tr><td>Мезозой</td><td>Триас–Мел</td><td>252–66</td></tr>
+            <tr><td>Кайнозой</td><td>Палеоген–Четв.</td><td>66–наст. вр.</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Геохимия — изотопы, радиометрическое датирование, круговорот элементов</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Радиометрическое датирование</h3>
+        <p>Основной принцип: радиоактивный распад — экспоненциальный процесс:</p>
+        <div class="formula">$$N(t) = N_0 \, e^{-\lambda t}, \quad t_{1/2} = \frac{\ln 2}{\lambda}$$</div>
+        <p>где $N(t)$ — количество радиоактивного изотопа, $N_0$ — начальное количество, $\lambda$ — константа распада, $t_{1/2}$ — период полураспада.</p>
+        <p>Возраст породы определяется по соотношению родительского и дочернего изотопов:</p>
+        <div class="formula">$$t = \frac{1}{\lambda} \ln\left(1 + \frac{D^*}{N}\right)$$</div>
+        <p>где $D^*$ — количество дочернего изотопа, образовавшегося от распада.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Ключевые изотопные системы</h3>
+        <table>
+            <tr><th>Система</th><th>Период полураспада</th><th>Диапазон датирования</th><th>Применение</th></tr>
+            <tr><td>$\ce{^{40}K -> ^{40}Ar}$</td><td>1.25 млрд лет</td><td>100 тыс. – 4.5 млрд лет</td><td>Вулканические породы</td></tr>
+            <tr><td>$\ce{^{87}Rb -> ^{87}Sr}$</td><td>48.8 млрд лет</td><td>10 млн. – 4.5 млрд лет</td><td>Граниты, метаморфиты</td></tr>
+            <tr><td>$\ce{^{147}Sm -> ^{143}Nd}$</td><td>106 млрд лет</td><td>>100 млн. лет</td><td>Мантия, метеориты</td></tr>
+            <tr><td>$\ce{^{238}U -> ^{206}Pb}$</td><td>4.47 млрд лет</td><td>>10 млн. лет</td><td>Цирконы, урановые руды</td></tr>
+            <tr><td>$\ce{^{235}U -> ^{207}Pb}$</td><td>0.704 млрд лет</td><td>>10 млн. лет</td><td>Двуязерковое датирование</td></tr>
+            <tr><td>$\ce{^{14}C -> ^{14}N}$</td><td>5730 лет</td><td>до 50 тыс. лет</td><td>Органические остатки</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Круговорот элементов</h3>
+        <p>Геохимические циклы связывают атмосферу, гидросферу, литосферу и биосферу. Круговорот углерода:</p>
+        <div class="formula">$$\ce{CO2_{atm} <=>[photosynthesis][respiration] C_{org} ->[\text{погребение}] CO2_{lit} ->[\text{вулканизм}] CO2_{atm}}$$</div>
+        <p>Современная скорость антропогенного выброса $\ce{CO2}$: $\sim 9.5\;\text{Гт C/год}$ — в $\sim 100$ раз быстрее естественного вулканического потока ($\sim 0.1\;\text{Гт C/год}$).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Климатология — парниковые газы, данные ледниковых кернов, модели</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Парниковый эффект</h3>
+        <p>Средняя температура Земли без атмосферы:</p>
+        <div class="formula">$$T_{\text{эфф}} = \left(\frac{S(1-A)}{4\sigma}\right)^{1/4} \approx 255\;\text{К} \;(-18°\text{C})$$</div>
+        <p>где $S = 1361\;\text{Вт/м}^2$ — солнечная постоянная, $A \approx 0.30$ — альбедо, $\sigma = 5.67 \times 10^{-8}\;\text{Вт/(м}^2\text{К}^4)$ — постоянная Стефана-Больцмана.</p>
+        <p>Реальная температура $+15°\text{C}$ достигается за счёт парникового эффекта: $\Delta T \approx 33\;\text{К}$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Основные парниковые газы</h3>
+        <table>
+            <tr><th>Газ</th><th>Концентрация</th><th>Потенциал глобального потепления (GWP₁₀₀)</th><th>Источник</th></tr>
+            <tr><td>$\ce{CO2}$</td><td>421 ppm (2024)</td><td>1 (базовый)</td><td>Сжигание ископаемого топлива, дефорестация</td></tr>
+            <tr><td>$\ce{CH4}$</td><td>1.92 ppm</td><td>28</td><td>Сельское хозяйство, болота, газовые месторождения</td></tr>
+            <tr><td>$\ce{N2O}$</td><td>0.336 ppm</td><td>265</td><td>Удобрения, промышленность</td></tr>
+            <tr><td>$\ce{CFC-12}$</td><td>0.503 ppb</td><td>10,900</td><td>Хладагенты (запрещены Монреальским протоколом)</td></tr>
+            <tr><td>$\ce{H2O}$</td><td>~1% (варьируется)</td><td>положительная обратная связь</td><td>Испарение, усиливает $\ce{CO2}$-эффект</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Данные ледниковых кернов</h3>
+        <p>Керны из Антарктиды и Гренландии содержат пузырьки воздуха, сохранённые на протяжении до 800,000 лет. Корреляция $\ce{CO2}$ и температуры:</p>
+        <div class="formula">$$\Delta T \approx 3 \cdot \Delta[\ce{CO2}] \quad (\text{при } [\ce{CO2}] > 200\;\text{ppm})$$</div>
+        <p>Ледниковые данные показывают, что за последние 800,000 лет концентрация $\ce{CO2}$ колебалась в диапазоне 180–300 ppm. Текущие 421 ppm — <strong>нетипично высокое значение</strong> для плейстоцена.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модели климата</h3>
+        <p>Комплексные модели общей циркуляции (GCM) решают систему уравнений:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Уравнения Навье-Стокса</strong> для атмосферы и океана</li>
+            <li><strong>Уравнение непрерывности:</strong> $\dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \vec{v}) = 0$</li>
+            <li><strong>Уравнение теплопередачи:</strong> $c_p \dfrac{DT}{Dt} = \dfrac{1}{\rho}\dfrac{dp}{dt} + Q$</li>
+            <li><strong>Радиационный баланс:</strong> $R_{\text{net}} = S(1-A)/4 - \epsilon\sigma T^4 + \Delta R_{\text{парн}}$</li>
+        </ul>
+        <p><strong>Чувствительность климата</strong> (climate sensitivity): удвоение $\ce{CO2}$ даёт $\Delta T_s \approx 2.5\text{–}4.0°\text{C}$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Океанология — термохалинная циркуляция, течения, глубоководные процессы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Термохалинная циркуляция (THC)</h3>
+        <p>Глобальная «конвейерная лента» океана движется за счёт разницы плотности воды, определяемой температурой ($T$) и солёностью ($S$):</p>
+        <div class="formula">$$\rho = \rho(T, S, p) \approx \rho_0\left[1 - \alpha(T - T_0) + \beta(S - S_0)\right]$$</div>
+        <p>где $\alpha \approx 2 \times 10^{-4}\;\text{К}^{-1}$ — коэффициент термального расширения, $\beta \approx 8 \times 10^{-4}\;\text{псм}^{-1}$ — коэффициент солёности.</p>
+        <p>Плотная вода опускается в Северной Атлантике (NADW) и поднимается в Тихом и Южном океанах. Полный цикл: $\sim 1000$ лет.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Типы океанических течений</h3>
+        <div class="grid">
+            <div class="grid-item"><h4>Гираль</h4><p>Крупномасштабные закрученные течения. Глубина 100–1000 м. Скорость 0.1–1 м/с.</p></div>
+            <div class="grid-item"><h4>Гольфстрим</h4><p>Западное пограничное течение. 30 Sv ($1\;\text{Sv} = 10^6\;\text{м}^3/\text{с}$). Доставляет тепло в Европу.</p></div>
+            <div class="grid-item"><h4>Крупномасштабная вертикальная циркуляция</h4><p>THC. 15–20 Sv. Глубина до 4000 м. Время цикла ~1000 лет.</p></div>
+            <div class="grid-item"><h4>Приливные течения</h4><p>Период ~12.4 ч (полуочные). Скорость до 5 м/с в проливах.</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Глубоководные процессы</h3>
+        <p><strong>Термоклин</strong> — слой резкого изменения температуры на глубине 200–1000 м:</p>
+        <div class="formula">$$T(z) = T_{\text{пов}} + \Delta T \cdot e^{-z/H}$$</div>
+        <p>где $H$ — масштаб глубины термоклина ($\sim 500$ м).</p>
+        <p><strong>Химия глубоководных гидротерм:</strong></p>
+        <div class="formula">$$\ce{FeS + 2H2S + 2O2 -> Fe^{2+} + 3S^0 + 2H2O}$$</div>
+        <p>Температура черных курильщиков: до $400°\text{C}$ при давлении $\sim 250\;\text{атм}$. Вода не закипает благодаря давлению.</p>
+    </div>
+
+    <div class="section">
+        <h3>Океан и углеродный цикл</h3>
+        <p>Океан абсорбирует $\sim 25\%$ антропогенных выбросов $\ce{CO2}$:</p>
+        <div class="formula">$$\ce{CO2_{gas} <=> CO2_{aq} + H2O <=> H2CO3 <=> H+ + HCO3- <=> 2H+ + CO3^{2-}}$$</div>
+        <p>Углекислотный буфер определяет pH океана. Современное океаническое окисление: pH упал с 8.2 до 8.1 (на 0.1 ед. = +26% $[\ce{H+}]$) за 200 лет.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с физикой и химией</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Геофизика — физика Земли</h3>
+        <p>Все процессы в Земле описываются фундаментальными уравнениями физики:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Гравитация</h4><p>Уравнение Пуассона: $\nabla^2 \Phi = 4\pi G\rho$. Определяет форму Земли (облиат), приливы, движение ледников.</p></div>
+            <div class="grid-item"><h4>Термодинамика</h4><p>$dU = \delta Q - \delta W$. Энтальпия плавления ($\Delta H_f$), энтропия ($\Delta S$), энергия Гиббса ($\Delta G$).</p></div>
+            <div class="grid-item"><h4>Электромагнетизм</h4><p>Магнитное поле Земли: геодинамо. Уравнения Максвелла в проводящей мантии. Магнитные аномалии = палеомагнитный метод датирования.</p></div>
+            <div class="grid-item"><h4>Механика сплошных сред</h4><p>$\sigma_{ij} = C_{ijkl}\,\varepsilon_{kl}$ (закон Гука). Релаксация напряжений (вязкоупругость) определяет рельеф.</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Геохимия — химия Земли</h3>
+        <p>Распределение элементов в Земле описывается <strong>правилом Гольдшмидта</strong>:</p>
+        <table>
+            <tr><th>Класс</th><th>Аффинность</th><th>Местонахождение</th><th>Примеры</th></tr>
+            <tr><td>Сидерофильные</td><td>Fe, Ni</td><td>Ядро</td><td>Fe, Ni, Co, Pt, Au</td></tr>
+            <tr><td>Халькофильные</td><td>S</td><td>Мантия + кора</td><td>Cu, Zn, Pb, Ag</td></tr>
+            <tr><td>Литофильные</td><td>O, Si</td><td>Кора</td><td>Si, Al, Ti, Na, K, Ca</td></tr>
+            <tr><td>Атмофильные</td><td>газы</td><td>Атмосфера</td><td>N, O, H, C, S, Cl</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс в океанологии</h3>
+        <p>Течения океана описываются уравнениями Навье-Стокса для вязкой несжимаемой жидкости:</p>
+        <div class="formula">$$\rho\left(\frac{\partial \vec{v}}{\partial t} + (\vec{v}\cdot\nabla)\vec{v}\right) = -\nabla p + \mu\nabla^2\vec{v} + \rho\vec{g} - 2\rho\,\vec{\Omega}\times\vec{v} + \vec{F}_{\text{прил}}$$</div>
+        <p>где $\vec{\Omega}$ — угловая скорость вращения Земли, $-2\rho\,\vec{\Omega}\times\vec{v}$ — сила Кориолиса, $\vec{F}_{\text{прил}}$ — приливные силы.</p>
+        <p><strong>Задача тысячелетия:</strong> доказать существование и гладкость решений 3D Навье-Стокса. Для океанологии это означает:</p>
+        <ul style="margin-left: 20px;">
+            <li>Стабильность термохалинной циркуляции (AMOC — Атлантическая меридиональная циркуляция)</li>
+            <li>Предсказуемость океанических течений на декадных масштабах</li>
+            <li>Турбулентность в пограничных слоях океана</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Термодинамика климата</h3>
+        <p>Климатическая система — термодинамическая машина:</p>
+        <div class="formula">$$\Delta S_{\text{климат}} = \frac{Q_{\text{Солнце}}}{T_{\text{Солнце}}} - \frac{Q_{\text{Земля}}}{T_{\text{Земля}}} > 0$$</div>
+        <p>Карно КПД климатической системы:</p>
+        <div class="formula">$$\eta = 1 - \frac{T_{\text{Земля}}}{T_{\text{Солнце}}} \approx 1 - \frac{288}{5778} \approx 0.95 = 95\%$$</div>
+        <p>Земля — эффективный тепловой двигатель с огромным КПД. Нарушение баланса (增加 $\ce{CO2}$) =增加 $Q_{\text{Земля}}$ (меньше уходит в космос) = рост $T_{\text{Земля}}$.</p>
+    </div>
+
+    <div class="section">
+        <h3>Проблема масштабов</h3>
+        <p>Науки о Земле охватывают диапазон масштабов:</p>
+        <div class="formula">$$\underbrace{10^{-10}\;\text{м}}_{\text{атом}} \;\to\; \underbrace{10^{7}\;\text{м}}_{\text{поперечник Земли}} \;\to\; \underbrace{10^{26}\;\text{м}}_{\text{Вселенная}}$$</div>
+        <table>
+            <tr><th>Процесс</th><th>Масштаб</th><th>Время</th></tr>
+            <tr><td>Кристаллизация минерала</td><td>$10^{-10}$–$10^{-3}$ м</td><td>минуты – тысячи лет</td></tr>
+            <tr><td>Вулканическая эрупция</td><td>$10^3$–$10^6$ м</td><td>часы – месяцы</td></tr>
+            <tr><td>Орогенез</td><td>$10^5$–$10^7$ м</td><td>$10^6$–$10^8$ лет</td></tr>
+            <tr><td>Климатические циклы</td><td>$10^7$ м (глобально)</td><td>$10^3$–$10^6$ лет</td></tr>
+            <tr><td>Континентальный дрейф</td><td>$10^6$–$10^7$ м</td><td>$10^7$–$10^9$ лет</td></tr>
+        </table>
+    </div>
+
+    <div class="optimization">
+        <h3>Оптимизация изучения наук о Земле</h3>
+        <p><strong>Ускорение x10:</strong> Численные методы для уравнений Навье-Стокса (FVM/FEM) позволяет моделировать глобальную циркуляцию с разрешением ~10 км.</p>
+        <p><strong>Ускорение x100:</strong> Machine learning параметризации (нейросетевые замены турбулентных моделей) ускоряют GCM в 100–1000 раз.</p>
+        <p><strong>Ускорение x1000:</strong> Квантовые компьютеры могут моделировать молекулярную динамику минералов и катализ в гидротермах на атомном уровне.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof — <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
