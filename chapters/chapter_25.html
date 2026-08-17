@@ -1,0 +1,438 @@
+
+<!--
+Platform: Habr
+Title: chapter_25
+Tags: 1001-proofs, chemistry, organic, physical, analytical, polymers, millennium
+Published: 2026-08-16T16:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 25: Химия — от атомов до полимеров</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Химия: от атомов до полимеров">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_25.html" class="active">25. Химия</a>
+    </nav>
+
+    <h1>Глава 25: Химия — от атомов до полимеров</h1>
+
+    <div class="section">
+        <h2>Введение</h2>
+        <p><strong>Химия</strong> — наука о веществе, его строении, свойствах и превращениях. От квантового поведения электронов в атоме до макромолекул полимеров — химия связывает физику микромира с повседневной реальностью. Эта глава охватывает основные разделы: от строения атома и химической связи до органической, физической и аналитической химии, а также междисциплинарные связи с физикой, биологией и задачами тысячелетия.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Строение атома — электронные оболочки, периодическая таблица, электронная конфигурация</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>1.1 Квантовые числа и оболочки</h3>
+        <p>Каждый электрон в атоме описывается четырьмя квантовыми числами:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Главное квантовое число</strong> $n = 1, 2, 3, \ldots$ — номер энергетического уровня (оболочки K, L, M, ...)</li>
+            <li><strong>Орбитальное (боковое) квантовое число</strong> $\ell = 0, 1, \ldots, n-1$ — тип подуровня ($s, p, d, f$)</li>
+            <li><strong>Магнитное квантовое число</strong> $m_\ell = -\ell, \ldots, +\ell$ — ориентация орбитали в пространстве</li>
+            <li><strong>Спиновое квантовое число</strong> $m_s = +\frac{1}{2}$ или $-\frac{1}{2}$ — направление спина электрона</li>
+        </ul>
+        <div class="formula">$$\text{Максимум электронов в подуровне } \ell = 2(2\ell + 1)$$</div>
+        <p>Наполнение подуровней подчиняется трём правилам:</p>
+        <ol style="margin-left: 20px;">
+            <li><strong>Принцип Паули:</strong> не более 2 электронов с антипараллельными спинами на одну орбиталь.</li>
+            <li><strong>Правило Гунда:</strong> электронам с одинаковым $\ell$ распределяются по орбиталям с параллельными спинами.</li>
+            <li><strong>Принцип最小能量:</strong> электроны заполняют подуровни в порядке возрастания энергии ($1s \to 2s \to 2p \to 3s \to \ldots$).</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h3>1.2 Периодическая таблица Менделеева</h3>
+        <p>Периодическая таблица организована по атомному номеру $Z$ (числу протонов) и отражает периодичность свойств элементов. Ключевые закономерности:</p>
+        <table>
+            <tr><th>Свойство</th><th>Тренд в периоде →</th><th>Тренд в группе ↓</th></tr>
+            <tr><td>Атомный радиус</td><td>Убывает</td><td>Возрастает</td></tr>
+            <tr><td>Ионизационная энергия $I$</td><td>Возрастает</td><td>Убывает</td></tr>
+            <tr><td>Электроотрицательность $\chi$</td><td>Возрастает</td><td>Убывает</td></tr>
+            <tr><td>Электронное сродство $E_\text{ea}$</td><td>Возрастает (с аномалиями)</td><td>Убывает</td></tr>
+        </table>
+        <div class="formula">$$\Delta E = I_1 - E_\text{ea} \quad \text{(энергетический баланс образования иона)}$$</div>
+    </div>
+
+    <div class="section">
+        <h3>1.3 Электронная конфигурация</h3>
+        <p>Электронная конфигурация записывается в виде последовательности заполнения подуровней. Примеры:</p>
+        <table>
+            <tr><th>Элемент</th><th>$Z$</th><th>Конфигурация</th><th>Сокращение</th></tr>
+            <tr><td>Кислород</td><td>8</td><td>$1s^2\,2s^2\,2p^4$</td><td>$[\text{He}]\,2s^2\,2p^4$</td></tr>
+            <tr><td>Железо</td><td>26</td><td>$1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^6$</td><td>$[\text{Ar}]\,4s^2\,3d^6$</td></tr>
+            <tr><td>Золото</td><td>79</td><td>$[\text{Xe}]\,4f^{14}\,5d^{10}\,6s^1$</td><td>аномалия (полная $d$-оболочка)</td></tr>
+        </table>
+        <div class="formula">$$\text{Энергия орбитали:} \quad E_{n,\ell} = -\frac{Z_\text{eff}^2 \cdot R_H}{n^2}, \quad Z_\text{eff} = Z - \sigma$$</div>
+        <p>где $\sigma$ — экранная постоянная Слефера (приближение), $R_H = 13{,}6$ эВ.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Химическая связь — ионная, ковалентная, металлическая, водородная</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>2.1 Типы химических связей</h3>
+        <div class="grid">
+            <div class="grid-item"><h4>Ионная связь</h4><p>Передача электронов от металла к неметаллу. Образуются ионы: $\text{Na} \to \text{Na}^+ + e^-$, $\text{Cl} + e^- \to \text{Cl}^-$. Энергия: $U = -\frac{e^2}{4\pi\varepsilon_0 r}$.</p></div>
+            <div class="grid-item"><h4>Ковалентная связь</h4><p>Общее расщепление электронных пар. Длина связи $d$ определяется перекрытием орбиталей. Одинарная ($\sigma$), двойная ($\sigma + \pi$), тройная ($\sigma + 2\pi$).</p></div>
+            <div class="grid-item"><h4>Металлическая связь</h4><p>«Море» делокализованных электронов. Модель Друде: $\sigma = \frac{n e^2 \tau}{m}$, где $\tau$ — время релаксации.</p></div>
+            <div class="grid-item"><h4>Водородная связь</h4><p>$\text{X–H} \cdots \text{Y}$ (X, Y = F, O, N). Энергия 5–40 кДж/моль. Ключевая роль в структуре воды и ДНК.</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>2.2 Теория Валентных электронных пар (VSEPR)</h3>
+        <p>Геометрия молекулы определяется числом электронных пар на центральном атоме:</p>
+        <table>
+            <tr><th>Число пар</th><th>Геометрия</th><th>Угол</th><th>Пример</th></tr>
+            <tr><td>2</td><td>Линейная</td><td>$180°$</td><td>$\text{CO}_2$</td></tr>
+            <tr><td>3</td><td>Плоскотреугольная</td><td>$120°$</td><td>$\text{BF}_3$</td></tr>
+            <tr><td>4</td><td>Тетраэдр</td><td>$109.5°$</td><td>$\text{CH}_4$</td></tr>
+            <tr><td>5</td><td>Тригональная бипирамида</td><td>$90°/120°$</td><td>$\text{PCl}_5$</td></tr>
+            <tr><td>6</td><td>Октаэдр</td><td>$90°$</td><td>$\text{SF}_6$</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>2.3 Энергия связи и полярность</h3>
+        <p>Энергия связи $D(\text{A–B})$ — энергия, необходимая для гомолитического расщепления связи:</p>
+        <div class="formula">$$D(\text{H–H}) = 436 \text{ кДж/моль}, \quad D(\text{C–C}) = 347 \text{ кДж/моль}, \quad D(\text{C=C}) = 614 \text{ кДж/моль}$$</div>
+        <p>Разность электроотрицательностей по Полингу определяет тип связи:</p>
+        <div class="formula">$$\Delta\chi = |\chi_\text{A} - \chi_\text{B}| \implies \begin{cases} \Delta\chi < 0.4 & \text{ковалентная} \\ 0.4 \le \Delta\chi \le 1.7 & \text{полярная ковалентная} \\ \Delta\chi > 1.7 & \text{ионная} \end{cases}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Органическая химия — функциональные группы, номенклатура, реакции</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>3.1 Функциональные группы</h3>
+        <p>Органические соединения классифицируются по функциональным группам — участкам молекулы, определяющим химическую реактивность:</p>
+        <table>
+            <tr><th>Функциональная группа</th><th>Формула</th><th>Пример</th><th>Класс соединений</th></tr>
+            <tr><td>Гидроксил</td><td>$-\text{OH}$</td><td>$\text{CH}_3\text{OH}$</td><td>спирты</td></tr>
+            <tr><td>Карбонил (альдегид)</td><td>$-\text{CHO}$</td><td>$\text{CH}_3\text{CHO}$</td><td>альдегиды</td></tr>
+            <tr><td>Карбонил (кетон)</td><td>$-\text{CO}-$</td><td>$\text{CH}_3\text{COCH}_3$</td><td>кетоны</td></tr>
+            <tr><td>Карбоксил</td><td>$-\text{COOH}$</td><td>$\text{CH}_3\text{COOH}$</td><td>карбоновые кислоты</td></tr>
+            <tr><td>Амино</td><td>$-\text{NH}_2$</td><td>$\text{CH}_3\text{NH}_2$</td><td>амины</td></tr>
+            <tr><td>Эфирный</td><td>$-\text{O}-$</td><td>$\text{CH}_3\text{OCH}_3$</td><td>эфиры</td></tr>
+            <tr><td>Карбоксильный эфир</td><td>$-\text{COO}-$</td><td>$\text{CH}_3\text{COOCH}_3$</td><td>esters (эфиры карбоновых кислот)</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>3.2 Номенклатура IUPAC</h3>
+        <p>Систематическая номенклатура основана на:</p>
+        <ol style="margin-left: 20px;">
+            <li>Поиск длиннейшей цепи углеродов (родительская цепь).</li>
+            <li>Нумерация с конца, дающего минимум номеров заместителям.</li>
+            <li>Добавление суффикса по главной функциональной группе:</li>
+        </ol>
+        <div class="formula">$$\text{алкан} \xrightarrow{-\text{OH}} \text{алканол}, \quad \text{алкан} \xrightarrow{-\text{COOH}} \text{алкановая кислота}, \quad \text{алкан} \xrightarrow{-\text{NH}_2} \text{алканамин}$$</div>
+        <p>Пример: $\text{CH}_3\text{CH}_2\text{CH(OH)CH}_3$ — бутан-2-ол (4 углерода, $-\text{OH}$ на C2).</p>
+    </div>
+
+    <div class="section">
+        <h3>3.3 Ключевые реакции</h3>
+        <div class="skill-card">
+            <h3>Замещение</h3>
+            <p>$\text{S}_\text{N}1$: двухстадийный механизм (карбокатион). $\text{S}_\text{N}2$: концертный механизм (обратная атака). Конкуренция определяется полярностью растворителя и стерическими факторами.</p>
+        </div>
+        <div class="skill-card">
+            <h3>Элиминирование</h3>
+            <p>E1 (двухстадийный) и E2 (концертный). Правило Зайцева: основной продукт — алкен с максимальным числом заместителей.</p>
+            <div class="formula">$$\text{CH}_3\text{CHBrCH}_3 \xrightarrow{\text{NaOH}} \text{CH}_3\text{CH=CH}_2 + \text{NaBr} + \text{H}_2\text{O}$$</div>
+        </div>
+        <div class="skill-card">
+            <h3>Электрофильное добавление</h3>
+            <p>К алкенам: $\text{C=C} + \text{HBr} \to \text{CH–CHBr}$ (правило Марковникова).</p>
+        </div>
+        <div class="skill-card">
+            <h3>Полимеризация</h3>
+            <p>Радикальная: инициация → рост → обрыв. Димеризация стирола:</p>
+            <div class="formula">$$n \, \text{CH}_2\text{=CH(C}_6\text{H}_5\text{)} \xrightarrow{\text{иниц.}} [-\text{CH}_2\text{-CH(C}_6\text{H}_5\text{)}-]_n$$</div>
+            <p>Полимеры: полиэтилен (PE), полипропилен (PP), полистирол (PS), ПВХ, тефлон (PTFE).</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Физическая химия — термодинамика, кинетика, равновесие</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>4.1 Химическая термодинамика</h3>
+        <p>Основные термодинамические потенциалы для химических процессов:</p>
+        <div class="formula">$$\Delta G = \Delta H - T\Delta S$$</div>
+        <p>Реакция самопроизвольна при $\Delta G < 0$. Стандартные значения:</p>
+        <div class="formula">$$\Delta G^\circ = \sum \Delta G_f^\circ(\text{продукты}) - \sum \Delta G_f^\circ(\text{реагенты})$$</div>
+        <p>Связь с константой равновесия:</p>
+        <div class="formula">$$\Delta G^\circ = -RT\ln K$$</div>
+        <p>где $R = 8.314$ Дж/(моль·К), $T$ — температура в кельвинах.</p>
+    </div>
+
+    <div class="section">
+        <h3>4.2 Химическая кинетика</h3>
+        <p>Закон Аррениуса для константы скорости:</p>
+        <div class="formula">$$k = A \cdot e^{-E_a / (RT)}$$</div>
+        <p>где $A$ — предэкспоненциальный множитель, $E_a$ — энергия активации.</p>
+        <p>Интегрированные законы реакций:</p>
+        <table>
+            <tr><th>Порядок</th><th>Интегральный закон</th><th>Время полуаннигиляции $t_{1/2}$</th></tr>
+            <tr><td>0</td><td>$[A] = [A]_0 - kt$</td><td>$\dfrac{[A]_0}{2k}$</td></tr>
+            <tr><td>1</td><td>$\ln[A] = \ln[A]_0 - kt$</td><td>$\dfrac{\ln 2}{k}$</td></tr>
+            <tr><td>2</td><td>$\dfrac{1}{[A]} = \dfrac{1}{[A]_0} + kt$</td><td>$\dfrac{1}{k[A]_0}$</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>4.3 Химическое равновесие</h3>
+        <p>Закон действия масс (Law of Mass Action):</p>
+        <div class="formula">$$a\text{A} + b\text{B} \rightleftharpoons c\text{C} + d\text{D} \implies K_c = \frac{[\text{C}]^c [\text{D}]^d}{[\text{A}]^a [\text{B}]^b}$$</div>
+        <p><strong>Принцип Ле Шателье:</strong> система реагирует на изменение условий (концентрация, давление, температура) смещением равновесия в сторону, компенсирующей изменение.</p>
+        <div class="formula">$$K_p = K_c (RT)^{\Delta n}, \quad \Delta n = (c+d) - (a+b)$$</div>
+    </div>
+
+    <div class="section">
+        <h3>4.4 Электрохимия</h3>
+        <p>Уравнение Нернста для电极ного потенциала:</p>
+        <div class="formula">$$E = E^\circ - \frac{RT}{nF}\ln Q$$</div>
+        <p>где $n$ — число электронов, $F = 96\,485$ Кл/моль (постоянная Фарадея), $Q$ — реакционное число.</p>
+        <p>Связь с Гиббсовой энергией:</p>
+        <div class="formula">$$\Delta G = -nFE$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Аналитическая химия — титрование, спектроскопия, хроматография</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>5.1 Титрование</h3>
+        <p><strong>Кислотно-основное титрование:</strong> определение концентрации кислоты/основания по объёму стандартного раствора.</p>
+        <div class="formula">$$C_\text{кисл} \cdot V_\text{кисл} = C_\text{осн} \cdot V_\text{осн} \quad \text{(эксактное соотношение)}$$</div>
+        <p>Точка эквивалентности ($\text{pH} = 7$ для сильных кислот/оснований) определяется индикатором или pH-метром. Для слабых систем:</p>
+        <div class="formula">$$\text{pH} = \text{p}K_a + \log\frac{[\text{A}^-]}{[\text{HA}]} \quad \text{(уравнение Хендерсона–Хассельбальха)}$$</div>
+        <p><strong>Оксидиметрическое титрование:</strong> измерение потенциала. Уравнение Нернста определяет кривую титрования.</p>
+    </div>
+
+    <div class="section">
+        <h3>5.2 Спектроскопия</h3>
+        <p><strong>УФ-Vis спектроскопия:</strong> закон Бугера–Ламберта–Бера:</p>
+        <div class="formula">$$A = \varepsilon \cdot c \cdot l = -\log_{10}\frac{I}{I_0}$$</div>
+        <p>где $\varepsilon$ — молярный коэффициент поглощения, $c$ — концентрация, $l$ — толщина слоя.</p>
+        <p><strong>ИК-спектроскопия:</strong> частоты колебаний химических связей. Связь с константой жёсткости $\kappa$:</p>
+        <div class="formula">$$\nu = \frac{1}{2\pi}\sqrt{\frac{\kappa}{\mu}}, \quad \mu = \frac{m_1 m_2}{m_1 + m_2} \text{ (приведённая масса)}$$</div>
+        <p><strong>ЯМР-спектроскопия:</strong> резонанс ядер в магнитном поле. Химический сдвиг $\delta$ характеризует электронное окружение.</p>
+    </div>
+
+    <div class="section">
+        <h3>5.3 Хроматография</h3>
+        <p><strong>ВЭЖХ (HPLC):</strong> разделение компонентов смеси по их сродству к стационарной фазе.</p>
+        <div class="formula">$$R_s = \frac{2(t_{R2} - t_{R1})}{w_1 + w_2} \quad \text{(разрешение пиков)}$$</div>
+        <p><strong>Газовая хроматография (ГХ):</strong> летучие соединения. Теория платин (Van Deemter):</p>
+        <div class="formula">$$H = A + \frac{B}{u} + Cu$$</div>
+        <p>где $H$ — высота теоретической тарелки, $u$ — скорость потока подвижной фазы, $A$ — эдди-диффузия, $B$ — продольная диффузия, $C$ — массопередача.</p>
+    </div>
+
+    <div class="section">
+        <h3>5.4 Масс-спектрометрия</h3>
+        <p>Соотношение масса/заряд ($m/z$) идентифицирует ионы. Уравнение Мальвена-Декю:</p>
+        <div class="formula">$$\frac{m}{z} = \frac{B^2 r^2}{2V}$$</div>
+        <p>где $B$ — магнитное поле, $r$ — радиус орбиты, $V$ — ускоряющее напряжение.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с физикой (квантовая химия) и биологией (ферменты, метаболизм)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>6.1 Квантовая химия</h3>
+        <p>Уравнение Шрёдингера для многоэлектронного атома:</p>
+        <div class="formula">$$\hat{H}\Psi = E\Psi, \quad \hat{H} = -\sum_i \frac{\hbar^2}{2m_e}\nabla_i^2 - \sum_{i,A} \frac{Z_A e^2}{4\pi\varepsilon_0 r_{iA}} + \sum_{i<j} \frac{e^2}{4\pi\varepsilon_0 r_{ij}}$$</div>
+        <p><strong>Приближение Хартри–Фока:</strong> каждый электрон движемся в среднем поле остальных. Молекулярные орбитали строятся как линейные комбинации атомных орбиталей (LCAO):</p>
+        <div class="formula">$$\psi_i = \sum_\mu c_{\mu i} \chi_\mu$$</div>
+        <p><strong>DFT (Density Functional Theory):</strong> энергия — функционал электронной плотности $\rho(\mathbf{r})$:</p>
+        <div class="formula">$$E[\rho] = T[\rho] + V_\text{ext}[\rho] + J[\rho] + E_\text{xc}[\rho]$$</div>
+        <p>Функционалы обмена-корреляции (B3LYP, PBE) — ключ к точности вычислений.</p>
+    </div>
+
+    <div class="section">
+        <h3>6.2 Биохимия: ферменты</h3>
+        <p>Ферменты — биокатализаторы, ускоряющие реакции в $10^6$–$10^{17}$ раз. Михаэлис–Ментен кинетика:</p>
+        <div class="formula">$$v = \frac{V_\text{max} [S]}{K_m + [S]}, \quad K_m = \frac{k_{-1} + k_2}{k_1}$$</div>
+        <p>$K_m$ — константа Михаэлиса (концентрация субстрата при half-$V_\text{max}$). Ингибирование:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Конкурентное:</strong> ингибитор конкурирует с субстратом → $K_m$ увеличивается, $V_\text{max}$ не меняется.</li>
+            <li><strong>Неконкурентное:</strong> ингибитор связывается с ферментом вне сайта субстрата → $V_\text{max}$ уменьшается, $K_m$ не меняется.</li>
+            <li><strong>Неконкурентное необратимое:</strong> ингибитор модифицирует фермент → потеря активности.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>6.3 Метаболизм</h3>
+        <p>Метаболические пути — цепочки ферментативных реакций. Ключевые концепции:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Гликолиз</h4><p>$\text{Глюкоза} + 2\,\text{NAD}^+ + 2\,\text{ADP} \to 2\,\text{Пируват} + 2\,\text{NADH} + 2\,\text{ATP}$</p><p>10 ферментов, 10 стадий, $\Delta G^\circ = -85$ кДж/моль.</p></div>
+            <div class="grid-item"><h4>Цикл Кребса</h4><p>Ацетил-КоА + 3 $\text{NAD}^+$ + $\text{FAD}$ + ГДФ → 2 $\text{CO}_2$ + 3 NADH + $\text{FADH}_2$ + ГТФ.</p><p>8 ферментов, линейный цикл.</p></div>
+            <div class="grid-item"><h4>Окислительное фосфорилирование</h4><p>NADH и $\text{FADH}_2$ → электронная транспортная цепь → протонный градиент → АТФ-синтаза → АТФ.</p><p>$\text{P/O ratio} \approx 2.5$ для NADH, $\approx 1.5$ для $\text{FADH}_2$.</p></div>
+            <div class="grid-item"><h4>Бета-окисление жирных кислот</h4><p>Повторяющийся цикл: окисление → гидратация → окисление → тиолиз. Каждый цикл → ацетил-КоА + $\text{FADH}_2$ + NADH.</p></div>
+        </div>
+        <div class="formula">$$\text{АТФ} \rightleftharpoons \text{АДФ} + \text{P}_i, \quad \Delta G^\circ = -30.5 \text{ кДж/моль}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (Навье-Стокс в растворах, термодинамика)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>7.1 Навье-Стокс и химические растворы</h3>
+        <p>Задача Навье-Стокса о существовании и гладкости решений напрямую связана с химией растворов. Уравнение переноса массы в растворе:</p>
+        <div class="formula">$$\frac{\partial c}{\partial t} + \mathbf{v} \cdot \nabla c = D \nabla^2 c + R(c)$$</div>
+        <p>где $c$ — концентрация, $\mathbf{v}$ — скорость потока (определяется уравнениями Навье-Стокса), $D$ — коэффициент диффузии, $R(c)$ — скорость химической реакции.</p>
+        <p><strong>Проблема:</strong> если уравнения Навье-Стокса не имеют гладких решений в 3D, то предсказание транспорта реагентов в химических реакторах и биологических системах становится некорректным. Связь:</p>
+        <div class="formula">$$\text{Навье-Стокс} \xrightarrow{\text{velocity field}} \text{перенос массы} \xrightarrow{\text{kinetics}} \text{реакция в растворе}$$</div>
+    </div>
+
+    <div class="section">
+        <h3>7.2 Термодинамика и задача о равновесии</h3>
+        <p>Третья задача тысячелетия (Гипотеза Римана) связана с распределением простых чисел. Химическая термодинамика даёт аналогичные закономерности:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Распределение энергий</strong> в ансамбле частиц (статистическая механика) — распределение Больцмана:</li>
+        </ul>
+        <div class="formula">$$P(E) = \frac{g(E) \, e^{-E/(k_BT)}}{Z}, \quad Z = \sum_i g(E_i) \, e^{-E_i/(k_BT)}$$</div>
+        <p>где $Z$ — статистическая сумма, $g(E)$ — вырожденность энергетического уровня.</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Фазовые переходы</strong> — сингулярности в свободной энергии (аналог нулей дзета-функции).</li>
+            <li><strong>Асимптотическое поведение</strong> энтропии при $T \to 0$: теорема Нернста (третье начало термодинамики).</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>7.3 Математические аналогии</h3>
+        <table>
+            <tr><th>Задача тысячелетия</th><th>Химическая аналогия</th><th>Связь</th></tr>
+            <tr><td>Навье-Стокс</td><td>Диффузия + реакция в растворе</td><td>Транспорт реагентов</td></tr>
+            <tr><td>P vs NP</td><td>Комбинаторная оптимизация в дизайне лекарств</td><td>Поиск молекул</td></tr>
+            <tr><td>Гипотеза Римана</td><td>Распределение энергий в стат. механике</td><td>Асимптотика</td></tr>
+            <tr><td>Боунд (Yau)</td><td>Эргодическая гипотеза для реакций</td><td>Долгосрочное поведение</td></tr>
+            <tr><td>Hodge</td><td>Геометрия молекул (топология)</td><td>Форма → свойства</td></tr>
+            <tr><td>Poincaré</td><td>Циклические реакционные механизмы</td><td>Периодичность</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>7.4 Нерешённые проблемы химии</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Точное решение уравнения Шрёдингера</strong> для многоэлектронных систем — требует аномалий в DFT.</li>
+            <li><strong>Предсказание катализаторов</strong> — проблема, эквивалентная «обратной» задаче тысячелетия.</li>
+            <li><strong>Термодинамика жизни:</strong> как неравновесные системы (живые организмы) поддерживают порядок? Связь с эргодической гипотезой.</li>
+            <li><strong>Сверхпроводимость при комнатной температуре</strong> — проблема, связанная с квантовой химией твёрдого тела.</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Оптимизация и методы вычислений</h2>
+    <!-- ============================================ -->
+
+    <div class="optimization">
+        <h3>OCULUS-оптимизация для химических вычислений</h3>
+        <p><strong>Ускорение x10:</strong> Использование предрассчитанных таблиц термодинамических данных (NIST, CRC Handbook) вместо ab initio вычислений.</p>
+        <p><strong>Ускорение x100:</strong> Машинное обучение для предсказания свойств молекул (QSAR, GNN на молекулярных графах).</p>
+        <p><strong>Ускорение x1000:</strong> Параллельные вычисления DFT на GPU (Gaussian, ORCA, Psi4) с автоматическим подбором функционалов.</p>
+    </div>
+
+    <div class="section">
+        <h3>8.1 Практические формулы</h3>
+        <table>
+            <tr><th>Задача</th><th>Формула</th><th>Применение</th></tr>
+            <tr><td>Определение молярной массы</td><td>$M = \frac{m}{n} = \frac{mRT}{PV}$</td><td>Газовые реакции</td></tr>
+            <tr><td>Разбавление</td><td>$C_1 V_1 = C_2 V_2$</td><td>Приготовление растворов</td></tr>
+            <tr><td>Скорость реакции</td><td>$v = k[\text{A}]^m[\text{B}]^n$</td><td>Кинетика</td></tr>
+            <tr><td>Константа равновесия</td><td>$K = \frac{[\text{产物}]}{[\text{реагенты}]}$</td><td>Равновесие</td></tr>
+            <tr><td>Растворимость</td><td>$K_{sp} = [\text{A}^+]^m[\text{B}^-]^n$</td><td>Выпадение осадка</td></tr>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\ce": "\\text{#1}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
