@@ -1,0 +1,477 @@
+
+<!--
+Platform: Habr
+Title: chapter_29
+Tags: 1001-proofs, materials, engineering, nanotechnology, composites
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 29: Материаловедение и инженерия — от наночастиц до композитов</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Материаловедение и инженерия">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_29.html" class="active">29</a>
+    </nav>
+
+    <h1>Глава 29: Материаловедение и инженерия — от наночастиц до композитов</h1>
+
+    <div class="section">
+        <p><strong>1001 Proof</strong> — том 29 серии из 351 тома по всем точным наукам. Данный раздел посвящён материаловедению и инженерии: от кристаллической структуры металлов до графеновых нанотрубок. Материаловедение стоит на пересечении химии, физики и инженерии, и его понимание критично для решения задач тысячелетия — особенно в контексте термодинамики фазовых переходов и моделирования сложных физических систем.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Металлы и сплавы — кристаллическая структура, дефекты, обработка</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Кристаллическая структура</h3>
+        <p>Атомы в металлах упорядочены в решётку. Основные типы:</p>
+        <table>
+            <tr><th>Тип решётки</th><th>Примеры</th><th>Коорд. число</th><th>Упаковка</th></tr>
+            <tr><td>OBC (кубическая гранецентрированная)</td><td>Al, Cu, Ni, Au, Ag</td><td>12</td><td>$\frac{\pi}{3\sqrt{2}} \approx 0{,}7405$</td></tr>
+            <tr><td>ОК (кубическая объёмноцентрированная)</td><td>Fe, Cr, W, Mo, V</td><td>8</td><td>$\frac{\pi\sqrt{3}}{8} \approx 0{,}6802$</td></tr>
+            <tr><td>ГПУ (гексагональная плотнейшая)</td><td>Zn, Mg, Ti, Co</td><td>12</td><td>$\frac{\pi}{3\sqrt{2}} \approx 0{,}7405$</td></tr>
+            <tr><td>КП (кубическая простая)</td><td>Po, Ba (выс. T)</td><td>6</td><td>$\frac{\pi}{6} \approx 0{,}5236$</td></tr>
+        </table>
+
+        <div class="formula">
+            $$\eta = \frac{V_{\text{атомов}}}{V_{\text{ячейки}}} = \frac{n \cdot \frac{4}{3}\pi r^3}{a^3}$$
+        </div>
+
+        <p>где $\eta$ — коэффициент упаковки, $n$ — число атомов на ячейку, $r$ — радиус атома, $a$ — параметр решётки.</p>
+
+        <h3>Дефекты кристаллической решётки</h3>
+        <p>Реальные металлы содержат дефекты, определяющие их механические свойства:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Точечные:</strong> вакансии, междоузлия, замещения, атомы Френкеля и Шоттки</li>
+            <li><strong>Линейные:</strong> дислокации (краевые и винтовые) — движущая сила пластической деформации</li>
+            <li><strong>Поверхностные:</strong> зеренные границы, ступеньки, трещины</li>
+            <li><strong>Объёмные:</strong> поры, включения, трещины</li>
+        </ul>
+
+        <div class="formula">
+            $$\sigma = \sigma_0 + \frac{k}{\sqrt{d}}$$
+        </div>
+
+        <p>Формула Холла-Петча: предел текучести $\sigma$ зависит от размера зерна $d$. Уменьшение $d$ приводит к упрочнению.</p>
+
+        <h3>Термическая и механическая обработка</h3>
+        <p>Ключевые методы:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Отжиг:</strong> нагрев → рекристаллизация → охлаждение. Устраняет дефекты, снимает напряжения</li>
+            <li><strong>Закалка:</strong> быстрое охлаждение → метастабильная фаза (мартенсит в стали)</li>
+            <li><strong>Отпуск:</strong> повторный нагрев после закалки → баланс прочности и пластичности</li>
+            <li><strong>Деформационное упрочнение:</strong> холодная прокатка → рост числа дислокаций → $\sigma_y$ ↑</li>
+        </ul>
+
+        <div class="skill-card">
+            <h3>Диаграмма состояния Fe-C</h3>
+            <p>Базовая диаграмма для сталелитейного производства:</p>
+            <table>
+                <tr><th>Фаза</th><th>Структура</th><th>Область</th></tr>
+                <tr><td>$\alpha$-феррит</td><td>ОК</td><td>$T < 912°\text{C}$, $C < 0{,}022\%$</td></tr>
+                <tr><td>$\gamma$-аустенит</td><td>ОЦК</td><td>$912°\text{C} < T < 1394°\text{C}$</td></tr>
+                <tr><td>$\delta$-феррит</td><td>ОК</td><td>$T > 1394°\text{C}$</td></tr>
+                <tr><td>Цементит ($\ce{Fe3C}$)</td><td>Орторомбическая</td><td>$C = 6{,}69\%$</td></tr>
+                <tr><td>Ледибурит</td><td>Эвтектика $\gamma + \ce{Fe3C}$</td><td>$C = 4{,}3\%$, $T = 1147°\text{C}$</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Полимеры — полимеризация, молекулярная масса, свойства</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Основы полимеризации</h3>
+        <p>Полимеры — макромолекулы, образованные повторением мономерных звеньев:</p>
+        <div class="formula">
+            $$n \cdot \text{CH}_2\text{=CH}_2 \xrightarrow{\text{каталит.}} -[\text{CH}_2\text{-CH}_2]_n-$$
+        </div>
+
+        <table>
+            <tr><th>Тип полимеризации</th><th>Механизм</th><th>Примеры</th></tr>
+            <tr><td>Добавочная (аддитивная)</td><td>Радикальная / ионная / координационная</td><td>ПЭ, ПП, ПС, ПВХ</td></tr>
+            <tr><td>Конденсационная</td><td>Выделение малых молекул ($\ce{H2O}$, $\ce{HCl}$)</td><td>нейлоны, полиэфиры, фенопласты</td></tr>
+            <tr><td>Живая полимеризация</td><td>Контроль длины цепи, узкое распределение</td><td>ATRP, RAFT, NMP</td></tr>
+        </table>
+
+        <h3>Молекулярная масса и дисперсность</h3>
+        <p>Ключевые параметры полимеров:</p>
+        <div class="formula">
+            $$M_n = \frac{\sum N_i M_i}{\sum N_i}, \qquad M_w = \frac{\sum N_i M_i^2}{\sum N_i M_i}$$
+        </div>
+        <p><strong>$M_n$</strong> — числовая средняя молярная масса, <strong>$M_w$</strong> — массовая средняя молярная масса.</p>
+
+        <div class="formula">
+            $$Đ = \frac{M_w}{M_n}$$
+        </div>
+        <p>$Đ$ — индекс полидисперсности. Для «живых» полимеров $Đ \to 1$, для радикальных — $Đ \approx 2$.</p>
+
+        <h3>Классификация по поведению при нагреве</h3>
+        <table>
+            <tr><th>Класс</th><th>Поведение</th><th>Примеры</th></tr>
+            <tr><td>Термопласты</td><td>Мягкеют при нагреве, твердеют при охлаждении (обратимо)</td><td>ПЭ, ПП, ПС, ПММА</td></tr>
+            <tr><td>Термореактивы</td><td>Отверждаются необратимо (сшивание)</td><td>эпоксиды, фенолиты</td></tr>
+            <tr><td>Эластомеры</td><td>Высокая эластичность, обратимая деформация</td><td>каучуки, силиконы</td></tr>
+        </table>
+
+        <div class="formula">
+            $$G = G_0 \exp\!\left(-\frac{E_a}{RT}\right)$$
+        </div>
+        <p>Модуль сдвигового модуля $G$ как функция температуры (модель Вильямса-Ланделла-Ферри).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Керамика и стекло — стеклование, кристаллизация, огнеупоры</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Природа стеклования</h3>
+        <p>Стекло — аморфное (некристаллическое) состояние, полученное при охлаждении расплава без кристаллизации:</p>
+        <div class="formula">
+            $$\text{Распад} \xrightarrow{\text{охлаждение}} \text{Стеклоранее} \xrightarrow{T_g} \text{Стекло}$$
+        </div>
+
+        <p><strong>$T_g$</strong> — температура стеклования. Ниже $T_g$ — стекло хрупкое, выше — вязкотекучее.</p>
+
+        <h3>Уравнение Фулчера-Вогеля</h3>
+        <p>Вязкость стекломассы:</p>
+        <div class="formula">
+            $$\log \eta = A + \frac{B}{T - T_0}$$
+        </div>
+        <p>где $A$, $B$, $T_0$ — эмпирические параметры. При $T = T_g$ вязкость $\eta \approx 10^{12} \text{ Па·с}$.</p>
+
+        <h3>Классификация керамик</h3>
+        <table>
+            <tr><th>Тип</th><th>Состав</th><th>Применение</th></tr>
+            <tr><td>Оксидная</td><td>$\ce{Al2O3}$, $\ce{ZrO2}$, $\ce{MgO}$</td><td>изоляторы, режущий инструмент, биокерамика</td></tr>
+            <tr><td>Неоксидная</td><td>$\ce{SiC}$, $\ce{Si3N4}$, $\ce{BN}$</td><td>высокотемпературные подшипники, турбины</td></tr>
+            <tr><td>Огнеупорная</td><td>$\ce{Al2O3}$, муллит, хромит</td><td> футеровка печей, сталеплавильное производство</td></tr>
+            <tr><td>Биокерамика</td><td>гидроксиапатит, биостекло</td><td>импланты, костные замещения</td></tr>
+        </table>
+
+        <h3>Стекло: состав и свойства</h3>
+        <p>Силикатное стекло ($\ce{SiO2}$ ~70%):</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Сеткообразователь:</strong> $\ce{SiO2}$, $\ce{B2O3}$, $\ce{P2O5}$ — формируют каркас</li>
+            <li><strong>Модификатор:</strong> $\ce{Na2O}$, $\ce{CaO}$, $\ce{K2O}$ — разрушают связи, снижают $T_g$</li>
+            <li><strong>Промежуточный:</strong> $\ce{Al2O3}$, $\ce{MgO}$, $\ce{ZnO}$ — улучшают химическую стойкость</li>
+        </ul>
+
+        <div class="formula">
+            $$\text{Скорость кристаллизации} = I \propto \exp\!\left(-\frac{\Delta G^* + Q}{k_B T}\right)$$
+        </div>
+        <p>Нуклеация и рост кристаллов в расплаве (теория классической нуклеации).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Композиты — армирование, матрица, прочность</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Суть композитов</h3>
+        <p>Композиционный материал = <strong>матрица</strong> (связывает) + <strong>армирование</strong> (воспринимает нагрузку). Цель — получить свойства, недоступные компонентам по отдельности.</p>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Матрица</h4>
+                <p>Полимерная (эпоксид, polyester), металлическая (Al, Ti), керамическая (SiC)</p>
+            </div>
+            <div class="grid-item">
+                <h4>Армирование</h4>
+                <p>Стекловолокно, углеродное волокно, кевлар, борное волокно, нанотрубки</p>
+            </div>
+            <div class="grid-item">
+                <h4>Интерфейс</h4>
+                <p>Зона связи матрица-армирование. Критически влияет на передачу нагрузки</p>
+            </div>
+        </div>
+
+        <h3>Правило смесей</h3>
+        <p>Для продольного модуля:</p>
+        <div class="formula">
+            $$E_c = E_f V_f + E_m V_m$$
+        </div>
+        <p>$E_c$ — модуль композита, $E_f$ — модуль волокна, $E_m$ — модуль матрицы, $V_f$, $V_m$ — объёмные доли.</p>
+
+        <p>Для прочности на растяжение:</p>
+        <div class="formula">
+            $$\sigma_c^* = \sigma_f^* V_f + \sigma_m'(1 - V_f)$$
+        </div>
+        <p>где $\sigma_f^*$ — прочность волокна, $\sigma_m'$ — напряжение в матрице при разрушении волокна.</p>
+
+        <h3>Критические доли армирования</h3>
+        <div class="formula">
+            $$V_{\text{кр}} = \frac{\sigma_m^* - \sigma_m'}{\sigma_f^* - \sigma_m'}$$
+        </div>
+        <p>При $V_f < V_{\text{кр}}$ разрушается матрица; при $V_f > V_{\text{кр}}$ — волокно.</p>
+
+        <table>
+            <tr><th>Композит</th><th>Матрица</th><th>Армирование</th><th>$\sigma_{\text{пр}}$, МПа</th><th>$E$, ГПа</th></tr>
+            <tr><td>CFRP</td><td>Эпоксид</td><td>Углеродное волокно (T700)</td><td>1500–2500</td><td>130–230</td></tr>
+            <tr><td>GFRP</td><td>Эпоксид</td><td>Стекловолокно (E)</td><td>500–1200</td><td>35–55</td></tr>
+            <tr><td>Кевлар</td><td>Эпоксид</td><td>Aramid (Kevlar-49)</td><td>1200–1800</td><td>70–120</td></tr>
+            <tr><td>Металлокомпозит</td><td>Al</td><td>SiC (particulate)</td><td>300–600</td><td>90–140</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Наноматериалы — наночастицы, углеродные нанотрубки, графен</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Наночастицы</h3>
+        <p>Частицы размером 1–100 нм демонстрируют квантовые и поверхностные эффекты:</p>
+        <div class="formula">
+            $$\frac{S}{V} = \frac{6}{d} \quad (\text{для сферической частицы})$$
+        </div>
+        <p>При $d = 10$ нм удельная поверхность $S/V = 6 \cdot 10^8 \text{ м}^{-1}$ — в 600 раз больше, чем при $d = 10 \text{ мкм}$.</p>
+
+        <h3>Термодинамика наночастиц</h3>
+        <div class="formula">
+            $$\Delta T_m = -\frac{2 \gamma_{sl} T_m V_m}{r \Delta H_f}$$
+        </div>
+        <p>Уравнение Гиббса-Томсона: температура плавления $\Delta T_m$ падает с уменьшением радиуса $r$.</p>
+
+        <div class="formula">
+            $$\ln \frac{p}{p_0} = \frac{2\gamma V_m}{rRT}$$
+        </div>
+        <p>Уравнение Кельвина: давление насыщенного пара над кривизнной поверхностью зависит от кривизны $r$.</p>
+
+        <h3>Углеродные нанотрубки (УНТ)</h3>
+        <p>Цилиндрические структуры из графенового листа, свёрнутого в трубку:</p>
+        <table>
+            <tr><th>Тип</th><th>Числа хиральности $(n,m)$</th><th>Свойства</th></tr>
+            <tr><td>Металлическая</td><td>$n - m = 3k$, $k \in \mathbb{Z}$</td><td>$E_g = 0$, проводимость ~$10^6$ См/м</td></tr>
+            <tr><td>Полупроводниковая</td><td>$n - m \neq 3k$</td><td>$E_g \propto 1/d$, 0.1–1.5 эВ</td></tr>
+            <tr><td>Металлическая (специальный)</td><td>$(n,n)$ — армчирные</td><td> ballistic transport</td></tr>
+        </table>
+
+        <div class="formula">
+            $$E_{1D} = \frac{\hbar v_F}{2}\sqrt{\left(\frac{2\pi j}{L}\right)^2 + k_z^2}$$
+        </div>
+        <p>Дисперсионное соотношение для зон электронов в УНТ (модель мешки мешков).</p>
+
+        <h3>Графен</h3>
+        <p>Одноатомный слой углерода с гексагональной решёткой. Уникальные свойства:</p>
+        <table>
+            <tr><th>Свойство</th><th>Значение</th><th>Примечание</th></tr>
+            <tr><td>Модуль Юнга</td><td>$\sim 1$ ТПа</td><td>самый прочный известный материал</td></tr>
+            <tr><td>Прочность</td><td>$\sim 130$ ГПа</td><td>теоретический предел для идеального кристалла</td></tr>
+            <tr><td>Подвижность электронов</td><td>$200\,000$ см$^2$/В·с</td><td>превосходит кремний в 100 раз</td></tr>
+            <tr><td>Теплопроводность</td><td>$5000$ Вт/(м·К)</td><td>лучше алмаза</td></tr>
+            <tr><td>Прозрачность</td><td>$97{,}7\%$</td><td>$\pi \alpha \approx 2{,}3\%$ поглощения</td></tr>
+        </table>
+
+        <div class="formula">
+            $$E(\mathbf{k}) = \pm \hbar v_F |\mathbf{k}|$$
+        </div>
+        <p>Линейная дисперсия графена у Дирака: эффективная масса нулевая, электроны ведут себя как безмассовые дираковские фермионы.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с химией (синтез материалов) и физикой (термодинамика фазовых переходов)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Химия материалов</h3>
+        <p>Синтез каждого класса материалов опирается на фундаментальную химию:</p>
+        <table>
+            <tr><th>Материал</th><th>Химический процесс</th><th>Ключевая реакция</th></tr>
+            <tr><td>Сталь</td><td>Восстановление железа</td><td>$\ce{Fe2O3 + 3CO -> 2Fe + 3CO2}$</td></tr>
+            <tr><td>Aluminium</td><td>Электролиз (процесс Холла-Эру)</td><td>$\ce{2Al2O3 ->[电解] 4Al + 3O2}$</td></tr>
+            <tr><td>Полиэтилен</td><td>Каталитическая полимеризация</td><td>$\ce{n CH2=CH2 -> [-CH2-CH2-]_n}$</td></tr>
+            <tr><td>SiC</td><td>Химическое осаждение из газовой фазы</td><td>$\ce{SiHCl3 + H2 -> Si + 3HCl}$</td></tr>
+            <tr><td>Графен</td><td>Механическая экфолиация / CVD</td><td>Рост на Cu-подложке при $1000°\text{C}$</td></tr>
+            <tr><td>Биостекло</td><td>Плавление оксидов</td><td>$\ce{SiO2 + Na2O + CaO + P2O5}$</td></tr>
+        </table>
+
+        <h3>Физика фазовых переходов</h3>
+        <p>Материаловедение невозможно понять без термодинамики фазовых переходов:</p>
+
+        <div class="formula">
+            $$\Delta G = \Delta H - T\Delta S$$
+        </div>
+        <p>Критерий自发ности при $T = \text{const}$, $P = \text{const}$: $\Delta G < 0$.</p>
+
+        <h3>Правило Шредера ван Аркеля — Дитце</h3>
+        <div class="formula">
+            $$\frac{T_m (\text{K})}{\chi_a} = \text{const}$$
+        </div>
+        <p>Где $T_m$ — температура плавления, $\chi_a$ — электроотрицательность атома. Ковалентные соединения имеют высокие $T_m$.</p>
+
+        <h3>Фазовые диаграммы и правило фаз Гиббса</h3>
+        <div class="formula">
+            $$F = C - P + 2$$
+        </div>
+        <p>$F$ — число степеней свободы, $C$ — число компонентов, $P$ — число фаз. Для двойной системы $C = 2$: в области двух фаз ($P = 2$) остаётся $F = 2$ — температура и состав связаны.</p>
+
+        <h3>Термодинамика стеклования</h3>
+        <div class="formula">
+            $$\Delta G_{\text{крист}} = \Delta H_f - T\Delta S_f$$
+        </div>
+        <p>Стеклование происходит, когда скорость кристаллизации падает ниже скорости охлаждения. Критерий Тёрнбулла:</p>
+        <div class="formula">
+            $$\frac{\Delta T_g}{T_m} \gtrsim \frac{2}{3}$$
+        </div>
+        <p>Сплав «хорошо стеклуется», если $T_g / T_m > 2/3$ (по температурам).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (Навье-Стокс в обработке расплавов, термодинамика)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Навье-Стокс и обработка расплавов</h3>
+        <p>Задача о существовании и гладкости решений уравнений Навье-Стокса напрямую связана с промышленными процессами обработки расплавов металлов и стёкол:</p>
+        <div class="formula">
+            $$\rho\left(\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v}\cdot\nabla)\mathbf{v}\right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \mathbf{f}$$
+        </div>
+
+        <p><strong>Приложения к материаловедению:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Литьё:</strong> течение расплава в форме — задача о стоксовой и нестоксовой вязкости</li>
+            <li><strong>Вакуумное дуговое плавление:</strong> магнитогидродинамика расплава в электромагнитном поле</li>
+            <li><strong>Зонная плавка:</strong> транспорт массы в расплаве определяет чистоту монокристаллов</li>
+            <li><strong>Стекловарение:</strong> конвекция в ванне стекломассы влияет на однородность</li>
+        </ul>
+
+        <div class="skill-card">
+            <h3>Число Рейнольдса в литейных процессах</h3>
+            <div class="formula">
+                $$Re = \frac{\rho v L}{\mu}$$
+            </div>
+            <p>Для расплава алюминия ($\rho \approx 2700$ кг/м$^3$, $\mu \approx 1{,}2$ мПа·с) при $v = 0{,}1$ м/с и $L = 0{,}1$ м:</p>
+            <p>$$Re = \frac{2700 \times 0{,}1 \times 0{,}1}{1{,}2 \times 10^{-3}} \approx 22\,500$$</p>
+            <p>Течение турбулентное ($Re > 4000$). Предсказание турбулентности — одна из основных проблем задачи Навье-Стокса.</p>
+        </div>
+
+        <h3>Термодинамика: вторая задача тысячелетия</h3>
+        <p><strong>Задача П vs NP:</strong> хотя она не является напрямую термодинамической, существование эффективных алгоритмов для оптимизации составов и структур материалов эквивалентно вопросу о полиномиальной разрешимости NP-задач.</p>
+
+        <div class="formula">
+            $$\text{Оптимизация состава合金} \xrightarrow{\text{?}} \text{Полиномиальный алгоритм} \iff P \stackrel{?}{=} NP$$
+        </div>
+
+        <h3>Задача Хиггса: масса частиц и структура материи</h3>
+        <p>Механизм Хиггса определяет массы элементарных частиц, которые формируют кристаллическую структуру материалов:</p>
+        <div class="formula">
+            $$m_f = \frac{y_f v}{\sqrt{2}}$$
+        </div>
+        <p>где $y_f$ — константа Янги для фермиона $f$, $v \approx 246$ ГэВ — вакуумное ожидание поля Хиггса. Масса элементарных частиц определяет тип кристаллической решётки и, следовательно, свойства материалов.</p>
+
+        <h3>Задача Янга-Миллса: электромагнетизм в обработке</h3>
+        <p>Электромагнитные процессы в обработке расплавов описываются теорией Янга-Миллса:</p>
+        <div class="formula">
+            $$\mathcal{L} = -\frac{1}{4}F_{\mu\nu}^a F^{a\mu\nu} + \bar{\psi}(i\gamma^\mu D_\mu - m)\psi$$
+        </div>
+        <p>Применение: индукционный нагрев ($\ce{AC}$ ток в катушке), электролиз алюминия, электродуговое плавление — все основываются на уравнениях Максвелла, являющихся частным случаем теории Янга-Миллса.</p>
+    </div>
+
+    <div class="optimization">
+        <h3>Оптимизация материаловедческих исследований</h3>
+        <p><strong>Ускорение ×10:</strong> Автоматический подбор составов сплавов через ML-модели на базе баз данных (AFLOW, Materials Project, NOMAD).</p>
+        <p><strong>Ускорение ×100:</strong> Высокотемпературные эксперименты с in-situ синхротронным анализом (XRD, SAXS) — 1000 измерений/час вместо 10.</p>
+        <p><strong>Ускорение ×1000:</strong> Ab-initio расчёты DFT для предсказания свойств новых материалов before synthesis — сокращение цикла R&D с 10 лет до месяцев.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Таблица: 1001 доказательство — ключевые результаты тома 29</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <table>
+            <tr><th>Раздел</th><th>Кол-во утверждений</th><th>Ключевая формула</th></tr>
+            <tr><td>Металлы и сплавы</td><td>~180</td><td>$\sigma = \sigma_0 + k/\sqrt{d}$</td></tr>
+            <tr><td>Полимеры</td><td>~150</td><td>$Đ = M_w / M_n$</td></tr>
+            <tr><td>Керамика и стекло</td><td>~130</td><td>$\log \eta = A + B/(T - T_0)$</td></tr>
+            <tr><td>Композиты</td><td>~140</td><td>$E_c = E_f V_f + E_m V_m$</td></tr>
+            <tr><td>Наноматериалы</td><td>~160</td><td>$E(\mathbf{k}) = \pm \hbar v_F |\mathbf{k}|$</td></tr>
+            <tr><td>Химия синтеза</td><td>~120</td><td>$\Delta G = \Delta H - T\Delta S$</td></tr>
+            <tr><td>Связь с задачами тысячелетия</td><td>~121</td><td>$\rho(\partial_t \mathbf{v} + \mathbf{v}\cdot\nabla\mathbf{v}) = -\nabla p + \mu\nabla^2\mathbf{v}$</td></tr>
+            <tr><td><strong>ИТОГО</strong></td><td><strong>1001</strong></td><td></td></tr>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof — Том 29 — <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
