@@ -1,0 +1,489 @@
+
+<!--
+Platform: Habr
+Title: chapter_27
+Tags: 1001-proofs, informatics, algorithms, AI, cryptography, computer-science
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 27: Информатика — от алгоритмов к искусственному интеллекту</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Информатика: от алгоритмов к ИИ">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_27.html" class="active">27. Информатика</a>
+    </nav>
+
+    <h1>Глава 27: Информатика — от алгоритмов к искусственному интеллекту</h1>
+
+    <div class="section">
+        <p><strong>Информатика</strong> — это наука о вычислениях, обработке информации и автоматизации. В рамках серии «1001 Proof» том по информатике охватывает <strong>1001 формальное доказательство</strong> и теорему: от базовых алгоритмов и структур данных до теории вычислений, криптографии и искусственного интеллекта.</p>
+        <div class="formula">$$\text{Информатика} = \text{Алгоритмы} + \text{Структуры данных} + \text{Вычисления} + \text{ИИ} + \text{Криптография}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Алгоритмы — сортировки, поиски, графовые алгоритмы, сложность O()</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Определение алгоритма</h3>
+        <p><strong>Алгоритм</strong> — это конечная последовательность чётких инструкций для решения определённого класса задач. Каждый алгоритм обладает свойствами: <em>дискретностью</em>, <em>определённостью</em>, <em>конечностью</em> и <em>наличием входных/выходных данных</em>.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>1.1 Сортировки</h3>
+        <p>Сортировка — фундаментальная задача: упорядочить $n$ элементов.</p>
+        <table>
+            <tr><th>Алгоритм</th><th>Худший случай</th><th>Средний</th><th>Память</th></tr>
+            <tr><td>Пузырьком</td><td>$\BigO(n^2)$</td><td>$\BigO(n^2)$</td><td>$\BigO(1)$</td></tr>
+            <tr><td>Выбором</td><td>$\BigO(n^2)$</td><td>$\BigO(n^2)$</td><td>$\BigO(1)$</td></tr>
+            <tr><td>Вставками</td><td>$\BigO(n^2)$</td><td>$\BigO(n^2)$</td><td>$\BigO(1)$</td></tr>
+            <tr><td>Слиянием</td><td>$\BigO(n \log n)$</td><td>$\BigO(n \log n)$</td><td>$\BigO(n)$</td></tr>
+            <tr><td>Быстрая (QuickSort)</td><td>$\BigO(n^2)$</td><td>$\BigO(n \log n)$</td><td>$\BigO(\log n)$</td></tr>
+            <tr><td>Кучей (HeapSort)</td><td>$\BigO(n \log n)$</td><td>$\BigO(n \log n)$</td><td>$\BigO(1)$</td></tr>
+            <tr><td>Подсчётом</td><td>$\BigO(n + k)$</td><td>$\BigO(n + k)$</td><td>$\BigO(k)$</td></tr>
+        </table>
+        <div class="formula">$$T_{\text{merge}}(n) = 2T\left(\frac{n}{2}\right) + \BigO(n) \implies T(n) = \BigO(n \log n)$$</div>
+        <p><strong>Нижняя граница:</strong> любая сортировка сравнениями требует $\Omega(n \log n)$ операций (доказывается через дерево решений).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>1.2 Поиски</h3>
+        <p><strong>Линейный поиск:</strong> $\BigO(n)$ — перебор всех элементов.</p>
+        <p><strong>Бинарный поиск:</strong> $\BigO(\log n)$ — на отсортированном массиве:</p>
+        <div class="formula">$$\text{left} \leq \text{mid} \leq \text{right} \implies \text{область поиска уменьшается вдвое}$$</div>
+        <p><strong>Интерполяционный поиск:</strong> $\BigO(\log \log n)$ для равномерно распределённых данных.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>1.3 Графовые алгоритмы</h3>
+        <p><strong>Обход в ширину (BFS):</strong> $\BigO(V + E)$ — поиск кратчайшего пути в невзвешенном графе.</p>
+        <p><strong>Обход в глубину (DFS):</strong> $\BigO(V + E)$ — обнаружение циклов, топологическая сортировка.</p>
+        <p><strong>Дейкстра:</strong> $\BigO((V + E) \log V)$ — кратчайший путь с неотрицательными весами:</p>
+        <div class="formula">$$d[v] = \min(d[v], d[u] + w(u, v))$$</div>
+        <p><strong>Беллмана-Форд:</strong> $\BigO(VE)$ — отрицательные рёбра, обнаружение отрицательных циклов.</p>
+        <p><strong>Флойд-Уоршелл:</strong> $\BigO(V^3)$ — все пары кратчайших путей.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>1.4 Асимптотический анализ</h3>
+        <p><strong>О-большое (Big-O):</strong></p>
+        <div class="formula">$$f(n) = \BigO(g(n)) \iff \exists\, c > 0,\, n_0 : \forall n > n_0,\, f(n) \leq c \cdot g(n)$$</div>
+        <p><strong>Омега (Big-Omega):</strong></p>
+        <div class="formula">$$f(n) = \Omega(g(n)) \iff \exists\, c > 0,\, n_0 : \forall n > n_0,\, f(n) \geq c \cdot g(n)$$</div>
+        <p><strong>Тета (Big-Theta):</strong></p>
+        <div class="formula">$$f(n) = \Theta(g(n)) \iff f(n) = \BigO(g(n)) \land f(n) = \Omega(g(n))$$</div>
+        <p>Иерархия сложностей:</p>
+        <div class="formula">$$\BigO(1) \subset \BigO(\log n) \subset \BigO(\sqrt{n}) \subset \BigO(n) \subset \BigO(n \log n) \subset \BigO(n^2) \subset \BigO(n^3) \subset \BigO(2^n) \subset \BigO(n!)$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Структуры данных — деревья, хэш-таблицы, кучи, графы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Принцип выбора</h3>
+        <p>Выбор структуры данных определяет эффективность алгоритма. Тот же алгоритм может быть $\BigO(n)$ или $\BigO(n \log n)$ в зависимости от底层 структуры.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>2.1 Деревья</h3>
+        <p><strong>Двоичное дерево поиска (BST):</strong> операции в среднем $\BigO(\log n)$, в худшем — $\BigO(n)$.</p>
+        <p><strong>Сбалансированные деревья:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>AVL:</strong> строгое балансировка, высота $\leq 1.44 \log_2 n$</li>
+            <li><strong>Красно-чёрные:</strong> гарантия $\BigO(\log n)$ для всех операций</li>
+            <li><strong>B-деревья:</strong> оптимальны для дисковых носителей, используются в БД</li>
+            <li><strong>Деревья префиксов (Trie):</strong> хранение строк, поиск по префиксу $\BigO(m)$, $m$ — длина строки</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>2.2 Хэш-таблицы</h3>
+        <p><strong>Средняя сложность:</strong> $\BigO(1)$ для вставки, поиска, удаления.</p>
+        <p><strong>Хэш-функция:</strong></p>
+        <div class="formula">$$h(k) = k \mod m \quad \text{(простая)}$$</div>
+        <div class="formula">$$h(k) = \lfloor m \cdot ((k \cdot A) \mod 1) \rfloor \quad \text{(мультипликативная, } A = \frac{\sqrt{5}-1}{2}\text{)}$$</div>
+        <p><strong>Коллизии:</strong> метод цепочек $\BigO(1 + \alpha)$, метод открытой адресации $\BigO\!\left(\frac{1}{1-\alpha}\right)$, где $\alpha = n/m$ — коэффициент заполнения.</p>
+        <p><strong>Бэджи-хэширование:</strong> вероятностная техника для обнаружения несанкционированных изменений.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>2.3 Кучи (Heaps)</h3>
+        <p><strong>Двоичная куча:</strong> дерево, где $parent(i) \geq child(i)$ для max-кучи.</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Insert:</strong> $\BigO(\log n)$ — «всплытие» (bubble-up)</li>
+            <li><strong>Extract-Min/Max:</strong> $\BigO(\log n)$ — «погружение» (heapify-down)</li>
+            <li><strong>Build-Heap:</strong> $\BigO(n)$ — фертильная построение</li>
+        </ul>
+        <p><strong>Binomial heap:</strong> $\BigO(\log n)$ для merge.</p>
+        <p><strong>Fibonacci heap:</strong> $\BigO(1)$ amortized для insert, $\BigO(\log n)$ для extract.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>2.4 Графы</h3>
+        <p><strong>Матрица смежности:</strong> $\BigO(V^2)$ памяти, $\BigO(1)$ для проверки ребра.</p>
+        <p><strong>Список смежности:</strong> $\BigO(V + E)$ памяти, оптимальна для разреженных графов.</p>
+        <p><strong>Матрица инциденций:</strong> используется для бипартитных графов.</p>
+        <div class="formula">$$\text{Степень вершины:} \quad \deg(v) = \sum_{u \in V} A[v][u] \quad (\text{матрица смежности})$$</div>
+        <p><strong>Формула рукопожатий:</strong></p>
+        <div class="formula">$$\sum_{v \in V} \deg(v) = 2|E|$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Теория вычислений — автоматы, разрешимость, NP-полнота</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Теория вычислений изучает фундаментальные ограничения того, что может быть вычислено.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>3.1 Модели вычислений</h3>
+        <p><strong>Машина Тьюринга:</strong> формальная модель вычислений. Доказано, что any algorithmic computation может быть смоделирован на машине Тьюринга.</p>
+        <div class="formula">$$M = (Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$$</div>
+        <p><strong>Иерархия Хомского:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Type 0:</strong> рекурсивно перечисляемые языки (машина Тьюринга)</li>
+            <li><strong>Type 1:</strong> контекстно-свободные (автомат с магазинной памятью)</li>
+            <li><strong>Type 2:</strong> регулярные (конечный автомат)</li>
+            <li><strong>Type 3:</strong> regular expressions</li>
+        </ul>
+        <div class="formula">$$\text{Type 3} \subsetneq \text{Type 2} \subsetneq \text{Type 1} \subsetneq \text{Type 0}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>3.2 Разрешимость</h3>
+        <p><strong>Разрешимая задача:</strong> существует алгоритм, который всегда завершается с ответом «да» или «нет».</p>
+        <p><strong>Неразрешимая задача:</strong> остановка (halting problem) — невозможно определить, завершится ли произвольная программа.</p>
+        <div class="formula">$$\text{HALT} = \{(M, w) : M \text{ останавливается на } w\} \quad \text{— неразрешим}$$</div>
+        <p><strong>Тезис Чёрча-Тьюринга:</strong> любая «эффективно вычислимая» функция вычислима на машине Тьюринга.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>3.3 Классы сложности</h3>
+        <p><strong>P:</strong> задачи, решаемые за время polynomial:</p>
+        <div class="formula">$$P = \bigcup_{k \geq 1} \text{DTIME}(n^k)$$</div>
+        <p><strong>NP:</strong> задачи, для которых вердикт «да» верифицируется за polynomial время:</p>
+        <div class="formula">$$\text{NP} = \bigcup_{k \geq 1} \text{NTIME}(n^k)$$</div>
+        <p><strong>NP-полные задачи:</strong> любая задача из NP poly-reduцируется к ним:</p>
+        <div class="formula">$$A \leq_p B \iff \exists \text{ poly-time reduce } f : x \in A \iff f(x) \in B$$</div>
+        <p><strong>Примеры NP-полных:</strong> 3-SAT, задача коммивояжёра, задача о рюкзаке, раскраска графов, клика.</p>
+        <p><strong>NP-трудные:</strong> не менее сложные, чем NP-полные (но не обязательно в NP). Пример: остановка машины Тьюринга.</p>
+        <p><strong>PSPACE:</strong> задачи, решаемые с polynomial объёмом памяти. $P \subseteq NP \subseteq PSPACE$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Искусственный интеллект — обучение с учителем/без, нейросети, reinforcement learning</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Краткая история ИИ</h3>
+        <p><strong>1950:</strong> Тьюринг-тест. <strong>1956:</strong> конференция в Дартмуте (рождение ИИ). <strong>1997:</strong> Deep Blue побеждает Каспарова. <strong>2012:</strong> AlexNet — начало deep learning. <strong>2017:</strong> архитектура Transformer. <strong>2020:</strong> GPT-3. <strong>2023:</strong> GPT-4, multimodal модели.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>4.1 Обучение с учителем (Supervised Learning)</h3>
+        <p>На вход подаются пары $(x_i, y_i)$ — данные и правильные ответы. Цель: найти $f: X \to Y$, минимизируя функцию потерь.</p>
+        <div class="formula">$$\mathcal{L}(\theta) = \frac{1}{n} \sum_{i=1}^{n} \ell(f_\theta(x_i), y_i)$$</div>
+        <p><strong>Градиентный спуск:</strong></p>
+        <div class="formula">$$\theta_{t+1} = \theta_t - \alpha \nabla_\theta \mathcal{L}(\theta_t)$$</p>
+        <p><strong>Метрики:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Классификация: accuracy, precision, recall, F1-score, AUC-ROC</li>
+            <li>Регрессия: MSE, MAE, $R^2$</li>
+        </ul>
+        <div class="formula">$$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} \qquad \text{F1} = 2 \cdot \frac{P \cdot R}{P + R}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>4.2 Обучение без учителя (Unsupervised Learning)</h3>
+        <p>Данные без меток. Задачи: кластеризация, снижение размерности, генерация.</p>
+        <p><strong>K-means:</strong></p>
+        <div class="formula">$$\min_{C_1,\ldots,C_k} \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$</div>
+        <p><strong>PCA:</strong> поиск главных компонент, максимизация дисперсии:</p>
+        <div class="formula">$$w^* = \arg\max_w \frac{w^T \Sigma w}{w^T w}$$</div>
+        <p><strong>Autoencoders:</strong> обучение компактного представления через сжатие-восстановление.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>4.3 Нейросети (Deep Learning)</h3>
+        <p><strong>Нейрон:</strong></p>
+        <div class="formula">$$y = \sigma\!\left(\sum_{i=1}^{n} w_i x_i + b\right) = \sigma(w^T x + b)$$</div>
+        <p><strong>Функции активации:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Sigmoid: $\sigma(z) = \frac{1}{1+e^{-z}}$</li>
+            <li>ReLU: $f(z) = \max(0, z)$</li>
+            <li>Tanh: $\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$</li>
+            <li>Softmax: $\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$</li>
+        </ul>
+        <p><strong>Свёрточные сети (CNN):</strong> извлекают пространственные признаки. Свёртка:</p>
+        <div class="formula">$$(f * g)(t) = \int f(\tau) g(t - \tau) d\tau \quad \text{или в дискретном случае} \quad (f * g)[n] = \sum_{k} f[k] g[n-k]$$</div>
+        <p><strong>Рекуррентные сети (RNN):</strong> обрабатывают последовательности. LSTM — забывают/запоминают через «ворота»:</p>
+        <div class="formula">$$f_t = \sigma(W_f [h_{t-1}, x_t] + b_f) \quad \text{(forget gate)}$$</div>
+        <p><strong>Transformer:</strong> self-attention mechanism — основа GPT, BERT:</p>
+        <div class="formula">$$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$</div>
+        <p><strong>Масштабирование:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>LeNet-5 (1998): 60K параметров</li>
+            <li>AlexNet (2012): 60M параметров</li>
+            <li>GPT-3 (2020): 175B параметров</li>
+            <li>GPT-4 (2023): ~1.8T параметров (MoE)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>4.4 Reinforcement Learning (обучение с подкреплением)</h3>
+        <p><strong>Агент</strong> взаимодействует со <strong>средой</strong>: действие $a_t$ → состояние $s_{t+1}$ + награда $r_t$.</p>
+        <p><strong>Функция ценности (value function):</strong></p>
+        <div class="formula">$$V^\pi(s) = \mathbb{E}_\pi\!\left[\sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s\right]$$</div>
+        <p><strong>Уравнение Беллмана:</strong></p>
+        <div class="formula">$$V^*(s) = \max_a \sum_{s'} P(s'|s,a)\left[R(s,a,s') + \gamma V^*(s')\right]$$</div>
+        <p><strong>Q-learning:</strong></p>
+        <div class="formula">$$Q(s,a) \leftarrow Q(s,a) + \alpha\!\left[r + \gamma \max_{a'} Q(s',a') - Q(s,a)\right]$$</div>
+        <p><strong>Deep Q-Network (DQN):</strong> нейросеть приближает $Q(s,a)$.</p>
+        <p><strong>Policy Gradient (REINFORCE):</strong></p>
+        <div class="formula">$$\nabla_\theta J(\theta) = \mathbb{E}_\pi\!\left[\nabla_\theta \log \pi_\theta(a|s) \cdot G_t\right]$$</div>
+        <p><strong>Примеры:</strong> AlphaGo (2016), OpenAI Five (2019), ChatGPT (RLHF — reinforcement learning from human feedback).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Криптография — симметричное/ассиметричное шифрование, хэш-функции</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Криптография обеспечивает <em>конфиденциальность</em>, <em>целостность</em> и <em>аутентификацию</em> данных. Фундаментально опирается на математику: теорию чисел, алгебру, теорию вероятностей.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.1 Симметричное шифрование</h3>
+        <p>Один ключ для шифрования и дешифрования: $E(k, m) = c$, $D(k, c) = m$.</p>
+        <p><strong>AES (Advanced Encryption Standard):</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Блок: 128 бит, ключ: 128/192/256 бит</li>
+            <li>10/12/14 раундов (зависит от ключа)</li>
+            <li>Operations: SubBytes, ShiftRows, MixColumns, AddRoundKey</li>
+        </ul>
+        <p><strong>Безопасность:</strong> при $n$-битном ключе brute-force требует $\BigO(2^n)$ операций.</p>
+        <div class="formula">$$\text{Безопасность AES-256:} \quad 2^{256} \approx 10^{77} \text{ операций}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.2 Асимметричное шифрование (Public Key)</h3>
+        <p>Два ключа: публичный $(e, n)$ для шифрования, приватный $(d, n)$ для расшифрования.</p>
+        <p><strong>RSA:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Генерация: два простых $p, q$, $n = pq$, $\phi(n) = (p-1)(q-1)$</li>
+            <li>Шифрование: $c = m^e \mod n$</li>
+            <li>Расшифрование: $m = c^d \mod n$</li>
+            <li>Связь: $ed \equiv 1 \pmod{\phi(n)}$</li>
+        </ul>
+        <div class="formula">$$ed \equiv 1 \pmod{(p-1)(q-1)} \quad \text{(extended Euclidean algorithm)}$$</div>
+        <p><strong>ECC (Elliptic Curve Cryptography):</strong> аналогичная безопасность с меньшим ключом (256 бит ECC ≈ 3072 бит RSA).</p>
+        <div class="formula">$$y^2 = x^3 + ax + b \pmod{p} \quad \text{(эллиптическая кривая)}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.3 Хэш-функции</h3>
+        <p>$H: \{0,1\}^* \to \{0,1\}^n$ — детерминированная функция фиксированной длины вывода.</p>
+        <p><strong>Свойства:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Pre-image resistance:</strong> по $y$ сложно найти $x$ : $H(x) = y$</li>
+            <li><strong>Second pre-image resistance:</strong> по $x_1$ сложно найти $x_2 \neq x_1$ : $H(x_1) = H(x_2)$</li>
+            <li><strong>Collision resistance:</strong> сложно найти любые $x_1 \neq x_2$ : $H(x_1) = H(x_2)$</li>
+        </ul>
+        <p><strong>Атака дней рождения:</strong></p>
+        <div class="formula">$$\text{Вероятность коллизии} \approx 1 - e^{-k^2 / 2^{n+1}}$$</div>
+        <p>Для 256-битного хэша: $\approx 2^{128}$ операций.</p>
+        <p><strong>SHA-256:</strong> 256-бит вывод, 64 раунда. <strong>SHA-3 (Keccak):</strong> sponge-конструкция.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с математикой (комбинаторика, логика) и физикой (квантовые вычисления)</h2>
+    <!-- ============================================ -->
+
+    <div class="skill-card">
+        <h3>6.1 Комбинаторика</h3>
+        <p><strong>Биномиальные коэффициенты:</strong></p>
+        <div class="formula">$$\binom{n}{k} = \frac{n!}{k!(n-k)!} \quad \text{— число подмножеств размера } k$$</div>
+        <p><strong>Принцип включений-исключений:</strong></p>
+        <div class="formula">$$|A_1 \cup A_2 \cup \ldots \cup A_n| = \sum_{i} |A_i| - \sum_{i<j} |A_i \cap A_j| + \sum_{i<j<k} |A_i \cap A_j \cap A_k| - \ldots$$</div>
+        <p><strong>Связь с информатикой:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Анализ алгоритмов: число вариантов, сложность перебора</li>
+            <li>Криптография: вычислительная сложность взлома</li>
+            <li>Кодирование: число возможных кодов, вероятность ошибки</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.2 Математическая логика</h3>
+        <p><strong>Булева алгебра:</strong> фундамент цифровых схем и алгоритмов.</p>
+        <div class="formula">$$\text{AND: } a \land b, \quad \text{OR: } a \lor b, \quad \text{NOT: } \neg a, \quad \text{XOR: } a \oplus b$$</div>
+        <p><strong>Предикатная логика:</strong> основа формальных систем и программной верификации.</p>
+        <div class="formula">$$\forall x \in X, \exists y \in Y : P(x, y) \quad \text{(формула первого порядка)}$$</div>
+        <p><strong>Теорема Гёделя о неполноте:</strong> в любой непротиворечивой формальной системе, содержащей арифметику, существуют истинные, но недоказуемые утверждения.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.3 Квантовые вычисления</h3>
+        <p><strong>Кубит:</strong></p>
+        <div class="formula">$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1$$</div>
+        <p><strong>Квантовые вентили:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Hadamard: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$</li>
+            <li>CNOT: контролируемое-NOT</li>
+            <li>Toffoli: контролируемое-управляемое-NOT</li>
+        </ul>
+        <p><strong>Алгоритм Шора:</strong> факторизация за $\BigO((\log n)^3)$ — ломает RSA.</p>
+        <div class="formula">$$\text{Классический: } \BigO(e^{n^{1/3}}) \quad \text{vs} \quad \text{Квантовый: } \BigO((\log n)^3)$$</div>
+        <p><strong>Алгоритм Гровера:</strong> поиск в неупорядоченной БД за $\BigO(\sqrt{N})$ вместо $\BigO(N)$.</p>
+        <div class="formula">$$|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \quad \text{(суперпозиция)}$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (P vs NP, квантовые алгоритмы)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Задача P vs NP</h3>
+        <p><strong>Главная нерешённая проблема информатики:</strong></p>
+        <div class="formula">$$\boxed{P \stackrel{?}{=} NP}$$</div>
+        <p>Если $P = NP$, то любая задача, верифицируемая за polynomial время, может быть и <em>решена</em> за polynomial время. Это имело бы катастрофические последствия для криптографии.</p>
+        <p><strong>Если P = NP:</strong> RSA, ECC, AES — все современные криптосистемы сломаны.</p>
+        <p><strong>Если P ≠ NP:</strong> существуют задачи, которые принципиально проще верифицировать, чем решать.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>7.1 Влияние на криптографию</h3>
+        <p><strong>Современная криптография</strong> основана на предположении $P \neq NP$:</p>
+        <ul style="margin-left: 20px;">
+            <li>RSA:困難ность факторизации (не доказано NP-полным, но poly-time алгоритм неизвестен)</li>
+            <li>ECC:困难ность дискретного логарифмирования на эллиптических кривых</li>
+            <li>Асимметричное:困难ность решений certain lattice problems (LWE)</li>
+        </ul>
+        <p><strong>Постквантовая криптография:</strong> алгоритмы, устойчивые к квантовым атакам:</p>
+        <ul style="margin-left: 20px;">
+            <li>Lattice-based: CRYSTALS-Kyber, CRYSTALS-Dilithium (NIST标准)</li>
+            <li>Code-based: Classic McEliece</li>
+            <li>Hash-based: SPHINCS+</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>7.2 Квантовые алгоритмы и задачи тысячелетия</h3>
+        <p><strong>Алгоритм Шора для факторизации:</strong></p>
+        <div class="formula">$$\text{Классический:} \quad \BigO(e^{(\log N)^{1/3} (\log \log N)^{2/3}}) \quad \text{(GNFS)}$$</div>
+        <div class="formula">$$\text{Квантовый:} \quad \BigO((\log N)^3) \quad \text{(Shor's algorithm)}$$</div>
+        <p><strong>Квантовое supremacy:</strong> Google (2019) — 53 кубита, задача random circuit sampling за 200 секунд vs классический суперкомпьютер ~10,000 лет.</p>
+        <p><strong>Квантовое преимущество для оптимизации:</strong> Variational Quantum Eigensolver (VQE) — поиск ground state для химических молекул.</p>
+        <div class="formula">$$H|\psi\rangle = E|\psi\rangle \quad \text{(Shrödinger equation — quantum chemistry)}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>7.3 Связь с другими задачами тысячелетия</h3>
+        <p><strong>P vs NP и Навье-Стокс:</strong> существование и гладкость решений уравнений Навье-Стокса — это задача, которая может быть связана с вычислительной сложностью.</p>
+        <p><strong>P vs NP и теория Хорна:</strong> доказательство или опровержение $P = NP$ потребует глубоких результатов в области теории вычислений.</p>
+        <p><strong>Квантовые компьютеры и задачи тысячелетия:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Риман гипотеза: квантовые вычисления для проверки нулей</li>
+            <li>Решение уравнений Навье-Стокса: квантовые методы для турбулентности</li>
+            <li>Гипотеза Ходжа: формальная верификация через компьютерную алгебру</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>Оптимизация: от теории к практике</h3>
+        <p><strong>Ускорение x10:</strong> Параллелизация: GPU для нейросетей, распараллеливание графовых алгоритмов.</p>
+        <p><strong>Ускорение x100:</strong> Квантовые алгоритмы для специфических задач: Шор (факторизация), Гровер (поиск).</p>
+        <p><strong>Ускорение x1000:</strong> Нейроморфные чипы и специализированные TPU для deep learning.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>Теги</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Темы главы:</strong> informatics, algorithms, AI, cryptography, computer-science, P-vs-NP, machine-learning, deep-learning, neural-networks, reinforcement-learning, RSA, AES, hash-functions, quantum-computing, Turing-machine, complexity-classes, sorting, graphs, data-structures</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof — <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
