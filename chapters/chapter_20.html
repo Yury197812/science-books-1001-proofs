@@ -1,0 +1,377 @@
+
+<!--
+Platform: Habr
+Title: chapter_20
+Tags: mathematics, quantum-computing, cryptography, millennium-problems
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 20: Квантовые вычисления и криптография</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Квантовые вычисления и криптография">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_20.html" class="active">20. Квантовые вычисления</a>
+    </nav>
+
+    <h1>Глава 20: Квантовые вычисления и криптография</h1>
+
+    <div class="section">
+        <p>Квантовые вычисления представляют собой фундаментальный сдвиг в парадигме вычислений, использующий принципы квантовой механики для обработки информации. В данной главе мы рассмотрим основные концепции квантовых вычислений, их влияние на современную криптографию и связь с задачами тысячелетия.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Кубиты и квантовые вентили</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Основы квантовой информации</h3>
+        <p>Классический бит может находиться в состоянии $0$ или $1$. <strong>Кубит</strong> (квантовый бит) является квантовой аналогом бита и может находиться в суперпозиции состояний:</p>
+        <div class="formula">$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1$$</div>
+        <p>где $\alpha, \beta \in \C$ — комплексные амплитуды, $|0\rangle$ и $|1\rangle$ — ортонормированная база в двумерном комплексном пространстве $\C^2$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Вентиль Адамара (Hadamard)</h3>
+        <p>Вентиль Адамара $H$ создаёт равную суперпозицию из базисных состояний:</p>
+        <div class="formula">$$H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$</div>
+        <p>Действие на базисные состояния:</p>
+        <ul style="margin-left: 20px;">
+            <li>$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$</li>
+            <li>$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$</li>
+        </ul>
+        <p><strong>Свойство:</strong> $H^2 = I$ (самообратимый).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Вентиль CNOT (Controlled-NOT)</h3>
+        <p>Двухкубитный вентиль, действующий как классическое XOR при условии, что первый кубит (управляющий) находится в состоянии $|1\rangle$:</p>
+        <div class="formula">$$\text{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$$</div>
+        <p>Действие на базисные состояния:</p>
+        <ul style="margin-left: 20px;">
+            <li>$\text{CNOT}|00\rangle = |00\rangle$</li>
+            <li>$\text{CNOT}|01\rangle = |01\rangle$</li>
+            <li>$\text{CNOT}|10\rangle = |11\rangle$</li>
+            <li>$\text{CNOT}|11\rangle = |10\rangle$</li>
+        </ul>
+        <p><strong>Применение:</strong> Создание запутанности (энтанглемента).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Вентили Паули (Pauli Gates)</h3>
+        <p>Однокubitные вентили, соответствующие матрицам Паули:</p>
+        <table>
+            <tr><th>Вентиль</th><th>Матрица</th><th>Действие</th></tr>
+            <tr><td>Pauli X</td><td>$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$</td><td>Инверсия (NOT): $X|0\rangle = |1\rangle$, $X|1\rangle = |0\rangle$</td></tr>
+            <tr><td>Pauli Y</td><td>$\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$</td><td>Вращение вокруг оси Y: $Y|0\rangle = i|1\rangle$, $Y|1\rangle = -i|0\rangle$</td></tr>
+            <tr><td>Pauli Z</td><td>$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$</td><td>Фазовый сдвиг: $Z|0\rangle = |0\rangle$, $Z|1\rangle = -|1\rangle$</td></tr>
+        </table>
+        <p><strong>Свойства:</strong> $X^2 = Y^2 = Z^2 = I$, $XY = iZ$, $YZ = iX$, $ZX = iY$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Алгоритм Шора — факторизация за полиномиальное время</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Проблема факторизации</h3>
+        <p>Дано составное число $N$, найти его нетривиальные делители. Классические алгоритмы работают за время:</p>
+        <div class="formula">$$\text{Classical: } \exp\BigO(\sqrt[3]{(\ln N)(\ln \ln N)^2})$$</div>
+        <p>Квантовый алгоритм Шора решает эту задачу за полиномиальное время.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Алгоритм Шора (1994)</h3>
+        <p><strong>Идея:</strong> Сводит факторизация к задаче нахождения периода функции.</p>
+        <ol style="margin-left: 20px;">
+            <li>Выбрать случайное $a \in \Z_N^*$, вычислить $\gcd(a, N)$. Если $> 1$, нашли делитель.</li>
+            <li>Использовать квантовый алгоритм нахождения периода для функции $f(x) = a^x \bmod N$.</li>
+            <li>Найти период $r$ (наименьшее $r > 0$ такое, что $a^r \equiv 1 \pmod{N}$).</li>
+            <li>Если $r$ чётно, вычислить $\gcd(a^{r/2} \pm 1, N)$ — это нетривиальные делители.</li>
+        </ol>
+        <div class="formula">$$\text{Quantum Period Finding: } \BigO((\log N)^2 (\log \log N)(\log \log \log N))$$</div>
+        <p><strong>Сложность:</strong> Полиномиальная по $\log N$ — экспоненциальное ускорение по сравнению с классическими алгоритмами.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Псевдокод квантового алгоритма нахождения периода</h3>
+        <pre># Квантовая часть алгоритма Шора
+1. Подготовить два регистра:
+   |0⟩^⊗n |0⟩^⊗m (n = ⌈log₂N⌉, m = ⌈log₂N²⌉)
+
+2. Применить H к первому регистру:
+   H^⊗n |0⟩^⊗n = (1/√(2^n)) Σ|x⟩
+
+3. Вычислить модульное возведение в степень:
+   |x⟩|0⟩ → |x⟩|a^x mod N⟩
+
+4. Обратное QFT к первому регистру
+
+5. Измерить первый регистр → значение s
+
+6. Дробные дроби: s/2^m ≈ k/r для некоторого k
+
+7. Непрерывные дроби → r (период)</pre>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Квантовое преимущество — связь с P vs NP (глава 1)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Квантовые классы сложности</h3>
+        <p>Квантовые вычисления расширяют иерархию классов сложности:</p>
+        <div class="formula">$$\text{BPP} \subseteq \text{BQP} \subseteq \text{PSPACE}$$</div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>BPP</strong> — класс задач, решаемых классическими вероятностными алгоритмами за полиномиальное время</li>
+            <li><strong>BQP</strong> — класс задач, решаемых квантовыми компьютерами за полиномиальное время</li>
+            <li><strong>PSPACE</strong> — класс задач, решаемых за полиномиальное пространство</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Связь с P vs NP</h3>
+        <p><strong>Гипотеза:</strong> $P \neq NP$ (глава 1). Квантовые вычисления не решают вопрос P vs NP напрямую, но:</p>
+        <ul style="margin-left: 20px;">
+            <li>Если $P = NP$, то $BQP = P$ (квантовые компьютеры не дают преимущества)</li>
+            <li>Если $P \neq NP$, то $BQP$ может быть строго больше $P$ (квантовое преимущество)</li>
+            <li>Известно: $P \subseteq BQP$, но неизвестно, $NP \subseteq BQP$ ли</li>
+        </ul>
+        <p><strong>Ключевой вопрос:</strong> Существует ли квантовый алгоритм для NP-полных задач?</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Квантовое преимущество для конкретных задач</h3>
+        <table>
+            <tr><th>Задача</th><th>Классическая сложность</th><th>Квантовая сложность</th><th>Ускорение</th></tr>
+            <tr><td>Факторизация</td><td>$\exp(\BigO(n^{1/3}))$</td><td>$\BigO(n^3)$</td><td>Экспоненциальное</td></tr>
+            <tr><td>Дискретный логарифм</td><td>$\exp(\BigO(n^{1/3}))$</td><td>$\BigO(n^3)$</td><td>Экспоненциальное</td></tr>
+            <tr><td>Поиск по неупорядоченной базе</td><td>$\BigO(N)$</td><td>$\BigO(\sqrt{N})$</td><td>Квадратичное</td></tr>
+            <tr><td>Симуляция квантовых систем</td><td>$\exp(n)$</td><td>$\BigO(\text{poly}(n))$</td><td>Экспоненциальное</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Постквантовая криптография</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Угроза квантовых вычислений</h3>
+        <p>Алгоритм Шора ломает современные криптосистемы:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>RSA</strong> — основан на трудности факторизации (Shor's algorithm)</li>
+            <li><strong>Diffie-Hellman</strong> — основан на трудности дискретного логарифма (Shor's algorithm)</li>
+            <li><strong>ECC</strong> — основан на задаче дискретного логарифма эллиптических кривых (Shor's algorithm)</li>
+        </ul>
+        <p><strong>Сроки:</strong> Создание квантового компьютера с ~4000 логическими кубитами угрозит RSA-2048.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Криптография на решётках (Lattice-based)</h3>
+        <p><strong>Основа:</strong> Трудность нахождения кратчайшего вектора (SVP) или ближайшего вектора (CVP) в решётках.</p>
+        <div class="formula">$$\text{SVP}: \text{Найти } \mathbf{v} \in \mathcal{L}(B) \setminus \{\mathbf{0}\} \text{ such that } \|\mathbf{v}\| = \min_{\mathbf{w} \in \mathcal{L}(B) \setminus \{\mathbf{0}\}} \|\mathbf{w}\|$$</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>NTRU</strong> — криптосистема на основе решёток</li>
+            <li><strong>Kyber</strong> — NIST-стандарт для постквантового обмена ключами</li>
+            <li><strong>Dilithium</strong> — NIST-стандарт для постквантовых цифровых подписей</li>
+        </ul>
+        <p><strong>Свойство:</strong> Устойчивость к атакам как классических, так и квантовых компьютеров.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Криптография на хэш-функциях (Hash-based)</h3>
+        <p><strong>Основа:</strong> Безопасность односторонних хэш-функций.</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>XMSS</strong> — гомоморфная подпись на основе Merkle树</li>
+            <li><strong>SPHINCS+</strong> — Stateless хэш-подпись (NIST-стандарт)</li>
+        </ul>
+        <p><strong>Преимущества:</strong> Минимальные предположения (только безопасность хэш-функции).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Криптография на кодах (Code-based)</h3>
+        <p><strong>Основа:</strong> Трудность декодирования случайных линейных кодов.</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>McEliece</strong> — классическая криптосистема (1978), устойчива к квантовым атакам</li>
+            <li><strong>BIKE</strong> — NIST-кандидат на основе quasi-cyclic кодов</li>
+            <li><strong>HQC</strong> — NIST-кандидат на основе Hamming Quasi-Cyclic</li>
+        </ul>
+        <p><strong>Недостаток:</strong> Большие ключи (сотни кБайт — МБайт).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>P vs NP и квантовые вычисления</h3>
+        <p><strong>Задача P vs NP</strong> (глава 1): Существует ли полиномиальный алгоритм для NP-полных задач?</p>
+        <div class="formula">$$\text{Квантовое расширение: } P \subseteq BQP \subseteq PSPACE$$</div>
+        <ul style="margin-left: 20px;">
+            <li>Если $P = NP$, то квантовые компьютеры не дают преимущества для NP-задач</li>
+            <li>Если $P \neq NP$, то $BQP$ может быть строго больше $P$ (гипотеза)</li>
+            <li><strong>Открытый вопрос:</strong> $NP \subseteq BQP$? (квантовый компьютер решает все NP-задачи)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Янг-Миллс и квантовые вычисления</h3>
+        <p><strong>Задача Янг-Миллса</strong> (глава 5): Существует ли нетривиальная щель масс для калибровочных теорий?</p>
+        <div class="formula">$$\text{Квантовые вычисления позволяют:}$$</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>Квантовая симуляция:</strong> Прямое моделирование квантовых полей</li>
+            <li><strong>Латтичные вычисления:</strong> Дискретизация калибровочных теорий</li>
+            <li><strong>Групповые вычисления:</strong> Эффективное представление групп Ли</li>
+        </ul>
+        <p><strong>Применение:</strong> Квантовые компьютеры могут помочь в вычислении спектра масс в теориях Янг-Миллса.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гипотеза Римана и квантовые алгоритмы</h3>
+        <p><strong>Гипотеза Римана</strong> (глава 2): Все нетривиальные нули дзета-функции Римана лежат на прямой $\Re(s) = 1/2$.</p>
+        <div class="formula">$$\text{Квантовые подходы:}$$</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>Квантовый алгоритм подсчёта нулей:</strong> Быстрое вычисление $\pi(x)$</li>
+            <li><strong>Связь с спектральной теорией:</strong> Квантовые операторы и собственные значения</li>
+            <li><strong>Гипотеза Кэриера:</strong> Связь с квантовыми системами</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Практические применения</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Текущее состояние квантовых вычислений</h3>
+        <table>
+            <tr><th>Компания</th><th>Устройство</th><th>Кубиты</th><th>Применение</th></tr>
+            <tr><td>IBM</td><td>Eagle</td><td>127</td><td>Оптимизация, симуляция</td></tr>
+            <tr><td>Google</td><td>Sycamore</td><td>53</td><td>Quantum supremacy</td></tr>
+            <tr><td>IonQ</td><td> trapped ions</td><td>32</td><td>Высокая точность</td></tr>
+            <tr><td>Rigetti</td><td>超导量子比特</td><td>80</td><td>Гибридные алгоритмы</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гибридные квантово-классические алгоритмы</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>VQE</strong> (Variational Quantum Eigensolver) — поиск собственных значений</li>
+            <li><strong>QAOA</strong> (Quantum Approximate Optimization Algorithm) — комбинаторная оптимизация</li>
+            <li><strong>Quantum Machine Learning</strong> — квантовые ядра и генеративные модели</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Междисциплинарные связи</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Математика</h4>
+                <p>Линейная алгебра ($\C^n$), теория групп (SU(2), Pauli matrices), топология (anyons)</p>
+            </div>
+            <div class="grid-item">
+                <h4>Физика</h4>
+                <p>Квантовая механика (superposition, entanglement), статистическая механика</p>
+            </div>
+            <div class="grid-item">
+                <h4>Информатика</h4>
+                <p>Теория сложности (BQP), алгоритмы (Shor, Grover), криптография (post-quantum)</p>
+            </div>
+            <div class="grid-item">
+                <h4>Инженерия</h4>
+                <p>Квантовые устройства (superconducting, trapped ions, photonic)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="optimization">
+        <h3>Оптимизации для LLM</h3>
+        <p><strong>Структурированные знания:</strong> Чёткое разделение на кубиты, вентили, алгоритмы и криптографию.</p>
+        <p><strong>Формулы:</strong> Матричные представления, сложностные оценки, криптографические предположения.</p>
+        <p><strong>Перекрёстные ссылки:</strong> Связь с задачами тысячелетия (P vs NP, Янг-Миллс, Риман).</p>
+        <p><strong>Практический контекст:</strong> Текущее состояние оборудования и гибридные алгоритмы.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
