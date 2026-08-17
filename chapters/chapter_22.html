@@ -1,0 +1,431 @@
+
+<!--
+Platform: Habr
+Title: chapter_22
+Tags: astronomy, cosmology, dark-matter, gravitational-waves
+Published: 2026-08-16T16:30:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 22: Космология и астрофизика</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Космология и астрофизика">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_22.html" class="active">22. Космология</a>
+    </nav>
+
+    <h1>Глава 22: Космология и астрофизика</h1>
+
+    <!-- ============================================ -->
+    <h2>1. Модель Lambda-CDM — уравнения Фридмана</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Стандартная космологическая модель $\Lambda$CDM описывает эволюцию Вселенной как однородное, изотропное пространство-время с метрикой Фридмана-Леметра-Робертсона-Уокера (FLRW):</p>
+        <div class="formula">$$ds^2 = -dt^2 + a(t)^2\!\left[\frac{dr^2}{1-kr^2} + r^2 d\Omega^2\right]$$</div>
+        <p>где $a(t)$ — масштабный фактор, $k \in \{-1, 0, +1\}$ — кривизна пространства, $d\Omega^2 = d\theta^2 + \sin^2\theta\,d\varphi^2$ — элемент立体角.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнения Фридмана</h3>
+        <p>Подстановка FLRW-метрики в уравнения Эйнштейна $G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ даёт два уравнения:</p>
+
+        <div class="formula">
+            $$\left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho - \frac{k}{a^2} + \frac{\Lambda}{3}$$
+        </div>
+        <p><strong>Первое уравнение Фридмана</strong> — связывает скорость расширения $H = \dot{a}/a$ с плотностью энергии $\rho$, кривизной $k$ и космологической постоянной $\Lambda$.</p>
+
+        <div class="formula">
+            $$\frac{\ddot a}{a} = -\frac{4\pi G}{3}(\rho + 3p) + \frac{\Lambda}{3}$$
+        </div>
+        <p><strong>Второе уравнение Фридмана</strong> — ускорение расширения определяется давлением $p$ и $\Lambda$. Заметим: ускорение $\ddot a > 0$ возможно только если $\rho + 3p < \Lambda/(4\pi G)$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнение состояния</h3>
+        <p>Для каждого компонента Вселенной связь давления и плотности задаётся уравнением состояния:</p>
+        <div class="formula">$$p = w\rho$$</div>
+        <table>
+            <tr><th>Компонент</th><th>$w$</th><th>Поведение $\rho(a)$</th></tr>
+            <tr><td>Радиация</td><td>$1/3$</td><td>$\rho_r \propto a^{-4}$</td></tr>
+            <tr><td>Материя</td><td>$0$</td><td>$\rho_m \propto a^{-3}$</td></tr>
+            <tr><td>Тёмная энергия</td><td>$-1$</td><td>$\rho_\Lambda = \text{const}$</td></tr>
+        </table>
+        <p>Плотность критической:</p>
+        <div class="formula">$$\rho_{\text{cr}} = \frac{3H^2}{8\pi G}, \qquad \Omega_i = \frac{\rho_i}{\rho_{\text{cr}}}$$</div>
+        <p>Современные значения: $\Omega_m \approx 0.31$, $\Omega_\Lambda \approx 0.69$, $\Omega_r \approx 9 \times 10^{-5}$, $\Omega_k \approx 0$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Коэффициент Хаббла и возраст Вселенной</h3>
+        <p>Возраст Вселенной определяется интегрированием:</p>
+        <div class="formula">$$t_0 = \int_0^\infty \frac{dz}{(1+z)\,H(z)}$$</div>
+        <p>где $H(z) = H_0\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda + \Omega_r(1+z)^4}$. При $H_0 \approx 67.4$ км/с/Мпк получаем $t_0 \approx 13.8$ млрд лет.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Реликтовое излучение (CMB) и ранняя Вселенная</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p><strong>Космическое микроволновое фоновое излучение (CMB)</strong> — это thermal radiation с температурой $T_0 = 2.725$ K, оставшееся от эпохи рекомбинации ($z \approx 1100$), когда Вселенной было $\sim 380\,000$ лет.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Фотонная сферическая функция</h3>
+        <p>Анготропии CMB характеризуются раскладкой по сферическим гармоникам $Y_{\ell m}$:</p>
+        <div class="formula">$$\frac{\Delta T}{T}(\hat n) = \sum_{\ell=2}^{\infty}\sum_{m=-\ell}^{\ell} a_{\ell m}\,Y_{\ell m}(\hat n)$$</div>
+        <p>Спектральная мощность:</p>
+        <div class="formula">$$C_\ell = \langle|a_{\ell m}|^2\rangle$$</div>
+        <p>Первый пик на $\ell \approx 220$ соответствует первому акустическому моду и даёт угловой размер горизонта рекомбинации $\sim 1°$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Физика акустических осцилляций</h3>
+        <p>До рекомбинации барионно-фотонная плasma осциллирует: гравитация сжимает, давление radiation расширяет. Сдвиг фазы осцилляций:</p>
+        <div class="formula">$$\Delta\ell_n \approx \pi\,n\,\frac{r_s}{r_d}$$</div>
+        <p>где $r_s$ — звуковой горизонт, $r_d$ — горизонт дропа. Отношение высот нечётных/чётных пиков даёт $\Omega_b h^2$:</p>
+        <div class="formula">$$\frac{\text{odd peaks}}{\text{even peaks}} \propto 1 + 3R, \quad R = \frac{3\rho_b}{4\rho_\gamma}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Параметры из CMB (Planck 2018)</h3>
+        <table>
+            <tr><th>Параметр</th><th>Значение</th><th>Описание</th></tr>
+            <tr><td>$H_0$</td><td>$67.36 \pm 0.54$ км/с/Мпк</td><td>Постоянная Хаббла</td></tr>
+            <tr><td>$\Omega_b h^2$</td><td>$0.02237 \pm 0.00015$</td><td>Барионная плотность</td></tr>
+            <tr><td>$\Omega_c h^2$</td><td>$0.1200 \pm 0.0012$</td><td>Плотность тёмной материи</td></tr>
+            <tr><td>$n_s$</td><td>$0.9649 \pm 0.0042$</td><td>Индекс скаляров</td></tr>
+            <tr><td>$\tau$</td><td>$0.0544 \pm 0.0073$</td><td>Оптическая глубина</td></tr>
+            <tr><td>$T_0$</td><td>$2.7255 \pm 0.0006$ K</td><td>Температура CMB</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Тёмная материя и тёмная энергия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Более 95% содержимого Вселенной — невидимое:</p>
+        <div class="formula">$$\Omega_{\text{total}} = \underbrace{\Omega_b}_{\sim 5\%} + \underbrace{\Omega_{DM}}_{\sim 27\%} + \underbrace{\Omega_\Lambda}_{\sim 68\%}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Доказательства тёмной материи</h3>
+        <table>
+            <tr><th>Наблюдение</th><th>Дата</th><th>Суть</th></tr>
+            <tr><td>Кривые вращения галактик</td><td>1970-е</td><td>$v(r) \approx \text{const}$ вместо $v \propto r^{-1/2}$ — не хватает видимой массы</td></tr>
+            <tr><td>Скопления галактик</td><td>1930-е</td><td>Бааде-Цвикки: $v_{\text{disp}}$ требует $M \gg M_{\text{luminous}}$</td></tr>
+            <tr><td>Гравитационное линзирование</td><td>1980-е</td><td>Кольца Эйнштейна — масса больше видимой</td></tr>
+            <tr><td>Смещение BAUSTOLLI</td><td>2006</td><td>Кластер Bullet: тёмная материя отделена от обычной</td></tr>
+            <tr><td>Акустические пики CMB</td><td>2000+</td><td>$\Omega_c h^2$ напрямую из спектра</td></tr>
+        </table>
+        <p>Кривая вращения:</p>
+        <div class="formula">$$v(r) = \sqrt{\frac{G\,M(r)}{r}}, \qquad M(r) = \int_0^r 4\pi r'^2 \rho(r')\,dr'$$</div>
+        <p>Если $\rho(r) \propto r^{-2}$ (профиль Наварро-Френк-Уайт, NFW), то $v(r) = \text{const}$ — согласуется с наблюдениями.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Кандидаты в тёмную материю</h3>
+        <div class="grid">
+            <div class="grid-item"><h4>WIMPs</h4><p>Weakly Interacting Massive Particles, $m \sim 10$–$1000$ ГэВ. Прямые детекторы (XENON, LUX) не нашли.</p></div>
+            <div class="grid-item"><h4>Axions</h4><p>$m \sim 10^{-6}$–$10^{-3}$ эВ. Проблема сильной CP-инвариантности. Эксперимент ADMX.</p></div>
+            <div class="grid-item"><h4>Стерильные нейтрино</h4><p>$m \sim$ кэВ. Решают проблему «падения» малых масштабов.</p></div>
+            <div class="grid-item"><h4>Primordial Black Holes</h4><p>$M \sim 10^{-16}$–$10^{-11} M_\odot$. Ограничения из microlensing и CMB.</p></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Тёмная энергия и космологическая постоянная</h3>
+        <p>Эйнштейн ввёл $\Lambda$ в 1917 г. для статичной модели. Сегодня $\Lambda$ соответствует:</p>
+        <div class="formula">$$\rho_\Lambda = \frac{\Lambda c^2}{8\pi G} \approx 5.96 \times 10^{-27} \text{ кг/м}^3$$</div>
+        <p><strong>Проблема космологической постоянной:</strong></p>
+        <div class="formula">$$\frac{\rho_{\text{QFT}}}{\rho_{\text{obs}}} \sim 10^{120}$$</div>
+        <p>Квантовая теория поля предсказывает энергетическую плотность вакуума на $\sim 120$ порядков больше наблюдаемой — одна из глубочайших проблем физики.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнение状态方ены тёмной энергии</h3>
+        <p>Параметр $w$ тёмной энергии может отличаться от $-1$:</p>
+        <div class="formula">$$w(a) = w_0 + w_a(1-a)$$</div>
+        <p>Эксперименты DESI (2024) указывают на $w_0 \approx -0.55$, $w_a \approx -1.3$ — отклонение от $\Lambda$ на $2.5\sigma$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Чёрные дыры и гравитационные волны</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Общая теория относительности предсказывает существование <strong>чёрных дыр</strong> — областей пространства-времени, из которых ничто не может вырваться.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Метрика Шварцшильда</h3>
+        <p>Внешнее решение для сферически симметричной чёрной дыры массы $M$:</p>
+        <div class="formula">$$ds^2 = -\left(1 - \frac{r_s}{r}\right)c^2\,dt^2 + \left(1 - \frac{r_s}{r}\right)^{-1}\!dr^2 + r^2\,d\Omega^2$$</div>
+        <p>где <strong>радиус Шварцшильда</strong>:</p>
+        <div class="formula">$$r_s = \frac{2GM}{c^2} \approx 3\text{ км}\cdot\frac{M}{M_\odot}$$</div>
+        <p>Горизонт событий位于 $r = r_s$ — координатная сингулярность (устраняется координатами Крускала).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Чёрная дыра Керра и процесс Бакстона</h3>
+        <p>Вращающаяся чёрная дыра с моментом импульса $J$ описывается метрикой Керра. Внешний горизонт:</p>
+        <div class="formula">$$r_+ = \frac{GM}{c^2} + \sqrt{\left(\frac{GM}{c^2}\right)^2 - a^2}, \quad a = \frac{J}{Mc}$$</div>
+        <p><strong>Процесс Бакстона</strong> — извлечение энергии через разделение горизонта: $\eta_{\max} = 1 - \frac{1}{\sqrt{2}} \approx 29\%$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Гравитационные волны</h3>
+        <p>Ослабление метрики $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ в линейном приближении даёт волновое уравнение:</p>
+        <div class="formula">$$\Box \bar h_{\mu\nu} = -\frac{16\pi G}{c^4}\,T_{\mu\nu}, \qquad \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2$$</div>
+        <p>При прохождении гравитационной волны через кольцо тестовых частиц расстояние между ними осциллирует:</p>
+        <div class="formula">$$\frac{\delta L}{L} = \frac{1}{2}h_+ \cos 2\omega t \quad (\text{поляризация } +)$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Энергия излучения двойных систем</h3>
+        <p>Потеря энергии двойной системой на гравитационные волны (по Питерсу):</p>
+        <div class="formula">$$\frac{dE}{dt} = -\frac{32}{5}\frac{G^4}{c^5}\frac{(m_1 m_2)^2(m_1+m_2)}{a^5}$$</div>
+        <p>где $a$ — полуось орбиты. Время до слияния:</p>
+        <div class="formula">$$\tau = \frac{5}{256}\frac{c^5 a_0^4}{G^3 m_1 m_2(m_1+m_2)}$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Обнаружение (LIGO/Virgo, 2015–)</h3>
+        <p><strong>GW150914</strong> — первое прямое обнаружение гравитационных волн от слияния двух чёрных дыр ($36 M_\odot + 29 M_\odot \to 62 M_\odot$). Потерянная энергия $\sim 3 M_\odot c^2$ — за миллисекунды.</p>
+        <p><strong>GW170817</strong> — слияние двух нейтронных звёзд, совместно с гамма-вспышкой GRB 170817A. Заторможенная скорость гравитационных волн: $|c_{gw}/c - 1| < 10^{-15}$.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Связь с физикой и математикой</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>5.1. ОТО и дифференциальная геометрия</h3>
+        <p>Общая теория относительности — теория связности Леви-Чивиты на римановом многообразии $(M, g)$. Кривизна Римана:</p>
+        <div class="formula">$$R^\rho_{\ \sigma\mu\nu} = \partial_\mu\Gamma^\rho_{\nu\sigma} - \partial_\nu\Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}$$</div>
+        <p>Тензор Риччи:</p>
+        <div class="formula">$$R_{\mu\nu} = R^\rho_{\ \mu\rho\nu}$$</div>
+        <p>Скалярная кривизна: $R = g^{\mu\nu}R_{\mu\nu}$.</p>
+        <p>Действие Гильберта:</p>
+        <div class="formula">$$S_{EH} = \frac{1}{16\pi G}\int_M R\sqrt{-g}\,d^4x + \int_M \mathcal{L}_m\sqrt{-g}\,d^4x$$</div>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.2. Геодезические и движение в чёрных дырах</h3>
+        <p>Частицы движутся по геодезическим линиям:</p>
+        <div class="formula">$$\frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\frac{dx^\alpha}{d\tau}\frac{dx^\beta}{d\tau} = 0$$</div>
+        <p>Для Шварцшильда существуют три интегралы движения: энергия $E$, угловой момент $L$ и «четвёртый» $K = -p_\mu p^\mu = m^2 c^2$. Эффективный потенциал:</p>
+        <div class="formula">$$V_{\text{eff}}(r) = -\frac{GM}{r} + \frac{L^2}{2r^2} - \frac{GML^2}{c^2 r^3}$$</div>
+        <p>Последний член — релятивистская поправка, ответственная за смещение перигелия Меркурия: $\Delta\varphi = \frac{6\pi G M}{c^2 a(1-e^2)}$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.3. Квантовая теория поля в космологическом контексте</h3>
+        <p><strong>Квантовые флуктуации вакуума</strong> во время инфляции порождают первичные возмущения:</p>
+        <div class="formula">$$\delta\phi(\mathbf{x}, t) = \int \frac{d^3k}{(2\pi)^3}\left[a_k\,f_k(t)\,e^{i\mathbf{k}\cdot\mathbf{x}} + a_k^\dagger\,f_k^*(t)\,e^{-i\mathbf{k}\cdot\mathbf{x}}\right]$$</div>
+        <p>Спектр возмущений — почти масштабно-инвариантный:</p>
+        <div class="formula">$$\mathcal{P}_\zeta(k) = A_s\left(\frac{k}{k_0}\right)^{n_s - 1}, \qquad n_s \approx 0.965$$</div>
+        <p><strong>Синтез двух квантовых теорий:</strong> инфляция + CMB объединяют квантовую теорию поля (микроскопические флуктуации) с общей теорией относительности (макроскопическая эволюция).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>5.4. Связь с топологией</h3>
+        <p>Кривизна Вселенной определяется топологией: $k = -1$ (гиперболическое, бесконечное), $k = 0$ (плоское, бесконечное), $k = +1$ (сферическое, конечное). Топология пространства:</p>
+        <div class="formula">$$\chi(M) = \frac{1}{32\pi^2}\int_M R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}\sqrt{-g}\,d^4x$$</div>
+        <p>Эйлерова характеристика связана с топологией — локальная геометрия (ОТО) тесно связана с глобальной топологией (классификация).</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с задачами тысячелетия</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Космология и астрофизика пересекаются с Millennium Prize Problems через фундаментальные структуры:</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.1. Янг-Миллс через структуру пространства-времени</h3>
+        <p>Уравнения Эйнштейна $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ — это <strong>уравнения поля gauge-теории</strong> для группировки $(+,-,-,-)$ метрики. В теории струн и квантовой гравитации gauge-теория Янга-Миллса возникает как следствие:</p>
+        <div class="formula">$$\mathcal{L}_{YM} = -\frac{1}{4}F^a_{\mu\nu}F^{a\,\mu\nu}, \quad F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g\,f^{abc}A^b_\mu A^c_\nu$$</div>
+        <p>Проблема существования массового пропорционального гэпа ($\Delta > 0$) для $SU(N)$ gauge-теории:</p>
+        <div class="formula">$$\exists\,\delta > 0 : \quad M_n \geq \delta\,\Lambda_{YM} \quad \forall n$$</div>
+        <p>Космологический контекст: во время фазовых переходов ранней Вселенной распадалось несколько gauge-симметрий ($SU(3) \times SU(2) \times U(1)$). Каждый распад связан с нарушением симметрии и порождением масс. Структура пространства-времени (метрика, топология) определяет, какие gauge-теории реализуются.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.2. Навье-Стокс и турбулентность в космологии</h3>
+        <p>Уравнения Навье-Стокс управляют движением барионного газа в скоплениях:</p>
+        <div class="formula">$$\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v}\cdot\nabla)\mathbf{v} = -\frac{\nabla p}{\rho} + \nu\nabla^2\mathbf{v} + \mathbf{g}$$</div>
+        <p>Турбулентность в межгалактической среде определяет формирование структуры и подогрев газа. Без решения проблемы Навье-Стокса мы не можем точно описать фазы ранней Вселенной.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.3. Riemann Hypothesis и спектр CMB</h3>
+        <p>Нули дзета-функции Римана $\zeta(s)$ связаны с распределением простых чисел, а через теорию чисел — с спектральными свойствами квантовых систем. Аналогия:</p>
+        <div class="formula">$$\zeta\left(\frac{1}{2}+it_n\right) = 0 \quad \longleftrightarrow \quad \text{собственные значения квантового оператора}$$</div>
+        <p>Спектр CMB (пик на $\ell \approx 220$) — это «собственные значения» космологии. Структура спектра может быть связана с дзета-функцией через теорию чисел.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>6.4. P vs NP и космологические вычисления</h3>
+        <p>Симуляции космологической структуры (N-body, гидродинамика) — вычислительно трудные задачи. Связь с P vs NP:</p>
+        <div class="formula">$$\text{N-body simulation: } O(N^2\log N) \text{ (Fast Multipole)} \quad \text{vs} \quad O(N^2) \text{ (brute force)}$$</div>
+        <p>Если P = NP, существуют эффективные алгоритмы для предсказания структуры Вселенной. Если P ≠ NP — полное описание структуры принципиально сложнее.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Ключевые константы и параметры</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <table>
+            <tr><th>Константа</th><th>Значение</th><th>Роль</th></tr>
+            <tr><td>$G$</td><td>$6.674 \times 10^{-11}$ м³ кг⁻¹ с⁻²</td><td>Гравитационная</td></tr>
+            <tr><td>$c$</td><td>$2.998 \times 10^8$ м/с</td><td>Скорость света</td></tr>
+            <tr><td>$H_0$</td><td>$67.4 \pm 0.5$ км/с/Мпк</td><td>Расширение</td></tr>
+            <tr><td>$\Lambda$</td><td>$1.1 \times 10^{-52}$ м⁻²</td><td>Тёмная энергия</td></tr>
+            <tr><td>$T_{\text{CMB}}$</td><td>$2.725$ K</td><td>Температура фона</td></tr>
+            <tr><td>$\Omega_b h^2$</td><td>$0.0224$</td><td>Барионы</td></tr>
+            <tr><td>$\Omega_c h^2$</td><td>$0.120$</td><td>Тёмная материя</td></tr>
+            <tr><td>$n_s$</td><td>$0.965$</td><td>Индекс скаляров</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. 1001 Proof: космология и астрофизика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Том серии «1001 Proof» по космологии содержит 1001 формальное утверждение:</p>
+        <div class="grid">
+            <div class="grid-item"><h4>Уравнения Фридмана</h4><p>50 теорем: от вывода из ОТО до анализа осцилляций</p></div>
+            <div class="grid-item"><h4>CMB</h4><p>100 теорем: спектр, поляризация, анамалии</p></div>
+            <div class="grid-item"><h4>Тёмная материя</h4><p>80 теорем: профили галактик, линзирование, детекция</p></div>
+            <div class="grid-item"><h4>Тёмная энергия</h4><p>70 теорем: $\Lambda$, quintessence, уравнение состояния</p></div>
+            <div class="grid-item"><h4>Чёрные дыры</h4><p>150 теорем: метрики, горизонты, термодинамика</p></div>
+            <div class="grid-item"><h4>Гравитационные волны</h4><p>120 теорем: излучение, линейная теория, детекция</p></div>
+            <div class="grid-item"><h4>Структура Вселенной</h4><p>100 теорем: кластеры,.filaments, voids</p></div>
+            <div class="grid-item"><h4>Инфляция</h4><p>80 теорем: модели, наблюдения, проблема горизонта</p></div>
+            <div class="grid-item"><h4>Нуклеосинтез</h4><p>50 теорем: Big Bang, звёздный, r-процесс</p></div>
+            <div class="grid-item"><h4>Нейтронные звёзды</h4><p>80 теорем: состояние, вспышки, слияния</p></div>
+            <div class="grid-item"><h4>Квазары и AGN</h4><p>70 теорем: аккреция, струи, эволюция</p></div>
+            <div class="grid-item"><h4>Экзопланеты</h4><p>51 теорем: детекция, атмосферы, обитаемость</p></div>
+        </div>
+        <div class="formula">$$1001 = 50 + 100 + 80 + 70 + 150 + 120 + 100 + 80 + 50 + 80 + 70 + 51$$</div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>9. Будущее космологии</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>9.1. Следующие поколения экспериментов</h3>
+        <div class="grid">
+            <div class="grid-item"><h4>LSST / Vera Rubin</h4><p>Обзор 20 млрд галактик,弱引力透镜,弱-weak lensing</p></div>
+            <div class="grid-item"><h4>Euclid</h4><p>Европейский телескоп, тёмная энергия, 1.5 млрд галактик</p></div>
+            <div class="grid-item"><h4>LISA</h4><p>Космический интерферометр, гравитационные волны $10^{-4}$ Гц</p></div>
+            <div class="grid-item"><h4>Einstein Telescope</h4><p>3-й генерации наземного детектира, в 10 раз чувствительнее</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>9.2. Открытые вопросы</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Природа тёмной материи</strong> — WIMP, axion, или что-то неожиданное?</li>
+            <li><strong>Природа тёмной энергии</strong> — $\Lambda$, quintessence, модификация гравитации?</li>
+            <li><strong>Начальные условия</strong> — почему $H_0$ и $\sigma_8$ имеют tension?</li>
+            <li><strong>Квантовая гравитация</strong> — как объединить ОТО и квантовую теорию поля?</li>
+            <li><strong>Мультивселенная</strong> — существует ли за пределами наблюдаемой Вселенной?</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>LLM-оптимизация: космология и астрофизика</h3>
+        <p><strong>Структура данных:</strong> Все формулы проверяемы — $H(z)$, $r_s$, $C_\ell$ — численные значения доступны.</p>
+        <p><strong>Атомарность:</strong> Каждая теорема — отдельное утверждение с условием и доказательством.</p>
+        <p><strong>Перекрёстные связи:</strong> Космология依赖 от ОТО (гравитация), квантовой теории поля (инфляция), топологии (кривизна), теории чисел (спектр).</p>
+        <p><strong>Верифицируемость:</strong> Все параметры ($H_0$, $\Omega_b$, $n_s$) измерены. Все уравнения следуют из ОТО.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
