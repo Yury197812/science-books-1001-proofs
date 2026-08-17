@@ -1,0 +1,592 @@
+
+<!--
+Platform: Habr
+Title: chapter_38
+Tags: 1001-proofs, ecology, environmental-science, climate-models, population-dynamics
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 38: Экология и охрана окружающей среды</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="Экология и охрана окружающей среды">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_38.html" class="active">38. Экология</a>
+    </nav>
+
+    <h1>Глава 38: Экология и охрана окружающей среды</h1>
+
+    <div class="section">
+        <h2>Введение</h2>
+        <p>Экология — наука о взаимодействиях организмов с окружающей средой, включая биоценозы, популяции и экосистемы. В эпоху антропогенного воздействия на биосферу математическое моделирование экологических процессов становится критически важным для предсказания и управления изменениями окружающей среды.</p>
+        <p>Эта глава рассматривает математические основы экологии: от популяционной динамики и биогеохимических циклов до климатических моделей и стратегий устойчивого развития. Мы покажем, как задачи тысячелетия (Навье-Стокс, термодинамика) связаны с экологическими проблемами.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Популяционная динамика — модель Лотки-Вольтерра, устойчивость</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Модель хищник-жертва (Лотка-Вольтерра)</h3>
+        <p>Классическая модель описывает динамику двух популяций: жертвы ($x$) и хищника ($y$):</p>
+        <div class="formula">
+            $$\frac{dx}{dt} = \alpha x - \beta x y$$
+            $$\frac{dy}{dt} = \delta x y - \gamma y$$
+        </div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$\alpha$ — коэффициент размножения жертв</li>
+            <li>$\beta$ — коэффициент эффективности охоты</li>
+            <li>$\delta$ — коэффициент эффективности превращения пищи в потомство</li>
+            <li>$\gamma$ — коэффициент смертности хищников</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Равновесие и устойчивость</h3>
+        <p>Система имеет два равновесия:</p>
+        <div class="formula">
+            $$E_0 = (0, 0) \quad \text{и} \quad E^* = \left(\frac{\gamma}{\delta}, \frac{\alpha}{\beta}\right)$$
+        </div>
+        <p><strong>Якобиан в точке $E^*$:</strong></p>
+        <div class="formula">
+            $$J = \begin{pmatrix} 0 & -\beta \frac{\gamma}{\delta} \\ \delta \frac{\alpha}{\beta} & 0 \end{pmatrix} = \begin{pmatrix} 0 & -\frac{\gamma}{\alpha} \cdot \alpha \\ \alpha & 0 \end{pmatrix}$$
+        </div>
+        <p>Собственные значения: $\lambda = \pm i\sqrt{\alpha\gamma}$. Точка $E^*$ является <strong>центром</strong> — устойчивым, но не асимптотически устойчивым. Фазовые траектории — замкнутые орбиты вокруг $E^*$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Уравнение логистического роста</h3>
+        <p>Для одной популяции с ограничением ресурсов:</p>
+        <div class="formula">
+            $$\frac{dN}{dt} = rN\left(1 - \frac{N}{K}\right)$$
+        </div>
+        <p>где $r$ — внутренний темп роста, $K$ — ёмкость среды. Решение:</p>
+        <div class="formula">
+            $$N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}$$
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель с конкуренцией (Вольтерра-Лотка扩展)</h3>
+        <p>Конкуренция двух видов за общий ресурс:</p>
+        <div class="formula">
+            $$\frac{dN_1}{dt} = r_1 N_1 \left(1 - \frac{N_1 + \alpha_{12} N_2}{K_1}\right)$$
+            $$\frac{dN_2}{dt} = r_2 N_2 \left(1 - \frac{N_2 + \alpha_{21} N_1}{K_2}\right)$$
+        </div>
+        <p>где $\alpha_{ij}$ — коэффициенты конкуренции. Устойчивое сосуществование возможно при $\alpha_{12}\alpha_{21} < 1$.</p>
+    </div>
+
+    <div class="optimization">
+        <h3>Применения</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Управление рыболовством:</strong> Модель Лотки-Вольтерра для оптимизации вылова</li>
+            <li><strong>Биологическая защита:</strong> Введение хищников для контроля вредителей</li>
+            <li><strong>Эпидемиология:</strong> SIR-модели (Susceptible-Infected-Recovered) — аналогия</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Биогеоценология — циклы веществ, первичная продукция</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Углеродный цикл в экосистеме</h3>
+        <p>Простая модель углеродного цикла между атмосферой ($A$), биомассой ($B$) и почвой ($S$):</p>
+        <div class="formula">
+            $$\frac{dA}{dt} = -k_{AB} A + k_{BA} B + k_{SA} S + E$$
+            $$\frac{dB}{dt} = k_{AB} A - k_{BS} B - k_{BA} B$$
+            $$\frac{dS}{dt} = k_{BS} B - k_{SA} S$$
+        </div>
+        <p>где $k_{ij}$ — коэффициенты переноса, $E$ — антропогенные выбросы.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Первичная продукция</h3>
+        <p><strong>Чистая первичная продукция</strong> (NPP) — разность междуgross photosynthesis и дыханием:</p>
+        <div class="formula">
+            $$\text{NPP} = \text{GPP} - R_a = \varepsilon \cdot \text{PAR} \cdot f(T) \cdot g(W) - R_a$$
+        </div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$\varepsilon$ — кф. использования фотосинтетически активной радиации</li>
+            <li>$\text{PAR}$ — photosynthetically active radiation (400–700 нм)</li>
+            <li>$f(T)$ — температурная зависимость</li>
+            <li>$g(W)$ — водный стресс</li>
+        </ul>
+        <p><strong>Глобальная NPP:</strong> $\sim 120 \text{ Гт C/год}$ (леса: $\sim 55\%$, океаны: $\sim 45\%$).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Азотный цикл</h3>
+        <p>Фиксация атмосферного $N_2$ бактериями:</p>
+        <div class="formula">
+            $$N_2 + 8H^+ + 8e^- + 16\text{ATP} \to 2NH_3 + H_2 + 16\text{ADP} + 16P_i$$
+        </div>
+        <p>Ежегодная фиксация: $\sim 140 \text{ Мт N/год}$ (естественная) + $\sim 80 \text{ Мт N/год}$ (антропогенная через процесс Габера-Боша).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Водный цикл и испарение</h3>
+        <p>Массовый баланс воды в экосистеме:</p>
+        <div class="formula">
+            $$\frac{dW}{dt} = P - E - R - \Delta G$$
+        </div>
+        <p>где $P$ — осадки, $E$ — испарение/транспирация, $R$ — сток, $\Delta G$ — изменение запасов грунтовых вод.</p>
+        <p><strong>Закон Тюрца:</strong> $E = E_0 \cdot (1 - e^{-\alpha W/W_{\max}})$ — зависимость испарения от запасов воды.</p>
+    </div>
+
+    <div class="section">
+        <h3>Трофические уровни и энергетика</h3>
+        <p>Правило 10% Линдемана: на каждом трофическом уровне теряется $\sim 90\%$ энергии:</p>
+        <div class="formula">
+            $$E_n = E_0 \cdot (0.1)^n = E_0 \cdot 10^{-n}$$
+        </div>
+        <table>
+            <tr><th>Трофический уровень</th><th>Пример</th><th>Биомасса (кг/м²)</th><th>Энергия (кДж/м²·год)</th></tr>
+            <tr><td>1 — Продуценты</td><td>Травы</td><td>4.0</td><td>46,000</td></tr>
+            <tr><td>2 — Консументы I</td><td>Травоядные</td><td>0.4</td><td>4,600</td></tr>
+            <tr><td>3 — Консументы II</td><td>Хищники</td><td>0.04</td><td>460</td></tr>
+            <tr><td>4 — Консументы III</td><td>Верхние хищники</td><td>0.004</td><td>46</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Климатические модели — парниковые газы, углеродный цикл</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Парниковый эффект — физика</h3>
+        <p>Баланс излучения Земли:</p>
+        <div class="formula">
+            $$C \frac{dT}{dt} = S(1 - \alpha) - \varepsilon \sigma T^4 + \Delta F$$
+        </div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$C$ — тепловая ёмкость (океан + атмосфера)</li>
+            <li>$S$ — солнечная постоянная ($\sim 1361 \text{ Вт/м}^2$)</li>
+            <li>$\alpha$ — альбедо Земли ($\sim 0.30$)</li>
+            <li>$\varepsilon$ — эффективная теплоотдача атмосферы</li>
+            <li>$\sigma$ — постоянная Стефана-Больцмана ($5.67 \times 10^{-8} \text{ Вт/м}^2\text{К}^4$)</li>
+            <li>$\Delta F$ — радиационное воздействие парниковых газов</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Концентрация CO₂ и радиационное воздействие</h3>
+        <p>Связь между концентрацией CO₂ и радиационным воздействием:</p>
+        <div class="formula">
+            $$\Delta F = 5.35 \ln\left(\frac{C}{C_0}\right) \text{ Вт/м}^2$$
+        </div>
+        <p>где $C_0 = 280 \text{ ppm}$ (доиндустриальный уровень), $C$ — текущая концентрация.</p>
+        <p><strong>Текущие данные (2025):</strong> $C \approx 425 \text{ ppm}$, $\Delta F \approx 2.2 \text{ Вт/м}^2$, $\Delta T \approx 1.2°\text{C}$.</p>
+        <p><strong>Прогноз IPCC:</strong> При RCP8.5 ($C \approx 1000 \text{ ppm}$ к 2100 г.) → $\Delta T \approx 4.3–4.8°\text{C}$.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель климата «лопатка» (Budyko-Sellers)</h3>
+        <p>Зависимость альбедо от температуры (критический переключатель «ледник-океан»):</p>
+        <div class="formula">
+            $$C \frac{dT}{dt} = Q(1 - \alpha(T)) - (A + BT)$$
+        </div>
+        <p>где $Q = S(1-\alpha_{\text{cloud}})/4$, $\alpha(T)$ — зависит от наличия льда, $A + BT$ — излучение в космос (линеаризация).</p>
+        <p><strong>Критические точки:</strong> При $\Delta T \approx -5°\text{C}$ начинается «снежный ком» → ледниковый период.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель углеродного цикла (Keeling-Gruber)</h3>
+        <p>Простая модель атмосферного CO₂:</p>
+        <div class="formula">
+            $$\frac{dC}{dt} = E(t) - k_{\text{uptake}} (C - C_{\text{eq}})$$
+        </div>
+        <p>где $E(t)$ — выбросы, $k_{\text{uptake}}$ — скорость поглощения океаном/биосферой, $C_{\text{eq}}$ — равновесная концентрация.</p>
+        <p><strong>Удвоение времени CO₂:</strong> $\tau_{1/2} = \ln(2)/k_{\text{uptake}} \approx 50\text{–}200$ лет (в зависимости от сценария).</p>
+    </div>
+
+    <div class="section">
+        <h3>Парниковые газы — сравнение</h3>
+        <table>
+            <tr><th>Газ</th><th>Концентрация (2025)</th><th>GWP₁₀₀</th><th>Источник</th></tr>
+            <tr><td>CO₂</td><td>425 ppm</td><td>1</td><td>Сжигание ископаемого топлива</td></tr>
+            <tr><td>CH₄</td><td>1920 ppb</td><td>28</td><td>Сельское хозяйство, добыча газа</td></tr>
+            <tr><td>N₂O</td><td>336 ppb</td><td>265</td><td>Удобрения, промышленность</td></tr>
+            <tr><td>F-gases</td><td>—</td><td>1000–23000</td><td>Холодильники, промышленность</td></tr>
+        </table>
+        <p><em>GWP₁₀₀ — Global Warming Potential за 100 лет (относительно CO₂).</em></p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Загрязнение —扩散方程, биоаккумуляция, моделирование</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Диффузионное уравнение для загрязнителей</h3>
+        <p>Распространение загрязнителя в атмосфере/гидросфере описывается уравнением диффузии-конвекции:</p>
+        <div class="formula">
+            $$\frac{\partial C}{\partial t} + \mathbf{v} \cdot \nabla C = D \nabla^2 C + S(\mathbf{x}, t) - kC$$
+        </div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$C(\mathbf{x}, t)$ — концентрация загрязнителя</li>
+            <li>$\mathbf{v}$ — поле скоростей ветра/течения</li>
+            <li>$D$ — коэффициент турбулентной диффузии</li>
+            <li>$S(\mathbf{x}, t)$ — источник загрязнения</li>
+            <li>$k$ — коэффициент разрушения (для реактивных загрязнителей)</li>
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель Гауссова пятна</h3>
+        <p>Концентрация от точечного источника:</p>
+        <div class="formula">
+            $$C(x, y, z) = \frac{Q}{2\pi \sigma_y \sigma_z u} \exp\left(-\frac{y^2}{2\sigma_y^2} - \frac{(z-H)^2}{2\sigma_z^2}\right)$$
+        </div>
+        <p>где $Q$ — интенсивность источника, $\sigma_y, \sigma_z$ — стандартные отклонения, $u$ — скорость ветра, $H$ — высота трубы.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биоаккумуляция</h3>
+        <p>Накопление тяжёлых металлов/пестицидов вorganismo:</p>
+        <div class="formula">
+            $$\frac{dC_{\text{org}}}{dt} = k_{\text{uptake}} \cdot C_{\text{env}} - k_{\text{elim}} \cdot C_{\text{org}}$$
+        </div>
+        <p><strong>Коэффициент биоаккумуляции (BCF):</strong></p>
+        <div class="formula">
+            $$\text{BCF} = \frac{C_{\text{org}}}{C_{\text{env}}} = \frac{k_{\text{uptake}}}{k_{\text{elim}}}$$
+        </div>
+        <p><strong>Примеры BCF:</strong></p>
+        <table>
+            <tr><th>Вещество</th><th>BCF</th><th>Токсичность</th></tr>
+            <tr><td>ДДТ</td><td>$\sim 5100$</td><td>Высокая (биоразлагаемость: $\sim 15$ лет)</td></tr>
+            <tr><td>Ртуть (метилртуть)</td><td>$\sim 10^6$</td><td>Экстремальная (биоразлагаемость: $\sim 70$ лет)</td></tr>
+            <tr><td>Свинец</td><td>$\sim 10^3$</td><td>Высокая (биоразлагаемость: $\sim 500$ лет)</td></tr>
+        </table>
+    </div>
+
+    <div class="skill-card">
+        <h3>Модель «источник-сток» для тяжёлых металлов</h3>
+        <p>Массовый баланс металла в экосистеме:</p>
+        <div class="formula">
+            $$V \frac{dC}{dt} = I_{\text{industrial}} + I_{\text{agricultural}} + I_{\text{atm}} - Q_{\text{out}} - R_{\text{deposition}}$$
+        </div>
+        <p>где $V$ — объём резервуара (почва/вода), $Q_{\text{out}}$ — вынос из системы, $R_{\text{deposition}}$ — осаждение/сорбция.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Устойчивое развитие — оптимизация ресурсов, теория игр</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Модель Мальтуса-Солоу для ресурсов</h3>
+        <p>Рост популяции с конечными ресурсами:</p>
+        <div class="formula">
+            $$\frac{dN}{dt} = rN\left(1 - \frac{N}{K(t)}\right)$$
+            $$K(t) = K_0 e^{-\delta t} + K_{\min}(1 - e^{-\delta t})$$
+        </div>
+        <p>где $K(t)$ — убывающая ёмкость среды из-за истощения ресурсов, $\delta$ — скорость деградации.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Задача управления рыболовством (оптимизация)</h3>
+        <p>Максимизация вылова при сохранении устойчивости:</p>
+        <div class="formula">
+            $$\max_{h(t)} J = \int_0^T e^{-\rho t} \pi(h(t), N(t)) \, dt$$
+        </div>
+        <p>при ограничениях:</p>
+        <div class="formula">
+            $$\frac{dN}{dt} = F(N) - h(t), \quad N(0) = N_0, \quad N(T) \geq N_{\min}$$
+        </div>
+        <p>где $F(N)$ — функция роста, $h(t)$ — вылов, $\rho$ — ставка дисконтирования, $\pi$ — прибыль.</p>
+        <p><strong>Оптимальный вылов (максимально устойчивый улов, MSY):</strong></p>
+        <div class="formula">
+            $$h^* = rN^*\left(1 - \frac{N^*}{K}\right) \quad \text{при} \quad N^* = \frac{K}{2}$$
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Теория игр для экологии</h3>
+        <p><strong>Трагедия общин</strong> (Tragedy of the Commons) — модель конкуренции за общий ресурс:</p>
+        <div class="formula">
+            $$\text{Выигрыш}_i = v_i(x_i, X) = x_i \cdot f(X) - c_i x_i$$
+        </div>
+        <p>где $x_i$ — использование ресурса игроком $i$, $X = \sum x_j$ — общее использование, $f(X)$ — функция стоимости ресурса.</p>
+        <p><strong>Равновесие Нэша:</strong> Каждый игрок максимизирует свой выигрыш, не учитывая внешний эффект:</p>
+        <div class="formula">
+            $$x_i^* = \arg\max_{x_i} v_i(x_i, X_{-i} + x_i) \implies x_i^* > x_i^{\text{social}}$$
+        </div>
+        <p><strong>Социально оптимальное решение:</strong> $\sum x_i^{\text{social}} < \sum x_i^*$ → перенагрузка ресурса.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Индекс устойчивого развития (SDG)</h3>
+        <p>Композитный индекс:</p>
+        <div class="formula">
+            $$\text{SDI} = \prod_{i=1}^{n} w_i \cdot \text{Norm}(I_i)$$
+        </div>
+        <p>где $w_i$ — веса компонентов, $\text{Norm}(I_i)$ — нормализованные индикаторы.</p>
+        <p><strong>Компоненты:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Экономический рост (GDP на душу населения)</li>
+            <li>Социальная справедливость (GINI, образование)</li>
+            <li>Экологическая устойчивость (выбросы CO₂, biodiversity)</li>
+            <li>Институциональная мощь (коррупция, демократия)</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Связь с биологией (эволюция, экосистемы) и физикой (термодинамика)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Эволюция и динамика популяций</h3>
+        <p>Основное уравнение популяционной генетики (уравнениеPRICE):</p>
+        <div class="formula">
+            $$\Delta \bar{z} = h^2 \cdot \text{Var}(z) \cdot \frac{\partial \ln \bar{w}}{\partial \bar{z}}$$
+        </div>
+        <p>где $\bar{z}$ — среднее значение признака, $h^2$ — наследуемость, $\text{Var}(z)$ — генетическая дисперсия, $\bar{w}$ — средняя приспособленность.</p>
+        <p><strong>Связь:</strong> Эволюция происходит через изменение частот аллелей в популяции → динамика численности видов → структура экосистем.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Термодинамика экосистем</h3>
+        <p>Экосистема как открытая термодинамическая система:</p>
+        <div class="formula">
+            $$\frac{dS_{\text{eco}}}{dt} = \frac{\dot{Q}}{T} + \dot{S}_{\text{gen}} \geq 0$$
+        </div>
+        <p>где $S_{\text{eco}}$ — энтропия экосистемы, $\dot{Q}$ — поток энергии, $\dot{S}_{\text{gen}}$ — генерация энтропии.</p>
+        <p><strong>Закон Лотки:</strong> Эволюция систем с диссипативными структурами maximizes выделяемую энергию:</p>
+        <div class="formula">
+            $$\dot{E}_{\text{diss}} = \sum_i \mu_i \cdot J_i \to \max$$
+        </div>
+        <p>Применение: Леса maximizes испарение → maximizes диссипацию солнечной энергии → maximizes энтропию.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Биофизика: модель фотосинтеза (Farquhar-von Caemmerer-Berry)</h3>
+        <p>Скорость фиксации CO₂:</p>
+        <div class="formula">
+            $$A = \min(A_c, A_j, A_p)$$
+        </div>
+        <p>где:</p>
+        <ul style="margin-left: 20px;">
+            <li>$A_c$ — карбоксиляция (ограничение Rubisco)</li>
+            <li>$A_j$ — регенерация RuBP (ограничение света)</li>
+            <li>$A_p$ — утилизация триозных фосфатов</li>
+        </ul>
+        <div class="formula">
+            $$A_c = V_{c,\max} \frac{C_i - \Gamma^*}{C_i + K_c(1 + O/K_o)}$$
+        </div>
+        <p>где $V_{c,\max}$ — максимальная скорость карбоксиляции, $C_i$ — внутриклеточная концентрация CO₂, $\Gamma^*$ — компенсационная точка.</p>
+    </div>
+
+    <div class="section">
+        <h3>Связь с физикой</h3>
+        <table>
+            <tr><th>Физический закон</th><th>Экологическое приложение</th></tr>
+            <tr><td>Закон Сохранения энергии</td><td>Энергетические пирамиды в экосистемах</td></tr>
+            <tr><td>Закон энтропии (2-е начало)</td><td>Необратимость деградации экосистем</td></tr>
+            <tr><td>Уравнения Навье-Стокса</td><td>Атмосферная циркуляция, океанические течения</td></tr>
+            <tr><td>Уравнения Максвелла</td><td>Взаимодействие света с фотосинтетическими пигментами</td></tr>
+            <tr><td>Квантовая механика</td><td>Фотосинтез (квантовые эффекты вreaction centers)</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Связь с задачами тысячелетия (Навье-Стокс в атмосфере, термодинамика климата)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Задача Навье-Стокса и атмосферная динамика</h3>
+        <p>Уравнения для атмосферного потока (система Ричардсона):</p>
+        <div class="formula">
+            $$\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} = -\frac{1}{\rho}\nabla p + \mathbf{g} - 2\boldsymbol{\Omega} \times \mathbf{v} + \nu \nabla^2 \mathbf{v} + \mathbf{F}_{\text{friction}}$$
+        </div>
+        <p>где $\boldsymbol{\Omega}$ — угловая скорость вращения Земли, $\mathbf{F}_{\text{friction}}$ — турбулентные напряжения.</p>
+        <p><strong>Связь с задачей тысячелетия:</strong> Существование и гладкость решений → существование предсказаний климата.</p>
+        <div class="formula">
+            $$\text{Navier-Stokes} \begin{cases} \text{Гладкость} \to \text{Устойчивые предсказания} \\ \text{Сингулярности} \to \text{Катастрофические события} \end{cases}$$
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <h3>Термодинамика климата</h3>
+        <p><strong>Клаузиус-Клапейрон:</strong> Связь давления насыщенного пара и температуры:</p>
+        <div class="formula">
+            $$\frac{dP}{dT} = \frac{L}{T \Delta V} \approx \frac{L P}{R T^2}$$
+        </div>
+        <p>где $L$ — удельная теплота парообразования, $\Delta V$ — изменение объёма.</p>
+        <p><strong>Парниковое усиление:</strong> $\Delta T \propto \Delta F / \lambda$, где $\lambda$ — параметр реакции климата ($\sim 1.0 \text{ Вт/м}^2\text{K}$).</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Численное моделирование климата (GCM)</h3>
+        <p>Глобальные климатические модели решают систему уравнений:</p>
+        <div class="formula">
+            $$\begin{cases}
+            \frac{\partial T}{\partial t} + \mathbf{v} \cdot \nabla T = \frac{Q_{\text{net}}}{c_p \rho} + \kappa \nabla^2 T + \text{radiation terms} \\
+            \frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} = -\frac{1}{\rho}\nabla p + \mathbf{g} + \nu \nabla^2 \mathbf{v} + \text{Coriolis} \\
+            \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \\
+            p = \rho R T
+            \end{cases}$$
+        </div>
+        <p><strong>Разрешение:</strong> Современные GCM: $\sim 100 \text{ км}$ горизонтально, $\sim 30$ уровней по вертикали.</p>
+        <p><strong>Проблема:</strong> Турбулентность (масштабы $< 1 \text{ км}$) не разрешается → параметризация.</p>
+    </div>
+
+    <div class="skill-card">
+        <h3>Парадокс предсказуемости климата</h3>
+        <p><strong>Тезис Лоренца:</strong> Долгосрочное предсказание погоды невозможно из-за хаотичности.</p>
+        <p><strong>Парадокс:</strong> Однако <em>климат</em> (средние величины) предсказуем, потому что:</p>
+        <div class="formula">
+            $$\langle T \rangle = \frac{1}{\tau} \int_0^\tau T(t) dt \to \text{устойчивое значение при} \tau \to \infty$$
+        </div>
+        <p><strong>Связь с Навье-Стокс:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Гладкость решений → определённость средних (климат)</li>
+            <li>Турбулентность → неопределённость мгновенных значений (погода)</li>
+            <li>Задача тысячелетия: доказать existence/gладкость → garantия предсказуемости</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>Практическое значение</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Адаптация:</strong> Численные модели помогают предсказывать засухи, наводнения, штормы</li>
+            <li><strong>Митигация:</strong> Модели оценивают эффект различных сценариев выбросов</li>
+            <li><strong>Политика:</strong> Результаты GCM лежат в основе IPCC и Парижского соглашения</li>
+            <li><strong>Технологии:</strong> Улучшение моделей → лучшие предсказания → лучшие решения</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Итоги и связи</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Сводная таблица математических моделей</h3>
+        <table>
+            <tr><th>Раздел</th><th>Модель</th><th>Уравнение</th><th>Приложение</th></tr>
+            <tr><td>Популяции</td><td>Лотки-Вольтерра</td><td>Система ОДУ</td><td>хищник-жертва, рыболовство</td></tr>
+            <tr><td>Биогеоценология</td><td>Углеродный цикл</td><td>Система ОДУ</td><td>biogeochemical cycles</td></tr>
+            <tr><td>Климат</td><td>Парниковый эффект</td><td>ОДУ с излучением</td><td>глобальное потепление</td></tr>
+            <tr><td>Климат</td><td>Навье-Стокс</td><td>Нелинейные НУ</td><td>атмосферная циркуляция</td></tr>
+            <tr><td>Загрязнение</td><td>Диффузия-конвекция</td><td>ЧНУ</td><td>распространение загрязнителей</td></tr>
+            <tr><td>Ресурсы</td><td>Оптимальное управление</td><td>Задача Пон트рягина</td><td>fisheries, forestry</td></tr>
+            <tr><td>Устойчивость</td><td>Теория игр</td><td>Равновесие Нэша</td><td>Tragedy of the Commons</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Формула устойчивого развития</h3>
+        <p>Устойчивое развитие — это баланс между:</p>
+        <div class="formula">
+            $$\text{Устойчивость} = \frac{\text{Регенерация}}{\text{Использование}} \geq 1 \quad \forall t \in [0, T]$$
+        </div>
+        <p>Или эквивалентно:</p>
+        <div class="formula">
+            $$\frac{d}{dt}\left(\frac{K(t)}{N(t)}\right) \geq 0 \quad \text{(не ухудшается ёмкость на душу населения)}$$
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Ключевые числа</h3>
+        <div class="grid">
+            <div class="grid-item"><h4>CO₂ (2025)</h4><p>425 ppm<br>Увеличение на 50% от доиндустриального уровня</p></div>
+            <div class="grid-item"><h4>Глобальное потепление</h4><p>1.2°C<br>Прогноз: 1.5–4.8°C к 2100 г.</p></div>
+            <div class="grid-item"><h4>Биоразнообразие</h4><p>-69%<br>Сокращение популяций с 1970 г.</p></div>
+            <div class="grid-item"><h4>Пластик в океане</h4><p>150 млн тонн<br>Прогноз: больше рыбы к 2050 г.</p></div>
+            <div class="grid-item"><h4>Леса</h4><p>-10 млн га/год<br>Тропические леса: -1.2 млн га/год</p></div>
+            <div class="grid-item"><h4>Пресная вода</h4><p>2 млрд чел.<br>К 2025 г. — дефицит воды</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Связь с другими главами</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>ch16 (Задачи):</strong> Задача Навье-Стокса → атмосферная динамика</li>
+            <li><strong>ch19 (1001 Proof):</strong> Серия томов по экологии</li>
+            <li><strong>ch38 (Экология):</strong> Данная глава — математические основы</li>
+            <li><strong>Будущее:</strong> Формальная верификация экологических моделей (Lean 4)</li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
