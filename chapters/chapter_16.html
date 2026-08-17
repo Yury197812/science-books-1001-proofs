@@ -1,0 +1,736 @@
+
+<!--
+Platform: Habr
+Title: chapter_16
+Tags: mathematics, physics, chemistry, biology, astronomy, informatics, logic, millennium-problems, exercises
+Published: 2026-08-16T12:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 16: 100 задач по всем точным наукам</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .problem { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #3a7bd5; }
+        .problem.millennium { border-left-color: #ff6b35; background: rgba(255,107,53,0.05); }
+        .answer { background: rgba(0,255,136,0.05); border-left: 3px solid #00ff88; padding: 10px 15px; margin: 5px 0; border-radius: 0 8px 8px 0; font-size: 0.95em; display: none; }
+        .formula { text-align: center; font-size: 1.2em; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; margin: 10px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        .toggle-btn { background: rgba(0,210,255,0.2); border: 1px solid #00d2ff; color: #00d2ff; padding: 5px 15px; border-radius: 5px; cursor: pointer; margin: 5px 0; }
+        .toggle-btn:hover { background: rgba(0,210,255,0.4); }
+    </style>
+
+    <!-- Citation metadata -->
+    <meta name="citation_title" content="101 задача по всем наукам">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_01.html">1. PvsNP</a>
+        <a href="chapter_03.html">3. Риман</a>
+        <a href="chapter_06.html">6. BSD</a>
+        <a href="chapter_07.html">7. Связи</a>
+        <a href="chapter_15.html">15</a>
+        <a href="chapter_16.html" class="active">16. 100 задач</a>
+    </nav>
+
+    <h1>Глава 16: 100 задач по всем точным наукам</h1>
+
+    <div class="section">
+        <h2>Оглавление</h2>
+        <p>101 задача по 7 областям точных наук. Задачи 1--12 — <strong>задачи тысячелетия</strong> (Clay Mathematics Institute). Остальные — математика, физика, химия, биология, информатика, астрономия, логика.</p>
+        <p><button class="toggle-btn" onclick="document.querySelectorAll('.answer').forEach(a=>a.style.display=a.style.display==='block'?'none':'block')">Показать/скрыть ответы</button></p>
+    </div>
+
+    <!-- ============ МИЛЛЕНИУМ ============ -->
+    <h2>Задачи тысячелетия (12)</h2>
+
+    <div class="problem millennium">
+        <h3>1. Гипотеза Бёрча и Свиннертон-Дайера</h3>
+        <p>Для эллиптической кривой $E: y^2 = x^3 - x$ над $\mathbb{Q}$, равен ли ранг $E(\mathbb{Q})$ порядку корня $L(E,s)$ в $s=1$?</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Вычислите $L(E,1)$ численно и определите ранг через метод descent. BSD доказан для рангов 0 и 1 (Гросс–Загирер, 1986).</div>
+
+    <div class="problem millennium">
+        <h3>2. Гипотеза Ходжа</h3>
+        <p>Для компактного комплексного многообразия $X$ — является ли каждый элемент $H^{2k}(X,\mathbb{Q}) \cap H^{k,k}(X)$ линейной комбинацией классов алгебраических подмногообразий?</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Для $\mathbb{CP}^2$ выполнено тривиально (все классы алгебраические). Ищите нетривиальные примеры на многообразиях высшей размерности.</div>
+
+    <div class="problem millennium">
+        <h3>3. Гипотеза Римана</h3>
+        <p>Все нетривиальные нули $\zeta(s)$ лежат на $\mathrm{Re}(s) = 1/2$? Докажите: если да, то $|\pi(x) - \mathrm{li}(x)| = O(\sqrt{x}\ln x)$.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Связь через формулу подсчёта простых: $\pi(x) = \mathrm{li}(x) - \sum_\rho \mathrm{li}(x^\rho) + \text{м.д.}$ где сумма по нетривиальным нулям $\rho$.</div>
+
+    <div class="problem millennium">
+        <h3>4. Уравнения Навье–Стокса</h3>
+        <p>В 2D-случае докажите существование и единственность глобально гладких решений нестационарных уравнений Навье–Стокса для $u_0 \in L^2(\mathbb{R}^2)$.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Используйте уравнение энергии и неравенство Гронвалла. Результат: Ladyzhenskaya (1959).</div>
+
+    <div class="problem millennium">
+        <h3>5. P versus NP</h3>
+        <p>Докажите: если $P = NP$, то существует полиномиальный алгоритм для 3-SAT за $O(n^k)$ времени.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> 3-SAT — NP-полная. Если $P = NP$, существует полиномиальный алгоритм проверки, следовательно полиномиальный поиск.</div>
+
+    <div class="problem millennium">
+        <h3>6. Янг–Миллс: массовый промежуток</h3>
+        <p>На решётке $\mathbb{Z}^4$ для $SU(2)$ докажите, что потенциал между источниками растёт линейно (конфайнмент).</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Куммер (1982). Используйте properties of Wilson loop на решётке.</div>
+
+    <div class="problem millennium">
+        <h3>7. BSD: частный случай $L(E,1) \neq 0$</h3>
+        <p>Покажите: если $L(E,1) \neq 0$, то $E(\mathbb{Q})$ — конечная группа.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Это следствие результата Гросса–Загирера (1986) о связи $L(E,1)$ с $\#\text{Ш}(E)$ и регулятором.</div>
+
+    <div class="problem millennium">
+        <h3>8. Римана: вычисление нулей</h3>
+        <p>Вычислите численно первые 10 нетривиальных нулей $\zeta(s)$ и проверьте $\mathrm{Re}(\rho) = 0.5$ с точностью $10^{-10}$.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Алгоритм Одлывко–Шёнхаге: $\zeta(1/2+it) = 0$ нарастающим числом. Первые нули: $t_1 \approx 14.135$, $t_2 \approx 21.022$, ...</div>
+
+    <div class="problem millennium">
+        <h3>9. Навье–Стокс: критерий Серы</h3>
+        <p>Покажите: если $\int_0^T \|u(\cdot,t)\|_{L^3}^3 dt < \infty$, то решение гладкое на $[0,T)$.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Критерий Серы (1964): $\|u\|_{L^3}$ — критическая гомогенная норма для Навье–Стокса в 3D.</div>
+
+    <div class="problem millennium">
+        <h3>10. P vs NP: lower bound</h3>
+        <p>Покажите: $P \neq NP$ эквивалентно тому, что существует $c > 0$, для которого ни один алгоритм не решает 3-SAT за $O(2^{cn})$.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Это exponential lower bound. Известные нижние оценки: $O(n)$ для 3-SAT (trivial), квадратичные circuit lower bounds (Разборов, 1987).</div>
+
+    <div class="problem millennium">
+        <h3>11. Янг–Миллс: 2D existence</h3>
+        <p>На $S^2$ докажите existence и единственность классических решений уравнений Янга–Миллса.</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Компактность $S^2$ + elliptic PDE на компактных многообразиях.</div>
+
+    <div class="problem millennium">
+        <h3>12. BSD: ранг через $L$-функцию</h3>
+        <p>Для кривой $y^2 = x^3 + x$ вычислите $\operatorname{ord}_{s=1} L(E,s)$ и ранг $E(\mathbb{Q})$. Совпадают ли они?</p>
+    </div>
+    <div class="answer"><strong>Подсказка:</strong> Эта кривая имеет ранг 0 (Mordell-Weil). $L(E,1) \neq 0 \Rightarrow$ ранг $= 0$.</div>
+
+    <!-- ============ МАТЕМАТИКА ============ -->
+    <h2>Математика (17)</h2>
+
+    <div class="problem">
+        <h3>13. Пифорейские тройки</h3>
+        <p>Найдите все натуральные решения $x^2 + y^2 = z^2$ с $x < y < z < 100$.</p>
+    </div>
+    <div class="answer">$x = m^2 - n^2$, $y = 2mn$, $z = m^2 + n^2$. Пairs $(m,n)$: $(2,1) \to (3,4,5)$, $(3,2) \to (5,12,13)$, $(4,1) \to (15,8,17)$, $(4,3) \to (7,24,25)$, $(5,2) \to (21,20,29)$, $(5,4) \to (9,40,41)$, $(6,1) \to (35,12,37)$, $(6,5) \to (11,60,61)$, $(7,2) \to (45,28,53)$, $(7,4) \to (33,56,65)$, $(7,6) \to (13,84,85)$, $(8,1) \to (63,16,65)$, $(8,3) \to (55,48,73)$, $(8,5) \to (39,80,89)$, $(8,7) \to (15,112,113)$ и далее.</div>
+
+    <div class="problem">
+        <h3>14. Делимость</h3>
+        <p>Докажите: если $p$ — простое, $p \mid a^2 + b^2$, то $p = 2$, или $p \equiv 1 \pmod{4}$, или $p \mid a$ и $p \mid b$.</p>
+    </div>
+    <div class="answer">Следствие теоремы Ферма о сумме двух квадратов: $p = a^2 + b^2$ iff $p = 2$ или $p \equiv 1 \pmod{4}$.</div>
+
+    <div class="problem">
+        <h3>15. Иррациональность $\sqrt{2}$</h3>
+        <p>Докажите методом бесконечного спуска: $\sqrt{2}$ — иррациональное.</p>
+    </div>
+    <div class="answer">Пусть $\sqrt{2} = a/b$ (наименьшая дробь). Тогда $2b^2 = a^2 \Rightarrow a$ чётно, $a = 2k \Rightarrow b^2 = 2k^2 \Rightarrow b$ чётно — противоречие с наименьшей дробью.</div>
+
+    <div class="problem">
+        <h3>16. Ряд $\sum 1/n^2$</h3>
+        <p>Вычислите $\sum_{n=1}^{\infty} 1/n^2$ (задача Эйлера).</p>
+    </div>
+    <div class="answer">$\pi^2/6$. Доказательство через разложение $\sin(x)/x$ в бесконечное произведение.</div>
+
+    <div class="problem">
+        <h3>17. Интеграл Гаусса</h3>
+        <p>Вычислите $\int_0^{\infty} e^{-x^2} dx$.</p>
+    </div>
+    <div class="answer">$\sqrt{\pi}/2$. Метод: $I^2 = \int\int e^{-(x^2+y^2)} dx\,dy$ — перейти к полярным координатам.</div>
+
+    <div class="problem">
+        <h3>18. Собственные значения</h3>
+        <p>Найдите собственные значения $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$.</p>
+    </div>
+    <div class="answer">$\lambda_1 = 3$, $\lambda_2 = 1$. Собственные векторы: $v_1 = (1,1)^T$, $v_2 = (1,-1)^T$.</div>
+
+    <div class="problem">
+        <h3>19. Вероятность: две кости</h3>
+        <p>Бросаем две кости. Найдите $P(\text{сумма} = 7)$.</p>
+    </div>
+    <div class="answer">$6/36 = 1/6$. Пары: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.</div>
+
+    <div class="problem">
+        <h3>20. Сочетания</h3>
+        <p>Сколько ways выбрать 3 книги из 10? Если книга 1 всегда выбрана?</p>
+    </div>
+    <div class="answer">$\binom{10}{3} = 120$. Если книга 1: $\binom{9}{2} = 36$.</div>
+
+    <div class="problem">
+        <h3>21. Чётность</h3>
+        <p>Докажите: сумма двух нечётных чисел всегда чётная.</p>
+    </div>
+    <div class="answer">$(2k+1) + (2m+1) = 2(k+m+1)$ — чётное.</div>
+
+    <div class="problem">
+        <h3>22. Перестановки с повторениями</h3>
+        <p>Найдите число слов из букв MISSISSIPPI.</p>
+    </div>
+    <div class="answer">$11!/(1! \cdot 4! \cdot 4! \cdot 2!) = 34\,650$.</div>
+
+    <div class="problem">
+        <h3>23. Неравенство Коши–Буняковского</h3>
+        <p>Докажите $(\sum a_i b_i)^2 \leq (\sum a_i^2)(\sum b_i^2)$.</p>
+    </div>
+    <div class="answer">Рассмотрите квадратичную форму $\sum(a_i x + b_i)^2 \geq 0$. Дискриминант $\leq 0$.</div>
+
+    <div class="problem">
+        <h3>24. Теорема Ферма</h3>
+        <p>Докажите: если $p$ — простое, то $a^p \equiv a \pmod{p}$.</p>
+    </div>
+    <div class="answer">Индукция по $a$. Базис: $0^p \equiv 0$, $1^p \equiv 1$. Переход: $(a+1)^p = a^p + 1 + \sum \binom{p}{k} a^k$, где $p \mid \binom{p}{k}$ для $0 < k < p$.</div>
+
+    <div class="problem">
+        <h3>25. Непрерывность</h3>
+        <p>Докажите: $f(x) = x^2$ непрерывна в каждой точке $a \in \mathbb{R}$ ($\varepsilon$-$\delta$).</p>
+    </div>
+    <div class="answer">Для $\varepsilon > 0$ возьмём $\delta = \min(1, \varepsilon/(2|a|+1))$. Тогда $|x^2 - a^2| = |x-a||x+a| < \delta(2|a|+1) \leq \varepsilon$.</div>
+
+    <div class="problem">
+        <h3>26. Комбинаторика: разбиения</h3>
+        <p>Найдите число разбиений числа 5 на натуральные слагаемые.</p>
+    </div>
+    <div class="answer">$p(5) = 7$: 5, 4+1, 3+2, 3+1+1, 2+2+1, 2+1+1+1, 1+1+1+1+1.</div>
+
+    <div class="problem">
+        <h3>27. Графы: теорема Ойлера</h3>
+        <p>Докажите: связный граф имеет эйлеров цикл iff все вершины имеют чётную степень.</p>
+    </div>
+    <div class="answer">Каждый вход в вершину требует выхода → степень чётная. Обратно: жадный алгоритм построения цикла.</div>
+
+    <!-- ============ ФИЗИКА ============ -->
+    <h2>Физика (16)</h2>
+
+    <div class="problem">
+        <h3>28. Кинематика</h3>
+        <p>Тело бросают вертикально вверх с $v_0 = 20$ м/с. Максимальная высота? Время полёта? ($g = 10$ м/с$^2$)</p>
+    </div>
+    <div class="answer">$h = v_0^2/(2g) = 20$ м. $t = 2v_0/g = 4$ с.</div>
+
+    <div class="problem">
+        <h3>29. Наклонная плоскость</h3>
+        <p>Шар 2 кг катится по плоскости $30°$. Ускорение? Время спуска по 4 м?</p>
+    </div>
+    <div class="answer">$a = g\sin\theta = 5$ м/с$^2$. $t = \sqrt{2s/a} = \sqrt{1.6} \approx 1.26$ с.</div>
+
+    <div class="problem">
+        <h3>30. Блок: система</h3>
+        <p>$m_1 = 3$ кг, $m_2 = 5$ кг через блок. Ускорение? Натяжение?</p>
+    </div>
+    <div class="answer">$a = (m_2-m_1)g/(m_1+m_2) = 2.45$ м/с$^2$. $T = 2m_1 m_2 g/(m_1+m_2) = 36.75$ Н.</div>
+
+    <div class="problem">
+        <h3>31. Изотермическое расширение</h3>
+        <p>Идеальный газ $T = 300$ К, $p = 1$ атм расширяется в 3 раза. Работа? ($n = 1$ моль)</p>
+    </div>
+    <div class="answer">$W = nRT\ln(V_2/V_1) = 1 \cdot 8.314 \cdot 300 \cdot \ln 3 \approx 2740$ Дж.</div>
+
+    <div class="problem">
+        <h3>32. КПД Карно</h3>
+        <p>$T_{\text{гор}} = 500$ К, $T_{\text{хол}} = 300$ К. КПД?</p>
+    </div>
+    <div class="answer">$\eta = 1 - T_{\text{хол}}/T_{\text{гор}} = 1 - 0.6 = 0.4 = 40\%$.</div>
+
+    <div class="problem">
+        <h3>33. Энтропия плавления</h3>
+        <p>Изменение энтропии при плавлении 1 кг льда при $0°$C? ($\lambda = 334$ кДж/кг)</p>
+    </div>
+    <div class="answer">$\Delta S = Q/T = m\lambda/T = 334000/273.15 \approx 1223$ Дж/К.</div>
+
+    <div class="problem">
+        <h3>34. Поле точечного заряда</h3>
+        <p>$q = 10^{-6}$ Кл, $r = 0.1$ м. Электрическое поле?</p>
+    </div>
+    <div class="answer">$E = kq/r^2 = 9 \times 10^9 \cdot 10^{-6} / 0.01 = 9 \times 10^5$ В/м.</div>
+
+    <div class="problem">
+        <h3>35. Кольцевой ток</h3>
+        <p>$I = 5$ А, $R = 0.1$ м. Поле в центре?</p>
+    </div>
+    <div class="answer">$B = \mu_0 I / (2R) = 4\pi \times 10^{-7} \cdot 5 / 0.2 \approx 3.14 \times 10^{-5}$ Тл.</div>
+
+    <div class="problem">
+        <h3>36. Конденсатор</h3>
+        <p>$S = 100$ см$^2$, $d = 1$ мм. Ёмкость?</p>
+    </div>
+    <div class="answer">$C = \varepsilon_0 S/d = 8.85 \times 10^{-12} \cdot 10^{-2} / 10^{-3} = 88.5$ пФ.</div>
+
+    <div class="problem">
+        <h3>37. Полное внутреннее отражение</h3>
+        <p>$n = 1.5$. Критический угол?</p>
+    </div>
+    <div class="answer">$\theta_c = \arcsin(1/n) = \arcsin(2/3) \approx 41.8°$.</div>
+
+    <div class="problem">
+        <h3>38. Дифракционная решётка</h3>
+        <p>$d = 2$ мкм, $\lambda = 600$ нм. Сколько максимумов?</p>
+    </div>
+    <div class="answer">$d\sin\theta = k\lambda \Rightarrow |k| \leq d/\lambda = 3.33$. Максимумы: $k = -3,-2,-1,0,1,2,3$ → 7 максимумов.</div>
+
+    <div class="problem">
+        <h3>39. Фотон</h3>
+        <p>$\nu = 6 \times 10^{14}$ Гц. Энергия и импульс?</p>
+    </div>
+    <div class="answer">$E = h\nu = 6.63 \times 10^{-34} \cdot 6 \times 10^{14} \approx 3.98 \times 10^{-19}$ Дж $\approx 2.48$ эВ. $p = E/c = 1.33 \times 10^{-27}$ кг·м/с.</div>
+
+    <div class="problem">
+        <h3>40. Квантовая яма</h3>
+        <p>Электрон в яме $a = 0.1$ нм. Первые уровни?</p>
+    </div>
+    <div class="answer">$E_n = n^2 \pi^2 \hbar^2 / (2ma^2)$. $E_1 \approx 37.6$ эВ, $E_2 \approx 150.4$ эВ.</div>
+
+    <div class="problem">
+        <h3>41. Длина де Бройля</h3>
+        <p>$E_k = 100$ эВ. Длина волны электрона?</p>
+    </div>
+    <div class="answer">$\lambda = h/\sqrt{2mE} \approx 0.123$ нм.</div>
+
+    <div class="problem">
+        <h3>42. Релятивистское время</h3>
+        <p>$v = 0.8c$. Сколько по кораблю за 10 земных лет?</p>
+    </div>
+    <div class="answer">$t = t_0/\gamma = 10\sqrt{1-0.64} = 10 \cdot 0.6 = 6$ лет.</div>
+
+    <!-- ============ ХИМИЯ ============ -->
+    <h2>Химия (12)</h2>
+
+    <div class="problem">
+        <h3>43. Электронный баланс</h3>
+        <p>Рас平衡: $\text{Fe} + \text{HNO}_3 \to \text{Fe(NO}_3)_3 + \text{NO} + \text{H}_2\text{O}$.</p>
+    </div>
+    <div class="answer">$\text{Fe}^0 \to \text{Fe}^{+3}$ (+3e), $\text{N}^{+5} \to \text{N}^{+2}$ (-3e). Баланс: $\text{Fe} + 4\text{HNO}_3 \to \text{Fe(NO}_3)_3 + \text{NO} + 2\text{H}_2\text{O}$.</div>
+
+    <div class="problem">
+        <h3>44. рН</h3>
+        <p>рН 0.01 М NaOH?</p>
+    </div>
+    <div class="answer">$[\text{OH}^-] = 0.01$, $\text{pOH} = 2$, $\text{pH} = 14 - 2 = 12$.</div>
+
+    <div class="problem">
+        <h3>45. Кристаллическая решётка</h3>
+        <p>Определите тип решётки для NaCl и Cu.</p>
+    </div>
+    <div class="answer">NaCl: ионная кубическая (ГЦК-под решётки). Cu: металлическая (ГЦК).</div>
+
+    <div class="problem">
+        <h3>46. Гидратизация этилена</h3>
+        <p>$\text{C}_2\text{H}_4 + \text{H}_2\text{O} \to ?$</p>
+    </div>
+    <div class="answer">$\text{C}_2\text{H}_4 + \text{H}_2\text{O} \xrightarrow{\text{H}_3\text{PO}_4, 300°\text{C}} \text{C}_2\text{H}_5\text{OH}$ (этанол).</div>
+
+    <div class="problem">
+        <h3>47. Изомеры $\text{C}_4\text{H}_{10}$</h3>
+        <p>Сколько структурных изомеров?</p>
+    </div>
+    <div class="answer">2: н-бутан ($\text{CH}_3\text{CH}_2\text{CH}_2\text{CH}_3$) и изобутан ($(\text{CH}_3)_3\text{CH}$).</div>
+
+    <div class="problem">
+        <h3>48. Уксусная кислота</h3>
+        <p>К какому классу относится $\text{CH}_3\text{COOH}$? Три характерных реакции.</p>
+    </div>
+    <div class="answer">Карбоновые кислоты. Реакции: (1) с основаниями (нейтрализация), (2) этерификация (с $\text{C}_2\text{H}_5\text{OH}$), (3) восстановление до $\text{CH}_3\text{CHO}$.</div>
+
+    <div class="problem">
+        <h3>49. Константа равновесия</h3>
+        <p>$\Delta G^\circ = -33$ кДж/моль. $K_p$ при $T = 500$ К?</p>
+    </div>
+    <div class="answer">$K_p = e^{-\Delta G^\circ/(RT)} = e^{33000/(8.314 \cdot 500)} = e^{7.94} \approx 2800$.</div>
+
+    <div class="problem">
+        <h3>50. Скорость реакции</h3>
+        <p>$2A + B \to C$, $k = 0.05$ М$^{-2}$с$^{-1}$, $[A]=0.1$, $[B]=0.2$. Скорость?</p>
+    </div>
+    <div class="answer">$v = k[A]^2[B] = 0.05 \cdot 0.01 \cdot 0.2 = 10^{-4}$ М/с.</div>
+
+    <div class="problem">
+        <h3>51. Осмотическое давление</h3>
+        <p>0.5 М глюкоза, $T = 25°$C. Давление?</p>
+    </div>
+    <div class="answer">$\pi = cRT = 0.5 \cdot 0.0821 \cdot 298 \approx 12.2$ атм.</div>
+
+    <div class="problem">
+        <h3>52. Титрование</h3>
+        <p>20 мл 0.1 М NaOH. Сколько 0.1 М HCl?</p>
+    </div>
+    <div class="answer">$V(\text{HCl}) = V(\text{NaOH}) = 20$ мл (1:1, одинаковая концентрация).</div>
+
+    <div class="problem">
+        <h3>53. Массовая доля Fe</h3>
+        <p>$\text{Fe}_2\text{O}_3$?</p>
+    </div>
+    <div class="answer">$\omega(\text{Fe}) = 2 \cdot 56 / (2 \cdot 56 + 3 \cdot 16) = 112/160 = 0.7 = 70\%$.</div>
+
+    <!-- ============ БИОЛОГИЯ ============ -->
+    <h2>Биология (12)</h2>
+
+    <div class="problem">
+        <h3>54. Мендель: гетерозиготы</h3>
+        <p>$Yy \times Yy$. Соотношения?</p>
+    </div>
+    <div class="answer">Генотипы: 1 YY : 2 Yy : 1 yy. Фенотипы: 3 желтых : 1 зелёный.</div>
+
+    <div class="problem">
+        <h3>55. Сцепленное наследование</h3>
+        <p>Мать $X^B X^b$, отец $X^B Y$. Вероятность голубоглазого?</p>
+    </div>
+    <div class="answer">$P(X^b Y) = 1/4 = 25\%$ (мальчик с голубыми глазами).</div>
+
+    <div class="problem">
+        <h3>56. Трофическая эффективность</h3>
+        <p>Растения 10\,000 кг/га, травоядные 1\,000 кг/га. Эффективность?</p>
+    </div>
+    <div class="answer">$1000/10000 = 10\%$ (закон Линдемана).</div>
+
+    <div class="problem">
+        <h3>57. 4-й трофический уровень</h3>
+        <p>Фитопланктон 1\,000 кг. Энергия до tertiary consumers?</p>
+    </div>
+    <div class="answer">$1000 \cdot 0.1^3 = 1$ кг (через 3 перехода).</div>
+
+    <div class="problem">
+        <h3>58. Харди–Вейнберг</h3>
+        <p>100 особей: 36 AA, 48 Aa, 16 aa. Соответствует?</p>
+    </div>
+    <div class="answer">$p = (2 \cdot 36 + 48)/200 = 0.6$, $q = 0.4$. Ожидаемое: $AA = 36$, $Aa = 48$, $aa = 16$. Совпадает → равновесие.</div>
+
+    <div class="problem">
+        <h3>59. Митоз</h3>
+        <p>Назовите 4 стадии митоза и ключевые события.</p>
+    </div>
+    <div class="answer">(1) Профаза: конденсация хромосом. (2) Метафаза: выстраивание в экваторе. (3) Анафаза: разделение хроматид. (4) Телофаза: формирование ядерных оболочек.</div>
+
+    <div class="problem">
+        <h3>60. АТФ из глюкозы</h3>
+        <p>Сколько АТФ при полном окислении глюкозы?</p>
+    </div>
+    <div class="answer">30–32 АТФ: гликолиз (2), цикл Кребс (2), окислительное фосфорилирование (26–28).</div>
+
+    <div class="problem">
+        <h3>61. Ударный объём</h3>
+        <p>Сердечный выброс 5 л/мин, ЧСС 70. Ударный объём?</p>
+    </div>
+    <div class="answer">$УО = 5000/70 \approx 71$ мл.</div>
+
+    <div class="problem">
+        <h3>62. Коленный рефлекс</h3>
+        <p>Опишите дугу рефлекса.</p>
+    </div>
+    <div class="answer">Рецептор (сухожилие) → афферентный нейрон → спинной мозг (синапс) → эфферентный нейрон → мышца-разгибатель. Односинаптический рефлекс.</div>
+
+    <div class="problem">
+        <h3>63. Бактерии: рост</h3>
+        <p>Удвоение каждые 20 мин, начальная культура 1000. Через 3 часа?</p>
+    </div>
+    <div class="answer">$n = 1000 \cdot 2^{9} = 512\,000$ клеток (9 делений).</div>
+
+    <div class="problem">
+        <h3>64. Антибиотикорезистентность</h3>
+        <p>3 механизма.</p>
+    </div>
+    <div class="answer">(1) Инактивация ферментами ($\beta$-лактамазы). (2) Модификация мишени (рибосомы). (3) Эффлюсные насосы (выкачивание антибиотика).</div>
+
+    <div class="problem">
+        <h3>65. Мейоз</h3>
+        <p>Чем мейоз отличается от митоза?</p>
+    </div>
+    <div class="answer">Мейоз: 2 деления → 4 гаплоидных клетки, кроссинговер, независимая сегрегация. Митоз: 1 деление → 2 диплоидных клетки-клона.</div>
+
+    <!-- ============ ИНФОРМАТИКА ============ -->
+    <h2>Информатика (14)</h2>
+
+    <div class="problem">
+        <h3>66. Сортировка слиянием</h3>
+        <p>Сколько сравнений при $n = 16$? Рекуррентное соотношение?</p>
+    </div>
+    <div class="answer">$T(n) = 2T(n/2) + O(n)$, $O(n\log n)$. При $n=16$: $16 \cdot 4 = 64$ сравнения.</div>
+
+    <div class="problem">
+        <h3>67. Задача о рюкзаке</h3>
+        <p>Докажите NP-полноту 0/1 Knapsack.</p>
+    </div>
+    <div class="answer">Редукция из SUBSET-SUM (NP-полная): элементы $a_i$, веса $w_i = a_i$, вместимость $W = S/2$.</div>
+
+    <div class="problem">
+        <h3>68. AVL-дерево</h3>
+        <p>Постройте для 10, 20, 30, 25, 28, 27.</p>
+    </div>
+    <div class="answer">После вставки 30: поворот вправо. После 25: поворот LR. Дерево балансируется при каждом шаге.</div>
+
+    <div class="problem">
+        <h3>69. Цезарь</h3>
+        <p>Зашифруйте ``HELLO'' ($k=3$). Расшифруйте ``KHOOR''.</p>
+    </div>
+    <div class="answer">``HELLO'' → ``KHOOR''. ``KHOOR'' → ``HELLO''.</div>
+
+    <div class="problem">
+        <h3>70. GCD расширенный</h3>
+        <p>$\gcd(269, 123)$? Найдите $x, y$.</p>
+    </div>
+    <div class="answer">$269 = 2 \cdot 123 + 23$, $123 = 5 \cdot 23 + 8$, $23 = 2 \cdot 8 + 7$, $8 = 1 \cdot 7 + 1$. $\gcd = 1$. $1 = 8 - 7 = 3 \cdot 8 - 23 = 3 \cdot 123 - 17 \cdot 23 = 37 \cdot 123 - 17 \cdot 269$.</div>
+
+    <div class="problem">
+        <h3>71. RSA</h3>
+        <p>Объясните принцип RSA. Какие модули «плохие»?</p>
+    </div>
+    <div class="answer">Шифрование $c = m^e \bmod n$, расшифровка $m = c^d \bmod n$, где $n = pq$, $ed \equiv 1 \pmod{\varphi(n)}$. «Плохие» модули: $n$ с малыми множителями, $n = p^2$, или $\varphi(n)$ слишком мал.</div>
+
+    <div class="problem">
+        <h3>72. ДКА vs НКА</h3>
+        <p>Постройте ДКА для $a^n b^n$ — или докажите невозможность.</p>
+    </div>
+    <div class="answer">Невозможно: язык не является регулярным (лемма о «столбцах» / Pumping Lemma). НКА с стеком (автомат) распознаёт.</div>
+
+    <div class="problem">
+        <h3>73. Хеш-таблицы</h3>
+        <p>Среднее время поиска при $\alpha = 0.7$: цепочки vs открытое хеширование?</p>
+    </div>
+    <div class="answer">Цепочки: $1 + \alpha/2 \approx 1.35$. Линейное зондирование: $1/(1-\alpha) \approx 3.33$.</div>
+
+    <div class="problem">
+        <h3>74. Сети: TCP</h3>
+        <p>Файл 1 ГБ, канал 100 Мбит/с. Время передачи?</p>
+    </div>
+    <div class="answer">$t = 8 \cdot 10^9 / 10^8 = 80$ с (без учёта заголовков). С заголовками TCP/IP (~20 байт на пакет) + задержки: ≈85–90 с.</div>
+
+    <div class="problem">
+        <h3>75. Deadlock</h3>
+        <p>4 необходимых условия.</p>
+    </div>
+    <div class="answer">(1) Взаимное исключение. (2) Удержание и ожидание. (3) Неотъемлемость. (4) Циклическое ожидание.</div>
+
+    <div class="problem">
+        <h3>76. Дерево решений</h3>
+        <p>Классификация: рост, вес → норма/ожирение.</p>
+    </div>
+    <div class="answer">Правило: если $\text{BMI} = \text{вес}/\text{рост}^2 > 30$ → ожирение, иначе норма. Дерево: узел BMI, ветки $\leq 30$ и $> 30$.</div>
+
+    <div class="problem">
+        <h3>77. ИИ: типы обучения</h3>
+        <p>С учителем, без учителя, с подкреплением — примеры.</p>
+    </div>
+    <div class="answer">С учителем: классификация изображений (метки). Без учителя: кластеризация клиентов. С подкреплением: игра в шахматы (оценка позиции).</div>
+
+    <div class="problem">
+        <h3>78. Алгоритм Дейкстры</h3>
+        <p>Кратчайший путь A→E в графе с 5 вершинами.</p>
+    </div>
+    <div class="answer">Жадный алгоритм: на каждом шаге выбираем вершину с минимальным расстоянием, обновляем соседей. Сложность $O(V^2)$ или $O((V+E)\log V)$ с кучей.</div>
+
+    <!-- ============ АСТРОНОМИЯ ============ -->
+    <h2>Астрономия (8)</h2>
+
+    <div class="problem">
+        <h3>79. Орбитальная скорость Земли</h3>
+        <p>$R = 1.5 \times 10^{11}$ м, $T = 365.25$ суток. Скорость?</p>
+    </div>
+    <div class="answer">$v = 2\pi R / T = 2\pi \cdot 1.5 \times 10^{11} / (365.25 \cdot 86400) \approx 29.8$ км/с.</div>
+
+    <div class="problem">
+        <h3>80. 3-я космическая</h3>
+        <p>$v_2 = 11.2$ км/с, $v_{\text{Солнце}} = 421$ км/с. 3-я скорость?</p>
+    </div>
+    <div class="answer">$v_3 = \sqrt{v_2^2 + v_{\text{Солнце}}^2} = \sqrt{125.44 + 177241} \approx 421.3$ км/с.</div>
+
+    <div class="problem">
+        <h3>81. Расстояние по величине</h3>
+        <p>$M = +4.8$, $m = -1.0$. Расстояние?</p>
+    </div>
+    <div class="answer">$m - M = 5\log d - 5 \Rightarrow -5.8 = 5\log d - 5 \Rightarrow d = 10^{(-0.8+1)} = 10^{0.2} \approx 1.58$ пк $\approx 5.1$ св. лет.</div>
+
+    <div class="problem">
+        <h3>82. Закон Хаббла</h3>
+        <p>$z = 0.1$, $H_0 = 70$ км/с/Мпк. Расстояние?</p>
+    </div>
+    <div class="answer">$d = zc/H_0 = 0.1 \cdot 3 \times 10^5 / 70 \approx 429$ Мпк $\approx 1.4$ млрд св. лет.</div>
+
+    <div class="problem">
+        <h3>83. Реликтовое излучение</h3>
+        <p>Температура при $z = 1100$?</p>
+    </div>
+    <div class="answer">$T(z) = T_0(1+z) = 2.725 \cdot 1101 \approx 3000$ К (рекомбинация водорода).</div>
+
+    <div class="problem">
+        <h3>84. Предел Чандрасекара</h3>
+        <p>Рассчитайте $M_{\text{Ч}}$ для белого карлика.</p>
+    </div>
+    <div class="answer">$M_{\text{Ч}} \approx 1.4 M_\odot$. Зависит от состава: для углеродно-кислородного $\approx 1.44 M_\odot$.</div>
+
+    <div class="problem">
+        <h3>85. Нуклеосинтез</h3>
+        <p>Опишите цепочку от водородного горения до кремниевого.</p>
+    </div>
+    <div class="answer">pp-цепочка ($T > 4 \times 10^6$ K) → CNO-цикл ($T > 1.5 \times 10^7$ K) → тройная гелиевая ($T > 10^8$ K) → углеродное → неоновое → кислородное → кремниевое ($T > 3 \times 10^9$ K) → железный пик.</div>
+
+    <div class="problem">
+        <h3>86. Гравитация Марса</h3>
+        <p>$M = 6.4 \times 10^{23}$ кг, $R = 3.4 \times 10^6$ м. $g_{\text{Марс}}$?</p>
+    </div>
+    <div class="answer">$g = GM/R^2 = 6.67 \times 10^{-11} \cdot 6.4 \times 10^{23} / (3.4 \times 10^6)^2 \approx 3.7$ м/с$^2$ (≈38\% от $g_{\text{Земли}}$).</div>
+
+    <!-- ============ ЛОГИКА ============ -->
+    <h2>Логика (6)</h2>
+
+    <div class="problem">
+        <h3>87. Тавтология</h3>
+        <p>$(P \to Q) \leftrightarrow (\neg Q \to \neg P)$ — тавтология?</p>
+    </div>
+    <div class="answer">Да (контрапозиция). Таблица истинности: все строки = T.</div>
+
+    <div class="problem">
+        <h3>88. Контингенция</h3>
+        <p>$(P \lor Q) \land (\neg P \lor \neg Q)$ — тавтология, контингенция или противоречие?</p>
+    </div>
+    <div class="answer">Контингенция: истина ровно когда $P \neq Q$ (исключающее «или»).</div>
+
+    <div class="problem">
+        <h3>89. Предикатная логика</h3>
+        <p>Переведите: «Каждый студент сдаёт хотя бы один экзамен».</p>
+    </div>
+    <div class="answer">$\forall x (\text{Студент}(x) \to \exists y (\text{Экзамен}(y) \land \text{Сдал}(x,y)))$.</div>
+
+    <div class="problem">
+        <h3>90. Кванторы</h3>
+        <p>Покажите $\exists x \forall y R(x,y) \Rightarrow \forall y \exists x R(x,y)$, но обратное неверно.</p>
+    </div>
+    <div class="answer">Прямое: если $R(a,y)$ для всех $y$, то для каждого $y$ есть $x=a$. Обратное: «каждый студент сдаёт экзамен» не означает «есть один экзамен, который сдают все».</div>
+
+    <div class="problem">
+        <h3>91. Контрапозиция</h3>
+        <p>Докажите: $P \to Q$ эквивалентно $\neg Q \to \neg P$.</p>
+    </div>
+    <div class="answer">По таблице истинности: строки $(P \to Q)$ и $(\neg Q \to \neg P)$ совпадают.</div>
+
+    <div class="problem">
+        <h3>92. Модель</h3>
+        <p>Постройте модель: $\forall x(P(x) \lor Q(x))$ истинно, но $\forall x P(x) \lor \forall x Q(x)$ ложно.</p>
+    </div>
+    <div class="answer">Домен: $\{1,2\}$. $P(1) = T, P(2) = F$, $Q(1) = F, Q(2) = T$. Тогда $\forall x(P \lor Q) = T$, но $\forall x P = F$ и $\forall x Q = F$.</div>
+
+    <!-- ============ МЕЖДИСЦИПЛИНАРНЫЕ ============ -->
+    <h2>Междисциплинарные (9)</h2>
+
+    <div class="problem">
+        <h3>93. Физика + Информатика: нагрев CPU</h3>
+        <p>Площадь 100 мм$^2$, 50 Вт/см$^2$. Нужен кулер?</p>
+    </div>
+    <div class="answer">$P = 50 \cdot 1 = 50$ Вт. Без кулера: $\Delta T \approx 50/0.01 \approx 5000°$C → катастрофа. Кулер обязателен.</div>
+
+    <div class="problem">
+        <h3>94. Химия + Биология: пенициллин</h3>
+        <p>Механизм действия?</p>
+    </div>
+    <div class="answer">Блокирует транспептидазу → мешает синтезу пептидогликана клеточной стенки → бактерии лизируются. Не действует на вирусы (нет клеточной стенки).</div>
+
+    <div class="problem">
+        <h3>95. Математика + Астрономия: Кеплер</h3>
+        <p>$a_{\text{Марс}} = 1.52$ а.е., $T_{\text{Земли}} = 365$ суток. $T_{\text{Марс}}$?</p>
+    </div>
+    <div class="answer">$T^2/a^3 = \text{const}$. $T_{\text{Марс}} = 365 \cdot (1.52)^{3/2} \approx 365 \cdot 1.87 \approx 686$ суток.</div>
+
+    <div class="problem">
+        <h3>96. Информатика + Логика: Булева функция</h3>
+        <p>$f(x,y,z) = (x \land y) \lor (\neg x \land z)$. ДНФ? КНФ?</p>
+    </div>
+    <div class="answer">ДНФ: $(x \land y) \lor (\neg x \land z)$ (уже в ДНФ). КНФ: $(x \lor z) \land (x \lor \neg z) \land (\neg x \lor y)$.</div>
+
+    <div class="problem">
+        <h3>97. Вероятность + Биология: генетика</h3>
+        <p>Родители $AaBb \times AaBb$. Вероятность $aabb$?</p>
+    </div>
+    <div class="answer">$1/4 \cdot 1/4 = 1/16$ (независимые локусы).</div>
+
+    <div class="problem">
+        <h3>98. Химия + Физика: рН буфер</h3>
+        <p>Буфер: 0.1 М CH₃COOH + 0.1 М CH₃COONa. рН? ($K_a = 1.8 \times 10^{-5}$)</p>
+    </div>
+    <div class="answer">pH = pKa + log([A⁻]/[HA]) = 4.74 + log(1) = 4.74.</div>
+
+    <div class="problem">
+        <h3>99. Астрономия + Физика: временная дилатация</h3>
+        <p>Космонавт на $0.9c$ 10 лет по бортовым. Сколько на Земле?</p>
+    </div>
+    <div class="answer">$t = 10 / \sqrt{1-0.81} = 10/0.436 \approx 22.9$ года.</div>
+
+    <div class="problem">
+        <h3>100. Математика + Физика: осциллятор</h3>
+        <p>$m = 1$ кг, $k = 100$ Н/м. Частота? Период?</p>
+    </div>
+    <div class="answer">$\omega = \sqrt{k/m} = 10$ рад/с. $f = \omega/(2\pi) \approx 1.59$ Гц. $T = 1/f \approx 0.628$ с.</div>
+
+    <div class="problem">
+        <h3>101. Все науки: конвергенция</h3>
+        <p>Какие 3 открытия XX века объединили математику, физику и информатику?</p>
+    </div>
+    <div class="answer">(1) Квантовая механика + вычислительная сложность (BQP). (2) Теорема Гёделя о неполноте → основания математики. (3) Термодинамика → теория информации (Шеннон) → криптография.</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+</body>
+</html>
