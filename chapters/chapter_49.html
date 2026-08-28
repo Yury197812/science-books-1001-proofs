@@ -1,0 +1,391 @@
+
+<!--
+Platform: Habr
+Title: chapter_49
+Tags: 1001-proofs, data-science, statistics, zenodo, science-books
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 49: Наука о данных и статистика — 1001 Proof</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <meta name="citation_title" content="Наука о данных и статистика">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section, .skill-card, .optimization, .theorem, .problem, .solution, .connection { animation: fadeInUp 0.6s ease-out; }
+        .section:hover, .skill-card:hover, .optimization:hover { box-shadow: 0 0 20px rgba(0,210,255,0.1); transition: box-shadow 0.3s; }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } .grid { grid-template-columns: 1fr; } }
+        ::selection { background: #00d2ff; color: #1a1a2e; }
+        a { transition: color 0.2s, text-decoration 0.2s; }
+        a:hover { text-decoration: underline; }
+        .formula { transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+    </style>
+</head>
+<body>
+    <div id="progress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00d2ff,#7b68ee);z-index:9999;transition:width 0.1s"></div>
+    <script>window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/h*100)+'%'})</script>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_49.html" class="active">49. Данные</a>
+    </nav>
+
+    <h1>Глава 49: Наука о данных и статистика</h1>
+
+    <div class="section">
+        <p><strong>Наука о данных</strong> (Data Science) — междисциплинарное поле, объединяющее статистику, программирование и domain knowledge для извлечения знаний из данных. <strong>Статистика</strong> — математическая наука о сборе, анализе, интерпретации и представлении данных.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Описательная статистика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Меры центральной тенденции</h3>
+        <div class="skill-card">
+            <h3>Утверждение 1: Среднее, медиана, мода</h3>
+            <p>Для выборки $x_1, x_2, \ldots, x_n$:</p>
+            <div class="formula">$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \quad \text{(среднее)}$$</div>
+            <div class="formula">$$\tilde{x} = x_{(n/2)} \quad \text{(медиана, устойчива к выбросам)}$$</div>
+            <div class="formula">$$\hat{x} = \arg\max_x f(x) \quad \text{(мода)}$$</div>
+            <p><strong>Неравенство:</strong> Для симметричных распределений $\bar{x} = \tilde{x}$. Для асимметричных (lognormal): $\bar{x} > \tilde{x} > \hat{x}$.</p>
+        </div>
+
+        <h3>Меры разброса</h3>
+        <div class="skill-card">
+            <h3>Утверждение 2: Дисперсия и стандартное отклонение</h3>
+            <div class="formula">$$s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2 \quad \text{(выборочная дисперсия, Bessel correction)}$$</div>
+            <div class="formula">$$s = \sqrt{s^2} \quad \text{(стандартное отклонение)}$$</div>
+            <p><strong>Правило 68-95-99.7:</strong> Для нормального распределения $X \sim \mathcal{N}(\mu, \sigma^2)$:</p>
+            <div class="formula">$$P(|X - \mu| \leq k\sigma) = \text{erf}\!\left(\frac{k}{\sqrt{2}}\right) \approx \begin{cases} 68\% & k=1 \\ 95\% & k=2 \\ 99.7\% & k=3 \end{cases}$$</div>
+        </div>
+
+        <h3>Коэффициент变异ации и моменты</h3>
+        <div class="section">
+            <p><strong>Коэффициент变异ации (CV):</strong></p>
+            <div class="formula">$$CV = \frac{s}{\bar{x}} \times 100\%$$</div>
+            <p><strong>Центральные моменты:</strong></p>
+            <div class="formula">$$\mu_k = E[(X - \mu)^k]$$</div>
+            <table>
+                <tr><th>Момент</th><th>Название</th><th>Формула</th></tr>
+                <tr><td>$k=2$</td><td>Дисперсия</td><td>$\mu_2 = \sigma^2$</td></tr>
+                <tr><td>$k=3$</td><td>Асимметрия (skewness)</td><td>$\gamma_1 = \mu_3 / \sigma^3$</td></tr>
+                <tr><td>$k=4$</td><td>Эксцесс (kurtosis)</td><td>$\gamma_2 = \mu_4 / \sigma^4 - 3$</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Проверка гипотез</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Фреймワーク проверки гипотез</h3>
+        <div class="skill-card">
+            <h3>Утверждение 3: Структура проверки</h3>
+            <div class="formula">$$H_0 \text{ (нулевая)} \text{ vs } H_1 \text{ (альтернативная)}$$</div>
+            <table>
+                <tr><th></th><th>$H_0$ верна</th><th>$H_0$ ложна</th></tr>
+                <tr><td>Отвергаем $H_0$</td><td>Type I error ($\alpha$)</td><td>Correct (Power = $1-\beta$)</td></tr>
+                <tr><td>Принимаем $H_0$</td><td>Correct ($1-\alpha$)</td><td>Type II error ($\beta$)</td></tr>
+            </table>
+            <p><strong>Мощность теста:</strong></p>
+            <div class="formula">$$1 - \beta = P(\text{reject } H_0 \mid H_1 \text{ true})$$</div>
+        </div>
+
+        <h3>t-тест</h3>
+        <div class="skill-card">
+            <h3>Утверждение 4: Одновыборочный t-тест</h3>
+            <p>Для проверки $H_0: \mu = \mu_0$:</p>
+            <div class="formula">$$t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1} \quad \text{при } H_0$$</div>
+            <p>При $n > 30$: $t \approx \mathcal{N}(0,1)$ (ЦПТ). p-value: $p = 2 \cdot P(T_{n-1} > |t|)$.</p>
+            <p><strong>Эффект размер (Cohen's d):</strong></p>
+            <div class="formula">$$d = \frac{\bar{x}_1 - \bar{x}_2}{s_p} \quad \text{где } s_p = \sqrt{\frac{s_1^2 + s_2^2}{2}}$$</div>
+            <p>Малый эффект: $d = 0.2$, средний: $d = 0.5$, большой: $d = 0.8$.</p>
+        </div>
+
+        <h3>Типы статистических тестов</h3>
+        <table>
+            <tr><th>Тест</th><th>Назначение</th><th>Условия</th></tr>
+            <tr><td>One-sample t</td><td>$\mu = \mu_0$</td><td>Нормальность</td></tr>
+            <tr><td>Two-sample t</td><td>$\mu_1 = \mu_2$</td><td>Нормальность, равные дисперсии</td></tr>
+            <tr><td>Welch's t</td><td>$\mu_1 = \mu_2$</td><td>Нормальность, разные дисперсии</td></tr>
+            <tr><td>Paired t</td><td>$\mu_d = 0$</td><td>Зависимые выборки</td></tr>
+            <tr><td>Mann-Whitney U</td><td>Распределения</td><td>Непараметрический</td></tr>
+            <tr><td>Wilcoxon signed-rank</td><td>Медиана</td><td>Непараметрический</td></tr>
+            <tr><td>Chi-squared</td><td>$\chi^2$-тест</td><td>Категориальные данные</td></tr>
+            <tr><td>ANOVA (F)</td><td>$\mu_1 = \ldots = \mu_k$</td><td>$k > 2$ групп</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Регрессионный анализ</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Линейная регрессия</h3>
+        <div class="skill-card">
+            <h3>Утверждение 5: Метод наименьших квадратов (OLS)</h3>
+            <p>Модель: $y = X\beta + \varepsilon$, где $\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$.</p>
+            <div class="formula">$$\hat{\beta}_{\text{OLS}} = \arg\min_\beta \|y - X\beta\|^2 = (X^T X)^{-1} X^T y$$</div>
+            <p><strong>Свойства OLS</strong> (BLUE — Best Linear Unbiased Estimator, Гаусс-Марков):</p>
+            <ul style="margin-left: 20px;">
+                <li>$\hat{\beta}$ несмещённый: $E[\hat{\beta}] = \beta$</li>
+                <li>$\hat{\beta}$ имеет минимальную дисперсию среди линейных несмещённых оценок</li>
+                <li>$\text{Cov}(\hat{\beta}) = \sigma^2 (X^T X)^{-1}$</li>
+            </ul>
+        </div>
+
+        <h3>R-квадрат и.adjusted R-квадрат</h3>
+        <div class="skill-card">
+            <h3>Утверждение 6: Коэффициент детерминации</h3>
+            <div class="formula">$$R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}} = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$$</div>
+            <div class="formula">$$R^2_{\text{adj}} = 1 - \frac{(1 - R^2)(n-1)}{n - p - 1}$$</div>
+            <p>где $p$ — число предикторов. $R^2_{\text{adj}}$ штрафует за добавление незначимых переменных. $R^2 = 1$: идеальное предсказание. $R^2 = 0$: модель не лучше среднего.</p>
+        </div>
+
+        <h3>Типы регрессий</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Линейная</h4>
+                <p>$y = \beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p$. Простая, интерпретируемая.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Логистическая</h4>
+                <p>$P(y=1) = \sigma(\beta^T x)$. Для бинарной классификации.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Полиномиальная</h4>
+                <p>$y = \sum \beta_k x^k$. Нелинейные зависимости.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Ридж/LASSO</h4>
+                <p>Регуляризация: $L_2$ (Ridge) или $L_1$ (LASSO) penalty. Отбор признаков.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 7: Регуляризация</h3>
+            <p><strong>Ridge</strong> (L2):</p>
+            <div class="formula">$$\hat{\beta}_{\text{Ridge}} = \arg\min_\beta \|y - X\beta\|^2 + \lambda \|\beta\|_2^2$$</div>
+            <p><strong>LASSO</strong> (L1):</p>
+            <div class="formula">$$\hat{\beta}_{\text{LASSO}} = \arg\min_\beta \|y - X\beta\|^2 + \lambda \|\beta\|_1$$</div>
+            <p>Ridge сжимает коэффициенты; LASSO зануляет некоторые (отбор признаков). <strong>Elastic Net</strong>: комбинация $L_1 + L_2$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Байесовская статистика</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Теорема Байеса</h3>
+        <div class="skill-card">
+            <h3>Утверждение 8: Обновление вероятности</h3>
+            <div class="formula">$$P(\theta \mid D) = \frac{P(D \mid \theta) \cdot P(\theta)}{P(D)} = \frac{\text{Likelihood} \times \text{Prior}}{\text{Evidence}}$$</div>
+            <p><strong>Posterior ∝ Likelihood × Prior.</strong> Байесовский подход обновляет prior knowledge данными:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Prior</strong> $P(\theta)$ — начальные знания о параметре</li>
+                <li><strong>Likelihood</strong> $P(D|\theta)$ — вероятность данных при данном $\theta$</li>
+                <li><strong>Posterior</strong> $P(\theta|D)$ — обновлённые знания после данных</li>
+            </ul>
+        </div>
+
+        <h3>Сопряжённые priors</h3>
+        <table>
+            <tr><th>Данные (Likelihood)</th><th>Prior</th><th>Posterior</th></tr>
+            <tr><td>Bernoulli/Binomial</td><td>Beta($\alpha, \beta$)</td><td>Beta($\alpha + s, \beta + n - s$)</td></tr>
+            <tr><td>Gaussian (known $\sigma^2$)</td><td>$\mathcal{N}(\mu_0, \sigma_0^2)$</td><td>$\mathcal{N}(\mu_n, \sigma_n^2)$</td></tr>
+            <tr><td>Poisson</td><td>Gamma($\alpha, \beta$)</td><td>Gamma($\alpha + \sum x_i, \beta + n$)</td></tr>
+            <tr><td>Categorical</td><td>Dirichlet($\alpha$)</td><td>Dirichlet($\alpha + n$)</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 9: A/B-тестирование</h3>
+            <p><strong>Байесовский A/B-тест:</strong> Вероятность того, что вариант B лучше A:</p>
+            <div class="formula">$$P(B > A \mid D) = \int \int \mathbb{1}[\theta_B > \theta_A] \cdot P(\theta_A, \theta_B \mid D) \, d\theta_A \, d\theta_B$$</div>
+            <p>Для бинарных данных: $\theta_A \sim \text{Beta}(s_A + 1, f_A + 1)$, $\theta_B \sim \text{Beta}(s_B + 1, f_B + 1)$. Монте-Карло сэмплирование: 10,000 пар → $P(B > A)$.</p>
+        </div>
+
+        <h3>Байесовская линейная регрессия</h3>
+        <div class="section">
+            <div class="formula">$$P(\beta \mid X, y) \propto P(y \mid X, \beta) \cdot P(\beta)$$</div>
+            <p>При гауссовом prior и likelihood posterior тоже гауссов:</p>
+            <div class="formula">$$\beta \mid X, y \sim \mathcal{N}(\mu_n, \Sigma_n)$$</div>
+            <div class="formula">$$\Sigma_n = (\sigma^{-2} X^T X + \Sigma_0^{-1})^{-1}, \quad \mu_n = \Sigma_n (\sigma^{-2} X^T y + \Sigma_0^{-1} \mu_0)$$</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. A/B-тестирование (фреймворк)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Дизайн эксперимента</h3>
+        <div class="skill-card">
+            <h3>Утверждение 10: Размер выборки</h3>
+            <p>Минимальный размер выборки для обнаружения эффекта размера $d$ при уровнях $\alpha$ и мощности $1 - \beta$:</p>
+            <div class="formula">$$n = \frac{(z_{\alpha/2} + z_\beta)^2 \cdot 2\sigma^2}{\delta^2}$$</div>
+            <p>где $\delta = |\mu_A - \mu_B|$ — разница, $\sigma$ — стандартное отклонение. Для $d = 0.2$, $\alpha = 0.05$, power $= 0.8$: $n \approx 394$ на группу.</p>
+        </div>
+
+        <h3>Поток A/B-теста</h3>
+        <div class="section">
+            <div class="formula">$$\text{Hypothesis} \to \text{Power Analysis} \to \text{Randomization} \to \text{Data Collection} \to \text{Analysis} \to \text{Decision}$$</div>
+            <ul style="margin-left: 20px;">
+                <li><strong>Randomization:</strong> Рандомизация пользователей (stratified if needed)</li>
+                <li><strong>Sample Ratio Mismatch:</strong> Проверка баланса (χ² test)</li>
+                <li><strong>Peeking:</strong> Не останавливать рано! Sequential testing (mSPRT)</li>
+                <li><strong>Multiple testing:</strong> Bonferroni correction при $k$ вариантах</li>
+            </ul>
+        </div>
+
+        <h3>Метрики A/B-тестирования</h3>
+        <table>
+            <tr><th>Метрика</th><th>Формула</th><th>Интерпретация</th></tr>
+            <tr><td>Conversion rate</td><td>$CR = \text{conversions} / \text{visitors}$</td><td>Доля конверсий</td></tr>
+            <tr><td>Lift</td><td>$L = (CR_B - CR_A) / CR_A$</td><td>Относительное изменение</td></tr>
+            <tr><td>Revenue per user</td><td>$RPU = \text{revenue} / N$</td><td>Средний доход</td></tr>
+            <tr><td>ROI</td><td>$ROI = (R_B - R_A) / C_{\text{test}}$</td><td>Возврат инвестиций</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Причинно-следственные связи</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Корреляция vs каузация</h3>
+        <div class="skill-card">
+            <h3>Утверждение 11: Ловушки причинности</h3>
+            <div class="formula">$$\text{Correlation} \not\Rightarrow \text{Causation}$$</div>
+            <p><strong>Примеры:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Confounding:</strong> $X \leftarrow C \rightarrow Y$ (скрытый фактор $C$)</li>
+                <li><strong>Reverse causation:</strong> $X \leftrightarrow Y$ (обратная причинность)</li>
+                <li><strong>Coincidence:</strong> случайная корреляция в больших данных</li>
+                <li><strong>Selection bias:</strong> неслучайная выборка</li>
+            </ul>
+        </div>
+
+        <h3>Даговские модели (DAG)</h3>
+        <div class="skill-card">
+            <h3>Утверждение 12: Доктрина Джуды Pearl</h3>
+            <p><strong>Колдерон-Фельберг условие:</strong> Если набор переменных $Z$ блокирует все backdoor paths от $X$ к $Y$, то:</p>
+            <div class="formula">$$P(Y \mid \text{do}(X)) = \sum_z P(Y \mid X, Z=z) P(Z=z)$$</div>
+            <p><strong>do-оператор:</strong> $P(Y|\text{do}(X=x))$ — вероятность $Y$ при <em>интервенции</em> $X=x$ (вмешательство, а не наблюдение).</p>
+        </div>
+
+        <h3>Методы оценки причинных эффектов</h3>
+        <table>
+            <tr><th>Метод</th><th>Условия</th><th>Формула</th></tr>
+            <tr><td>RCT</td><td>Рандомизация</td><td>$\text{ATE} = E[Y(1) - Y(0)]$</td></tr>
+            <tr><td>Matching</td><td>Unconfoundedness</td><td>$\sum P(X) [E(Y|X,1) - E(Y|X,0)]$</td></tr>
+            <tr><td>IV</td><td>Instrument $Z$</td><td>$\frac{\text{Cov}(Y,Z)}{\text{Cov}(X,Z)}$</td></tr>
+            <tr><td>DiD</td><td>Parallel trends</td><td>$(Y_{B,1} - Y_{B,0}) - (Y_{A,1} - Y_{A,0})$</td></tr>
+            <tr><td>RDD</td><td>Discontinuity</td><td>$\lim_{x\to c^+} E[Y|X=x] - \lim_{x\to c^-} E[Y|X=x]$</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Резюме главы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Наука о данных и статистика — основа доказательных решений:</p>
+        <ul style="margin-left: 20px;">
+            <li>Описательная статистика: меры центра, разброса, формы распределения</li>
+            <li>Проверка гипотез: t-тесты, ANOVA, непараметрические тесты</li>
+            <li>Регрессия: OLS, R², регуляризация (Ridge, LASSO)</li>
+            <li>Байесовская статистика: prior → posterior через Bayes' theorem</li>
+            <li>A/B-тестирование: дизайн, размер выборки, анализ результатов</li>
+            <li>Каузация: DAG, do-calculus, RCT, matching, IV, DiD, RDD</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>1001 Proof: доказательства по статистике</h3>
+        <p><strong>Том 49:</strong> Наука о данных и статистика — 1001 доказательство覆盖 descriptive stats, hypothesis testing, regression, Bayesian inference, A/B testing, causality.</p>
+        <p><strong>Связанные тома:</strong> Вероятность (том 9), Линейная алгебра (том 5), Машинное обучение (том 34).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:30px;right:30px;width:40px;height:40px;border-radius:50%;background:rgba(0,210,255,0.2);color:#00d2ff;border:1px solid #00d2ff;cursor:pointer;font-size:20px;z-index:9999;transition:all 0.3s" onmouseover="this.style.background='#00d2ff';this.style.color='#1a1a2e'" onmouseout="this.style.background='rgba(0,210,255,0.2)';this.style.color='#00d2ff'">&#8679;</button>
+</body>
+</html>
