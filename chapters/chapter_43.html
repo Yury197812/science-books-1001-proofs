@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 43: Теория относительности: от Эйнштейна к гравитационным волнам</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; animation: fadeInUp 0.6s ease-out; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_43.html" class="active">43</a>
+    </nav>
+
+    <h1>Глава 43: Теория относительности: от Эйнштейна к гравитационным волнам</h1>
+
+    <div class="section">
+        <h2>1. СТО</h2>
+        <p>Постулаты Эйнштейна. $E = mc^2$. Временна́я дилатация: $\Delta t' = \gamma \Delta t$.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Длинносжатие</h2>
+        <p>$L' = L/\gamma$. Парадокс близнецов.</p>
+    </div>
+
+    <div class="section">
+        <h2>3. ОТО</h2>
+        <p>Пространство-время искривлено материей: $G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}$.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. Чёрные дыры</h2>
+        <p>Метрика Шварцшильда. Горизонт событий: $r_s = 2GM/c^2$. Излучение Хокинга.</p>
+    </div>
+
+    <div class="section">
+        <h2>5. Гравитационные волны</h2>
+        <p>Решение Эйнштейна. LIGO/Virgo. Шварцшильда–Керр.</p>
+    </div>
+
+    <div class="section">
+        <h2>6. Космология</h2>
+        <p>Уравнения Фридмана. $H_0$. Тёмная энергия, тёмная материя.</p>
+    </div>
+
+    <div class="section">
+        <h2>7. Связь с задачами тысячелетия</h2>
+        <p>Гравитация = геометрия → Янг-Миллс (гравитационный mass gap?), Навье-Стокс (гидродинамика).</p>
+    </div>
+
+    <div class="optimization">
+        <h3>Связь с задачами тысячелетия</h3>
+        <p>См. соответствующие главы: <a href="chapter_01.html">P vs NP</a>, <a href="chapter_03.html">Риман</a>, <a href="chapter_05.html">Навье-Стокс</a>, <a href="chapter_04.html">Янг-Миллс</a>.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | CC-BY-4.0 | <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}],
+                macros: {"\BigO": "\mathcal{O}", "\R": "\mathbb{R}", "\C": "\mathbb{C}", "\Z": "\mathbb{Z}", "\N": "\mathbb{N}", "\Q": "\mathbb{Q}"}
+            });
+        });
+    </script>
+</body>
+</html>
