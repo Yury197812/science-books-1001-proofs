@@ -1,0 +1,440 @@
+
+<!--
+Platform: Habr
+Title: chapter_45
+Tags: 1001-proofs, databases, big-data, zenodo, science-books
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 45: Базы данных и большие данные — 1001 Proof</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <meta name="citation_title" content="Базы данных и большие данные">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section, .skill-card, .optimization, .theorem, .problem, .solution, .connection { animation: fadeInUp 0.6s ease-out; }
+        .section:hover, .skill-card:hover, .optimization:hover { box-shadow: 0 0 20px rgba(0,210,255,0.1); transition: box-shadow 0.3s; }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } .grid { grid-template-columns: 1fr; } }
+        ::selection { background: #00d2ff; color: #1a1a2e; }
+        a { transition: color 0.2s, text-decoration 0.2s; }
+        a:hover { text-decoration: underline; }
+        .formula { transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+    </style>
+</head>
+<body>
+    <div id="progress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00d2ff,#7b68ee);z-index:9999;transition:width 0.1s"></div>
+    <script>window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/h*100)+'%'})</script>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_45.html" class="active">45. Базы данных</a>
+    </nav>
+
+    <h1>Глава 45: Базы данных и большие данные</h1>
+
+    <div class="section">
+        <p><strong>Базы данных</strong> — организованное хранилище структурированных данных с механизмами управления целостностью, безопасностью и производительностью. <strong>Большие данные</strong> (Big Data) — наборы данных, характеризующиеся объёмом (Volume), скоростью (Velocity) и разнообразием (Variety), обрабатываемые распределёнными системами.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Реляционные базы данных и SQL</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Реляционная модель (Codd, 1970)</h3>
+        <p>Данные организованы в <strong>отношения</strong> (таблицы) с кортежами (строками) и атрибутами (столбцами). Ключевые свойства:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Целостность сущности:</strong> каждая строка уникальна (первичный ключ)</li>
+            <li><strong>Целостность ссылок:</strong> внешние ключи ссылаются на существующие записи</li>
+            <li><strong>Нормализация:</strong> устранение избыточности (1НФ → 2НФ → 3НФ → BCНФ)</li>
+        </ul>
+
+        <h3>ACID-свойства транзакций</h3>
+        <div class="formula">$$\text{ACID} = \underbrace{\text{Atomicity}}_{\text{атомарность}} \times \underbrace{\text{Consistency}}_{\text{согласованность}} \times \underbrace{\text{Isolation}}_{\text{изоляция}} \times \underbrace{\text{Durability}}_{\text{долговечность}}$$</div>
+
+        <div class="skill-card">
+            <h3>Утверждение 1: Теорема CAP</h3>
+            <p>В распределённой системе невозможно одновременно гарантировать все три свойства:</p>
+            <div class="formula">$$\text{Consistency} + \text{Availability} + \text{Partition tolerance} \leq 2$$</div>
+            <p><strong>Доказательство:</strong> При сетевом分区 (Partition) либо один узел недоступен (нарушение Availability), либо данные на узлах расходятся (нарушение Consistency). Трилемма CAP определяет дизайн-пространство распределённых СУБД.</p>
+        </div>
+
+        <h3>SQL: структурированный язык запросов</h3>
+        <pre style="background:rgba(0,0,0,0.3);padding:15px;border-radius:8px;overflow-x:auto;"><code>-- Агрегация с оконными функциями
+SELECT department,
+       AVG(salary) OVER (PARTITION BY department) AS avg_salary,
+       RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+FROM employees
+WHERE hire_date > '2020-01-01'
+ORDER BY department, rank;</code></pre>
+
+        <h3>Индексация и B-деревья</h3>
+        <div class="skill-card">
+            <h3>Утверждение 2: Сложность поиска в B-дереве</h3>
+            <p>Поиск в B-дереве порядка $m$ с $n$ ключами:</p>
+            <div class="formula">$$T_{\text{search}} = \BigO(\log_m n) = \BigO\!\left(\frac{\log n}{\log m}\right)$$</div>
+            <p>При $m = 256$ (типичный порядок): для $n = 10^9$ записей достаточно $\log_{256}(10^9) \approx 3.75$ уровней (4 дисковых обращения).</p>
+        </div>
+
+        <h3>Сравнение СУБД</h3>
+        <table>
+            <tr><th>Система</th><th>Модель</th><th>Масштабирование</th><th>Типичное использование</th></tr>
+            <tr><td>PostgreSQL</td><td>Реляционная</td><td>Вертикальное</td><td>OLTP, аналитика</td></tr>
+            <tr><td>MySQL</td><td>Реляционная</td><td>Вертикальное / чтение</td><td>Веб-приложения</td></tr>
+            <tr><td>Oracle</td><td>Реляционная</td><td>Вертикальное</td><td>Enterprise ERP</td></tr>
+            <tr><td>SQLite</td><td>Реляционная</td><td>Локальная</td><td>Embedded, мобильные</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. NoSQL-базы данных</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Для данных, не вписывающихся в реляционную модель (полуструктурированные, иерархические, графовые), используют NoSQL-системы.</p>
+
+        <h3>Типы NoSQL</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Ключ-значение</h4>
+                <p>Redis, DynamoDB, Riak. Максимальная производительность: $T = \BigO(1)$ для get/set по ключу.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Документная</h4>
+                <p>MongoDB, CouchDB. Хранение JSON/BSON-документов с гибкой схемой.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Колоночная</h4>
+                <p>Cassandra, HBase. Оптимизация для аналитических запросов по столбцам.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Графовая</h4>
+                <p>Neo4j, ArangoDB. Моделирование связей: $G = (V, E)$, traversal за $O(|E|)$.</p>
+            </div>
+        </div>
+
+        <h3>BASE vs ACID</h3>
+        <div class="skill-card">
+            <h3>Утверждение 3: Модель BASE</h3>
+            <p>Для горизонтально масштабируемых систем используется модель <strong>BASE</strong>:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Basically Available</strong> — система доступна, но может возвращать устаревшие данные</li>
+                <li><strong>Soft state</strong> — состояние может изменяться со временем без внешних вызовов</li>
+                <li><strong>Eventually consistent</strong> — при отсутствии записей все узлы сходятся к одной версии</li>
+            </ul>
+            <p><strong>Доказательство (теорема PACELC):</strong> При Partition → choose A или C; иначе → choose L (latency) или C (consistency). Формально:</p>
+            <div class="formula">$$\text{PACELC: } \begin{cases} \text{Partition} \Rightarrow \text{choose } (A, P) \text{ или } (C, P) \\ \text{Else} \Rightarrow \text{choose } (L, E) \text{ или } (C, E) \end{cases}$$</div>
+        </div>
+
+        <h3>Sharding и репликация</h3>
+        <div class="section">
+            <p><strong>Sharding</strong> (горизонтальное分区) разбивает данные по ключу $k$:</p>
+            <div class="formula">$$\text{shard}(k) = h(k) \mod N$$</div>
+            <p>где $h$ — хэш-функция, $N$ — число шардов. Проблема: при добавлении узлов $N \to N+1$ происходит $O(n)$ перемещение данных. <strong>Consistent hashing</strong> решает эту проблему: при добавлении узла перемещается только $1/N$ данных.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. MapReduce и Hadoop</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Парадигма MapReduce (Dean &amp; Ghemawat, 2004)</h3>
+        <div class="skill-card">
+            <h3>Утверждение 4: Параллельная обработка данных</h3>
+            <p>MapReduce разбивает задачу на два этапа:</p>
+            <div class="formula">$$\text{Map}: (k_1, v_1) \to \text{list}(k_2, v_2)$$</div>
+            <div class="formula">$$\text{Reduce}: (k_2, \text{list}(v_2)) \to \text{list}(v_3)$$</div>
+            <p><strong>Скорость:</strong> При $M$ мапперах и $R$ редьюсерах время обработки $N$ записей:</p>
+            <div class="formula">$$T = \BigO\!\left(\frac{N}{M} + N + \frac{N}{R}\right)$$</div>
+        </div>
+
+        <h3>Пример: Подсчёт слов</h3>
+        <pre style="background:rgba(0,0,0,0.3);padding:15px;border-radius:8px;overflow-x:auto;"><code>// Map phase
+function map(doc) {
+    for (word of doc.split(/\s+/)) {
+        emit(word, 1);
+    }
+}
+
+// Reduce phase  
+function reduce(key, values) {
+    return values.reduce((a, b) => a + b, 0);
+}
+// word → count</code></pre>
+
+        <h3>Архитектура Hadoop</h3>
+        <div class="section">
+            <table>
+                <tr><th>Компонент</th><th>Назначение</th></tr>
+                <tr><td>HDFS</td><td>Распределённая файловая система (3 реплики по умолчанию)</td></tr>
+                <tr><td>MapReduce</td><td>Пакетная обработка данных</td></tr>
+                <tr><td>YARN</td><td>Управление ресурсами кластера</td></tr>
+                <tr><td>Hive</td><td>SQL-интерфейс к HDFS</td></tr>
+                <tr><td>HBase</td><td>Колоночная БД поверх HDFS</td></tr>
+                <tr><td>Pig</td><td>Язык потоковой обработки</td></tr>
+            </table>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 5: Закон Амдала для MapReduce</h3>
+            <p>При $p$ — доля параллельной части, $S$ — ускорение:</p>
+            <div class="formula">$$S(p) = \frac{1}{(1-p) + \frac{p}{N}} \leq \frac{1}{1-p}$$</div>
+            <p>Даже при $N \to \infty$ ускорение ограничено $1/(1-p)$. Для MapReduce $p \approx 0.95$, поэтому $S_{\max} \approx 20$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Apache Spark</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Resilient Distributed Datasets (RDD)</h3>
+        <p>Spark заменяет disk-based MapReduce на in-memory вычисления:</p>
+        <div class="formula">$$\text{Spark speedup} = \frac{T_{\text{Hadoop}}}{T_{\text{Spark}}} = \frac{10 \times \text{disk I/O}}{1 \times \text{RAM}} \approx 10\text{–}100\times$$</div>
+
+        <div class="skill-card">
+            <h3>Утверждение 6: Линейность RDD</h3>
+            <p>RDD (Resilient Distributed Dataset) — неизменяемое распределённое коллекция элементов, обрабатываемое параллельно. Ключевое свойство: <strong>lineage</strong> — история трансформаций для восстановления при сбоях:</p>
+            <div class="formula">$$\text{RDD} = \text{ partitions} \times \text{ transformations} \times \text{ lineage}$$</div>
+            <p>При потере分区 Spark воссоздаёт её из lineage, а не из checkpoints.</p>
+        </div>
+
+        <h3>API Spark</h3>
+        <pre style="background:rgba(0,0,0,0.3);padding:15px;border-radius:8px;overflow-x:auto;"><code>from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, avg, count
+
+spark = SparkSession.builder.appName("Analytics").getOrCreate()
+df = spark.read.parquet("hdfs:///data/events")
+
+result = (df
+    .filter(col("event_type") == "purchase")
+    .groupBy("user_id")
+    .agg(count("*").alias("purchases"),
+         avg("amount").alias("avg_amount"))
+    .orderBy(col("purchases").desc()))
+
+result.show(20)</code></pre>
+
+        <h3>Spark Streaming и Structured Streaming</h3>
+        <table>
+            <tr><th>Режим</th><th>Задержка</th><th>Гарантии</th></tr>
+            <tr><td>Micro-batch</td><td>~100 мс</td><td>Exactly-once</td></tr>
+            <tr><td>Continuous</td><td>~1 мс</td><td>At-least-once</td></tr>
+            <tr><td>DStream (legacy)</td><td>~500 мс</td><td>At-least-once</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Хранилища данных (Data Warehousing)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Архитектура хранилища</h3>
+        <div class="section">
+            <p><strong>ETL</strong> (Extract, Transform, Load) pipeline:</p>
+            <div class="formula">$$\text{Sources} \xrightarrow{E} \text{Staging} \xrightarrow{T} \text{Transform} \xrightarrow{L} \text{Data Warehouse}$$</div>
+        </div>
+
+        <h3>Схемы данных</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Звёздная схема</h4>
+                <p>Факты + измерения. Быстрые JOIN для аналитических запросов.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Снежинка</h4>
+                <p>Нормализованные измерения. Меньше избыточности, сложнее запросы.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Data Vault</h4>
+                <p>Hubs + Links + Satellites. Максимальная гибкость для аудита.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Лента (Lakehouse)</h4>
+                <p>Delta Lake / Iceberg. ACID поверх object storage.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 7: Формула стоимости хранения</h3>
+            <p>Стоимость $C$ данных в $D$ лет при объёме $V$ ТБ и ежегодном росте $r$:</p>
+            <div class="formula">$$C = V \cdot c_{\text{TB}} \cdot \sum_{i=0}^{D-1} (1+r)^i = V \cdot c_{\text{TB}} \cdot \frac{(1+r)^D - 1}{r}$$</div>
+            <p>При $V = 100$ ТБ, $c = 23\$/$ТБ/год, $r = 0.3$, $D = 5$: $C \approx 100 \times 23 \times 7.14 \approx 16{,}400\$$. Экономия от компрессии (ratio 3:1): $\sim 5{,}500\$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. ML-пайплайны и feature engineering</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Инфраструктура ML-пайплайна</h3>
+        <div class="section">
+            <p>Типичный ML-пайплайн включает:</p>
+            <div class="formula">$$\text{Data} \to \text{Feature Eng} \to \text{Training} \to \text{Evaluation} \to \text{Serving} \to \text{Monitoring}$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 8: Feature Store</h3>
+            <p>Feature Store — централизованное хранилище признаков, обеспечивающее:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Consistency:</strong> одинаковые признаки для обучения и инференса</li>
+                <li><strong>Reusability:</strong> переиспользование признаков между моделями</li>
+                <li><strong>Versioning:</strong> версионирование признаков и моделей</li>
+                <li><strong>Online/Offline:</strong>低延迟 для online, batch для offline</li>
+            </ul>
+            <p>Примеры: Feast, Tecton, Hopsworks.</p>
+        </div>
+
+        <h3>Инструменты ML-пайплайнов</h3>
+        <table>
+            <tr><th>Инструмент</th><th>Уровень</th><th>Назначение</th></tr>
+            <tr><td>Apache Airflow</td><td>Оркестрация</td><td>DAG-пайплайны</td></tr>
+            <tr><td>Kubeflow</td><td>ML-платформа</td><td>Training + Serving на K8s</td></tr>
+            <tr><td>MLflow</td><td>Experiment tracking</td><td>Версионирование моделей</td></tr>
+            <tr><td>DVC</td><td>Data versioning</td><td>Версионирование данных</td></tr>
+            <tr><td>Great Expectations</td><td>Data quality</td><td>Валидация данных</td></tr>
+            <tr><td>Feast</td><td>Feature store</td><td>Хранение признаков</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 9: Теорема о данных</h3>
+            <p><strong>Манифест данных</strong> (Бремен, 2012): «Модель не лучше данных, на которых она обучена.» Формально: для модели $f$ и данных $D$:</p>
+            <div class="formula">$$\text{Error}(f, D_{\text{test}}) \geq \text{Error}(f^*, D_{\text{test}}) - \text{bias}(D_{\text{train}}, D_{\text{test}})$$</div>
+            <p>Где $f^*$ — оптимальная модель, $\text{bias}$ — расхождение между train и test распределениями.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Временные ряды и потоковая обработка</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Apache Kafka</h3>
+        <div class="section">
+            <p>Распределённый стриминговый брокер сообщений:</p>
+            <div class="formula">$$\text{Producer} \to \text{Topic (Partitions)} \to \text{Consumer Group}$$</div>
+            <p>Пропускная способность: до $10^6$ сообщений/сек. Долговечное хранение (retention policy).</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 10: SLA потоковой обработки</h3>
+            <p>Для потоковой обработки с задержкой $L$ и пропускной способностью $T$:</p>
+            <div class="formula">$$L \cdot T \leq B$$</div>
+            <p>Где $B$ — буфер памяти. Типичные значения: Kafka — $L \sim 10$ мс, $T \sim 10^6$/с; Flink — $L \sim 1$ мс, $T \sim 10^5$/с.</p>
+        </div>
+
+        <h3>Windowing в потоковой обработке</h3>
+        <table>
+            <tr><th>Тип окна</th><th>Описание</th><th>Использование</th></tr>
+            <tr><td>Tumbling</td><td>Непересекающиеся фиксированные окна</td><td>Агрегация по часам</td></tr>
+            <tr><td>Sliding</td><td>Пересекающиеся окна</td><td>Скользящее среднее</td></tr>
+            <tr><td>Session</td><td>Динамические окна по активности</td><td>Анализ сессий</td></tr>
+            <tr><td>Global</td><td>Все данные с начала</td><td>Накопительные агрегаты</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Резюме главы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Базы данных и большие данные — фундамент современной информатики. Ключевые концепции:</p>
+        <ul style="margin-left: 20px;">
+            <li>Реляционная модель + SQL обеспечивают ACID-гарантии для транзакций</li>
+            <li>NoSQL-системы решают проблемы масштабирования (CAP-теорема)</li>
+            <li>MapReduce/Hadoop — парадигма пакетной обработки данных</li>
+            <li>Spark — in-memory вычисления (10–100× быстрее Hadoop)</li>
+            <li>Data Warehousing — ETL-пайплайны и аналитические запросы</li>
+            <li>ML-пайплайны связывают данные с моделями через Feature Store</li>
+            <li>Потоковая обработка (Kafka, Flink) — реальное время</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>1001 Proof: доказательства по базам данных</h3>
+        <p><strong>Том 45:</strong> Базы данных и большие данные — 1001 доказательство覆盖 SQL, NoSQL, MapReduce, Hadoop, Spark, Data Warehousing, ML-пайплайны.</p>
+        <p><strong>Связанные тома:</strong> Алгоритмы и структуры данных (том 12), Теория информации (том 31), Параллельные вычисления (том 28).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:30px;right:30px;width:40px;height:40px;border-radius:50%;background:rgba(0,210,255,0.2);color:#00d2ff;border:1px solid #00d2ff;cursor:pointer;font-size:20px;z-index:9999;transition:all 0.3s" onmouseover="this.style.background='#00d2ff';this.style.color='#1a1a2e'" onmouseout="this.style.background='rgba(0,210,255,0.2)';this.style.color='#00d2ff'">&#8679;</button>
+</body>
+</html>
