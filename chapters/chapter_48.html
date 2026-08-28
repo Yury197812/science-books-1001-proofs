@@ -1,0 +1,406 @@
+
+<!--
+Platform: Habr
+Title: chapter_48
+Tags: 1001-proofs, robotics, autonomous-systems, zenodo, science-books
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 48: Робототехника и автономные системы — 1001 Proof</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <meta name="citation_title" content="Робототехника и автономные системы">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section, .skill-card, .optimization, .theorem, .problem, .solution, .connection { animation: fadeInUp 0.6s ease-out; }
+        .section:hover, .skill-card:hover, .optimization:hover { box-shadow: 0 0 20px rgba(0,210,255,0.1); transition: box-shadow 0.3s; }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } .grid { grid-template-columns: 1fr; } }
+        ::selection { background: #00d2ff; color: #1a1a2e; }
+        a { transition: color 0.2s, text-decoration 0.2s; }
+        a:hover { text-decoration: underline; }
+        .formula { transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+    </style>
+</head>
+<body>
+    <div id="progress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00d2ff,#7b68ee);z-index:9999;transition:width 0.1s"></div>
+    <script>window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/h*100)+'%'})</script>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_48.html" class="active">48. Робототехника</a>
+    </nav>
+
+    <h1>Глава 48: Робототехника и автономные системы</h1>
+
+    <div class="section">
+        <p><strong>Робототехника</strong> — междисциплинарная наука о проектировании, создании и применении роботов. <strong>Автономные системы</strong> — системы, способные действовать без постоянного участия человека, используя сенсоры, алгоритмы и actuators.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Кинематика и динамика роботов</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Прямая и обратная кинематика</h3>
+        <div class="skill-card">
+            <h3>Утверждение 1: Матрицы Денавита-Хартенберга</h3>
+            <p>Кинематическая цепь из $n$ звеньев описывается матрицами преобразований:</p>
+            <div class="formula">$$A_i = \begin{pmatrix} \cos\theta_i & -\sin\theta_i\cos\alpha_i & \sin\theta_i\sin\alpha_i & a_i\cos\theta_i \\ \sin\theta_i & \cos\theta_i\cos\alpha_i & -\cos\theta_i\sin\alpha_i & a_i\sin\theta_i \\ 0 & \sin\alpha_i & \cos\alpha_i & d_i \\ 0 & 0 & 0 & 1 \end{pmatrix}$$</div>
+            <p>где $\theta_i$ — угол поворота, $d_i$ — смещение, $a_i$ — длина звена, $\alpha_i$ — угол наклона. Конечная позиция:</p>
+            <div class="formula">$$T_n^0 = A_1 \cdot A_2 \cdots A_n$$</div>
+        </div>
+
+        <h3>Типы манипуляторов</h3>
+        <table>
+            <tr><th>Тип</th><th>DOF</th><th>Конфигурация</th><th>Применение</th></tr>
+            <tr><td>Articulated</td><td>6–7</td><td>Револьверные joint'ы</td><td>Промышленные роботы</td></tr>
+            <tr><td>SCARA</td><td>4</td><td>2 поворотных + 1 линейный</td><td>Сборка, пайка</td></tr>
+            <tr><td>Delta</td><td>3+1</td><td>Параллельная кинематика</td><td>Упаковка, сортировка</td></tr>
+            <tr><td>Cartesian</td><td>3</td><td>3 линейных оси</td><td>3D-печать, фрезеровка</td></tr>
+            <tr><td>Cylindrical</td><td>3</td><td>Вращение + линейные</td><td>Обслуживание станков</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 2: Кинематическое пространство</h3>
+            <p>Рабочее пространство манипулятора:</p>
+            <div class="formula">$$\mathcal{W} = \{ T_n^0(\mathbf{q}) \mid \mathbf{q} \in \mathcal{Q} \}$$</div>
+            <p>где $\mathcal{Q}$ — пространство конфигураций ( joint space ). Для 6-DOF манипулятора $\dim(\mathcal{Q}) = 6$, $\dim(\mathcal{W}) \leq 6$ (позиция + ориентация). Если $\dim(\mathcal{Q}) > \text{rank}(J)$, манипулятор имеет избыточность (singularity-free motion).</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Сенсоры</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Типы сенсоров</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>LIDAR</h4>
+                <p>Лазерное сканирование. 360° обзор. Точность ±2 см. Дальность до 200 м.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Camera (RGBD)</h4>
+                <p>Глубина через структурированный свет (Intel RealSense). 30 fps.</p>
+            </div>
+            <div class="grid-item">
+                <h4>IMU</h4>
+                <p>Гироскоп + акселерометр. Частота 100–1000 Гц. Drift随着时间.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Ultrasonic</h4>
+                <p>Дальномер. Дальность 2–5 м. Низкая стоимость. Шум.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 3: Фильтр Калмана</h3>
+            <p>Для фильтрации шумных измерений $z_t$ с моделью состояния:</p>
+            <div class="formula">$$\hat{x}_{t|t} = \hat{x}_{t|t-1} + K_t (z_t - H \hat{x}_{t|t-1})$$</div>
+            <div class="formula">$$K_t = P_{t|t-1} H^T (H P_{t|t-1} H^T + R)^{-1}$$</div>
+            <div class="formula">$$P_{t|t} = (I - K_t H) P_{t|t-1}$$</div>
+            <p>где $K_t$ — коэффициент Калмана, $H$ — матрица наблюдения, $R$ — ковариация шума измерения, $P$ — ковариация ошибки. Расчётная сложность: $O(n^3)$ для $n$-мерного состояния.</p>
+        </div>
+
+        <h3>Сенсорные слияния</h3>
+        <div class="section">
+            <p><strong>Экстенсивное состояние</strong> (robot SLAM):</p>
+            <div class="formula">$$x_t = f(x_{t-1}, u_t) + w_t \quad \text{(motion model)}$$</div>
+            <div class="formula">$$z_t = h(x_t) + v_t \quad \text{(observation model)}$$</div>
+            <p>где $u_t$ — управление, $w_t \sim \mathcal{N}(0, Q)$, $v_t \sim \mathcal{N}(0, R)$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. SLAM (Simultaneous Localization and Mapping)</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Задача SLAM</h3>
+        <div class="skill-card">
+            <h3>Утверждение 4: Формулировка SLAM</h3>
+            <p>SLAM — одновременная локализация робота $x_t$ и построение карты $m$:</p>
+            <div class="formula">$$p(x_t, m \mid z_{1:t}, u_{1:t}) = p(x_t \mid z_{1:t}, u_{1:t}) \cdot p(m \mid x_t, z_{1:t})$$</div>
+            <p>Полная posterior раскладывается на <strong>локализацию</strong> и <strong>картирование</strong>. Решение: фильтр Калмана (EKF-SLAM) или графовый метод (GraphSLAM).</p>
+        </div>
+
+        <h3>Алгоритмы SLAM</h3>
+        <table>
+            <tr><th>Алгоритм</th><th>Тип</th><th>Сложность</th><th>Особенности</th></tr>
+            <tr><td>EKF-SLAM</td><td>Фильтр</td><td>$O(n^2)$</td><td>Точность, но не масштабируем</td></tr>
+            <tr><td>FastSLAM</td><td>Particle</td><td>$O(n \log n)$</td><td>Множественные гипотезы</td></tr>
+            <tr><td>GraphSLAM</td><td>Граф</td><td>$O(n^3)$</td><td>Batch-оптимизация</td></tr>
+            <tr><td>ORB-SLAM3</td><td>Feature</td><td>$O(n)$</td><td>Visual SLAM, real-time</td></tr>
+            <tr><td>Cartographer</td><td>Submap</td><td>$O(n)$</td><td>LIDAR SLAM (Google)</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 5: EKF-SLAM</h3>
+            <p>Расширенный фильтр Калмана для SLAM:</p>
+            <div class="formula">$$\mathbf{x}_t = [x_{\text{robot}}, y_{\text{robot}}, \theta_{\text{robot}}, m_1^x, m_1^y, \ldots, m_n^x, m_n^y]^T$$</div>
+            <p>Ковариация растёт: $\dim(P) = (3 + 2n)^2$. При $n = 1000$ ландмарков: $P$ — матрица $2003 \times 2003$. Решение: sparse methods (iSAM2).</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Планирование траектории</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Пространство конфигураций</h3>
+        <div class="skill-card">
+            <h3>Утверждение 6: A* алгоритм</h3>
+            <p>Планирование пути в конфигурационном пространстве $\mathcal{C}$:</p>
+            <div class="formula">$$f(n) = g(n) + h(n)$$</div>
+            <p>где $g(n)$ — стоимость пути от старта, $h(n)$ — эвристика (admissible: $h(n) \leq h^*(n)$). A* оптимален при admissible и consistent $h$:</p>
+            <div class="formula">$$\text{A* оптимален} \iff h(n) \leq h^*(n) \; \forall n \quad \text{и} \quad h \text{ consistent}$$</div>
+        </div>
+
+        <h3>Алгоритмы планирования</h3>
+        <table>
+            <tr><th>Алгоритм</th><th>Пространство</th><th>Гарантия</th><th>Применение</th></tr>
+            <tr><td>A*</td><td>Дискретное</td><td>Оптимальность</td><td>Навигация на карте</td></tr>
+            <tr><td>RRT</td><td>Непрерывное</td><td>Asymptotic completeness</td><td>Манипуляторы</td></tr>
+            <tr><td>RRT*</td><td>Непрерывное</td><td>Asymptotic optimality</td><td>Оптимальные траектории</td></tr>
+            <tr><td>PRM</td><td>Непрерывное</td><td>Probabilistic completeness</td><td>Многоразовое планирование</td></tr>
+            <tr><td>D*</td><td>Динамическое</td><td>Replanning</td><td>Роботы в неизвестных средах</td></tr>
+            <tr><td>Lattice</td><td>Дискретное</td><td>Оптимальность</td><td>Движение наземных роботов</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 7: RRT и длина траектории</h3>
+            <p>RRT (Rapidly-exploring Random Tree) строит дерево, где длина траектории $L$:</p>
+            <div class="formula">$$L_{\text{RRT}} \leq L_{\text{opt}} \cdot \left(1 + \frac{c}{n^{1/d}}\right)$$</div>
+            <p>где $L_{\text{opt}}$ — оптимальная длина, $n$ — число вершин, $d$ — размерность, $c$ — константа. RRT* (с rewire) даёт asymptotic optimality: $\lim_{n \to \infty} L_{\text{RRT*}} = L_{\text{opt}}$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Теория управления</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>PID-контроллер</h3>
+        <div class="skill-card">
+            <h3>Утверждение 8: PID-закон управления</h3>
+            <p>Пропорционально-интегрально-дифференциальный контроллер:</p>
+            <div class="formula">$$u(t) = K_p e(t) + K_i \int_0^t e(\tau) d\tau + K_d \frac{de(t)}{dt}$$</div>
+            <p>где $e(t)$ — ошибка, $K_p$ — пропорциональный коэффициент, $K_i$ — интегральный, $K_d$ — дифференциальный. Трансфер-функция:</p>
+            <div class="formula">$$G_{\text{PID}}(s) = K_p + \frac{K_i}{s} + K_d s = \frac{K_d s^2 + K_p s + K_i}{s}$$</div>
+        </div>
+
+        <h3>Устойчивость системы</h3>
+        <div class="section">
+            <p><strong>Критерий Рауса-Гурвица:</strong> Все корни характеристического уравнения имеют отрицательную вещественную часть:</p>
+            <div class="formula">$$\text{Устойчивость} \iff \forall \lambda: \text{Re}(\lambda) < 0$$</div>
+            <p>Для второго порядка $s^2 + 2\zeta\omega_n s + \omega_n^2 = 0$: устойчивость при $\zeta > 0$, $\omega_n > 0$.</p>
+        </div>
+
+        <h3>Модели управления</h3>
+        <table>
+            <tr><th>Метод</th><th>Тип</th><th>Преимущество</th></tr>
+            <tr><td>PID</td><td>Classical</td><td>Простота, нет модели</td></tr>
+            <tr><td>LQR</td><td>Optimal</td><td>Минимизация cost function</td></tr>
+            <tr><td>MPC</td><td>Predictive</td><td>Constraints handling</td></tr>
+            <tr><td>Adaptive</td><td>Self-tuning</td><td>Нестационарные системы</td></tr>
+            <tr><td>RL (PPO/SAC)</td><td>Learning-based</td><td>Нелинейные, complex tasks</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 9: LQR-оптимизация</h3>
+            <p>Линейно-квадратический регулятор минимизирует cost function:</p>
+            <div class="formula">$$J = \int_0^\infty (x^T Q x + u^T R u) \, dt$$</div>
+            <p>Оптимальное управление: $u = -Kx$, где $K = R^{-1} B^T P$, $P$ — решение ARE (Algebraic Riccati Equation). Сложность: $O(n^3)$.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Автономные автомобили</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уровни автономности (SAE)</h3>
+        <table>
+            <tr><th>Уровень</th><th>Описание</th><th>Действия</th></tr>
+            <tr><td>L0</td><td>Без автоматизации</td><td>Человек управляет полностью</td></tr>
+            <tr><td>L1</td><td>Assistance</td><td>ACC или Lane Keeping</td></tr>
+            <tr><td>L2</td><td>Partial</td><td>ACC + Lane Keeping одновременно</td></tr>
+            <tr><td>L3</td><td>Conditional</td><td>Автопилот с запросом вмешательства</td></tr>
+            <tr><td>L4</td><td>High</td><td>Полная автономность в ODD</td></tr>
+            <tr><td>L5</td><td>Full</td><td>Полная автономность везде</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 10: Архитектура автономного автомобиля</h3>
+            <p>Стек автономного вождения:</p>
+            <div class="formula">$$\text{Sensors} \to \text{Perception} \to \text{Prediction} \to \text{Planning} \to \text{Control} \to \text{Actuators}$$</div>
+            <ul style="margin-left: 20px;">
+                <li><strong>Perception:</strong> детекция объектов (LiDAR: PointPillars, Camera: BEVFormer)</li>
+                <li><strong>Prediction:</strong> траектории других агентов (VectorNet, TNT)</li>
+                <li><strong>Planning:</strong> выбор манёвра (QMaze, lattice planner)</li>
+                <li><strong>Control:</strong> PID/MPC для руля/газа/тормоза</li>
+            </ul>
+        </div>
+
+        <h3>Стек сенсоров</h3>
+        <div class="section">
+            <table>
+                <tr><th>Сенсор</th><th>Количество</th><th>Дальность</th><th>Роль</th></tr>
+                <tr><td>LiDAR</td><td>1–5</td><td>200 м</td><td>3D карта, детекция</td></tr>
+                <tr><td>Camera</td><td>6–12</td><td>150 м</td><td>Цвет, текстуры, знаки</td></tr>
+                <tr><td>Radar</td><td>4–6</td><td>250 м</td><td>Скорость, погода</td></tr>
+                <tr><td>Ultrasonic</td><td>12+</td><td>5 м</td><td>Парковка</td></tr>
+                <tr><td>IMU + GNSS</td><td>1</td><td>Глобально</td><td>Позиционирование</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Дроны и БПЛА</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Квадрокоптер</h3>
+        <div class="skill-card">
+            <h3>Утверждение 11: Модель квадрокоптера</h3>
+            <p>Динамика квадрокоптера (6 DOF):</p>
+            <div class="formula">$$m \ddot{x} = (F_1 + F_2 + F_3 + F_4)(\cos\phi \sin\theta \cos\psi + \sin\phi \sin\psi)$$</div>
+            <div class="formula">$$J \ddot{\phi} = l(F_4 - F_2) \quad \text{(roll)}$$</div>
+            <div class="formula">$$J \ddot{\theta} = l(F_3 - F_1) \quad \text{(pitch)}$$</div>
+            <div class="formula">$$J \ddot{\psi} = \tau_{\text{yaw}} \quad \text{(yaw)}$$</div>
+            <p>где $F_i$ — тяга мотора, $l$ — плечо, $J$ — момент инерции. Каскадный контроллер: inner loop (attitude) → outer loop (position).</p>
+        </div>
+
+        <h3>Применения дронов</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Доставка</h4>
+                <p>Amazon Prime Air, Wing. Грузоподъёмность до 2.5 кг. Дальность до 20 км.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Картографирование</h4>
+                <p>Облёт полей, стройплощадок. Ортофотопланы с точностью 2 см/пиксель.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Спасательные</h4>
+                <p>Поиск людей в завалах. Термокамеры + AI-детекция.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Сельское хозяйство</h4>
+                <p>Опрыскивание полей. Дрон-самолёт: 50 га/час.</p>
+            </div>
+        </div>
+
+        <h3>Слёт (swarm) дронов</h3>
+        <div class="section">
+            <p><strong>Координация без централизации:</strong></p>
+            <div class="formula">$$F_i^{\text{repel}} = \sum_{j \neq i} \frac{k_{\text{rep}}}{\|x_i - x_j\|^2} \hat{n}_{ij}$$</div>
+            <div class="formula">$$F_i^{\text{attract}} = k_{\text{att}} (x_i^{\text{goal}} - x_i)$$</div>
+            <div class="formula">$$F_i^{\text{align}} = k_{\text{align}} \sum_{j \neq i} (v_j - v_i)$$</div>
+            <p>Модель Reynolds (boids): repulsion + attraction + alignment → emerging flocking behavior.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Резюме главы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Робототехника и автономные системы — междисциплинарное поле:</p>
+        <ul style="margin-left: 20px;">
+            <li>Кинематика: матрицы DH, forward/inverse kinematics, Jacobians</li>
+            <li>Сенсоры: LiDAR, camera, IMU + фильтр Калмана для слияния</li>
+            <li>SLAM: EKF-SLAM, GraphSLAM,ORB-SLAM3 — одновременная локализация и картография</li>
+            <li>Планирование: A*, RRT/RRT*, PRM в конфигурационном пространстве</li>
+            <li>Управление: PID, LQR, MPC, RL для стабильного движения</li>
+            <li>Автономные автомобили: L0–L5, perception → planning → control pipeline</li>
+            <li>Дроны: квадрокоптер dynamics, swarm coordination, delivery/mapping</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>1001 Proof: доказательства по робототехнике</h3>
+        <p><strong>Том 48:</strong> Робототехника и автономные системы — 1001 доказательство覆盖 kinematics, sensors, SLAM, path planning, control theory, self-driving cars, drones.</p>
+        <p><strong>Связанные тома:</strong> Линейная алгебра (том 5), Теория управления (том 25), Компьютерное зрение (том 35).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:30px;right:30px;width:40px;height:40px;border-radius:50%;background:rgba(0,210,255,0.2);color:#00d2ff;border:1px solid #00d2ff;cursor:pointer;font-size:20px;z-index:9999;transition:all 0.3s" onmouseover="this.style.background='#00d2ff';this.style.color='#1a1a2e'" onmouseout="this.style.background='rgba(0,210,255,0.2)';this.style.color='#00d2ff'">&#8679;</button>
+</body>
+</html>
