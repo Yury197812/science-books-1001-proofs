@@ -1,0 +1,428 @@
+
+<!--
+Platform: Habr
+Title: chapter_47
+Tags: 1001-proofs, operating-systems, virtualization, zenodo, science-books
+Published: 2026-08-16T15:00:00.000000
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 47: Операционные системы и виртуализация — 1001 Proof</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.8; padding: 40px; max-width: 900px; margin: 0 auto; }
+        nav { background: rgba(0,210,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #00d2ff; text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(0,210,255,0.2); }
+        nav a.active { background: #00d2ff; color: #1a1a2e; }
+        h1 { color: #00d2ff; font-size: 2.5em; margin-bottom: 30px; }
+        h2 { color: #3a7bd5; font-size: 1.8em; margin: 30px 0 15px; }
+        h3 { color: #00ff88; font-size: 1.3em; margin: 20px 0 10px; }
+        .section { background: rgba(0,210,255,0.05); border-left: 4px solid #00d2ff; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .optimization { background: rgba(0,255,136,0.05); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
+        .skill-card { background: rgba(123,104,238,0.1); border: 1px solid #7b68ee; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .formula { text-align: center; font-size: 1.3em; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 10px; margin: 20px 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; font-family: 'Consolas', monospace; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid rgba(0,210,255,0.2); font-size: 0.95em; }
+        th { color: #00d2ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .grid-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 3px solid #3a7bd5; }
+        .grid-item h4 { color: #00d2ff; margin-bottom: 8px; }
+    </style>
+
+    <meta name="citation_title" content="Операционные системы и виртуализация">
+    <meta name="citation_author" content="Yury Aronov">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.21288911">
+    <meta name="citation_pdf_url" content="https://doi.org/10.5281/zenodo.21288911">
+    <meta name="dc.identifier" content="10.5281/zenodo.21288911">
+    <meta name="dc.title" content="1001 Proof Series">
+    <meta name="dc.creator" content="Yury Aronov">
+    <meta name="dc.date" content="2026">
+    <meta name="dc.rights" content="CC-BY-4.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section, .skill-card, .optimization, .theorem, .problem, .solution, .connection { animation: fadeInUp 0.6s ease-out; }
+        .section:hover, .skill-card:hover, .optimization:hover { box-shadow: 0 0 20px rgba(0,210,255,0.1); transition: box-shadow 0.3s; }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } .grid { grid-template-columns: 1fr; } }
+        ::selection { background: #00d2ff; color: #1a1a2e; }
+        a { transition: color 0.2s, text-decoration 0.2s; }
+        a:hover { text-decoration: underline; }
+        .formula { transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+    </style>
+</head>
+<body>
+    <div id="progress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00d2ff,#7b68ee);z-index:9999;transition:width 0.1s"></div>
+    <script>window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/h*100)+'%'})</script>
+    <nav>
+        <a href="chapter_00.html">0</a>
+        <a href="chapter_16.html">16. Задачи</a>
+        <a href="chapter_17.html">17. Разбор</a>
+        <a href="chapter_18.html">18. Lean 4</a>
+        <a href="chapter_19.html">19. 1001 Proof</a>
+        <a href="chapter_47.html" class="active">47. ОС</a>
+    </nav>
+
+    <h1>Глава 47: Операционные системы и виртуализация</h1>
+
+    <div class="section">
+        <p><strong>Операционная система (ОС)</strong> — системное программное обеспечение, управляющее ресурсами компьютера и предоставляющее интерфейс для приложений. <strong>Виртуализация</strong> — абстрагирование аппаратных ресурсов для создания виртуальных копий.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>1. Управление процессами</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Процесс vs поток</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Процесс</h4>
+                <p>Изолированное выполнение: свой адресное пространство, PCB (Process Control Block), таблица страниц.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Поток</h4>
+                <p>Легковесный процесс: общее адресное пространство, собственный стек, регистры, program counter.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 1: Алгоритмы планирования</h3>
+            <p>Сравнение алгоритмов планирования процессов:</p>
+            <table>
+                <tr><th>Алгоритм</th><th>Сложность</th><th>Starvation</th><th>Preemption</th></tr>
+                <tr><td>FIFO</td><td>$O(1)$</td><td>Convoy effect</td><td>Нет</td></tr>
+                <tr><td>SJF</td><td>$O(n \log n)$</td><td>Да (длинные)</td><td>Optional</td></tr>
+                <tr><td>Round Robin</td><td>$O(1)$</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>MLFQ</td><td>$O(1)$</td><td>Минимально</td><td>Да</td></tr>
+                <tr><td>CFS (Linux)</td><td>$O(\log n)$</td><td>Нет</td><td>Да</td></tr>
+            </table>
+            <p><strong>Утверждение:</strong> Для $n$ процессов с bursts $b_1 \leq b_2 \leq \ldots \leq b_n$ среднее время ожидания при SJF:</p>
+            <div class="formula">$$\bar{W}_{\text{SJF}} = \frac{1}{n} \sum_{i=1}^{n} \sum_{j=1}^{i-1} b_j$$</div>
+            <p>SJF оптимален по среднему времени ожидания (доказательство обменом).</p>
+        </div>
+
+        <h3>Состояния процесса</h3>
+        <div class="section">
+            <p>Множество состояний процесса — конечный автомат:</p>
+            <div class="formula">$$\text{New} \to \text{Ready} \rightleftharpoons \text{Running} \to \text{Terminated}$$</div>
+            <div class="formula">$$\text{Running} \to \text{Blocked (I/O)} \to \text{Ready}$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 2: Мьютексы и взаимная блокировка</h3>
+            <p><strong>Условия взаимной блокировки ( Coffman conditions ):</strong></p>
+            <ol style="margin-left: 20px;">
+                <li><strong>Взаимное исключение</strong> — ресурс используется эксклюзивно</li>
+                <li><strong>Удержание и ожидание</strong> — процесс держит ресурс, ожидая другой</li>
+                <li><strong>Отсутствие принудительного изъятия</strong> — ресурс нельзя отобрать</li>
+                <li><strong>Циклическое ожидание</strong> — цикл в графе зависимостей</li>
+            </ol>
+            <p><strong>Доказательство:</strong> Если все 4 условия выполняются одновременно, то граф ожидания $G = (V, E)$ содержит цикл, и ни один процесс не может завершить. Следовательно, deadlock неизбежен.</p>
+            <div class="formula">$$\text{Deadlock} \iff \text{cycle in wait-for graph} \iff \text{all 4 conditions hold}$$</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>2. Управление памятью</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Виртуальная память</h3>
+        <div class="skill-card">
+            <h3>Утверждение 3: Таблица страниц</h3>
+            <p>Виртуальная память разбивает адресное пространство на страницы фиксированного размера $2^k$:</p>
+            <div class="formula">$$\text{virtual address} = \underbrace{p}_{\text{page number}} \| \underbrace{d}_{\text{offset}}$$</div>
+            <p>Для 64-бит адреса, страниц 4 КБ ($k=12$): $p$ = 52 бит, $d$ = 12 бит. Число страниц: $2^{52} \approx 4.5 \times 10^{15}$.</p>
+        </div>
+
+        <h>Алгоритмы замены страниц</h3>
+        <div class="skill-card">
+            <h3>Утверждение 4: Аппарат Беллди (Belady's Anomaly)</h3>
+            <p>Для алгоритма FIFO увеличение числа фреймов может <em>увеличить</em> число page faults:</p>
+            <div class="formula">$$m < n \implies PF_m \geq PF_n \quad \text{(не всегда для FIFO)}$$</div>
+            <p><strong>Доказательство:</strong> Строка обращений 1,2,3,4,1,2,5,1,2,3,4,5. При 3 фреймах: 9 faults. При 4 фреймах: 10 faults. Для LRU и Optimal аномалии нет (monotonically decreasing).</p>
+        </div>
+
+        <h3>Сравнение алгоритмов замены</h3>
+        <table>
+            <tr><th>Алгоритм</th><th>Сложность</th><th>Аномалия Беллди</th><th>Оптимальность</th></tr>
+            <tr><td>Optimal (MIN)</td><td>$O(n)$</td><td>Нет</td><td>Оптимален</td></tr>
+            <tr><td>LRU</td><td>$O(1)$ (стек)</td><td>Нет</td><td>~Оптимален</td></tr>
+            <tr><td>FIFO</td><td>$O(1)$</td><td>Да</td><td>Не оптимален</td></tr>
+            <tr><td>Second Chance</td><td>$O(1)$</td><td>Нет</td><td>Приближение LRU</td></tr>
+            <tr><td>Clock</td><td>$O(1)$</td><td>Нет</td><td>Приближение LRU</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 5: Working Set Model</h3>
+            <p><strong>Рабочий набор</strong> — множество страниц, используемых в окне времени $\Delta$:</p>
+            <div class="formula">$$W(t, \Delta) = \{ p \mid p \text{ accessed in } [t - \Delta, t] \}$$</div>
+            <p>Если физическая память $M \geq |W(t, \Delta)|$ для всех процессов, thrashing отсутствует. Если $M < \sum |W_i|$, система «тормозит» (thrashing).</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>3. Файловые системы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Структура файловой системы</h3>
+        <div class="section">
+            <p>Файловая система организует данные на диске:</p>
+            <div class="formula">$$\text{Superblock} \to \text{Inode bitmap} \to \text{Inodes} \to \text{Data blocks}$$</div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 6: Inode и ссылки</h3>
+            <p><strong>Inode</strong> — структура данных, содержащая метаданные файла (без имени):</p>
+            <ul style="margin-left: 20px;">
+                <li>Размер файла, права доступа, timestamps</li>
+                <li>Указатели на данные: 12 прямых + 1 косвенный + 1 двойной косвенный</li>
+                <li>Счётчик ссылок (hard links)</li>
+            </ul>
+            <p>Максимальный размер файла при 4 КБ блоках и 32-бит указателях:</p>
+            <div class="formula">$$S_{\max} = (12 + \frac{4096}{4} + \frac{4096^2}{4^2}) \cdot 4096 \approx 16 \text{ ТБ}$$</div>
+        </div>
+
+        <h3>Типы файловых систем</h3>
+        <table>
+            <tr><th>ФС</th><th>Особенности</th><th>Использование</th></tr>
+            <tr><td>ext4</td><td>Журналирование, extents, backward compat</td><td>Linux (по умолчанию)</td></tr>
+            <tr><td>XFS</td><td>Высокая производительность, параллельный I/O</td><td>Enterprise, HPC</td></tr>
+            <tr><td>Btrfs</td><td>Снапшоты, сжатие, checksums</td><td>NAS, desktop</td></tr>
+            <tr><td>ZFS</td><td>Pooled storage, RAID-Z, данные проверки</td><td>SAN, NAS</td></tr>
+            <tr><td>NTFS</td><td>ACLs, journaling, alternate data streams</td><td>Windows</td></tr>
+            <tr><td>APFS</td><td>Clone, snapshot, encryption</td><td>macOS, iOS</td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>4. Виртуализация</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Уровни виртуализации</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>Type 1 (Bare-metal)</h4>
+                <p>ESXi, Xen, KVM. Гипервизор работает напрямую на железе. Максимальная производительность.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Type 2 (Hosted)</h4>
+                <p>VirtualBox, VMware Workstation. Гипервизор запускается как приложение ОС. Удобство.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Hardware-assisted</h4>
+                <p>Intel VT-x, AMD-V. Расширения CPU для виртуализации. Устранение binary translation.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Para-virtualization</h4>
+                <p>Hyper-V, Xen PV. Гость «знает» о виртуализации. Оптимизация гипервизорных вызовов.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 7: Overhead виртуализации</h3>
+            <p>Производительность виртуальной машины относительно bare-metal:</p>
+            <div class="formula">$$\text{Performance}_{VM} = \text{Performance}_{bare} \cdot (1 - \epsilon_{\text{CPU}} - \epsilon_{\text{I/O}} - \epsilon_{\text{mem}})$$</div>
+            <p>где $\epsilon_{\text{CPU}} \approx 2\text{–}5\%$ (hardware-assisted), $\epsilon_{\text{I/O}} \approx 5\text{–}15\%$, $\epsilon_{\text{mem}} \approx 1\text{–}3\%$. Типичный overhead: 5–10% для CPU-bound, 10–20% для I/O-bound.</p>
+        </div>
+
+        <h3>Hardware-assisted Virtualization</h3>
+        <div class="section">
+            <p><strong>Intel VT-x / AMD-V</strong> добавляют два режима:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>VMX root mode</strong> — гипервизор (Ring -1)</li>
+                <li><strong>VMX non-root mode</strong> — гость (Ring 0–3, но с ограничениями)</li>
+            </ul>
+            <p><strong>EPT/NPT</strong> (Extended Page Tables) — двухуровневая трансляция:</p>
+            <div class="formula">$$\text{GPA} \xrightarrow{\text{EPT}} \text{HPA} \xrightarrow{\text{page table}} \text{physical}$$</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>5. Контейнеры</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Контейнеры vs виртуальные машины</h3>
+        <table>
+            <tr><th>Параметр</th><th>Виртуальная машина</th><th>Контейнер</th></tr>
+            <tr><td>Изоляция</td><td>Полная (отдельное ядро)</td><td>Процессная (общее ядро)</td></tr>
+            <tr><td>Размер</td><td>ГБ</td><td>МБ</td></tr>
+            <tr><td>Время запуска</td><td>Минуты</td><td>Секунды</td></tr>
+            <tr><td>Производительность</td><td>~90% bare-metal</td><td>~98% bare-metal</td></tr>
+            <tr><td>Безопасность</td><td>Выше (гипервизор)</td><td>Ниже (общее ядро)</td></tr>
+        </table>
+
+        <div class="skill-card">
+            <h3>Утверждение 8: Namespace и cgroups</h3>
+            <p><strong>Linux namespaces</strong> — изоляция ресурсов:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>PID</strong> — изоляция процессов</li>
+                <li><strong>NET</strong> — изоляция сети (eth0, iptables)</li>
+                <li><strong>MNT</strong> — изоляция файловых систем</li>
+                <li><strong>UTS</strong> — изоляция hostname</li>
+                <li><strong>IPC</strong> — изоляция межпроцессного взаимодействия</li>
+                <li><strong>USER</strong> — изоляция UID/GID</li>
+            </ul>
+            <p><strong>cgroups</strong> — контроль ресурсов:</p>
+            <div class="formula">$$\text{cgroup} = \text{CPU quota} + \text{memory limit} + \text{I/O weight} + \text{PIDs limit}$$</div>
+        </div>
+
+        <h3>Docker и Kubernetes</h3>
+        <div class="section">
+            <p><strong>Docker</strong> — платформа контейнеризации (images → containers → registries).</p>
+            <p><strong>Kubernetes</strong> — оркестрация контейнеров:</p>
+            <div class="formula">$$\text{Pod} \subset \text{Node} \subset \text{Cluster} \subset \text{Namespace}$$</div>
+            <ul style="margin-left: 20px;">
+                <li>Pod — минимальная единица деплоя (1+ контейнеров)</li>
+                <li>Node — физический/виртуальный сервер</li>
+                <li>Cluster — группа нод</li>
+                <li>Deployment, Service, Ingress — абстракции</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>6. Облачные вычисления</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Модели сервисов</h3>
+        <div class="grid">
+            <div class="grid-item">
+                <h4>IaaS</h4>
+                <p>Виртуальные серверы, хранилище, сети. AWS EC2, Azure VM.</p>
+            </div>
+            <div class="grid-item">
+                <h4>PaaS</h4>
+                <p>Платформа для приложений. Heroku, Google App Engine.</p>
+            </div>
+            <div class="grid-item">
+                <h4>SaaS</h4>
+                <p>Готовое приложение. Gmail, Salesforce, Dropbox.</p>
+            </div>
+            <div class="grid-item">
+                <h4>FaaS</h4>
+                <p>Serverless функции. AWS Lambda, Cloudflare Workers.</p>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Утверждение 9: Формула стоимости облака</h3>
+            <p>Стоимость $C$ в облаке vs on-premise:</p>
+            <div class="formula">$$C_{\text{cloud}}(t) = C_{\text{compute}} \cdot t + C_{\text{storage}} \cdot V + C_{\text{transfer}} \cdot D$$</div>
+            <div class="formula">$$C_{\text{on-prem}}(t) = \frac{C_{\text{hardware}}}{T_{\text{life}}} + C_{\text{power}} + C_{\text{admin}}$$</div>
+            <p>Break-even: $C_{\text{cloud}} = C_{\text{on-prem}}$ при $t \approx 3$ года для типичных нагрузок. Облако выгоднее для переменных нагрузок; on-premise — для постоянных.</p>
+        </div>
+
+        <h3>Serverless вычисления</h3>
+        <div class="section">
+            <p>Ключевые особенности FaaS:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Auto-scaling:</strong> от 0 до $10^6$ инстансов</li>
+                <li><strong>Pay-per-use:</strong> оплата за миллисекунды выполнения</li>
+                <li><strong>Cold start:</strong> задержка инициализации 100 мс–10 с</li>
+                <li><strong>Duration limit:</strong> макс. 15 мин (AWS Lambda)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>7. Безопасность ОС</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <h3>Модель защиты</h3>
+        <div class="skill-card">
+            <h3>Утверждение 10: Кольца защиты</h3>
+            <p>Модель защиты Intel x86:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>Ring 0</strong> — ядро ОС (полный доступ)</li>
+                <li><strong>Ring 1–2</strong> — драйверы (редко используется)</li>
+                <li><strong>Ring 3</strong> — пользовательские приложения (ограниченный доступ)</li>
+            </ul>
+            <p><strong>System call</strong> — переход из Ring 3 в Ring 0 через инструкцию <code>syscall</code>. Overhead: ~100 нс на вызов.</p>
+            <div class="formula">$$T_{\text{syscall}} = T_{\text{context switch}} + T_{\text{validation}} + T_{\text{execution}}$$</div>
+        </div>
+
+        <h3>ASLR и DEP</h3>
+        <div class="section">
+            <p><strong>ASLR</strong> (Address Space Layout Randomization) — случайное размещение стека, кучи и библиотек:</p>
+            <div class="formula">$$\text{Entropy}_{ASLR} = \log_2(\text{positions}) \approx 20\text{–}30 \text{ бит}$$</div>
+            <p><strong>DEP/NX</strong> (Data Execution Prevention) — запрет выполнения данных как кода. Комбинация ASLR + DEP + stack canaries = modern exploit mitigation.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <h2>8. Резюме главы</h2>
+    <!-- ============================================ -->
+
+    <div class="section">
+        <p>Операционные системы и виртуализация — основа инфраструктуры:</p>
+        <ul style="margin-left: 20px;">
+            <li>Управление процессами: планирование, мьютексы, deadlock detection</li>
+            <li>Управление памятью: виртуальная память, страницы, replacement algorithms</li>
+            <li>Файловые системы: inodes, journaling, copy-on-write</li>
+            <li>Виртуализация: Type 1/2, hardware-assisted, EPT</li>
+            <li>Контейнеры: namespaces, cgroups, Docker, Kubernetes</li>
+            <li>Облачные вычисления: IaaS/PaaS/SaaS/FaaS, cost models</li>
+            <li>Безопасность: ring protection, ASLR, DEP</li>
+        </ul>
+    </div>
+
+    <div class="optimization">
+        <h3>1001 Proof: доказательства по ОС и виртуализации</h3>
+        <p><strong>Том 47:</strong> Операционные системы и виртуализация — 1001 доказательство覆盖 process management, memory, file systems, virtualization, containers, cloud computing.</p>
+        <p><strong>Связанные тома:</strong> Алгоритмы (том 12), Компьютерные сети (том 46), Безопасность (том 33).</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                macros: {
+                    "\\BigO": "\\mathcal{O}",
+                    "\\R": "\\mathbb{R}",
+                    "\\C": "\\mathbb{C}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\N": "\\mathbb{N}",
+                    "\\Q": "\\mathbb{Q}"
+                }
+            });
+        });
+    </script>
+    <div style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5">1001 Proof &mdash; <a href="https://algocosmos.com" style="color:#00d2ff">algocosmos.com</a></p>
+        <p style="color:#666;font-size:0.85em">CC-BY-4.0 | Zenodo | GitHub</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;padding:15px;border-top:1px solid rgba(0,210,255,0.3)">
+        <p style="color:#3a7bd5;font-size:0.9em">
+            DOI: <a href="https://doi.org/10.5281/zenodo.21288911" style="color:#00d2ff">10.5281/zenodo.21288911</a> | 
+            CC-BY-4.0 | 
+            <a href="https://zenodo.org/record/21288911" style="color:#00d2ff">Zenodo</a> |
+            <a href="https://github.com/Yury197812/1001-proofs" style="color:#00d2ff">GitHub</a>
+        </p>
+        <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:30px;right:30px;width:40px;height:40px;border-radius:50%;background:rgba(0,210,255,0.2);color:#00d2ff;border:1px solid #00d2ff;cursor:pointer;font-size:20px;z-index:9999;transition:all 0.3s" onmouseover="this.style.background='#00d2ff';this.style.color='#1a1a2e'" onmouseout="this.style.background='rgba(0,210,255,0.2)';this.style.color='#00d2ff'">&#8679;</button>
+</body>
+</html>
