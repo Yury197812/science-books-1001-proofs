@@ -45,8 +45,24 @@ Published: 2026-08-16T15:30:00.000000
     <meta name="dc.creator" content="Yury Aronov">
     <meta name="dc.date" content="2026">
     <meta name="dc.rights" content="CC-BY-4.0">
+    <style>
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section, .skill-card, .optimization, .theorem, .problem, .solution, .connection { animation: fadeInUp 0.6s ease-out; }
+        .section:hover, .skill-card:hover, .optimization:hover { box-shadow: 0 0 20px rgba(0,210,255,0.1); transition: box-shadow 0.3s; }
+        @media (max-width: 768px) { body { padding: 20px; } h1 { font-size: 1.8em; } .grid { grid-template-columns: 1fr; } }
+        ::selection { background: #00d2ff; color: #1a1a2e; }
+        a { transition: color 0.2s, text-decoration 0.2s; }
+        a:hover { text-decoration: underline; }
+        .formula { transition: transform 0.2s; }
+        .formula:hover { transform: scale(1.02); }
+        table tr { transition: background 0.2s; }
+        table tr:hover { background: rgba(0,210,255,0.05); }
+    </style>
 </head>
 <body>
+    <div id="progress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00d2ff,#7b68ee);z-index:9999;transition:width 0.1s"></div>
+    <script>window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/h*100)+'%'})</script>
     <nav>
         <a href="chapter_00.html">0</a>
         <a href="chapter_16.html">16</a>
@@ -230,5 +246,6 @@ Published: 2026-08-16T15:30:00.000000
         </p>
         <p style="color:#666;font-size:0.8em">Yury Aronov (Independent Researcher)</p>
     </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:30px;right:30px;width:40px;height:40px;border-radius:50%;background:rgba(0,210,255,0.2);color:#00d2ff;border:1px solid #00d2ff;cursor:pointer;font-size:20px;z-index:9999;transition:all 0.3s" onmouseover="this.style.background='#00d2ff';this.style.color='#1a1a2e'" onmouseout="this.style.background='rgba(0,210,255,0.2)';this.style.color='#00d2ff'">&#8679;</button>
 </body>
 </html>
